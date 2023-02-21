@@ -5,7 +5,8 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --no-clear"
+    "start": "sirv public --no-clear",
+    "deploy": "npx gh-pages -d public"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
@@ -22,6 +23,7 @@
     "d3-selection": "^3.0.0",
     "d3-textwrap": "^3.0.0",
     "d3-zoom": "^3.0.0",
+    "gh-pages": "^5.0.0",
     "marked": "^4.2.12",
     "p-queue": "^7.3.4",
     "sirv-cli": "^2.0.0",
