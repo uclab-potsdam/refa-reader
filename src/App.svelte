@@ -9,7 +9,7 @@
 	import Header from "./components/Header.svelte";
 	import Items from "./components/Items.svelte";
 
-	let MarkdownFiles;
+	let MarkdownFiles, triples;
 
 	onMount(async () => {
 		MarkdownFiles = await Promise.all(
@@ -26,12 +26,13 @@
 			})
 		);
 		selectedMarkdown.set(MarkdownFiles[0]);
-		graphData.set(createTriplets($selectedMarkdown));
+		triples = await createTriplets($selectedMarkdown);
+		graphData.set(triples);
 	});
 </script>
 
 <main>
-	{#if MarkdownFiles === undefined}
+	{#if triples === undefined}
 		<h4 class="loading">Loading Essays...</h4>
 	{:else}
 		<Header {MarkdownFiles} {selectedMarkdown} />

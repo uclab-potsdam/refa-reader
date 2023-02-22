@@ -66,8 +66,7 @@ export async function extractLinks(markdown) {
     return links;
 }
 
-
-export function createTriplets(data) {
+export async function createTriplets(data) {
     let allTriplets = [];
     // Open all links and create a new object with the triples generated
     for (let i = 0; i < data.items.length; i++) {
@@ -80,19 +79,44 @@ export function createTriplets(data) {
     }
 
     // Create the nodes and links as d3 likes
-    return {
+    const graph = {
         nodes: allTriplets.reduce((acc, curr) => {
             if (!acc.find((n) => n.id === curr.source)) {
-                acc.push({ id: curr.source, title: curr.title, img: curr.img });
+                acc.push({ id: curr.source, title: curr.title });
             }
             if (!acc.find((n) => n.id === curr.target)) {
-                acc.push({ id: curr.target, title: curr.title, img: curr.img });
+                acc.push({ id: curr.target, title: curr.title });
             }
             return acc;
         }, []),
         links: allTriplets,
     }
+
+    const entities = await loadImages(graph.nodes);
+    return { ...graph, entities };
 }
+
+export async function loadImages(nodes) {
+    const batchSize = 100;
+
+    const ids = nodes.map((d) => {
+        const id = d.id.split("/");
+        return id.slice(-1)[0];
+    });
+
+    const numBatches = Math.ceil(ids.length / batchSize);
+
+    let data = []
+    for (let i = 0; i < numBatches; i++) {
+        const batchIds = ids.slice(i * batchSize, (i + 1) * batchSize);
+        const query = `${Api}/items?${batchIds.map((id) => `id[]=${id}`).join("&")}`;
+        const response = await fetch(query);
+        const items = await response.json()
+        data.push(...items);
+    }
+    return data
+}
+
 
 export function parseJSONLD(jsonLD, set) {
     let triplets = [];
@@ -113,7 +137,6 @@ export function parseJSONLD(jsonLD, set) {
                 let splitId = obj[key].split("/")
                 let id = splitId[splitId.length - 1];
 
-                // let target = obj[key].replace("/items_sets/", "/resources/").replace("/items/", "/resources/");
                 const target = `${Api}/resources/${id}`;
                 const title = obj["o:title"] || obj.display_title;
 

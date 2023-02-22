@@ -12,9 +12,6 @@
     import { zoom, zoomIdentity } from "d3-zoom";
     import { select } from "d3-selection";
     import { drag } from "d3-drag";
-    import PQueue from "p-queue";
-
-    const queue = new PQueue({ concurrency: 5 }); // Limit the concurrent requests
 
     import {
         forceSimulation,
@@ -42,7 +39,7 @@
     let width = 0;
     let height = 0;
     let transform = d3.zoomIdentity;
-    let svg, links, nodes, simulation;
+    let svg, links, nodes, entities, simulation;
 
     const d3zoom = d3
         .zoom()
@@ -63,6 +60,11 @@
         ];
         nodes = [
             ...$graphData.nodes.map((d) => Object.assign(d, { class: "node" })),
+        ];
+        entities = [
+            ...$graphData.entities.map((d) =>
+                Object.assign(d, { class: "entities" })
+            ),
         ];
         runSimulation();
     }
@@ -124,46 +126,6 @@
         highlightLinks(nodeToZoom);
     }
 
-    // let prevNodeId;
-    // function zoomToNode(item) {
-    //     const nodeToZoom = nodes.find((node) => node.id === item);
-    //     if (nodeToZoom) {
-    //         // adapt the simulation to the center
-    //         if (prevNodeId) {
-    //             const prevSelectedNode = nodes.find((node) => node.id === prevNodeId);
-    //             prevSelectedNode.fx = null;
-    //             prevSelectedNode.fy = null;
-    //         }
-
-    //         nodeToZoom.fx = width / 2;
-    //         nodeToZoom.fy = height / 2;
-
-    //         simulation
-    //             .force("charge", d3.forceManyBody().strength(-50))
-    //             .force("collision", d3.forceCollide().radius(150))
-    //             .alphaTarget(0.3)
-    //             .restart();
-
-    //         prevNodeId = item
-
-    //         // zoom to the center
-    //         const zoomTransform = d3.zoomIdentity
-    //             .scale(0.8)
-    //             .translate(
-    //                 width / 2 - nodeToZoom.fx,
-    //                 height / 2 - nodeToZoom.fy
-    //             );
-
-    //         d3.select(svg)
-    //             .transition()
-    //             .duration(500)
-    //             .call(d3zoom.transform, zoomTransform);
-
-    //         simulationUpdate();
-    //         highlightLinks(nodeToZoom);
-    //     }
-    // }
-
     function zoomed(currentEvent) {
         $showItemDetail = false;
         transform = currentEvent.transform;
@@ -209,26 +171,15 @@
         }
     }
 
-    async function loadImages(node) {
-        console.log(node);
-        try {
-            const response = await queue.add(() => fetch(node)); // Add request to queue
-            const data = await response.json();
-            // ignoring itemsets images
-            if (!data["@type"].includes("o:ItemSet")) {
-                node.img = data?.thumbnail_display_urls?.fav;
-                return node;
-            } else {
-                return { node };
-            }
-        } catch (error) {
-            return { node };
-        }
-    }
-
     function openDetail(node) {
         $showItemDetail = true;
         highlightLinks(node);
+    }
+
+    function getImageByNode(node) {
+        const id = node.id.split("/");
+        const datum = entities.find((d) => d["o:id"] == id.slice(-1)[0]);
+        return datum?.thumbnail_display_urls?.fav
     }
 </script>
 
@@ -287,8 +238,8 @@
                         x={node.x - 2}
                         y={node.y - 2}
                     >
-                        {#if node.img}
-                            <img src={node.img} alt={node.title} />
+                        {#if getImageByNode(node)}
+                            <img src={getImageByNode(node)} alt={node.title} />
                             <div class="title">{node.title}</div>
                         {:else}
                             <div class="title">{node.title}</div>
