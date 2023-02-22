@@ -1,3 +1,4 @@
+import { json } from "stream/consumers";
 import { Api } from "./config.js";
 import { visibleLinks, allLinks } from "./stores";
 
@@ -9,7 +10,9 @@ export async function fetchFile(url) {
 
 export async function extractLinks(markdown) {
     const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+    const urlsToFetch = [];
     const links = [];
+
     let match;
     while ((match = regex.exec(markdown))) {
         // ignore normal links
@@ -17,56 +20,63 @@ export async function extractLinks(markdown) {
             continue
         }
         else {
-            const url = match[2].includes(Api)
-                ? match[2]
-                : `${Api}/resources/${match[2]}`;
-            const response = await fetch(url);
-            const json = await response.json();
-
-            // load item sets
-            if (json["o:items"]) {
-                links.push({
-                    label: match[1],
-                    url: url,
-                    data: json,
-                });
-                let items = json["o:items"]["@id"]
-                const responseSet = await fetch(items);
-                const jsonSet = await responseSet.json();
-                jsonSet.forEach(item => {
-                    links.push({
-                        label: item["o:title"],
-                        url: item["@id"],
-                        data: item,
-                        set: {
-                            id: json["o:id"],
-                            title: json["o:title"]
-                        }
-                    });
-                });
-            }
-            // load normal item
-            else {
-                links.push({
-                    label: match[1],
-                    url: url,
-                    data: json,
-                });
-            }
+            urlsToFetch.push(match[2]);
+            links.push({ label: match[1], url: match[2] });
         }
-
     }
+
+    // replace with resources
+    const query = `${Api}/items?${urlsToFetch.map((i) => `id[]=${i}`).join("&")}`
+
+    const response = await fetch(query);
+    const jsons = await response.json();
+
+    for (let i = 0; i < jsons.length; i++) {
+        const json = jsons[i];
+        const link = links[i];
+
+        // load item sets
+        if (json["o:items"]) {
+            link.data = json;
+            link.set = {
+                id: json["o:id"],
+                title: json["o:title"]
+            };
+            const items = json["o:items"]["@id"];
+            const responseSet = await fetch(items);
+            const jsonSet = await responseSet.json();
+            jsonSet.forEach(item => {
+                links.push({
+                    label: item["o:title"],
+                    url: item["@id"],
+                    data: item,
+                    set: {
+                        id: json["o:id"],
+                        title: json["o:title"]
+                    }
+                });
+            });
+        }
+        // load normal item
+        else {
+            link.data = json;
+        }
+    }
+
     return links;
 }
+
 
 export function createTriplets(data) {
     let allTriplets = [];
     // Open all links and create a new object with the triples generated
     for (let i = 0; i < data.items.length; i++) {
-        let jsonLD = data.items[i].data;
-        let set = data.items[i].set || null;
-        let triplets = parseJSONLD(jsonLD, set);
-        allTriplets = [...allTriplets, ...triplets];
+        if (data.items[i].data) {
+            let jsonLD = data.items[i].data;
+            let set = data.items[i].set || null;
+            let triplets = parseJSONLD(jsonLD, set);
+            allTriplets = [...allTriplets, ...triplets];
+        }
     }
 
     // Create the nodes and links as d3 likes
@@ -106,7 +116,7 @@ export function parseJSONLD(jsonLD, set) {
                 // let target = obj[key].replace("/items_sets/", "/resources/").replace("/items/", "/resources/");
                 const target = `${Api}/resources/${id}`;
                 const title = obj["o:title"] || obj.display_title;
-                
+
                 triplets.push({
                     source: source,
                     target: target,
@@ -172,10 +182,10 @@ export function parseProperties(obj) {
 export function observe() {
     let visible = new Set();
     let scrollingDirection;
-   
+
     const options = {
         rootMargin: '0px 0px -20% 0px',
-      }
+    }
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
