@@ -1,6 +1,6 @@
 <script>
     import { showItemDetail } from "../stores";
-    import SvgContainer from "./SvgContainer.svelte";
+    import Graph from "./Graph.svelte";
     import ItemDetail from "./ItemDetail.svelte";
     import { fade, slide, fly } from "svelte/transition";
 </script>
@@ -11,7 +11,7 @@
             <ItemDetail />
         </div>
     {/if}
-    <SvgContainer />
+    <Graph />
 </div>
 
 <style>

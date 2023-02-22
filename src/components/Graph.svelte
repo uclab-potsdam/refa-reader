@@ -171,6 +171,9 @@
     }
 
     function simulationUpdate() {
+        if (simulation.alpha() < 0.01) {
+            simulation.stop();
+        }
         nodes = [...nodes];
         links = [...links];
     }
@@ -206,31 +209,20 @@
         }
     }
 
-    const thumbnailCache = {};
-    async function nodeHasThumbnail(nodeId) {
-        if (thumbnailCache[nodeId]) {
-            // Return cached response if available
-            return thumbnailCache[nodeId];
-        }
-
+    async function loadImages(node) {
+        console.log(node);
         try {
-            const response = await queue.add(() => fetch(nodeId)); // Add request to queue
+            const response = await queue.add(() => fetch(node)); // Add request to queue
             const data = await response.json();
-
             // ignoring itemsets images
             if (!data["@type"].includes("o:ItemSet")) {
-                const thumbnailUrl = data?.thumbnail_display_urls?.fav;
-                const result = {
-                    hasThumbnail: thumbnailUrl != null,
-                    thumbnailUrl,
-                };
-                thumbnailCache[nodeId] = result; // Cache response
-                return result;
+                node.img = data?.thumbnail_display_urls?.fav;
+                return node;
             } else {
-                return { hasThumbnail: false, thumbnailUrl: null };
+                return { node };
             }
         } catch (error) {
-            return { hasThumbnail: false, thumbnailUrl: null };
+            return { node };
         }
     }
 
@@ -244,15 +236,15 @@
     <svg bind:this={svg} {width} {height}>
         <g class="links">
             {#each links as link}
-                {#if link.class == "link-highlite"}
-                    <g class={link.class} stroke-width="1" fill="none">
-                        <path
-                            d={linkArc(link)}
-                            data-attr={link.source.id}
-                            transform="translate({transform.x} {transform.y}) scale({transform.k} {transform.k})"
-                        />
-                    </g>
-                {/if}
+                <!-- {#if link.class == "link-highlite"} -->
+                <g class={link.class} stroke-width="1" fill="none">
+                    <path
+                        d={linkArc(link)}
+                        data-attr={link.source.id}
+                        transform="translate({transform.x} {transform.y}) scale({transform.k} {transform.k})"
+                    />
+                </g>
+                <!-- {/if} -->
             {/each}
             <!-- {#each links as link}
                 <g class={link.class} stroke-width="1" fill="none">
@@ -295,21 +287,12 @@
                         x={node.x - 2}
                         y={node.y - 2}
                     >
-                        {#await nodeHasThumbnail(node.id)}
+                        {#if node.img}
+                            <img src={node.img} alt={node.title} />
                             <div class="title">{node.title}</div>
-                        {:then thumbnailData}
-                            {#if thumbnailData.hasThumbnail}
-                                <img
-                                    src={thumbnailData.thumbnailUrl}
-                                    alt={node.title}
-                                />
-                                <div class="title">{node.title}</div>
-                            {:else}
-                                <div class="title">{node.title}</div>
-                            {/if}
-                        {:catch error}
-                            <p>Error: {error.message}</p>
-                        {/await}
+                        {:else}
+                            <div class="title">{node.title}</div>
+                        {/if}
                     </foreignObject>
                 </g>
             {/each}
