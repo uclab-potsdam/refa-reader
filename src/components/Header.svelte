@@ -1,6 +1,6 @@
 <script>
     import { selectedMarkdown, graphData } from "../stores";
-    import { createTriplets } from "../functions.js";
+    import { createTriplets } from "../utils.js";
 
     export let MarkdownFiles;
 

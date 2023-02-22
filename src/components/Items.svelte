@@ -18,5 +18,8 @@
     .items {
         display: flex;
         flex: 1;
+        width: 100%;
+        display: flex;
+        overflow: hidden;
     }
 </style>

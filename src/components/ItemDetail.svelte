@@ -1,7 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import { selectedNode } from "../stores.js";
-    import { parseProperties } from "../functions.js";
+    import { parseProperties } from "../utils.js";
 
     let selections = new Map(); // Use a Map to store the selections and their keys
     let selection;

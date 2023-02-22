@@ -8,7 +8,6 @@
         scrolled,
         showItemDetail,
     } from "../stores";
-    import { observe } from "../functions.js";
     import { zoom, zoomIdentity } from "d3-zoom";
     import { select } from "d3-selection";
     import { drag } from "d3-drag";
@@ -179,7 +178,52 @@
     function getImageByNode(node) {
         const id = node.id.split("/");
         const datum = entities.find((d) => d["o:id"] == id.slice(-1)[0]);
-        return datum?.thumbnail_display_urls?.fav
+        return datum?.thumbnail_display_urls?.fav;
+    }
+    function observe() {
+        let visible = new Set();
+        let scrollingDirection;
+
+        const options = {
+            rootMargin: "0px 0px -20% 0px",
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                // Determine the direction of the scrolling
+                if (entry.boundingClientRect.y !== 0) {
+                    scrollingDirection =
+                        entry.boundingClientRect.y > entry.rootBounds.y
+                            ? "down"
+                            : "up";
+                }
+
+                const newItem = entry.target.getAttribute("data-id");
+                // Update the allLinks array to include the new item if it doesn't already exist
+                allLinks.update((items) => {
+                    if (!items.includes(newItem)) {
+                        items.push(newItem);
+                    }
+                    return items;
+                });
+                // If the current entry is intersecting with the viewport, add it to the visible set
+                if (entry.isIntersecting) {
+                    if (scrollingDirection === "down") {
+                        visible.add(newItem);
+                    } else {
+                        visible = new Set([newItem, ...visible]);
+                    }
+                    // If the current entry is not intersecting with the viewport, remove it from the visible set
+                } else {
+                    visible.delete(newItem);
+                }
+            });
+            // console.log([...visible])
+            visibleLinks.set([...visible]);
+        }, options);
+
+        const links = document.querySelectorAll(".markdown a[data-id]");
+        links.forEach((link) => observer.observe(link));
     }
 </script>
 

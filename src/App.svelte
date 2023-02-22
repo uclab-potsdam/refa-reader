@@ -2,7 +2,7 @@
 	import { onMount } from "svelte";
 	import { fade, slide, fly } from "svelte/transition";
 	import { Files } from "./config.js";
-	import { fetchFile, extractLinks, createTriplets } from "./functions.js";
+	import { fetchFile, extractLinks, createTriplets } from "./utils.js";
 	import { selectedMarkdown, graphData, showItemDetail } from "./stores.js";
 	import { v4 as uuidv4 } from "uuid";
 	import TextContainer from "./components/TextContainer.svelte";
