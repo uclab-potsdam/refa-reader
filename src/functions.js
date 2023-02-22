@@ -10,29 +10,51 @@ export async function fetchFile(url) {
 
 export async function extractLinks(markdown) {
     const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
-    const urlsToFetch = [];
+    const itemUrls = [];
+    const mediaUrls = [];
+    const setUrls = [];
     const links = [];
 
     let match;
     while ((match = regex.exec(markdown))) {
-        // ignore normal links
         if (match[2].includes("http")) {
             continue
         }
         else {
-            urlsToFetch.push(match[2]);
-            links.push({ label: match[1], url: match[2] });
+            const label = match[1]
+            const url = match[2]
+            if (url.includes("item/")) {
+                itemUrls.push(url.split("/")[1]);
+            }
+            if (url.includes("set/")) {
+                setUrls.push(url.split("/")[1]);
+            }
+            if (url.includes("media/")) {
+                mediaUrls.push(url.split("/")[1]);
+            }
+            links.push({ label, id: url.split("/")[1] });
         }
     }
 
-    // replace with resources
-    const query = `${Api}/items?${urlsToFetch.map((i) => `id[]=${i}`).join("&")}`
+    const itemQuery = `${Api}/items?${itemUrls.map((i) => `id[]=${i}`).join("&")}`;
+    const setQuery = `${Api}/item_sets?${setUrls.map((i) => `id[]=${i}`).join("&")}`;
+    const mediaQuery = `${Api}/medias?${mediaUrls.map((i) => `id[]=${i}`).join("&")}`;
 
-    const response = await fetch(query);
-    const jsons = await response.json();
+    const [itemResponse, setResponse, mediaResponse] = await Promise.all([
+        itemUrls.length ? fetch(itemQuery) : Promise.resolve({}),
+        setUrls.length ? fetch(setQuery) : Promise.resolve({}),
+        mediaUrls.length ? fetch(mediaQuery) : Promise.resolve({})
+    ]);
 
-    for (let i = 0; i < jsons.length; i++) {
-        const json = jsons[i];
+    const [itemJsons, setJsons, mediaJsons] = await Promise.all([
+        itemUrls.length ? itemResponse.json() : Promise.resolve([]),
+        setUrls.length ? setResponse.json() : Promise.resolve([]),
+        mediaUrls.length ? mediaResponse.json() : Promise.resolve([])
+    ]);
+
+    let parseitems = [...itemJsons, ...mediaJsons, ...setJsons]
+    for (let i = 0; i < parseitems.length; i++) {
+        const json = parseitems[i];
         const link = links[i];
 
         // load item sets
@@ -57,7 +79,6 @@ export async function extractLinks(markdown) {
                 });
             });
         }
-        // load normal item
         else {
             link.data = json;
         }
@@ -65,6 +86,7 @@ export async function extractLinks(markdown) {
 
     return links;
 }
+
 
 export async function createTriplets(data) {
     let allTriplets = [];

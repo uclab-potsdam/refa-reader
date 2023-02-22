@@ -15,11 +15,12 @@
         if (href.includes("http")) {
             return `<a class="external" target="_blank" href="${href}" title="${text}">${text}</a>`;
         } else {
-            let img = getMainImage(`${Api}/resources/${href}`);
+            let id = href.split("/")[1];
+            let img = getMainImage(`${Api}/resources/${id}`);
             if (img) {
-                return `<a class="node-highlite" data-id="${Api}/resources/${href}" title="${text}">${text}(${href})</a><img src="${img}" alt="${text}"></img>`;
+                return `<a class="node-highlite" data-id="${Api}/resources/${id}" title="${text}">${text}(${id})</a><img src="${img}" alt="${text}"></img>`;
             } else {
-                return `<a class="node-highlite" data-id="${Api}/resources/${href}" title="${text}">${text}(${href})</a>`;
+                return `<a class="node-highlite" data-id="${Api}/resources/${id}" title="${text}">${text}(${id})</a>`;
             }
         }
     };
