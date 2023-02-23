@@ -118,7 +118,7 @@ export async function createTriplets(data) {
 }
 
 export async function loadImages(nodes) {
-    const batchSize = 100;
+    const batchSize = 30;
 
     const ids = nodes.map((d) => {
         const id = d.id.split("/");
@@ -126,7 +126,6 @@ export async function loadImages(nodes) {
     });
 
     const numBatches = Math.ceil(ids.length / batchSize);
-
     let data = []
     for (let i = 0; i < numBatches; i++) {
         const batchIds = ids.slice(i * batchSize, (i + 1) * batchSize);
