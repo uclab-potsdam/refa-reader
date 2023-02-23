@@ -32,7 +32,7 @@
 </script>
 
 <main>
-	{#if triples === undefined}
+	{#if $graphData.entities === undefined}
 		<h4 class="loading">Loading Essays...</h4>
 	{:else}
 		<Header {MarkdownFiles} {selectedMarkdown} />
