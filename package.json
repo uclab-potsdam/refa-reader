@@ -26,6 +26,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"marked": "^4.2.12",
 		"mdsvex": "^0.10.6"
 	}
 }

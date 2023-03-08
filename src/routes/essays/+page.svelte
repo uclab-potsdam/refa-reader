@@ -1,7 +1,9 @@
 <script>
 	import Columns from '../../components/Columns.svelte';
+	import Header from '../../components/Header.svelte';
 
 	export let data;
 </script>
 
-<Columns {data} />
+<Header />
+<Columns data={data} />

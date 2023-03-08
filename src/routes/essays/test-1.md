@@ -1,6 +1,7 @@
 ---
 title: Essay One
 date: "2021-12-14"
+pubic: true
 ---
 
 Die Objekte der Gemäldesammlung sind von unterschiedlicher Qualität und Machart: Malerisch hervorragend ausgeführte Werke stehen neben andeutenden Skizzen, Formate von [5 x 5 cm](463) neben [130 x 197 cm](148) großen Gemälden und großformatige, meist in Öl auf Leinwand oder Holz ausgeführte Gemälde ergänzen ein breites Materialspektrum in der Miniaturen-Gruppe.
