@@ -2,7 +2,6 @@
 	import Markdown from './Markdown.svelte';
 
 	export let data;
-	console.log(data.posts);
 </script>
 
 <div class="columns">
