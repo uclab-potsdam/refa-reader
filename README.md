@@ -16,4 +16,4 @@ yarn build
 ```
 
 ### Configuration
-Insert the markdown files to load inside the `src/route/essays/` folder.
+Insert the markdown files to load inside the `src/route/essays/` folder.yarn

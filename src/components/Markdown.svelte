@@ -1,65 +1,95 @@
 <script>
-	import { marked } from 'marked';
+	import { onMount } from 'svelte';
+	import { Api, selectedNode, visibleLinks } from '../stores.js';
+	import { observe } from '../utils.js';
+
 	export let data;
 
-	const Api = 'https://uclab.fh-potsdam.de/refa/api';
+	let htmlText = data.text;
 
-	const renderer = new marked.Renderer();
-	renderer.link = (href, title, text) => {
-		if (href.includes('http')) {
-			return `<a class="external" target="_blank" href="${href}" title="${text}">${text}</a>`;
-		} else {
-			return `<a class="node-highlite" data-id="${Api}/resources/${href}" title="${text}">${text}(${href})</a>`;
-		}
-	};
+	const footnoteRegex = /\[\^([^\]]+)\]/g;
 
-	// Add a custom rule for parsing footnotes
-	const footnoteRE = /\[\^([^\]]+)\]/g;
-	let nextFootNoteId = 1;
-	let footnotes = {};
-	renderer.text = (text) => {
-		let output = text;
-		// Find all footnotes in the text
-		output = output.replace(footnoteRE, (match, noteId) => {
-			let footnote = footnotes[noteId];
-			if (!footnote) {
-				footnote = { id: nextFootNoteId, text: noteId };
-				footnotes[noteId] = footnote;
-				nextFootNoteId++;
+	let footnoteCounter = 1;
+
+	const htmlWithCustomLinks = htmlText.replace(
+		/<a\s+href="([^"]+)"\s*>([^<]+)<\/a>/g,
+		(match, href, text) => {
+			if (!href.startsWith('http') && !href.startsWith('https')) {
+				return `<a class="node-highlite" data-id="${Api}/resources/${href}" title="${text}">${text}(${href})</a>`;
 			}
-			return `<sup class="footnote-reference" id="footnote-reference-${footnote.id}"><a href="#footnote-${footnote.id}">${footnote.id}</a></sup>`;
-		});
-		return output;
-	};
-	const htmlPromise = new Promise((resolve) => {
-		const html = marked(data.text, { renderer });
-		resolve(html);
+			return match;
+		}
+	);
+
+	const htmlWithFootnotes = htmlWithCustomLinks.replace(footnoteRegex, (match, footnoteText) => {
+		const footnoteNumber = footnoteCounter++;
+		return `<sup id="fn-${footnoteNumber}"><a href="#fnref-${footnoteNumber}">${footnoteNumber}</a></sup><span id="fn-${footnoteNumber}-content">${footnoteText}</span>`;
 	});
 
-	let biblio;
+	const footnotes = Array.from({ length: footnoteCounter - 1 }, (_, i) => {
+		const footnoteNumber = i + 1;
+		const footnoteContent = htmlWithFootnotes.match(
+			new RegExp(`<span id="fn-${footnoteNumber}-content">([^<]+)<\/span>`)
+		)[1];
+		return `<li id="fnref-${footnoteNumber}"> ${footnoteContent}</li>`;
+	}).join('');
+	const finalHtml = `${htmlWithFootnotes}<ol>${footnotes}</ol>`;
 
-	htmlPromise.then((html) => {
-		// Render the footnotes
-		const footnotesHTML = Object.values(footnotes)
-			.map((footnote) => {
-				return `<li id="footnote-${footnote.id}">${footnote.text} <a href="#footnote-reference-${footnote.id}">&#8617;</a></li>`;
-			})
-			.join('');
-		biblio = `<ol class="footnotes">${footnotesHTML}</ol>`;
+	onMount(async () => {
+		observe();
 	});
 
-	$: html = marked(data.text, { renderer });
+	function handleClick(event) {
+		if (event.target.tagName === 'A') {
+			if (event.target.getAttribute('data-id')) {
+				$selectedNode = event.target.getAttribute('data-id');
+				event.target.classList.toggle('selected');
+			}
+		}
+	}
 
-	// function getMainImage(id) {
-	//     let match = $selectedMarkdown.items.filter((d) => d.url == id);
-	//     if (match && match.length > 0) {
-	//         let img = match?.[0].data?.thumbnail_display_urls?.medium;
-	//         return img;
-	//     }
-	// }
+	$: {
+		if ($selectedNode != null) {
+			document.querySelectorAll('a[data-id]').forEach((link) => {
+				link.classList.remove('selected');
+			});
+
+			let selected = document.querySelector(`a[data-id="${$selectedNode}"]`);
+			if (selected) {
+				$selectedNode == $selectedNode;
+				selected.classList.add('selected');
+			}
+		}
+	}
 </script>
 
-<div class="markdown">
-	{@html html}
-	<div class="biblio">{@html biblio}</div>
+<div
+	class="markdown"
+	on:click={handleClick}
+	on:keydown={(e) => {
+		if (e.key === 'Enter' || e.key === ' ') {
+			handleClick;
+		}
+	}}
+>
+	{@html finalHtml}
 </div>
+
+<style>
+	.markdown {
+		font-size: 20px;
+	}
+
+	:global(a) {
+		color: blue;
+	}
+
+	:global(.node-highlite) {
+		color: green;
+	}
+
+	:global(.selected) {
+		background-color: blue;
+		color: black;
+	}
+</style>
