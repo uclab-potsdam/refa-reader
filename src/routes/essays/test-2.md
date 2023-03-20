@@ -1,7 +1,0 @@
----
-title: Essay Two
-date: "2022-12-14"
-pubic: true
----
-
-This is some text
