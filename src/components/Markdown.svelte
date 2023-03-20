@@ -49,7 +49,7 @@
 	}
 
 	$: {
-		if ($selectedNode != null) {
+		if ($selectedNode != null && typeof document !== 'undefined') {
 			document.querySelectorAll('a[data-id]').forEach((link) => {
 				link.classList.remove('selected');
 			});
