@@ -9,7 +9,7 @@
 		{#if post.meta.pubic}
 			<div class="column">
 				<h2>
-					<a href={post.path}>
+					<a href={post.path} target="_self">
 						{post.meta.title}
 					</a>
 				</h2>
@@ -22,11 +22,12 @@
 <style>
 	.columns {
 		display: flex;
-		flex-wrap: nowrap;
-		overflow: scroll;
+		/* flex-wrap: nowrap; */
+		overflow-x: auto;
 	}
 
 	.column {
-		width: 250px;
+		min-width: 300px;
+		padding: 0 1rem;
 	}
 </style>

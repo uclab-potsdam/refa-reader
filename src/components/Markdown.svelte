@@ -15,7 +15,9 @@
 		/<a\s+href="([^"]+)"\s*>([^<]+)<\/a>/g,
 		(match, href, text) => {
 			if (!href.startsWith('http') && !href.startsWith('https')) {
-				return `<a class="node-highlite" data-id="${Api}/resources/${href}" title="${text}">${text}(${href})</a>`;
+				return `<a class="node-highlite" data-id="${
+					href.split('/')[1]
+				}" title="${text}">${text}(${href})</a>`;
 			}
 			return match;
 		}
@@ -76,20 +78,22 @@
 </div>
 
 <style>
-	.markdown {
-		font-size: 20px;
-	}
-
 	:global(a) {
 		color: blue;
+		cursor: pointer;
 	}
 
 	:global(.node-highlite) {
-		color: green;
+		background-color: #d9ff00;
+		color: black;
 	}
 
 	:global(.selected) {
 		background-color: blue;
-		color: black;
+		color: white;
+	}
+
+	:global(sup){
+		padding-right: .5rem;
 	}
 </style>

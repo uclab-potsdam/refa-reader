@@ -24,7 +24,9 @@ export async function extractLinks(markdown) {
             if (url.includes("media/")) {
                 mediaUrls.push(url.split("/")[1]);
             }
-            links.push({ label, id: url.split("/")[1] });
+            links.push({
+                label, id: url.split("/")[1],
+            });
         }
     }
 
@@ -62,7 +64,7 @@ export async function extractLinks(markdown) {
             jsonSet.forEach(item => {
                 links.push({
                     label: item["o:title"],
-                    url: item["@id"],
+                    id: item["o:id"],
                     data: item,
                     set: {
                         id: json["o:id"],
@@ -79,6 +81,97 @@ export async function extractLinks(markdown) {
     return links;
 }
 
+export async function createTriplets(data) {
+
+    let allTriplets = [];
+    // Open all links and create a new object with the triples generated
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].data) {
+            let jsonLD = data[i].data;
+            let set = data[i].set || null;
+            let triplets = parseJSONLD(jsonLD, set);
+            allTriplets = [...allTriplets, ...triplets];
+        }
+    }
+
+    // Create the nodes and links
+    const graph = {
+        nodes: allTriplets.reduce((acc, curr) => {
+            if (!acc.find((n) => n.id === curr.source)) {
+                acc.push({ id: curr.source, title: curr.title });
+            }
+            if (!acc.find((n) => n.id === curr.target)) {
+                acc.push({ id: curr.target, title: curr.title });
+            }
+            return acc;
+        }, []),
+        links: allTriplets,
+    }
+
+    return { ...graph };
+}
+
+export async function loadData(nodes) {
+    const batchSize = 20;
+
+    const ids = nodes.map((d) => {
+        const id = d.id.split("/");
+        return id.slice(-1)[0];
+    });
+
+    const numBatches = Math.ceil(ids.length / batchSize);
+
+    let data = []
+    for (let i = 0; i < numBatches; i++) {
+        const batchIds = ids.slice(i * batchSize, (i + 1) * batchSize);
+        const query = `${Api}/items?${batchIds.map((id) => `id[]=${id}`).join("&")}`;
+        const response = await fetch(query);
+        const items = await response.json()
+        data.push(...items);
+    }
+    return data
+}
+
+
+export function parseJSONLD(jsonLD, set) {
+    let triplets = [];
+    let source = `${Api}/resources/${jsonLD["o:id"]}`;
+
+    if (set) {
+        triplets.push(
+            {
+                source: `${Api}/resources/${set.id}`,
+                target: source,
+                img: jsonLD?.thumbnail_display_urls?.square,
+                title: jsonLD["o:title"],
+            },
+        );
+    }
+    let parseRecursive = async function (obj) {
+        for (let key in obj) {
+            if (key === "@id" && obj[key].startsWith(Api) && (obj["o:title"] || obj.display_title)) {
+                let splitId = obj[key].split("/")
+                let id = splitId[splitId.length - 1];
+                const target = `${Api}/resources/${id}`;
+                const title = obj["o:title"] || obj.display_title;
+                const img = obj?.thumbnail_url || obj?.thumbnail_display_urls?.square;
+
+                triplets.push({
+                    source: source,
+                    target: target,
+                    title,
+                    img,
+                    property: obj["property_label"]
+                });
+            }
+            else if (typeof obj[key] === "object") {
+                parseRecursive(obj[key]);
+            }
+        }
+    };
+    parseRecursive(jsonLD);
+    return triplets;
+}
 
 export function observe() {
     let visible = new Set();

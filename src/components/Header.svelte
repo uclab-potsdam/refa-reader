@@ -1,6 +1,5 @@
 <header>
-	<h1>
-		This collection contains and describes the “Lipperheidesche Kostümbibliothek”...
+	<h3>This collection contains and describes the “Lipperheidesche Kostümbibliothek”...</h3>
 </header>
 
 <style>
@@ -8,7 +7,7 @@
 		min-height: 150px;
 	}
 
-	h1 {
+	h3 {
 		font-weight: 400;
 	}
 </style>

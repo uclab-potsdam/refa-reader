@@ -8,11 +8,11 @@
 </script>
 
 <article>
-	<section>
+	<section class="markdown__container">
 		<h1>{datum.meta.title}</h1>
 		<Markdown data={datum} />
 	</section>
-	<section>
+	<section class="graph__container">
 		<Graph data={datum.text} />
 	</section>
 </article>
@@ -24,5 +24,12 @@
 
 	section {
 		flex: 1;
+		height: 100vh;
+		overflow: scroll;
+	}
+
+	.markdown__container {
+		padding: 0 1rem 0 2rem;
+		min-width: 700px;
 	}
 </style>
