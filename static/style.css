@@ -1,3 +1,14 @@
 body {
-    font-family: serif;
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+    font-size: 18px;
+    line-height: 1.15;
+    letter-spacing: .5px;
+    font-weight: 500;
+}
+
+h1,h2,h3,h4,h5 {
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
 }
