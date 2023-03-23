@@ -50,6 +50,7 @@
 	line {
 		pointer-events: visibleStroke;
 		stroke: #969696;
+        stroke: blue;
         stroke-width: .5;
 		cursor: pointer;
 	}

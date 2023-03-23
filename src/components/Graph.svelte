@@ -49,7 +49,7 @@
 					{:else}
 						<div class="title">{datum.title}</div>
 					{/if}
-					<Paths {datum}/>
+					<Paths {datum} />
 				</div>
 			{/each}
 		</div>
@@ -57,23 +57,28 @@
 </div>
 
 <style>
+	.graph {
+		/* background-color: gainsboro; */
+	}
+
 	.links {
 		padding-left: 5rem;
 		max-width: 300px;
 	}
 
 	.link {
+		background-color: gainsboro;
 		padding: 0.25rem 0.5rem;
 		margin-bottom: 0.5rem;
-		background-color: gainsboro;
 	}
 
 	.title {
-		min-height: 50px;
+		font-size: .7rem;
 		overflow-wrap: break-word;
 	}
 
 	img {
+		padding-top: .5rem;
 		width: 100%;
 		object-fit: contain;
 	}
