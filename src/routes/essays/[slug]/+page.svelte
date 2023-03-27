@@ -28,8 +28,9 @@
 		overflow: scroll;
 	}
 
+	
 	.markdown__container {
-		padding: 0 1rem 0 2rem;
+		padding: 2rem 1rem 0 2rem;
 		min-width: 700px;
 	}
 </style>

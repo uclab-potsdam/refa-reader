@@ -49,7 +49,7 @@
 					{:else}
 						<div class="title">{datum.title}</div>
 					{/if}
-					<Paths {datum} />
+					<Paths {datum} label={datum.property ? datum.property : ""}/>
 				</div>
 			{/each}
 		</div>
@@ -62,7 +62,7 @@
 	}
 
 	.links {
-		padding-left: 5rem;
+		padding-left: 200px;
 		max-width: 300px;
 	}
 

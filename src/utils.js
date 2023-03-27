@@ -142,7 +142,7 @@ export function parseJSONLD(jsonLD, set) {
             {
                 source: `${Api}/resources/${set.id}`,
                 target: source,
-                img: jsonLD?.thumbnail_display_urls?.square,
+                img: jsonLD?.thumbnail_display_urls?.large,
                 title: jsonLD["o:title"],
             },
         );
@@ -154,7 +154,7 @@ export function parseJSONLD(jsonLD, set) {
                 let id = splitId[splitId.length - 1];
                 const target = `${Api}/resources/${id}`;
                 const title = obj["o:title"] || obj.display_title;
-                const img = obj?.thumbnail_url || obj?.thumbnail_display_urls?.square;
+                const img = obj?.thumbnail_url || obj?.thumbnail_display_urls?.large;
 
                 triplets.push({
                     source: source,
@@ -178,7 +178,7 @@ export function observe() {
     let scrollingDirection;
 
     const options = {
-        rootMargin: '0px 0px -20% 0px',
+        rootMargin: '-10% 0% -10% 0%',
     }
 
     const observer = new IntersectionObserver((entries, observer) => {

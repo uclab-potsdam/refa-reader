@@ -1,6 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
 	export let datum;
+	export let label;
+	import newUniqueId from 'locally-unique-id-generator';
+	let id = newUniqueId();
 
 	let sourceRect, targetRect;
 	let sourceElement, targetElement;
@@ -17,22 +20,26 @@
 
 	onMount(() => {
 		updatePosition(source, target);
-        
-        // have to use the querySelectors :(
+		// have to use the querySelectors :(
 		document.querySelector('.graph__container').addEventListener('scroll', handleScroll);
-        document.querySelector('.markdown__container').addEventListener('scroll', handleScroll);
-
+		document.querySelector('.markdown__container').addEventListener('scroll', handleScroll);
 	});
 
 	function handleScroll() {
-        console.log("here")
 		updatePosition(source, target);
 	}
 </script>
 
 {#if sourceRect && targetRect}
-	<svg>
-		<line x1={sourceRect.x} y1={sourceRect.y} x2={targetRect.x} y2={targetRect.y} />
+	<svg class={source}>
+		<path
+			id="path_{id}"
+			d={`M ${sourceRect.x} ${sourceRect.y} L ${targetRect.x} ${targetRect.y}`}
+		/>
+
+		<text>
+			<textPath href="#path_{id}" startOffset="98%" text-anchor="end">{label}</textPath>
+		</text>
 	</svg>
 {/if}
 
@@ -43,15 +50,20 @@
 		height: 100vh;
 		top: 0;
 		left: 0;
-        z-index: -1;
+		/* z-index: -1; */
 		pointer-events: none;
 	}
 
-	line {
+	text {
+		font-size: 12px;
+        fill: #969696;
+	}
+
+	path {
 		pointer-events: visibleStroke;
+		stroke: blue;
 		stroke: #969696;
-        stroke: blue;
-        stroke-width: .5;
+		stroke-width: 0.5;
 		cursor: pointer;
 	}
 </style>
