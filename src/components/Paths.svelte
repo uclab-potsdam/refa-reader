@@ -6,7 +6,7 @@
 	import newUniqueId from 'locally-unique-id-generator';
 	let id = newUniqueId();
 
-	let sourceRect, targetRect;
+	let sourceRect, targetRect, calcSourceX;
 
 	$: {
 		$updatePosition;
@@ -23,7 +23,14 @@
 		const id = datum.split('/').slice(-1)[0];
 		const element = document.querySelector(`[data-id="${id}"]`);
 		const elementRect = element ? element.getBoundingClientRect() : null;
-		return elementRect;
+		if (element) {
+			return {
+				x: element.offsetLeft,
+				y: elementRect.y,
+				width: elementRect.width,
+				height: elementRect.height
+			};
+		}
 	}
 
 	onMount(() => {
@@ -37,7 +44,8 @@
 			id="path_{id}"
 			d={`M ${sourceRect.x} ${sourceRect.y} L ${targetRect.x} ${targetRect.y}`}
 		/>
-		<text>
+		<text
+			>z
 			<textPath href="#path_{id}" startOffset="95%" text-anchor="end">{label}</textPath>
 		</text>
 	</svg>
@@ -51,6 +59,7 @@
 		top: 0;
 		left: 0;
 		pointer-events: none;
+		z-index: -1;
 	}
 
 	text {
