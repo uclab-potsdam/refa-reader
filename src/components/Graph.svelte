@@ -1,9 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
-	import { get } from 'svelte/store';
-	import { Api, graphData, selectedNode } from '../stores.js';
+	import { Api, graphData, selectedNode, updatePosition } from '../stores.js';
 	import Paths from './Paths.svelte';
 	import { extractLinks, createTriplets, loadData } from '../utils.js';
+
 	export let data;
 
 	let items = [];
@@ -21,7 +21,9 @@
 		if (triplets.links) {
 			selectedData = triplets.links.filter((d) => {
 				const path = `${Api}/resources/${$selectedNode}`;
-				return d.source == path || d.target == path;
+				if (d.source != d.target) {
+					return d.source == path || d.target == path;
+				}
 			});
 		}
 	}
@@ -35,7 +37,9 @@
 
 <div class="graph">
 	{#if triplets.length == 0}
-		<h4 class="loading">Loading Graph...</h4>
+		<div class="links">
+			<h4 class="loading">Loading Graph...</h4>
+		</div>
 	{:else}
 		<div class="links">
 			{#each selectedData as datum}
@@ -49,7 +53,7 @@
 					{:else}
 						<div class="title">{datum.title}</div>
 					{/if}
-					<Paths {datum} label={datum.property ? datum.property : ""}/>
+					<Paths {datum} label={datum.property ? datum.property : ''} />
 				</div>
 			{/each}
 		</div>
@@ -57,13 +61,10 @@
 </div>
 
 <style>
-	.graph {
-		/* background-color: gainsboro; */
-	}
-
 	.links {
+		padding-top: 1rem;
 		padding-left: 200px;
-		max-width: 300px;
+		max-width: 150px;
 	}
 
 	.link {
@@ -73,12 +74,12 @@
 	}
 
 	.title {
-		font-size: .7rem;
+		font-size: 0.7rem;
 		overflow-wrap: break-word;
 	}
 
 	img {
-		padding-top: .5rem;
+		padding-top: 0.5rem;
 		width: 100%;
 		object-fit: contain;
 	}
