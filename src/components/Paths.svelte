@@ -1,12 +1,13 @@
 <script>
-	import { onDestroy, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	import { updatePosition } from '../stores';
 	export let datum;
 	export let label;
+	let item;
+
 	import newUniqueId from 'locally-unique-id-generator';
 	let id = newUniqueId();
-
-	let sourceRect, targetRect, calcSourceX;
+	let sourceRect;
 
 	$: {
 		$updatePosition;
@@ -16,13 +17,13 @@
 	function getPositions() {
 		$updatePosition = false;
 		sourceRect = getBounds(datum.source);
-		targetRect = getBounds(datum.target);
 	}
 
 	function getBounds(datum) {
 		const id = datum.split('/').slice(-1)[0];
 		const element = document.querySelector(`[data-id="${id}"]`);
 		const elementRect = element ? element.getBoundingClientRect() : null;
+
 		if (element) {
 			return {
 				x: element.offsetLeft,
@@ -38,18 +39,21 @@
 	});
 </script>
 
-{#if sourceRect && targetRect}
-	<svg class={datum.source.split('/').slice(-1)[0]}>
-		<path
-			id="path_{id}"
-			d={`M ${sourceRect.x} ${sourceRect.y} L ${targetRect.x} ${targetRect.y}`}
-		/>
-		<text
-			>
-			<textPath href="#path_{id}" startOffset="95%" text-anchor="end">{label}</textPath>
-		</text>
-	</svg>
-{/if}
+<div bind:this={item}>
+	{#if sourceRect && item}
+		<svg class={datum.source.split('/').slice(-1)[0]}>
+			<path
+				id="path_{id}"
+				d={`M ${sourceRect.x} ${sourceRect.y} L ${item.getBoundingClientRect().x} ${
+					item.getBoundingClientRect().y
+				}`}
+			/>
+			<text>
+				<textPath href="#path_{id}" startOffset="95%" text-anchor="end">{label}</textPath>
+			</text>
+		</svg>
+	{/if}
+</div>
 
 <style>
 	svg {
