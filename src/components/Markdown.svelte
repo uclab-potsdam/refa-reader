@@ -1,24 +1,41 @@
 <script>
 	import { onMount } from 'svelte';
-	import { Api, selectedNode, visibleLinks } from '../stores.js';
+	import { selectedNode, items } from '../stores.js';
+
 	import { observe } from '../utils.js';
 
 	export let data;
 
 	let htmlText = data.text;
-
 	const footnoteRegex = /\[\^([^\]]+)\]/g;
-
 	let footnoteCounter = 1;
+
+	function getMainImage(id) {
+		// let match = $items.filter((d) => d.data['o:id'] == id);
+		// if (match && match.length > 0) {
+		// 	let img = match?.[0].data?.thumbnail_display_urls?.medium;
+		// 	return img;
+		// }
+	}
 
 	const htmlWithCustomLinks = htmlText.replace(
 		/<a\s+href="([^"]+)"\s*>([^<]+)<\/a>/g,
 		(match, href, text) => {
-			if (!href.startsWith('http') && !href.startsWith('https')) {
-				return `<a class="node-highlite" data-id="${
-					href.split('/')[1]
-				}" title="${text}">${text}(${href})</a>`;
+			if (href.startsWith('http')) {
+				return `<a class="external" target="_blank" href="${href}" title="${text}">${text}</a>`;
+			} else {
+				let img = getMainImage(`${href.split('/')[1]}`);
+				if (img) {
+					return `<a class="node-highlite" data-id="${
+						href.split('/')[1]
+					}" title="${text}">${text}(${href})</a><img src="${img}" alt="${text}"></img>`;
+				} else {
+					return `<a class="node-highlite" data-id="${
+						href.split('/')[1]
+					}" title="${text}">${text}(${href})</a>`;
+				}
 			}
+
 			return match;
 		}
 	);
@@ -69,6 +86,7 @@
 	class="markdown"
 	on:click={handleClick}
 	on:keydown={(e) => {
+		console.log('ciao');
 		if (e.key === 'Enter' || e.key === ' ') {
 			handleClick;
 		}
@@ -93,7 +111,7 @@
 		color: white;
 	}
 
-	:global(sup){
-		padding-right: .5rem;
+	:global(sup) {
+		padding-right: 0.5rem;
 	}
 </style>

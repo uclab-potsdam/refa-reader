@@ -1,15 +1,15 @@
 <script>
 	import { onMount } from 'svelte';
-	import { Api, graphData, selectedNode, updatePosition } from '../stores.js';
+	import { Api, selectedNode } from '../stores.js';
 	import Paths from './Paths.svelte';
 	import { extractLinks, createTriplets, loadData } from '../utils.js';
 
-	export let data;
-
-	let items = [];
 	let triplets = [];
 	let selectedData = [];
 	let entities = [];
+	let items = [];
+
+	export let data;
 
 	onMount(async () => {
 		items = await extractLinks(data);
@@ -21,9 +21,7 @@
 		if (triplets.links) {
 			selectedData = triplets.links.filter((d) => {
 				const path = `${Api}/resources/${$selectedNode}`;
-				if (d.source != d.target) {
-					return d.source == path || d.target == path;
-				}
+				return d.source == path || d.target == path;
 			});
 		}
 	}
@@ -36,7 +34,7 @@
 </script>
 
 <div class="graph">
-	{#if triplets.length == 0}
+	{#if entities.length == 0}
 		<div class="links">
 			<h4 class="loading">Loading Graph...</h4>
 		</div>

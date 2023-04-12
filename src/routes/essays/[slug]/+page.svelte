@@ -2,24 +2,44 @@
 	import Markdown from '../../../components/Markdown.svelte';
 	import Graph from '../../../components/Graph.svelte';
 	import { page } from '$app/stores';
-	import { updatePosition } from '../../../stores';
-	export let data;
-	const datum = [...data.posts].find((d) => d.path.includes($page.params.slug));
+	import { updatePosition, items } from '../../../stores';
+	import { onMount } from 'svelte';
+	import { extractLinks } from '../../../utils';
 
-	function handleScroll(){
+	export let data;
+	let datum;
+
+	onMount(async () => {
+		datum = [...data.posts].find((d) => d.path.includes($page.params.slug));
+		// $items = await extractLinks(datum.text);
+	});
+
+	function handleScroll() {
 		$updatePosition = true;
 	}
 </script>
 
-<article>
-	<section class="markdown__container" on:scroll={handleScroll} on:click={handleScroll} on:keypress={handleScroll}>
-		<h1>{datum.meta.title}</h1>
-		<Markdown data={datum} />
-	</section>
-	<section class="graph__container" on:scroll={handleScroll} on:click={handleScroll} on:keypress={handleScroll}>
-		<Graph data={datum.text} />
-	</section>
-</article>
+{#if datum != undefined}
+	<article>
+		<section
+			class="markdown__container"
+			on:scroll={handleScroll}
+			on:click={handleScroll}
+			on:keypress={handleScroll}
+		>
+			<h1>{datum.meta.title}</h1>
+			<Markdown data={datum} />
+		</section>
+		<section
+			class="graph__container"
+			on:scroll={handleScroll}
+			on:click={handleScroll}
+			on:keypress={handleScroll}
+		>
+			<Graph data={datum.text} />
+		</section>
+	</article>
+{/if}
 
 <style>
 	article {

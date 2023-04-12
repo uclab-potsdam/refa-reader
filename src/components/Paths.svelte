@@ -45,7 +45,7 @@
 			d={`M ${sourceRect.x} ${sourceRect.y} L ${targetRect.x} ${targetRect.y}`}
 		/>
 		<text
-			>z
+			>
 			<textPath href="#path_{id}" startOffset="95%" text-anchor="end">{label}</textPath>
 		</text>
 	</svg>
