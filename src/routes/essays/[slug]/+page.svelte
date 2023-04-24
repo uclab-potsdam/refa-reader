@@ -7,11 +7,13 @@
 	import { extractLinks } from '../../../utils';
 
 	export let data;
-	let datum;
+	let textData;
+	let itemsJson;
 
 	onMount(async () => {
-		datum = [...data.posts].find((d) => d.path.includes($page.params.slug));
-		// $items = await extractLinks(datum.text);
+		textData = [...data.posts].find((d) => d.path.includes($page.params.slug));
+		itemsJson = await extractLinks(textData.text);
+		$items = itemsJson;
 	});
 
 	function handleScroll() {
@@ -19,7 +21,7 @@
 	}
 </script>
 
-{#if datum != undefined}
+{#if itemsJson != undefined}
 	<article>
 		<section
 			class="markdown__container"
@@ -27,8 +29,8 @@
 			on:click={handleScroll}
 			on:keypress={handleScroll}
 		>
-			<h1>{datum.meta.title}</h1>
-			<Markdown data={datum} />
+			<h1>{textData.meta.title}</h1>
+			<Markdown data={textData} items={itemsJson}/>
 		</section>
 		<section
 			class="graph__container"
@@ -36,7 +38,7 @@
 			on:click={handleScroll}
 			on:keypress={handleScroll}
 		>
-			<Graph data={datum.text} />
+			<Graph data={$items} />
 		</section>
 	</article>
 {/if}

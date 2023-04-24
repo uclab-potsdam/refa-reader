@@ -1,21 +1,22 @@
 <script>
 	import { onMount } from 'svelte';
-	import { selectedNode, items } from '../stores.js';
-
+	import { selectedNode } from '../stores.js';
 	import { observe } from '../utils.js';
 
 	export let data;
+	export let items;
 
 	let htmlText = data.text;
 	const footnoteRegex = /\[\^([^\]]+)\]/g;
 	let footnoteCounter = 1;
 
 	function getMainImage(id) {
-		// let match = $items.filter((d) => d.data['o:id'] == id);
-		// if (match && match.length > 0) {
-		// 	let img = match?.[0].data?.thumbnail_display_urls?.medium;
-		// 	return img;
-		// }
+		let match = items.filter((d) => d.data?.['o:id'] == id);
+
+		if (match && match.length > 0) {
+			let img = match?.[0].data?.thumbnail_display_urls?.medium;
+			return img;
+		}
 	}
 
 	const htmlWithCustomLinks = htmlText.replace(
@@ -26,9 +27,7 @@
 			} else {
 				let img = getMainImage(`${href.split('/')[1]}`);
 				if (img) {
-					return `<a class="node-highlite" data-id="${
-						href.split('/')[1]
-					}" title="${text}">${text}(${href})</a><img src="${img}" alt="${text}"></img>`;
+					return `<a class="node-highlite" data-id="${href.split('/')[1]}" title="${text}">${text}(${href})</a><span class="node-image"><img class="main-image" src="${img}" alt="${text}"></img></span>`;
 				} else {
 					return `<a class="node-highlite" data-id="${
 						href.split('/')[1]
@@ -82,16 +81,7 @@
 	}
 </script>
 
-<div
-	class="markdown"
-	on:click={handleClick}
-	on:keydown={(e) => {
-		console.log('ciao');
-		if (e.key === 'Enter' || e.key === ' ') {
-			handleClick;
-		}
-	}}
->
+<div class="markdown" on:click={handleClick} on:keydown={handleClick}>
 	{@html finalHtml}
 </div>
 
@@ -102,7 +92,7 @@
 	}
 
 	:global(.node-highlite) {
-		background-color: #d9ff00;
+		background-color: #f5ffc0;
 		color: black;
 	}
 
@@ -114,4 +104,18 @@
 	:global(sup) {
 		padding-right: 0.5rem;
 	}
+
+	:global(.node-image) {
+		padding-right: 2.5rem;
+		position: relative;
+	}
+
+	:global(.main-image) {
+		display: inline-block;
+		padding: .5rem;
+		max-height: 1.5rem;
+		position: absolute;
+		vertical-align: middle;
+	}
+
 </style>

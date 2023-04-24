@@ -8,6 +8,7 @@
 	import newUniqueId from 'locally-unique-id-generator';
 	let id = newUniqueId();
 	let sourceRect;
+	let x, y;
 
 	$: {
 		$updatePosition;
@@ -17,6 +18,10 @@
 	function getPositions() {
 		$updatePosition = false;
 		sourceRect = getBounds(datum.source);
+		if (item) {
+			x = item.getBoundingClientRect().x;
+			y = item.getBoundingClientRect().y;
+		}
 	}
 
 	function getBounds(datum) {
@@ -40,14 +45,10 @@
 </script>
 
 <div bind:this={item}>
-	{#if sourceRect && item}
+	{#if item}
+		<!-- {(x, y)} -->
 		<svg class={datum.source.split('/').slice(-1)[0]}>
-			<path
-				id="path_{id}"
-				d={`M ${sourceRect.x} ${sourceRect.y} L ${item.getBoundingClientRect().x} ${
-					item.getBoundingClientRect().y
-				}`}
-			/>
+			<path id="path_{id}" d={`M ${sourceRect.x} ${sourceRect.y} L ${x} ${y}`} />
 			<text>
 				<textPath href="#path_{id}" startOffset="95%" text-anchor="end">{label}</textPath>
 			</text>
@@ -63,7 +64,7 @@
 		top: 0;
 		left: 0;
 		pointer-events: none;
-		z-index: -1;
+		/* z-index: -1; */
 	}
 
 	text {

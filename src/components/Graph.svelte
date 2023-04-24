@@ -7,13 +7,12 @@
 	let triplets = [];
 	let selectedData = [];
 	let entities = [];
-	let items = [];
 
 	export let data;
 
 	onMount(async () => {
-		items = await extractLinks(data);
-		triplets = await createTriplets(items);
+		triplets = await createTriplets(data);
+		console.log(data)
 		entities = await loadData(triplets.nodes);
 	});
 
@@ -43,16 +42,16 @@
 			{#each selectedData as datum}
 				<div class="link" data-id={datum.target.split('/').slice(-1)[0]} title={datum.title}>
 					{#if getImageByNode(datum.target)}
-						<div class="title">{datum.title}</div>
+						<!-- <div class="title">{datum.title}</div> -->
 						<img src={getImageByNode(datum.target)} alt={datum.title} />
 					{:else if datum.img}
-						<div class="title">{datum.title}</div>
+						<!-- <div class="title">{datum.title}</div> -->
 						<img src={datum.img} alt={datum.title} />
 					{:else}
 						<div class="title">{datum.title}</div>
 					{/if}
-					<Paths {datum} label={datum.property ? datum.property : ''} />
 				</div>
+				<Paths {datum} label={datum.property ? datum.property : ''} />
 			{/each}
 		</div>
 	{/if}

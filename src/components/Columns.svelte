@@ -13,7 +13,8 @@
 						{post.meta.title}
 					</a>
 				</h2>
-				<Markdown data={post} />
+				{@html post.text}
+				<!-- <Markdown data={post} /> -->
 			</div>
 		{/if}
 	{/each}
