@@ -105,6 +105,10 @@
 		padding-right: 0.5rem;
 	}
 
+	:global(sup ~ span) {
+		display: none;
+	}
+
 	:global(.node-image) {
 		padding-right: 2.5rem;
 		position: relative;
