@@ -60,7 +60,7 @@
 <style>
 	.links {
 		padding-top: 1rem;
-		padding-left: 200px;
+		padding-left: 10vw;
 		max-width: 150px;
 	}
 
