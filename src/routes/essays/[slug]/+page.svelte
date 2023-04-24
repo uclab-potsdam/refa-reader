@@ -21,6 +21,8 @@
 	}
 </script>
 
+<svelte:window on:resize={handleScroll} />
+
 {#if itemsJson != undefined}
 	<article>
 		<section
@@ -30,7 +32,7 @@
 			on:keypress={handleScroll}
 		>
 			<h1>{textData.meta.title}</h1>
-			<Markdown data={textData} items={itemsJson}/>
+			<Markdown data={textData} items={itemsJson} />
 		</section>
 		<section
 			class="graph__container"
@@ -56,6 +58,6 @@
 
 	.markdown__container {
 		padding: 2rem 1rem 0 2rem;
-		min-width: 700px;
+		/* min-width: 700px; */
 	}
 </style>
