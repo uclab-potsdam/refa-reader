@@ -1,15 +1,46 @@
 body {
-    font-family: sans-serif;
-    background-color: #f0f0f0;
+    font-family: "Arial", sans-serif;
+    background-color: #f6f6f6;
     font-size: 18px;
     line-height: 1.15;
     letter-spacing: .5px;
-    font-weight: 500;
     margin: 0;
+    font-size-adjust: 0.5;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
 h1,h2,h3,h4,h5 {
     font-weight: 400;
     margin: 0;
     padding: 0;
+}
+
+.markdown {
+    font-size: 1.5rem;
+    line-height: 1.25;
+}
+
+.node-highlite, h1 {
+    font-family: "Redaction", serif;
+    font-style: italic;
+    font-size: .675em;
+}
+
+@font-face {
+    font-family: "Redaction";
+    src: url("./fonts/Redaction-Regular.woff2");
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Redaction";
+    src: url("./fonts/Redaction-Italic.woff2");
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Redaction";
+    src: url("./fonts/Redaction-Bold.woff2");
+    font-style: bold;
 }
