@@ -1,10 +1,10 @@
 <script>
-	import Markdown from '../../../components/Markdown.svelte';
-	import Graph from '../../../components/Graph.svelte';
+	import Markdown from '@components/Markdown.svelte';
+	import Graph from '@components/Graph.svelte';
 	import { page } from '$app/stores';
-	import { updatePosition, items, graphSteps } from '../../../stores';
+	import { updatePosition, items, graphSteps } from '@store';
 	import { onMount } from 'svelte';
-	import { extractLinks, createTriplets } from '../../../utils';
+	import { extractLinks, createTriplets } from '@utils';
 
 	export let data;
 	let textData, triplets, itemsJson;
@@ -14,8 +14,6 @@
 		itemsJson = await extractLinks(textData.text);
 		triplets = await createTriplets(itemsJson);
 		$items = triplets;
-
-		console.log($items);
 	});
 
 	function handleScroll() {
@@ -60,8 +58,14 @@
 	}
 
 	section {
-		flex: 1;
 		overflow: scroll;
+	}
+
+	.markdown__container {
+		flex: 1;
+	}
+	.graph__container {
+		flex: 2;
 	}
 
 	.markdown__container {

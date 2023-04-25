@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { updatePosition } from '../stores';
+	import { updatePosition } from '@stores';
 	export let datum;
 	export let label;
 	let item;
@@ -68,7 +68,7 @@
 	}
 
 	text {
-		font-size: max(0.8vw, 10px);
+		font-size: clamp(8px, 0.6vw, 14px); 
 		fill: #969696;
 		fill: blue;
 	}

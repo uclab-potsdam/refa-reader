@@ -9,7 +9,12 @@ const config = {
 		mdsvex(mdsvexConfig)
 	],
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		alias: {
+			'@components': 'src/components',
+			'@store': 'src/stores.js',
+			'@utils': 'src/utils.js',
+		}
 	}
 };
 

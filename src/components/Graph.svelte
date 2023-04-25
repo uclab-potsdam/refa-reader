@@ -1,8 +1,8 @@
 <script>
 	import { onMount } from 'svelte';
-	import { Api, selectedNode, graphSteps } from '../stores.js';
+	import { Api, selectedNode, graphSteps } from '@store';
 	import Paths from './Paths.svelte';
-	import { loadData, createTriplets } from '../utils.js';
+	import { loadData, createTriplets } from '@utils';
 
 	let selectedData = [];
 	let entities = [];
