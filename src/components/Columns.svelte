@@ -1,5 +1,4 @@
 <script>
-	// import Markdown from './Markdown.svelte';
 	export let data;
 </script>
 
@@ -13,7 +12,6 @@
 					</a>
 				</h2>
 				{@html post.text}
-				<!-- <Markdown data={post} /> -->
 			</div>
 		{/if}
 	{/each}

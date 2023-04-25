@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { selectedNode } from '@store';
+	import { selectedNode } from '@stores';
 	import { observe } from '@utils';
 
 	export let data;

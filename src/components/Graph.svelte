@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { Api, selectedNode, graphSteps } from '@store';
+	import { Api, selectedNode, graphSteps } from '@stores';
 	import Paths from './Paths.svelte';
 	import { loadData, createTriplets } from '@utils';
 

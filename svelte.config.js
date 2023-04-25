@@ -12,7 +12,7 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			'@components': 'src/components',
-			'@store': 'src/stores.js',
+			'@stores': 'src/stores.js',
 			'@utils': 'src/utils.js',
 		}
 	}

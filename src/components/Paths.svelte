@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { updatePosition } from '@stores';
+	import { updatePosition } from '@storess';
 	export let datum;
 	export let label;
 	let item;

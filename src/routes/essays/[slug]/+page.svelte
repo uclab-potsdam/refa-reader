@@ -2,7 +2,7 @@
 	import Markdown from '@components/Markdown.svelte';
 	import Graph from '@components/Graph.svelte';
 	import { page } from '$app/stores';
-	import { updatePosition, items, graphSteps } from '@store';
+	import { updatePosition, items, graphSteps } from '@stores';
 	import { onMount } from 'svelte';
 	import { extractLinks, createTriplets } from '@utils';
 
