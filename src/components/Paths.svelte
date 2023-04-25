@@ -50,7 +50,7 @@
 		<svg class={datum.source.split('/').slice(-1)[0]}>
 			<path id="path_{id}" d={`M ${sourceRect.x} ${sourceRect.y} L ${x} ${y}`} />
 			<text>
-				<textPath href="#path_{id}" startOffset="95%" text-anchor="end">{label}</textPath>
+				<textPath href="#path_{id}" startOffset="98%" text-anchor="end">{label}</textPath>
 			</text>
 		</svg>
 	{/if}
@@ -68,7 +68,7 @@
 	}
 
 	text {
-		font-size: 12px;
+		font-size: max(0.8vw, 10px);
 		fill: #969696;
 		fill: blue;
 	}
@@ -77,7 +77,7 @@
 		pointer-events: visibleStroke;
 		stroke: #969696;
 		stroke: blue;
-		stroke-width: 0.5;
+		stroke-width: 0.2;
 		cursor: pointer;
 	}
 </style>

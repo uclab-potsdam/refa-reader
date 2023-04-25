@@ -27,7 +27,9 @@
 			} else {
 				let img = getMainImage(`${href.split('/')[1]}`);
 				if (img) {
-					return `<a class="node-highlite" data-id="${href.split('/')[1]}" title="${text}">${text}(${href})</a><span class="node-image"><img class="main-image" src="${img}" alt="${text}"></img></span>`;
+					return `<a class="node-highlite" data-id="${
+						href.split('/')[1]
+					}" title="${text}">${text}(${href})</a><span class="node-image"><img class="main-image" src="${img}" alt="${text}"></img></span>`;
 				} else {
 					return `<a class="node-highlite" data-id="${
 						href.split('/')[1]
@@ -116,10 +118,9 @@
 
 	:global(.main-image) {
 		display: inline-block;
-		padding: .5rem;
+		padding: 0.5rem;
 		max-height: 1.5rem;
 		position: absolute;
 		vertical-align: middle;
 	}
-
 </style>

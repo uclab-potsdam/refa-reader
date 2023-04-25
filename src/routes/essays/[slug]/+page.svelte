@@ -2,32 +2,40 @@
 	import Markdown from '../../../components/Markdown.svelte';
 	import Graph from '../../../components/Graph.svelte';
 	import { page } from '$app/stores';
-	import { updatePosition, items } from '../../../stores';
+	import { updatePosition, items, graphSteps } from '../../../stores';
 	import { onMount } from 'svelte';
-	import { extractLinks } from '../../../utils';
+	import { extractLinks, createTriplets } from '../../../utils';
 
 	export let data;
-	let textData;
-	let itemsJson;
+	let textData, triplets, itemsJson;
 
 	onMount(async () => {
 		textData = [...data.posts].find((d) => d.path.includes($page.params.slug));
 		itemsJson = await extractLinks(textData.text);
-		$items = itemsJson;
+		triplets = await createTriplets(itemsJson);
+		$items = triplets;
+
+		console.log($items);
 	});
 
 	function handleScroll() {
 		$updatePosition = true;
 	}
+	function resetNode() {
+		$graphSteps = [];
+	}
 </script>
 
 <svelte:window on:resize={handleScroll} />
 
-{#if itemsJson != undefined}
+{#if triplets != undefined}
 	<article>
 		<section
 			class="markdown__container"
-			on:scroll={handleScroll}
+			on:scroll={() => {
+				resetNode();
+				handleScroll();
+			}}
 			on:click={handleScroll}
 			on:keypress={handleScroll}
 		>
@@ -40,7 +48,7 @@
 			on:click={handleScroll}
 			on:keypress={handleScroll}
 		>
-			<Graph data={$items} />
+			<Graph data={$items} {handleScroll} />
 		</section>
 	</article>
 {/if}

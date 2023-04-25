@@ -1,6 +1,5 @@
 <script>
-	import Markdown from './Markdown.svelte';
-
+	// import Markdown from './Markdown.svelte';
 	export let data;
 </script>
 
