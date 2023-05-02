@@ -46,7 +46,6 @@
 
 <div bind:this={item}>
 	{#if item}
-		<!-- {(x, y)} -->
 		<svg class={datum.source.split('/').slice(-1)[0]}>
 			<path id="path_{id}" d={`M ${sourceRect.x} ${sourceRect.y} L ${x} ${y}`} />
 			<text>
@@ -68,7 +67,7 @@
 	}
 
 	text {
-		font-size: clamp(8px, 0.6vw, 14px); 
+		font-size: clamp(8px, 0.6vw, 14px);
 		fill: #969696;
 		fill: blue;
 	}
@@ -77,7 +76,7 @@
 		pointer-events: visibleStroke;
 		stroke: #969696;
 		stroke: blue;
-		stroke-width: 0.2;
+		stroke-width: 0.1;
 		cursor: pointer;
 	}
 </style>
