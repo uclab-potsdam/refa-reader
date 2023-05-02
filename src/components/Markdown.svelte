@@ -92,7 +92,7 @@
 	}
 
 	:global(.node-highlite) {
-		background-color: #f9ffd8;
+		background-color: rgb(249, 255, 216, .6);
 		color: black;
 	}
 
