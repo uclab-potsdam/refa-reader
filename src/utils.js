@@ -133,45 +133,71 @@ export async function loadData(nodes) {
 }
 
 
+/**
+ * Parses JSON-LD data and extracts triplets for visualization.
+ * @param {Object} jsonLD - The JSON-LD data to parse.
+ * @param {Object} set - The set object that the JSON-LD data belongs to.
+ * @returns {Array} An array of triplets for visualization.
+ */
 export function parseJSONLD(jsonLD, set) {
     let triplets = [];
     let source = `${Api}/resources/${jsonLD["o:id"]}`;
 
+    // Add a triplet for the set if available
     if (set) {
-        triplets.push(
-            {
-                source: `${Api}/resources/${set.id}`,
-                target: source,
-                img: jsonLD?.thumbnail_display_urls?.large,
-                title: jsonLD["o:title"],
-            },
-        );
+        triplets.push({
+            source: `${Api}/resources/${set.id}`,
+            target: source,
+            img: jsonLD?.thumbnail_display_urls?.large,
+            title: jsonLD["o:title"],
+        });
     }
+
+    let parentKey;
+
+    /**
+     * Recursively parse the JSON-LD data and extract triplets.
+     * @param {Object} obj - The current object to parse.
+     */
     let parseRecursive = async function (obj) {
         for (let key in obj) {
+            // Check if the key is "@id" and the value starts with the API base URL and has a title
             if (key === "@id" && obj[key].startsWith(Api) && (obj["o:title"] || obj.display_title)) {
-                let splitId = obj[key].split("/")
+                // Extract the target URL, title, and image
+                let splitId = obj[key].split("/");
                 let id = splitId[splitId.length - 1];
                 const target = `${Api}/resources/${id}`;
                 const title = obj["o:title"] || obj.display_title;
                 const img = obj?.thumbnail_url || obj?.thumbnail_display_urls?.large;
 
-                triplets.push({
-                    source: source,
-                    target: target,
-                    title,
-                    img,
-                    property: obj["property_label"]
-                });
+                // Check if the source and target already exist in triplets array
+                const exists = triplets.some(triplet => triplet.source === source && triplet.target === target);
+                
+                if (!exists) {
+                    // Add a new triplet to the array
+                    triplets.push({
+                        source: source,
+                        target: target,
+                        title,
+                        img,
+                        property: obj["property_label"] || parentKey
+                    });
+                }
             }
+            // Recursively parse child objects
             else if (typeof obj[key] === "object") {
+                if (isNaN(key)) {
+                    parentKey = key
+                }
                 parseRecursive(obj[key]);
             }
         }
     };
+    // Recursive parsing
     parseRecursive(jsonLD);
     return triplets;
 }
+
 
 export function observe() {
     let visible = new Set();
