@@ -18,7 +18,7 @@
 	}
 </script>
 
-<div class="link" data-id={datum.target.split('/').slice(-1)[0]} title={datum.title}>
+<div class="link" data-id={datum.target.split('/').slice(-1)[0]} title={datum.title} on:click on:keydown>
 	{#if imageSrc}
 		<img src={imageSrc} alt={datum.title} />
 	{:else if datum.img}
