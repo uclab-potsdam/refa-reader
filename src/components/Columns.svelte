@@ -5,14 +5,16 @@
 <div class="columns">
 	{#each data.posts as post}
 		{#if post.meta.pubic}
-			<div class="column">
-				<h2>
-					<a href={post.path} target="_self">
+			<a href={post.path} target="_self">
+				<div class="column">
+					<h2>
 						{post.meta.title}
-					</a>
-				</h2>
-				{@html post.text}
-			</div>
+					</h2>
+					<div class="text">
+						{@html post.text}
+					</div>
+				</div>
+			</a>
 		{/if}
 	{/each}
 </div>
@@ -27,5 +29,20 @@
 	.column {
 		min-width: 300px;
 		padding: 0 1rem;
+		overflow: scroll;
+		height: 100vh;
+	}
+
+	.column:hover {
+		background-color: #fefefe;
+	}
+
+	a {
+		color: black;
+		text-decoration: none;
+	}
+
+	.text {
+		pointer-events: none;
 	}
 </style>

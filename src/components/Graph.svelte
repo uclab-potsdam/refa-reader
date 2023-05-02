@@ -18,9 +18,24 @@
 		if (data.links) {
 			selectedData = data.links.filter((d) => {
 				const path = `${Api}/resources/${$selectedNode}`;
-				return d.source == path || d.target == path;
+
+				return (
+					(d.target != path && d.source != d.target && d.source == path) ||
+					(d.target != path && d.source != d.target && d.target == path)
+				);
 			});
 		}
+	}
+
+	$: uniqueItems = selectedData.reduce((acc, cur) => {
+		if (!acc.includes(cur.title)) {
+			acc.push(cur);
+		}
+		return acc;
+	}, []);
+
+	$: {
+		console.log(uniqueItems);
 	}
 
 	function getImageByNode(node) {
@@ -49,13 +64,13 @@
 </script>
 
 <div class="graph">
-	{#if data.nodes.length == 0}
+	{#if uniqueItems.length == 0}
 		<div class="links">
 			<h4 class="loading">Loading Graph...</h4>
 		</div>
 	{:else}
 		<div class="links" on:scroll={handleScroll}>
-			{#each selectedData as datum}
+			{#each uniqueItems as datum}
 				<div
 					class="link"
 					data-id={datum.target.split('/').slice(-1)[0]}
@@ -117,8 +132,10 @@
 		height: 100vh;
 		padding-top: 1rem;
 		padding-left: 10vw;
-		min-width: 100px;
-		max-width: 150px;
+		width: 200px;
+		flex-basis: 200px;
+		flex-grow: 0;
+		flex-shrink: 0;
 		cursor: pointer;
 		overflow: scroll;
 	}
