@@ -1,9 +1,11 @@
 import { writable } from 'svelte/store';
 
-export const selectedMarkdown = writable();
-export const graphData = writable([]);
-export const allLinks = writable([]);
+export const Api = 'https://uclab.fh-potsdam.de/refa/api';
 export const visibleLinks = writable([]);
-export const selectedNode = writable([]);
-export const scrolled = writable(false);
-export const showItemDetail = writable(false);
+export const allLinks = writable([]);
+export const selectedNode = writable("");
+export const items = writable([])
+export const graphData = writable([]);
+export const graphSteps = writable([]);
+export const updatePosition = writable(false);
+export const entities = writable([])

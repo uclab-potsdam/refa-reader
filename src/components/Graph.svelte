@@ -1,278 +1,128 @@
 <script>
-    import { onMount, onDestroy } from "svelte";
-    import {
-        graphData,
-        visibleLinks,
-        allLinks,
-        selectedNode,
-        scrolled,
-        showItemDetail,
-    } from "../stores";
-    import { observe } from "../functions.js";
-    import { zoom, zoomIdentity } from "d3-zoom";
-    import { select } from "d3-selection";
-    import { drag } from "d3-drag";
+	import { onMount } from 'svelte';
+	import { Api, selectedNode, graphSteps } from '@stores';
+	import Paths from '@components/Paths.svelte';
+	import Card from '@components/Card.svelte';
+	import { loadData, createTriplets } from '@utils';
 
-    import {
-        forceSimulation,
-        forceLink,
-        forceCenter,
-        forceCollide,
-        forceManyBody,
-        forceRadial,
-    } from "d3-force";
+	let selectedData = [];
 
-    let d3 = {
-        zoom,
-        zoomIdentity,
-        select,
-        drag,
-        forceSimulation,
-        forceLink,
-        forceRadial,
-        forceCenter,
-        forceCollide,
-        forceManyBody,
-    };
+	export let handleScroll;
+	export let data;
 
-    const nodeSize = 240;
-    let width = 0;
-    let height = 0;
-    let transform = d3.zoomIdentity;
-    let svg, links, nodes, entities, simulation;
+	onMount(async () => {
+		await loadData(data.nodes);
+	});
 
-    const d3zoom = d3
-        .zoom()
-        .scaleExtent([1 / 8, 1 / 1])
-        .on("zoom", zoomed);
+	$: {
+		if (data.links) {
+			selectedData = data.links.filter((d) => {
+				const path = `${Api}/resources/${$selectedNode}`;
 
-    $: {
-        d3.select(svg).call(d3zoom);
-        d3.select(svg).call(
-            d3zoom.transform,
-            d3.zoomIdentity.translate(width / 2, height / 2).scale(0.1)
-        );
-    }
+				return (
+					(d.target != path && d.source != d.target && d.source == path) ||
+					(d.target != path && d.source != d.target && d.target == path)
+				);
+			});
+		}
+	}
+	let initialStep = [];
+	let selectedTriplets;
 
-    $: {
-        links = [
-            ...$graphData.links.map((d) => Object.assign(d, { class: "link" })),
-        ];
-        nodes = [
-            ...$graphData.nodes.map((d) => Object.assign(d, { class: "node" })),
-        ];
-        entities = [
-            ...$graphData.entities.map((d) =>
-                Object.assign(d, { class: "entities" })
-            ),
-        ];
-        runSimulation();
-    }
+	$: {
+		initialStep = selectedData.reduce((acc, cur) => {
+			if (!acc.includes(cur.title)) {
+				acc.push(cur);
+			}
+			return acc;
+		}, []);
+	}
 
-    $: {
-        if ($visibleLinks.length > 0 && $scrolled == true) {
-            zoomToNode($visibleLinks[0]);
-        }
-    }
+	// let uniqueTriplets;
 
-    $: {
-        if ($selectedNode.length > 0) {
-            zoomToNode($selectedNode);
-        }
-    }
+	// $: {
+	// 	if (selectedTriplets) {
+	// 		const newNodes = selectedTriplets?.links?.filter(
+	// 			(node) => !initialStep.includes(node.target)
+	// 		);
 
-    onMount(() => {
-        runSimulation();
-        observe();
-    });
+	// 		uniqueTriplets = [...initialStep, ...newNodes];
+	// 	}
+	// 	console.log('unique', uniqueTriplets);
+	// }
 
-    onDestroy(() => {
-        simulation.stop();
-    });
+	async function openNode(node) {
+		const response = await fetch(node.target);
+		const data = await response.json();
+		const items = [{ data }];
 
-    function runSimulation() {
-        simulation = d3
-            .forceSimulation(nodes)
-            .force(
-                "link",
-                d3
-                    .forceLink(links)
-                    .id((d) => d.id)
-                    .strength(1)
-                // .distance(10)
-            )
-            .force("charge", d3.forceManyBody().strength(-nodeSize))
-            .force("center", d3.forceCenter(width / 2, height / 2))
-            .force("collision", d3.forceCollide().radius(nodeSize / 2 + 10))
-            .on("tick", simulationUpdate);
-    }
+		selectedTriplets = await createTriplets(items);
+		let selectedTripletsData = selectedTriplets.links.filter((d) => {
+			return d.source === node.target || d.target === node.target;
+		});
 
-    function zoomToNode(item) {
-        const nodeToZoom = nodes.find((node) => node.id === item);
-        if (!nodeToZoom) {
-            return;
-        }
+		$graphSteps = [...$graphSteps, { id: node.target, data: selectedTripletsData }];
+	}
 
-        const zoomTransform = d3.zoomIdentity
-            .scale(0.8)
-            .translate(width / 2 - nodeToZoom.x, height / 2 - nodeToZoom.y);
-
-        d3.select(svg)
-            .transition()
-            .duration(500)
-            .call(d3zoom.transform, zoomTransform);
-
-        simulationUpdate();
-        highlightLinks(nodeToZoom);
-    }
-
-    function zoomed(currentEvent) {
-        $showItemDetail = false;
-        transform = currentEvent.transform;
-        simulationUpdate();
-    }
-
-    function simulationUpdate() {
-        if (simulation.alpha() < 0.01) {
-            simulation.stop();
-        }
-        nodes = [...nodes];
-        links = [...links];
-    }
-
-    function linkArc(d) {
-        const r = Math.hypot(d.target.x - d.source.x, d.target.y - d.source.y);
-        return `M${d.source.x},${d.source.y} A${r},${r} 0 0,1 ${d.target.x},${d.target.y}`;
-    }
-
-    function highlightLinks(node) {
-        // "z-index" on the selected links
-        if (node) {
-            $selectedNode = node;
-            links = links.sort((a, b) => {
-                if (
-                    a.source.id === node.id ||
-                    a.target.id === node.id ||
-                    b.source.id === node.id ||
-                    b.target.id === node.id
-                ) {
-                    return 1;
-                }
-                return -1;
-            });
-            links.forEach((link) => {
-                if (link.source.id === node.id || link.target.id === node.id) {
-                    link.class = "link-highlite";
-                } else {
-                    link.class = "link";
-                }
-            });
-            simulationUpdate();
-        }
-    }
-
-    function openDetail(node) {
-        $showItemDetail = true;
-        highlightLinks(node);
-    }
-
-    function getImageByNode(node) {
-        const id = node.id.split("/");
-        const datum = entities.find((d) => d["o:id"] == id.slice(-1)[0]);
-        return datum?.thumbnail_display_urls?.fav
-    }
+	function resetNode() {
+		$graphSteps = [];
+	}
 </script>
 
-<div class="graph" bind:clientWidth={width} bind:clientHeight={height}>
-    <svg bind:this={svg} {width} {height}>
-        <g class="links">
-            {#each links as link}
-                <!-- {#if link.class == "link-highlite"} -->
-                <g class={link.class} stroke-width="1" fill="none">
-                    <path
-                        d={linkArc(link)}
-                        data-attr={link.source.id}
-                        transform="translate({transform.x} {transform.y}) scale({transform.k} {transform.k})"
-                    />
-                </g>
-                <!-- {/if} -->
-            {/each}
-            <!-- {#each links as link}
-                <g class={link.class} stroke-width="1" fill="none">
-                    <line
-                        x1={link.source.x}
-                        y1={link.source.y}
-                        x2={link.target.x}
-                        y2={link.target.y}
-                        data-attr={link.source.id}
-                        transform="translate({transform.x} {transform.y}) scale({transform.k} {transform.k})"
-                    />
-                </g>
-            {/each} -->
-        </g>
-        <g class="nodes">
-            {#each nodes as node}
-                <g
-                    class={$selectedNode.id == node.id
-                        ? "label selection"
-                        : $visibleLinks.includes(node.id)
-                        ? "label node-highlite"
-                        : $allLinks.includes(node.id)
-                        ? "label node"
-                        : "label link"}
-                    on:click={() => openDetail(node)}
-                    on:keydown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                            openDetail(node);
-                        }
-                    }}
-                    transform="translate({transform.x}
-                {transform.y - 5}) scale({transform.k}
-                {transform.k})"
-                    data-attr={node.id}
-                >
-                    <foreignObject
-                        requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
-                        width={nodeSize}
-                        height={nodeSize - nodeSize / 3}
-                        x={node.x - 2}
-                        y={node.y - 2}
-                    >
-                        {#if getImageByNode(node)}
-                            <img src={getImageByNode(node)} alt={node.title} />
-                            <div class="title">{node.title}</div>
-                        {:else}
-                            <div class="title">{node.title}</div>
-                        {/if}
-                    </foreignObject>
-                </g>
-            {/each}
-        </g>
-    </svg>
+<div class="graph">
+	{#if initialStep.length == 0}
+		<div class="links">
+			<h4 class="loading">Loading Graph...</h4>
+		</div>
+	{:else}
+		<div class="links" on:scroll={handleScroll}>
+			{#each initialStep as datum}
+				<Card
+					{datum}
+					on:click={() => {
+						resetNode();
+						openNode(datum);
+					}}
+					on:keydown={() => {
+						resetNode();
+						openNode(datum);
+					}}
+				/>
+				<Paths {datum} label={datum.property ? datum.property : ''} />
+			{/each}
+		</div>
+		{#each $graphSteps as step}
+			<div class="links" on:scroll={handleScroll}>
+				{#each step.data as datum}
+					<Card
+						{datum}
+						on:click={() => {
+							openNode(datum);
+						}}
+						on:keydown={() => {
+							openNode(datum);
+						}}
+					/>
+					<Paths {datum} label={datum.property ? datum.property : ''} />
+				{/each}
+			</div>
+		{/each}
+	{/if}
 </div>
 
 <style>
-    .graph {
-        flex: 2;
-        user-select: none;
-        cursor: move;
-        cursor: grab;
-        cursor: -moz-grab;
-        cursor: -webkit-grab;
-    }
-
-    .label {
-        cursor: pointer;
-    }
-
-    .title {
-        padding: 1px;
-        width: fit-content;
-    }
-
-    .graph:active {
-        cursor: grabbing;
-        cursor: -moz-grabbing;
-        cursor: -webkit-grabbing;
-    }
+	.graph {
+		display: flex;
+	}
+	.links {
+		height: 100vh;
+		padding-top: 1rem;
+		padding-left: 10vw;
+		width: 180px;
+		flex-basis: 180px;
+		flex-grow: 0;
+		flex-shrink: 0;
+		cursor: pointer;
+		overflow: scroll;
+	}
 </style>

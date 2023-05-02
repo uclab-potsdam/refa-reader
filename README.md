@@ -1,4 +1,4 @@
-# LoD Essays
+# ReFa Essays
 
 ## Project setup
 ```
@@ -7,7 +7,7 @@ yarn install
 
 ## Run
 ```
-yarn dev
+yarn dev -- --open
 ```
 
 ### Build for production
@@ -16,4 +16,4 @@ yarn build
 ```
 
 ### Configuration
-Edit `.config.js` specifying the filenames of the markdown files to load and the Omeka S endpoint to use
+Insert the markdown files to load inside the `src/route/essays/` folder.yarn
