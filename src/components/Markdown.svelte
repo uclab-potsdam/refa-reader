@@ -36,8 +36,6 @@
 					}" title="${text}">${text}(${href})</a>`;
 				}
 			}
-
-			return match;
 		}
 	);
 
