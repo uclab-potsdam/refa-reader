@@ -4,7 +4,7 @@
 
 <div class="columns">
 	{#each data.posts as post}
-		{#if post.meta.pubic}
+		{#if post.meta.isPublic}
 			<a href={post.path} target="_self">
 				<div class="column">
 					<h2>

@@ -1,7 +1,7 @@
 ---
 title: Essay Three
 date: "2020-12-14"
-pubic: true
+isPublic: true
 ---
 stchen mit drei Ansichten von [persischen Reitern](item/72) 
 
