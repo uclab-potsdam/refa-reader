@@ -49,7 +49,7 @@
 		<svg class={datum.source.split('/').slice(-1)[0]}>
 			<path id="path_{id}" d={`M ${sourceRect.x} ${sourceRect.y} L ${x} ${y}`} />
 			<text>
-				<textPath href="#path_{id}" startOffset="98%" text-anchor="end">{label}</textPath>
+				<textPath href="#path_{id}" startOffset="95%" text-anchor="end">{label}</textPath>
 			</text>
 		</svg>
 	{/if}
