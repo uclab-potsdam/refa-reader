@@ -1,7 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
 	import { Api, selectedNode, graphSteps } from '@stores';
-	import Paths from '@components/Paths.svelte';
 	import Card from '@components/Card.svelte';
 	import { loadData, createTriplets } from '@utils';
 
@@ -88,7 +87,6 @@
 						openNode(datum);
 					}}
 				/>
-				<Paths {datum} label={datum.property ? datum.property : ''} />
 			{/each}
 		</div>
 		{#each $graphSteps as step}
@@ -103,7 +101,6 @@
 							openNode(datum);
 						}}
 					/>
-					<Paths {datum} label={datum.property ? datum.property : ''} />
 				{/each}
 			</div>
 		{/each}

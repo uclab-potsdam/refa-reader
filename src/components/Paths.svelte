@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onMount, afterUpdate } from 'svelte';
 	import { updatePosition } from '@stores';
 	export let datum;
 	export let label;
@@ -68,13 +68,13 @@
 
 	text {
 		font-size: clamp(8px, 0.6vw, 14px);
-		fill: #969696;
+		/* fill: #969696; */
 		fill: blue;
 	}
 
 	path {
 		pointer-events: visibleStroke;
-		stroke: #969696;
+		/* stroke: #969696; */
 		stroke: blue;
 		stroke-width: 0.1;
 		cursor: pointer;
