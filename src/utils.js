@@ -141,7 +141,7 @@ export async function createTriplets(data) {
  * @returns {Array} An array of items with JSON-LD data and sets
  */
 export async function loadData(nodes) {
-    const batchSize = 40;
+    const batchSize = 20;
 
     // Extract IDs from nodes
     const ids = nodes.map((d) => {
