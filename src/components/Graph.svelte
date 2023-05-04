@@ -1,8 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
 	import { Api, selectedNode, graphSteps } from '@stores';
+	import { writable } from 'svelte/store';
 	import Card from '@components/Card.svelte';
-	import { loadData, createTriplets } from '@utils';
+	import { createTriplets } from '@utils';
 	export let updatePosition;
 
 	let selectedData = [];
@@ -10,8 +11,10 @@
 	export let handlePosition;
 	export let data;
 
+	const entities = writable([]);
+
 	onMount(async () => {
-		await loadData(data.nodes);
+		loadData(data.nodes, 10);
 	});
 
 	$: {
@@ -34,7 +37,11 @@
 			if (!acc.includes(cur.title)) {
 				acc.push(cur);
 			}
-			return acc;
+			return acc.sort((a, b) => {
+				if (a.property) {
+					return a.property.localeCompare(b.property);
+				}
+			});
 		}, []);
 	}
 
@@ -56,12 +63,51 @@
 		// 	console.log($graphSteps);
 		// } else {
 		// }
-		$graphSteps = [...$graphSteps, { id: node.target, data: selectedTripletsData }];
-		// console.log($graphSteps);
+
+		$graphSteps = [
+			...$graphSteps,
+			{
+				id: node.target,
+				data: selectedTripletsData.sort((a, b) => {
+					if (a.property) {
+						return a.property.localeCompare(b.property);
+					}
+				})
+			}
+		];
 	}
 
 	function resetNode() {
 		$graphSteps = [];
+	}
+
+	/**
+	 * Loads data for the given nodes from the API in batches
+	 * @param {Array} nodes An array of nodes with IDs
+	 * @param {number} batchSize The size of every batch
+	 * @returns {Array} An array of items with JSON-LD data and sets
+	 */
+	export async function loadData(nodes, batchSize) {
+		const ids = nodes.map((d) => {
+			const id = d.id.split('/');
+			return id.slice(-1)[0];
+		});
+
+		const numBatches = Math.ceil(ids.length / batchSize);
+
+		for (let i = 0; i < numBatches; i++) {
+			const batchIds = ids.slice(i * batchSize, (i + 1) * batchSize);
+			const query = `${Api}/items?${batchIds.map((id) => `id[]=${id}`).join('&')}`;
+			const response = await fetch(query);
+			const jsonItems = await response.json();
+
+			entities.update((items) => {
+				if (!items.includes(...jsonItems)) {
+					items.push(...jsonItems);
+				}
+				return items;
+			});
+		}
 	}
 </script>
 
@@ -74,6 +120,7 @@
 		<div class="links" on:scroll={handlePosition}>
 			{#each initialStep as datum}
 				<Card
+					{entities}
 					{updatePosition}
 					{datum}
 					on:click={() => {
@@ -92,6 +139,7 @@
 				{index + 1}
 				{#each step.data as datum}
 					<Card
+						{entities}
 						{updatePosition}
 						{datum}
 						on:click={() => {

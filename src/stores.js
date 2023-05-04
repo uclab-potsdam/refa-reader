@@ -7,4 +7,3 @@ export const selectedNode = writable("");
 export const items = writable([])
 export const graphData = writable([]);
 export const graphSteps = writable([]);
-export const entities = writable([])

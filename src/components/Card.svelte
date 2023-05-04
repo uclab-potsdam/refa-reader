@@ -1,8 +1,8 @@
 <script>
-	import { entities } from '@stores';
 	import Paths from '@components/Paths.svelte';
 	import { slide, fade } from 'svelte/transition';
 	export let datum;
+	export let entities;
 	export let updatePosition;
 
 	function handleLoad() {
@@ -38,8 +38,8 @@
 	{:else}
 		<div class="title">{datum.title}</div>
 	{/if}
+	<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
 </div>
-<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
 
 <style>
 	.link {

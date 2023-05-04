@@ -1,4 +1,4 @@
-import { Api, visibleLinks, allLinks, selectedNode, entities } from './stores.js';
+import { Api, visibleLinks, allLinks, selectedNode } from './stores.js';
 
 /**
  * Extracts links from a Markdown string.
@@ -133,44 +133,6 @@ export async function createTriplets(data) {
     }
 
     return { ...graph };
-}
-
-/**
- * Loads data for the given nodes from the API in batches
- * @param {Array} nodes An array of nodes with IDs
- * @returns {Array} An array of items with JSON-LD data and sets
- */
-export async function loadData(nodes) {
-    const batchSize = 20;
-
-    // Extract IDs from nodes
-    const ids = nodes.map((d) => {
-        const id = d.id.split("/");
-        return id.slice(-1)[0];
-    });
-
-    // Calculate number of batches required
-    const numBatches = Math.ceil(ids.length / batchSize);
-
-    // let data = []
-    for (let i = 0; i < numBatches; i++) {
-        // Get batch IDs
-        const batchIds = ids.slice(i * batchSize, (i + 1) * batchSize);
-        // Construct query string
-        const query = `${Api}/items?${batchIds.map((id) => `id[]=${id}`).join("&")}`;
-        // Fetch items from API
-        const response = await fetch(query);
-        const jsonItems = await response.json()
-        // Append items to data array
-        // data.push(...items);
-        entities.update((items) => {
-            if (!items.includes(...jsonItems)) {
-                items.push(...jsonItems);
-            }
-            return items;
-        });
-    }
-    // return data
 }
 
 /**
