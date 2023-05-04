@@ -3,7 +3,6 @@
 	import Paths from '@components/Paths.svelte';
 	import { slide, fade } from 'svelte/transition';
 	export let datum;
-	export let handleScroll;
 	export let updatePosition;
 
 	function handleLoad() {
@@ -21,7 +20,6 @@
 	$: {
 		if ($entities) {
 			imageSrc = getImageByNode(datum.target);
-			handleScroll;
 		}
 	}
 </script>
