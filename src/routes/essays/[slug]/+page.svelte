@@ -2,12 +2,15 @@
 	import Markdown from '@components/Markdown.svelte';
 	import Graph from '@components/Graph.svelte';
 	import { page } from '$app/stores';
-	import { updatePosition, items, graphSteps } from '@stores';
+	import { items, graphSteps } from '@stores';
 	import { onMount } from 'svelte';
 	import { extractLinks, createTriplets } from '@utils';
-
+	import { writable } from 'svelte/store';
 	export let data;
 	let textData, triplets, itemsJson;
+	
+	const updatePosition = writable(false);
+	const handlePosition = () => { $updatePosition = true;};
 
 	onMount(async () => {
 		textData = [...data.posts].find((d) => d.path.includes($page.params.slug));
@@ -16,15 +19,12 @@
 		$items = triplets;
 	});
 
-	function handleScroll() {
-		$updatePosition = true;
-	}
 	function resetNode() {
 		$graphSteps = [];
 	}
 </script>
 
-<svelte:window on:resize={handleScroll} />
+<svelte:window on:resize={handlePosition} />
 
 {#if triplets != undefined}
 	<article>
@@ -32,21 +32,21 @@
 			class="markdown__container"
 			on:scroll={() => {
 				resetNode();
-				handleScroll();
+				handlePosition();
 			}}
-			on:click={handleScroll}
-			on:keypress={handleScroll}
+			on:click={handlePosition}
+			on:keypress={handlePosition}
 		>
 			<h1>{textData.meta.title}</h1>
 			<Markdown data={textData} items={itemsJson} />
 		</section>
 		<section
 			class="graph__container"
-			on:scroll={handleScroll}
-			on:click={handleScroll}
-			on:keypress={handleScroll}
+			on:scroll={handlePosition}
+			on:click={handlePosition}
+			on:keypress={handlePosition}
 		>
-			<Graph data={$items} {handleScroll} />
+			<Graph data={$items} {updatePosition} />
 		</section>
 	</article>
 {/if}
@@ -60,7 +60,7 @@
 	section {
 		overflow: scroll;
 	}
-	
+
 	.markdown__container {
 		flex: 1;
 	}

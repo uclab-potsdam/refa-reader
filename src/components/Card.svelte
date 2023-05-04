@@ -1,10 +1,10 @@
 <script>
-	import { entities, updatePosition } from '@stores';
+	import { entities } from '@stores';
 	import Paths from '@components/Paths.svelte';
 	import { slide, fade } from 'svelte/transition';
 	export let datum;
 	export let handleScroll;
-
+	export let updatePosition;
 
 	function handleLoad() {
 		$updatePosition = true;
@@ -41,7 +41,7 @@
 		<div class="title">{datum.title}</div>
 	{/if}
 </div>
-<Paths {datum} label={datum.property ? datum.property : ''} />
+<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
 
 <style>
 	.link {

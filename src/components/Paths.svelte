@@ -1,8 +1,8 @@
 <script>
-	import { onMount, afterUpdate } from 'svelte';
-	import { updatePosition } from '@stores';
+	import { onMount } from 'svelte';
 	export let datum;
 	export let label;
+	export let updatePosition;
 	let item;
 
 	import newUniqueId from 'locally-unique-id-generator';

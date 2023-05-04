@@ -3,6 +3,7 @@
 	import { Api, selectedNode, graphSteps } from '@stores';
 	import Card from '@components/Card.svelte';
 	import { loadData, createTriplets } from '@utils';
+	export let updatePosition;
 
 	let selectedData = [];
 
@@ -37,20 +38,7 @@
 		}, []);
 	}
 
-	// let uniqueTriplets;
-
-	// $: {
-	// 	if (selectedTriplets) {
-	// 		const newNodes = selectedTriplets?.links?.filter(
-	// 			(node) => !initialStep.includes(node.target)
-	// 		);
-
-	// 		uniqueTriplets = [...initialStep, ...newNodes];
-	// 	}
-	// 	console.log('unique', uniqueTriplets);
-	// }
-
-	async function openNode(node) {
+	async function openNode(node, index) {
 		const response = await fetch(node.target);
 		const data = await response.json();
 		const items = [{ data }];
@@ -60,7 +48,16 @@
 			return d.source === node.target || d.target === node.target;
 		});
 
+		// if ($graphSteps.length > index) {
+		// 	$graphSteps = $graphSteps.splice(index, $graphSteps.length - index, {
+		// 		id: node.target,
+		// 		data: selectedTripletsData
+		// 	});
+		// 	console.log($graphSteps);
+		// } else {
+		// }
 		$graphSteps = [...$graphSteps, { id: node.target, data: selectedTripletsData }];
+		// console.log($graphSteps);
 	}
 
 	function resetNode() {
@@ -77,28 +74,32 @@
 		<div class="links" on:scroll={handleScroll}>
 			{#each initialStep as datum}
 				<Card
+					{updatePosition}
 					{datum}
 					on:click={() => {
 						resetNode();
-						openNode(datum);
+						openNode(datum, 0);
 					}}
 					on:keydown={() => {
 						resetNode();
-						openNode(datum);
+						openNode(datum, 0);
 					}}
 				/>
 			{/each}
 		</div>
-		{#each $graphSteps as step}
+		{#each $graphSteps as step, index}
 			<div class="links" on:scroll={handleScroll}>
+				{index + 1}
 				{#each step.data as datum}
 					<Card
+						{updatePosition}
 						{datum}
 						on:click={() => {
-							openNode(datum);
+							console;
+							openNode(datum, index + 1);
 						}}
 						on:keydown={() => {
-							openNode(datum);
+							openNode(datum, index + 1);
 						}}
 					/>
 				{/each}
