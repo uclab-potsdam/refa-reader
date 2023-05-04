@@ -46,7 +46,7 @@
 			on:click={handlePosition}
 			on:keypress={handlePosition}
 		>
-			<Graph data={$items} {updatePosition} />
+			<Graph data={$items} {handlePosition} {updatePosition} />
 		</section>
 	</article>
 {/if}

@@ -7,7 +7,7 @@
 
 	let selectedData = [];
 
-	export let handleScroll;
+	export let handlePosition;
 	export let data;
 
 	onMount(async () => {
@@ -71,7 +71,7 @@
 			<h4 class="loading">Loading Graph...</h4>
 		</div>
 	{:else}
-		<div class="links" on:scroll={handleScroll}>
+		<div class="links" on:scroll={handlePosition}>
 			{#each initialStep as datum}
 				<Card
 					{updatePosition}
@@ -88,7 +88,7 @@
 			{/each}
 		</div>
 		{#each $graphSteps as step, index}
-			<div class="links" on:scroll={handleScroll}>
+			<div class="links" on:scroll={handlePosition}>
 				{index + 1}
 				{#each step.data as datum}
 					<Card
