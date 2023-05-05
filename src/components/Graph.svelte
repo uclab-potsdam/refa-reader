@@ -15,35 +15,33 @@
 
 	let selectedData,
 		initialStep,
-		newNodes,
-		allNodes = [];
+		newNodes = [];
 
 	let selectedTriplets = { nodes: [], links: [] };
-
-	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.title));
+	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
 	$: columnNodes = $graphSteps.map((obj) => obj.data).flat();
 
 	$: {
-		({ newNodes, allNodes } = updateNodes([...markdownNodes, ...initialStep], columnNodes));
+		newNodes = updateNodes([...markdownNodes, ...initialStep], columnNodes);
 
+		console.log(initialStep);
 		if (newNodes.length > 0) {
-			// console.log(newNodes);
 			loadData(newNodes, 50);
 		}
 	}
 
 	function updateNodes(nodes, selectedNodes) {
 		const newNodes = selectedNodes.filter((selectedNode) => {
-			return !nodes.some((node) => node.title === selectedNode.title);
+			return !nodes.some((node) => node.id === selectedNode.id);
 		});
 
 		const addedNodes = newNodes.filter((newNode) => {
-			return !nodes.some((node) => node.title === newNode.title);
+			return !nodes.some((node) => node.id === newNode.id);
 		});
 
-		const allNodes = [...nodes, ...addedNodes];
-
-		return { newNodes: addedNodes, allNodes };
+		return addedNodes;
+		// const allNodes = [...nodes, ...addedNodes];
+		// return { newNodes: addedNodes, allNodes };
 	}
 
 	onMount(async () => {
@@ -135,19 +133,24 @@
 	{:else}
 		<div class="links" on:scroll={handlePosition}>
 			{#each initialStep as datum}
-				<Card
-					{entities}
-					{updatePosition}
-					{datum}
-					on:click={() => {
-						resetNode();
-						openNode(datum, 0);
-					}}
-					on:keydown={() => {
-						resetNode();
-						openNode(datum, 0);
-					}}
-				/>
+				{#if !markdownNodes.find((d) => d.title == datum.title)}
+					<Card
+						{entities}
+						{updatePosition}
+						{datum}
+						on:click={() => {
+							resetNode();
+							openNode(datum, 0);
+						}}
+						on:keydown={() => {
+							resetNode();
+							openNode(datum, 0);
+						}}
+					/>
+					<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
+				{:else}
+					<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
+				{/if}
 			{/each}
 		</div>
 		{#each $graphSteps as step, index}
@@ -165,6 +168,7 @@
 								openNode(datum, index + 1);
 							}}
 						/>
+						<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
 					{:else}
 						<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
 					{/if}

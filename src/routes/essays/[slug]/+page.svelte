@@ -2,7 +2,7 @@
 	import Markdown from '@components/Markdown.svelte';
 	import Graph from '@components/Graph.svelte';
 	import { page } from '$app/stores';
-	import { items, graphSteps } from '@stores';
+	import { Api, items, graphSteps } from '@stores';
 	import { onMount } from 'svelte';
 	import { extractLinks, createTriplets } from '@utils';
 	import { writable } from 'svelte/store';
@@ -19,9 +19,9 @@
 	onMount(async () => {
 		textData = [...data.posts].find((d) => d.path.includes($page.params.slug));
 		itemsJson = await extractLinks(textData.text);
-
-		visibleItemsID = itemsJson.map((obj) => obj.data?.['o:title'] || obj.data?.obj.display_title);
-
+		visibleItemsID = itemsJson
+			.filter((obj) => !obj.set)
+			.map((obj) => `${Api}/resources/${obj.data?.['o:id']}`);
 		triplets = await createTriplets(itemsJson);
 		$items = triplets;
 	});

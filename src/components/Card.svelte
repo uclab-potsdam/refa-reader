@@ -1,9 +1,9 @@
 <script>
-	import Paths from '@components/Paths.svelte';
+	// import Paths from '@components/Paths.svelte';
 	export let datum;
 	export let entities;
 	export let updatePosition;
-	
+
 	function handleLoad() {
 		$updatePosition = true;
 	}
@@ -39,7 +39,7 @@
 	{:else}
 		<div class="title">{datum.title}</div>
 	{/if}
-	<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
+	<!-- <Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} /> -->
 </div>
 
 <style>

@@ -19,7 +19,7 @@
 		$updatePosition = false;
 		sourceRect = getBounds(datum.source);
 		targetRect = getBounds(datum.target);
-
+		
 		if (item) {
 			x = item.getBoundingClientRect().x;
 			y = item.getBoundingClientRect().y;
