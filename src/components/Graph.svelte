@@ -83,17 +83,18 @@
 			return d.source === node.target || d.target === node.target;
 		});
 
-		$graphSteps = [
-			...$graphSteps,
-			{
-				id: node.target,
-				data: selectedTripletsData.sort((a, b) => {
-					if (a.property) {
-						return a.property.localeCompare(b.property);
-					}
-				})
-			}
-		];
+		// Remove all elements in $graphSteps after the given index
+		$graphSteps.splice(index + 1, $graphSteps.length - (index + 1));
+
+		// Replace the element at the given index with the new data
+		$graphSteps[index] = {
+			id: node.target,
+			data: selectedTripletsData.sort((a, b) => {
+				if (a.property) {
+					return a.property.localeCompare(b.property);
+				}
+			})
+		};
 	}
 
 	function resetNode() {
@@ -146,8 +147,10 @@
 							openNode(datum, 0);
 						}}
 					/>
-					<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
-				{:else}
+					{#if datum.source && datum.target}
+						<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
+					{/if}
+				{:else if datum.source && datum.target}
 					<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
 				{/if}
 			{/each}
@@ -167,8 +170,10 @@
 								openNode(datum, index + 1);
 							}}
 						/>
-						<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
-					{:else}
+						{#if datum.source && datum.target}
+							<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
+						{/if}
+					{:else if datum.source && datum.target}
 						<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
 					{/if}
 				{/each}
