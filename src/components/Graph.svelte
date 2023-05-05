@@ -24,7 +24,6 @@
 	$: {
 		newNodes = updateNodes([...markdownNodes, ...initialStep], columnNodes);
 
-		console.log(initialStep);
 		if (newNodes.length > 0) {
 			loadData(newNodes, 50);
 		}
@@ -32,11 +31,11 @@
 
 	function updateNodes(nodes, selectedNodes) {
 		const newNodes = selectedNodes.filter((selectedNode) => {
-			return !nodes.some((node) => node.id === selectedNode.id);
+			return !nodes.some((node) => node.title === selectedNode.title);
 		});
 
 		const addedNodes = newNodes.filter((newNode) => {
-			return !nodes.some((node) => node.id === newNode.id);
+			return !nodes.some((node) => node.title === newNode.title);
 		});
 
 		return addedNodes;
