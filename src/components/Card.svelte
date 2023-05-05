@@ -32,10 +32,10 @@
 >
 	<div class="title"><strong>{datum.target.split('/').slice(-1)[0]}</strong></div>
 
-	{#if imageSrc}
+	{#if datum.img}
+		<img src={datum.img.replace('square', 'large')} alt={datum.title} on:load={handleLoad} />
+	{:else if imageSrc}
 		<img src={imageSrc} alt={datum.title} on:load={handleLoad} />
-	{:else if datum.img}
-		<img src={datum.img} alt={datum.title} on:load={handleLoad} />
 	{:else}
 		<div class="title">{datum.title}</div>
 	{/if}
