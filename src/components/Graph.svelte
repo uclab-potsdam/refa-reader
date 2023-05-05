@@ -1,20 +1,53 @@
 <script>
-	import { onMount } from 'svelte';
+	import { afterUpdate, onMount } from 'svelte';
 	import { Api, selectedNode, graphSteps } from '@stores';
 	import { writable } from 'svelte/store';
 	import Card from '@components/Card.svelte';
+	import Paths from '@components/Paths.svelte';
 	import { createTriplets } from '@utils';
+
 	export let updatePosition;
-
-	let selectedData = [];
-
 	export let handlePosition;
 	export let data;
+	export let visibleItemsID;
 
 	const entities = writable([]);
 
+	let selectedData,
+		initialStep,
+		newNodes,
+		allNodes = [];
+
+	let selectedTriplets = { nodes: [], links: [] };
+
+	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.title));
+	$: columnNodes = $graphSteps.map((obj) => obj.data).flat();
+
+	$: {
+		({ newNodes, allNodes } = updateNodes([...markdownNodes, ...initialStep], columnNodes));
+
+		if (newNodes.length > 0) {
+			// console.log(newNodes);
+			loadData(newNodes, 50);
+		}
+	}
+
+	function updateNodes(nodes, selectedNodes) {
+		const newNodes = selectedNodes.filter((selectedNode) => {
+			return !nodes.some((node) => node.title === selectedNode.title);
+		});
+
+		const addedNodes = newNodes.filter((newNode) => {
+			return !nodes.some((node) => node.title === newNode.title);
+		});
+
+		const allNodes = [...nodes, ...addedNodes];
+
+		return { newNodes: addedNodes, allNodes };
+	}
+
 	onMount(async () => {
-		loadData(data.nodes, 10);
+		loadData(data.nodes, 50);
 	});
 
 	$: {
@@ -29,8 +62,6 @@
 			});
 		}
 	}
-	let initialStep = [];
-	let selectedTriplets;
 
 	$: {
 		initialStep = selectedData.reduce((acc, cur) => {
@@ -55,15 +86,6 @@
 			return d.source === node.target || d.target === node.target;
 		});
 
-		// if ($graphSteps.length > index) {
-		// 	$graphSteps = $graphSteps.splice(index, $graphSteps.length - index, {
-		// 		id: node.target,
-		// 		data: selectedTripletsData
-		// 	});
-		// 	console.log($graphSteps);
-		// } else {
-		// }
-
 		$graphSteps = [
 			...$graphSteps,
 			{
@@ -81,15 +103,9 @@
 		$graphSteps = [];
 	}
 
-	/**
-	 * Loads data for the given nodes from the API in batches
-	 * @param {Array} nodes An array of nodes with IDs
-	 * @param {number} batchSize The size of every batch
-	 * @returns {Array} An array of items with JSON-LD data and sets
-	 */
-	export async function loadData(nodes, batchSize) {
+	async function loadData(nodes, batchSize) {
 		const ids = nodes.map((d) => {
-			const id = d.id.split('/');
+			const id = d?.id?.split('/') || d?.target?.split('/');
 			return id.slice(-1)[0];
 		});
 
@@ -112,7 +128,7 @@
 </script>
 
 <div class="graph">
-	{#if initialStep.length == 0}
+	{#if entities.length == 0}
 		<div class="links">
 			<h4 class="loading">Loading Graph...</h4>
 		</div>
@@ -136,20 +152,22 @@
 		</div>
 		{#each $graphSteps as step, index}
 			<div class="links" on:scroll={handlePosition}>
-				{index + 1}
 				{#each step.data as datum}
-					<Card
-						{entities}
-						{updatePosition}
-						{datum}
-						on:click={() => {
-							console;
-							openNode(datum, index + 1);
-						}}
-						on:keydown={() => {
-							openNode(datum, index + 1);
-						}}
-					/>
+					{#if newNodes.some((existingNode) => existingNode.title === datum.title)}
+						<Card
+							{entities}
+							{updatePosition}
+							{datum}
+							on:click={() => {
+								openNode(datum, index + 1);
+							}}
+							on:keydown={() => {
+								openNode(datum, index + 1);
+							}}
+						/>
+					{:else}
+						<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
+					{/if}
 				{/each}
 			</div>
 		{/each}

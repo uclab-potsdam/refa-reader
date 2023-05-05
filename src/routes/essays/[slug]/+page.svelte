@@ -8,13 +8,20 @@
 	import { writable } from 'svelte/store';
 	export let data;
 	let textData, triplets, itemsJson;
-	
+
 	const updatePosition = writable(false);
-	const handlePosition = () => { $updatePosition = true;};
+	const handlePosition = () => {
+		$updatePosition = true;
+	};
+
+	let visibleItemsID = [];
 
 	onMount(async () => {
 		textData = [...data.posts].find((d) => d.path.includes($page.params.slug));
 		itemsJson = await extractLinks(textData.text);
+
+		visibleItemsID = itemsJson.map((obj) => obj.data?.['o:title'] || obj.data?.obj.display_title);
+
 		triplets = await createTriplets(itemsJson);
 		$items = triplets;
 	});
@@ -46,7 +53,7 @@
 			on:click={handlePosition}
 			on:keypress={handlePosition}
 		>
-			<Graph data={$items} {handlePosition} {updatePosition} />
+			<Graph data={$items} {visibleItemsID} {handlePosition} {updatePosition} />
 		</section>
 	</article>
 {/if}

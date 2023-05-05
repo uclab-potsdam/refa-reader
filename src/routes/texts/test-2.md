@@ -7,7 +7,7 @@ isPublic: true
 
 # Einleitung
 
-Restaging Fashion vereint Konvolute aus der Sammlung Modebild - Lipperheidesche Kostümbibliothek der Kunstbibliothek zu Berlin mit historischer Kleidung aus der [Sammlung Textilien, Kleidung und Schmuck](item/19619) des [Germanischen Nationalmuseum](item/17568).
+Restaging Fashion vereint Konvolute aus der Sammlung Modebild - Lipperheidesche Kostümbibliothek der Kunstbibliothek zu Berlin mit historischer Kleidung aus der Sammlung Textilien, Kleidung und Schmuck des [Germanischen Nationalmuseum](item/17568).
 Eine umfangreiche und bislang nicht publizierte Gemälde- und Miniaturensammlung des Verlegerehepaares Franz und Frieda von Lipperheide, sowie Grafiken und Handzeichungen aus ihrem Sammlungsbestand und späteren Schenkungskonvolut wurden im Rahmen von "Restaging Fashion" konservatorisch bearbeitet, digitalisiert und im Hinblick auf ihren kleidungshistorischen Inhalt und Quellenwert kunsthistorisch erfasst. Der bereits bearbeiteten und erschlossenen Gemälde- und Miniaturensammlung[^1] bildet die Basis für eine Zusammenführung relevanter vestimentärer Quellen. Die ausgewählten und eingebundenen Grafiken und Handzeichnungen aus der Sammlung Modebild - Lipperheidesche Kostümbibliothek ergänzen und kontextualisieren den Gemälde- und Miniaturenbestand. Historische Kleidungselemente aus dem Germanischen Nationalmuseum wurden 3d gescannt und erweiteren die Quellenlage zu historischer Kleidung. Zusätzlich wurden exemplarisch historische Teextquellen ausgewählt, welche die Quellentrias Bild-Text-Kleidung vervollständigen und den methodischen Ansatz des Projektes exemplifizieren.
 
 ## Kostüm, Mode und Tracht - Der Kostümbegriff im 19. Jahrhundert

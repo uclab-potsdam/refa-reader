@@ -7,7 +7,7 @@
 
 	import newUniqueId from 'locally-unique-id-generator';
 	let id = newUniqueId();
-	let sourceRect;
+	let sourceRect, targetRect;
 	let x, y;
 
 	$: {
@@ -18,6 +18,8 @@
 	function getPositions() {
 		$updatePosition = false;
 		sourceRect = getBounds(datum.source);
+		targetRect = getBounds(datum.target);
+
 		if (item) {
 			x = item.getBoundingClientRect().x;
 			y = item.getBoundingClientRect().y;
@@ -47,7 +49,10 @@
 <div bind:this={item}>
 	{#if item}
 		<svg class={datum.source.split('/').slice(-1)[0]}>
-			<path id="path_{id}" d={`M ${sourceRect.x} ${sourceRect.y} L ${x} ${y}`} />
+			<path
+				id="path_{id}"
+				d={`M ${sourceRect?.x} ${sourceRect?.y} L ${targetRect?.x} ${targetRect?.y}`}
+			/>
 			<text>
 				<textPath href="#path_{id}" startOffset="95%" text-anchor="end">{label}</textPath>
 			</text>
@@ -76,7 +81,7 @@
 		pointer-events: visibleStroke;
 		/* stroke: #969696; */
 		stroke: blue;
-		stroke-width: 0.1;
+		stroke-width: 0.2;
 		cursor: pointer;
 	}
 </style>

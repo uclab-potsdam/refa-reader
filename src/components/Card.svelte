@@ -1,10 +1,9 @@
 <script>
 	import Paths from '@components/Paths.svelte';
-	import { slide, fade } from 'svelte/transition';
 	export let datum;
 	export let entities;
 	export let updatePosition;
-
+	
 	function handleLoad() {
 		$updatePosition = true;
 	}
@@ -31,6 +30,8 @@
 	on:click
 	on:keydown
 >
+	<div class="title"><strong>{datum.target.split('/').slice(-1)[0]}</strong></div>
+
 	{#if imageSrc}
 		<img src={imageSrc} alt={datum.title} on:load={handleLoad} />
 	{:else if datum.img}
