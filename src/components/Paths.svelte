@@ -3,6 +3,8 @@
 	export let datum;
 	export let label;
 	export let updatePosition;
+	export let highliteNode;
+
 	let item;
 
 	import newUniqueId from 'locally-unique-id-generator';
@@ -40,11 +42,6 @@
 			};
 		}
 	}
-
-	function activePaths() {
-		console.log(datum.target, datum.source);
-	}
-
 	onMount(() => {
 		getPositions();
 	});
@@ -54,11 +51,11 @@
 	{#if item}
 		<svg class={datum.source.split('/').slice(-1)[0]}>
 			<path
-				{activePaths}
 				id="path_{id}"
+				class={datum.target == highliteNode || datum.source == highliteNode ? 'highlite' : ''}
 				d={`M ${sourceRect?.x} ${sourceRect?.y} L ${targetRect?.x} ${targetRect?.y}`}
 			/>
-			<text>
+			<text class={datum.target == highliteNode || datum.source == highliteNode ? 'highlite' : ''}>
 				<textPath href="#path_{id}" startOffset="95%" text-anchor="end">{label}</textPath>
 			</text>
 		</svg>
@@ -78,15 +75,22 @@
 
 	text {
 		font-size: clamp(8px, 0.6vw, 14px);
-		/* fill: #969696; */
-		fill: blue;
+		fill: #969696;
 	}
 
 	path {
 		pointer-events: visibleStroke;
-		/* stroke: #969696; */
-		stroke: blue;
-		stroke-width: 0.2;
+		stroke: #969696;
+		stroke-width: 0.1;
 		cursor: pointer;
+	}
+
+	text.highlite {
+		fill: blue;
+	}
+
+	path.highlite {
+		stroke-width: 0.2;
+		stroke: blue;
 	}
 </style>

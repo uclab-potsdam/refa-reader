@@ -1,1 +1,9 @@
-<h1>go <a href="/essays">here</a></h1>
+<script>
+	import Columns from '@components/Columns.svelte';
+	import Header from '@components/Header.svelte';
+
+	export let data;
+</script>
+
+<Header />
+<Columns {data} />

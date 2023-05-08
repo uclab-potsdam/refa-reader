@@ -66,7 +66,7 @@
 	article {
 		display: flex;
 		height: calc(100vh - 1rem);
-		padding: 1rem 0 0 0;
+		/* padding: 1rem 0 0 0; */
 	}
 
 	section {
@@ -83,12 +83,21 @@
 	}
 
 	.item__detail {
-		flex: 1;
-		max-width: 250px;
+		flex: 2;
+		max-width: 350px;
+		border-right: 1px solid #e3e3e3;
+		/* background-color: #e3e3e3; */
 	}
 
 	.markdown__container {
-		padding: 0rem 1rem 0 2rem;
+		padding: 0.5rem 0rem 0 1rem;
 		/* min-width: 700px; */
+	}
+
+	@media only screen and (max-width: 600px) {
+		.item__detail,
+		.graph__container {
+			display: none;
+		}
 	}
 </style>

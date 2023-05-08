@@ -10,6 +10,7 @@
 	export let handlePosition;
 	export let data;
 	export let visibleItemsID;
+	export let highliteNode;
 
 	const entities = writable([]);
 
@@ -25,7 +26,7 @@
 	$: {
 		// check with allNodes to add the previous nodes
 		let update = updateNodes([...markdownNodes, ...initialStep], columnNodes);
-		
+
 		newNodes = update.newNodes;
 		allNodes = update.allNodes;
 
@@ -57,7 +58,7 @@
 		if (data.links) {
 			selectedData = data.links.filter((d) => {
 				const path = `${Api}/resources/${$selectedNode}`;
-
+				highliteNode = path;
 				return (
 					(d.target != path && d.source != d.target && d.source == path) ||
 					(d.target != path && d.source != d.target && d.target == path)
@@ -101,6 +102,8 @@
 				}
 			})
 		};
+
+		highliteNode = node.target;
 	}
 
 	function resetNode() {
@@ -154,10 +157,20 @@
 						}}
 					/>
 					{#if datum.source && datum.target}
-						<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
+						<Paths
+							{datum}
+							{updatePosition}
+							{highliteNode}
+							label={datum.property ? datum.property : ''}
+						/>
 					{/if}
 				{:else if datum.source && datum.target}
-					<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
+					<Paths
+						{datum}
+						{updatePosition}
+						{highliteNode}
+						label={datum.property ? datum.property : ''}
+					/>
 				{/if}
 			{/each}
 		</div>
@@ -177,10 +190,20 @@
 							}}
 						/>
 						{#if datum.source && datum.target}
-							<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
+							<Paths
+								{datum}
+								{updatePosition}
+								{highliteNode}
+								label={datum.property ? datum.property : ''}
+							/>
 						{/if}
 					{:else if datum.source && datum.target}
-						<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
+						<Paths
+							{datum}
+							{updatePosition}
+							{highliteNode}
+							label={datum.property ? datum.property : ''}
+						/>
 					{/if}
 				{/each}
 			</div>

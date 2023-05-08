@@ -25,16 +25,15 @@
 			if (href.startsWith('http')) {
 				return `<a class="external" target="_blank" href="${href}" title="${text}">${text}</a>`;
 			} else {
-				let img = getMainImage(`${href.split('/')[1]}`);
-				if (img) {
-					return `<a class="node-highlite" data-id="${
-						href.split('/')[1]
-					}" title="${text}">${text}(${href})</a><span class="node-image"><img class="main-image" src="${img}" alt="${text}"></img></span>`;
-				} else {
-					return `<a class="node-highlite" data-id="${
-						href.split('/')[1]
-					}" title="${text}">${text}(${href})</a>`;
-				}
+				return `<a class="node-highlite" data-id="${href.split('/')[1]}" title="${text}">${text}(${href})</a>`;
+				// let img = getMainImage(`${href.split('/')[1]}`);
+				// if (img) {
+				// 	return `<a class="node-highlite" data-id="${
+				// 		href.split('/')[1]
+				// 	}" title="${text}">${text}(${href})</a><span class="node-image"><img class="main-image" src="${img}" alt="${text}"></img></span>`;
+				// } else {
+				// 	return `<a class="node-highlite" data-id="${href.split('/')[1]}" title="${text}">${text}(${href})</a>`;
+				// }
 			}
 		}
 	);
@@ -92,7 +91,7 @@
 	}
 
 	:global(.node-highlite) {
-		background-color: rgb(249, 255, 216, .6);
+		background-color: rgb(249, 255, 216, .3);
 		color: black;
 	}
 

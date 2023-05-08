@@ -6,10 +6,7 @@ isPublic: true
 ---
 
 Die Objekte der Gemäldesammlung sind von unterschiedlicher Qualität und Machart: Malerisch hervorragend ausgeführte Werke stehen neben andeutenden Skizzen, Formate von [5 x 5 cm](item/463) neben [130 x 197 cm](item/148) großen Gemälden und großformatige, meist in Öl auf Leinwand oder Holz ausgeführte Gemälde ergänzen ein breites Materialspektrum in der Miniaturen-Gruppe.
-[test](item/17909)
-[set test](set/42017)
 
-Das [Bildnis von Anna, Königin von England](item/306)
 
 Die Sammlung beinhaltet sowohl Ölmalerei auf Pappe, Kupfer-, Eisen- oder Silberblech, als auch Wasserfarbenmalerei auf Elfenbein, außerdem Hinterglasmalerei, Lackarbeiten und Emaillemalerei auf Keramik. So ist das [Bildnis eines Herrn im Wams mit Schulterkragen](item/437) aus der zweiten Hälfte des 17. Jahrhunderts mit Öl auf Schildpatt gemalt, eine [Schäferszene mit einem galanten Paar](item/68) ist auf einen Seidenuntergrund aufgestickt und [19 Miniaturbildnisse auf Papier oder Pergament von Mitgliedern des Hauses Anspach-Bayreuth-Brandenburg](item/332) sind auf einen Seidengrund vereinigt und mit Paillettenschnüren und Metallfäden gerahmt. Auch das scherenschnittartige [Bildnis einer Frau im Biedermeierkleid mit Haube und Schulterkragen](item/447) hat einen ungewöhnlichen Bildgrund (item/Stein oder Glas), das [Spiegelkästchen mit drei Ansichten von persischen Reitern](item/530) oder das runde Medaillon mit dem [Bildnis eines Herrn im Oberrock](item/301) besteht ebenfalls aus einem Materialmix. Die Bildnisplastiken sind zum größten Teil aus Wachs ­gefertigt, mehrere Plastiken tragen Applikationen von Textilien, Edelsteinen, Haaren und Tierzähnen. Der Gruppe der Plastiken ist ebenfalls ein [Tableau oder Plafond](item/5407) mit bezogenen und bestickten Knöpfen zugeordnet.
 
