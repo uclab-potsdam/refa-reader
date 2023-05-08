@@ -19,7 +19,7 @@
 		$updatePosition = false;
 		sourceRect = getBounds(datum.source);
 		targetRect = getBounds(datum.target);
-		
+
 		if (item) {
 			x = item.getBoundingClientRect().x;
 			y = item.getBoundingClientRect().y;
@@ -41,6 +41,10 @@
 		}
 	}
 
+	function activePaths() {
+		console.log(datum.target, datum.source);
+	}
+
 	onMount(() => {
 		getPositions();
 	});
@@ -50,6 +54,7 @@
 	{#if item}
 		<svg class={datum.source.split('/').slice(-1)[0]}>
 			<path
+				{activePaths}
 				id="path_{id}"
 				d={`M ${sourceRect?.x} ${sourceRect?.y} L ${targetRect?.x} ${targetRect?.y}`}
 			/>

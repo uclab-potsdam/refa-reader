@@ -5,5 +5,4 @@ export const visibleLinks = writable([]);
 export const allLinks = writable([]);
 export const selectedNode = writable("");
 export const items = writable([])
-export const graphData = writable([]);
 export const graphSteps = writable([]);

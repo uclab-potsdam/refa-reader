@@ -49,6 +49,12 @@
 		margin-bottom: 0.5rem;
 	}
 
+	.link:hover {
+		/* border: 1px solid; */
+		background-color: black;
+		color: #ececec;
+	}
+
 	.title {
 		font-size: 0.7rem;
 		overflow-wrap: break-word;

@@ -1,6 +1,7 @@
 <script>
 	import Markdown from '@components/Markdown.svelte';
 	import Graph from '@components/Graph.svelte';
+	import ItemDetail from '@components/ItemDetail.svelte';
 	import { page } from '$app/stores';
 	import { Api, items, graphSteps } from '@stores';
 	import { onMount } from 'svelte';
@@ -35,6 +36,9 @@
 
 {#if triplets != undefined}
 	<article>
+		<section class="item__detail">
+			<ItemDetail data={itemsJson} />
+		</section>
 		<section
 			class="markdown__container"
 			on:scroll={() => {
@@ -61,7 +65,8 @@
 <style>
 	article {
 		display: flex;
-		height: 100vh;
+		height: calc(100vh - 1rem);
+		padding: 1rem 0 0 0;
 	}
 
 	section {
@@ -69,14 +74,21 @@
 	}
 
 	.markdown__container {
-		flex: 1;
-	}
-	.graph__container {
 		flex: 2;
+		max-width: 450px;
+	}
+
+	.graph__container {
+		flex: 3;
+	}
+
+	.item__detail {
+		flex: 1;
+		max-width: 250px;
 	}
 
 	.markdown__container {
-		padding: 2rem 1rem 0 2rem;
+		padding: 0rem 1rem 0 2rem;
 		/* min-width: 700px; */
 	}
 </style>

@@ -15,14 +15,19 @@
 
 	let selectedData,
 		initialStep,
-		newNodes = [];
+		newNodes,
+		allNodes = [];
 
 	let selectedTriplets = { nodes: [], links: [] };
 	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
 	$: columnNodes = $graphSteps.map((obj) => obj.data).flat();
 
 	$: {
-		newNodes = updateNodes([...markdownNodes, ...initialStep], columnNodes);
+		// check with allNodes to add the previous nodes
+		let update = updateNodes([...markdownNodes, ...initialStep], columnNodes);
+		
+		newNodes = update.newNodes;
+		allNodes = update.allNodes;
 
 		if (newNodes.length > 0) {
 			loadData(newNodes, 50);
@@ -31,16 +36,17 @@
 
 	function updateNodes(nodes, selectedNodes) {
 		const newNodes = selectedNodes.filter((selectedNode) => {
-			return !nodes.some((node) => node.title === selectedNode.title);
+			return !nodes.some((node) => node.title == selectedNode.title);
 		});
 
 		const addedNodes = newNodes.filter((newNode) => {
-			return !nodes.some((node) => node.title === newNode.title);
+			return !nodes.some((node) => node.title == newNode.title);
 		});
 
-		return addedNodes;
-		// const allNodes = [...nodes, ...addedNodes];
-		// return { newNodes: addedNodes, allNodes };
+		// console.log(nodes, newNodes);
+		// return addedNodes;
+		const allNodes = [...nodes, ...addedNodes];
+		return { newNodes: addedNodes, allNodes };
 	}
 
 	onMount(async () => {
