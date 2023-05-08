@@ -55,11 +55,13 @@ export async function extractLinks(markdown) {
         mediaUrls.length ? mediaResponse.json() : Promise.resolve([])
     ]);
 
-    let parseitems = [...itemJsons, ...mediaJsons, ...setJsons];
+    // Combine the JSON data into a single array
+    let parseitems = [...itemJsons, ...mediaJsons, ...setJsons]
 
     // Loop through each link object and add additional data as needed
-    parseitems.forEach(json => {
-        const link = links.find(link => link.id === json["o:id"]);
+    for (let i = 0; i < parseitems.length; i++) {
+        const link = links[i];
+        const json = parseitems.find(d => d["o:id"] == link.id);
 
         // If the JSON data includes an "o:items" property, it is a set link
         if (json["o:items"]) {
@@ -68,7 +70,6 @@ export async function extractLinks(markdown) {
                 id: json["o:id"],
                 title: json["o:title"]
             };
-
             // Fetch the items in the set
             const items = json["o:items"]["@id"];
             const responseSet = await fetch(items);
@@ -84,11 +85,11 @@ export async function extractLinks(markdown) {
                     }
                 });
             });
-        } else {
+        }
+        else {
             link.data = json;
         }
-    });
-
+    }
 
     return links;
 }
