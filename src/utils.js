@@ -1,32 +1,19 @@
 import { Api, visibleLinks, allLinks, selectedNode } from './stores.js';
 
-/**
- * Extracts links from a Markdown string.
- *
- * @param {string} markdown - The Markdown string to extract links from.
- * @returns {Array<object>} - An array of link objects.
- */
 export async function extractLinks(markdown) {
-    // Regular expression to match links
     const regex = /<a\s+(?:[^>]*?\s+)?href=(["'])(.*?)\1[^>]*?>(.*?)<\/a>/g;
-    // Arrays to store URLs for different types of links
     const itemUrls = [];
     const mediaUrls = [];
     const setUrls = [];
-    // Array to store all link objects
     const links = [];
 
-    // Loop through each match of the regex in the Markdown string
     let match;
     while ((match = regex.exec(markdown))) {
-        // If the URL contains "http", skip this link (external link)
         if (match[2].includes("http")) {
-            continue
-        }
-        // Otherwise, parse the link and add it to the appropriate array and links array
-        else {
-            const label = match[3]
-            const url = match[2]
+            continue;
+        } else {
+            const label = match[3];
+            const url = match[2];
             if (url.includes("item/")) {
                 itemUrls.push(url.split("/")[1]);
             }
@@ -37,68 +24,66 @@ export async function extractLinks(markdown) {
                 mediaUrls.push(url.split("/")[1]);
             }
             links.push({
-                label, id: url.split("/")[1],
+                label,
+                id: url.split("/")[1],
             });
         }
     }
 
-    // Create queries for each type of link
     const itemQuery = `${Api}/items?${itemUrls.map((i) => `id[]=${i}`).join("&")}`;
     const setQuery = `${Api}/item_sets?${setUrls.map((i) => `id[]=${i}`).join("&")}`;
     const mediaQuery = `${Api}/medias?${mediaUrls.map((i) => `id[]=${i}`).join("&")}`;
 
-    // Fetch data for each type of link
     const [itemResponse, setResponse, mediaResponse] = await Promise.all([
         itemUrls.length ? fetch(itemQuery) : Promise.resolve({}),
         setUrls.length ? fetch(setQuery) : Promise.resolve({}),
-        mediaUrls.length ? fetch(mediaQuery) : Promise.resolve({})
+        mediaUrls.length ? fetch(mediaQuery) : Promise.resolve({}),
     ]);
 
-    // Parse the JSON data for each type of link
     const [itemJsons, setJsons, mediaJsons] = await Promise.all([
         itemUrls.length ? itemResponse.json() : Promise.resolve([]),
         setUrls.length ? setResponse.json() : Promise.resolve([]),
-        mediaUrls.length ? mediaResponse.json() : Promise.resolve([])
+        mediaUrls.length ? mediaResponse.json() : Promise.resolve([]),
     ]);
 
-    // Combine the JSON data into a single array
-    let parseitems = [...itemJsons, ...mediaJsons, ...setJsons]
+    const parseitems = [...itemJsons, ...mediaJsons, ...setJsons];
 
-    // Loop through each link object and add additional data as needed
-    for (let i = 0; i < parseitems.length; i++) {
-        const json = parseitems[i];
-        const link = links[i];
 
-        // If the JSON data includes an "o:items" property, it is a set link
-        if (json["o:items"]) {
+    links.map((link) => {
+        const json = parseitems.find((item) => item["o:id"] == link.id);
+
+        if (json && json["o:items"]) {
             link.data = json;
             link.set = {
                 id: json["o:id"],
-                title: json["o:title"]
+                title: json["o:title"],
             };
-            // Fetch the items in the set
+
             const items = json["o:items"]["@id"];
-            const responseSet = await fetch(items);
-            const jsonSet = await responseSet.json();
-            jsonSet.forEach(item => {
-                links.push({
-                    label: item["o:title"],
-                    id: item["o:id"],
-                    data: item,
-                    set: {
-                        id: json["o:id"],
-                        title: json["o:title"]
-                    }
+            fetch(items)
+                .then((responseSet) => responseSet.json())
+                .then((jsonSet) => {
+                    jsonSet.forEach((item) => {
+                        links.push({
+                            label: item["o:title"],
+                            id: item["o:id"],
+                            data: item,
+                            set: {
+                                id: json["o:id"],
+                                title: json["o:title"],
+                            },
+                        });
+                    });
                 });
-            });
-        }
-        else {
+        } else if (json) {
             link.data = json;
         }
-    }
+    });
+
 
     return links;
 }
+
 
 /**
  * Creates triplets from the given data and returns a graph object with nodes and links
