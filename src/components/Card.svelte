@@ -2,12 +2,11 @@
 	export let datum;
 	export let entities;
 	export let updatePosition;
+	let imageSrc;
 
 	function handleLoad() {
 		$updatePosition = true;
 	}
-
-	let imageSrc;
 
 	function getImageByNode(node) {
 		const id = node.split('/');
@@ -47,7 +46,6 @@
 	}
 
 	.link:hover {
-		/* border: 1px solid; */
 		background-color: black;
 		color: #ececec;
 	}
