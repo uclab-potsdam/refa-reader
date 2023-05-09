@@ -41,7 +41,7 @@
 		}
 	}
 	$: {
-		$graphSteps;
+		$graphSteps; // change the way to detect reactivness
 		$graphSteps[0] = {
 			id: path,
 			data: initialStep,
@@ -75,18 +75,17 @@
 			selectedTripletsData
 		);
 
-		// Replace the element at the given index with the new data
-		$graphSteps[index] = {
-			id: node.target,
-			data: selectedTripletsData.sort((a, b) => {
-				if (a.property) {
-					return a.property.localeCompare(b.property);
-				}
-			}),
-			new: newNodes
-		};
-
 		if (newNodes.length > 0) {
+			// Replace the element at the given index with the new data
+			$graphSteps[index] = {
+				id: node.target,
+				data: selectedTripletsData.sort((a, b) => {
+					if (a.property) {
+						return a.property.localeCompare(b.property);
+					}
+				}),
+				new: newNodes
+			};
 			loadData(newNodes, 50);
 		}
 
