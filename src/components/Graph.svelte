@@ -19,7 +19,7 @@
 
 	let selectedTriplets = { nodes: [], links: [] };
 	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
-	
+
 	$: path = `${Api}/resources/${$selectedNode}`;
 
 	onMount(async () => {
@@ -127,25 +127,27 @@
 		{#each $graphSteps as step, index}
 			<div class="links" on:scroll={handlePosition}>
 				{#each step.data as datum}
-					{#if step.new.some((existingNode) => existingNode.title === datum.title)}
-						<Card
-							{entities}
-							{updatePosition}
-							{datum}
-							on:click={() => {
-								openNode(datum, index + 1);
-							}}
-							on:keydown={() => {
-								openNode(datum, index + 1);
-							}}
-						/>
-						{#if datum.source && datum.target}
-							<Paths
-								{datum}
+					{#if !markdownNodes.find((d) => d.title == datum.title)}
+						{#if step.new.some((existingNode) => existingNode.title === datum.title)}
+							<Card
+								{entities}
 								{updatePosition}
-								{highliteNode}
-								label={datum.property ? datum.property : ''}
+								{datum}
+								on:click={() => {
+									openNode(datum, index + 1);
+								}}
+								on:keydown={() => {
+									openNode(datum, index + 1);
+								}}
 							/>
+							{#if datum.source && datum.target}
+								<Paths
+									{datum}
+									{updatePosition}
+									{highliteNode}
+									label={datum.property ? datum.property : ''}
+								/>
+							{/if}
 						{/if}
 					{:else if datum.source && datum.target}
 						<Paths

@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .markdown {
-    font-size: 1.45rem;
+    font-size: 1.25rem;
     line-height: 1.22;
     padding-bottom: 3rem;
     font-weight: 400;
@@ -36,7 +36,7 @@ h1, h2, h3, h4, h5 {
     font-style: italic;
 }
 
-.node-highlite, .metadata-title {
+.node-highlite, .f {
     font-family: "Redaction", serif;
     font-style: italic;
     /* font-size: .875em; */
