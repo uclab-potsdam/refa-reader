@@ -7,6 +7,8 @@
 	import { onMount } from 'svelte';
 	import { extractLinks, createTriplets } from '@utils';
 	import { writable } from 'svelte/store';
+	import { fly } from 'svelte/transition';
+
 	export let data;
 	let textData, triplets, itemsJson;
 
@@ -36,16 +38,25 @@
 
 {#if triplets != undefined}
 	<article>
+		<!-- {#if !$graphSteps || $graphSteps.length < 1} -->
 		<section class="item__detail">
 			<ItemDetail data={itemsJson} />
 		</section>
+		<!-- {/if} -->
 		<section
 			class="markdown__container"
-			on:scroll={() => {
+			on:wheel={() => {
 				resetNode();
 				handlePosition();
 			}}
-			on:click={handlePosition}
+			on:touchmove={() => {
+				resetNode();
+				handlePosition();
+			}}
+			on:click={() => {
+				resetNode();
+				handlePosition();
+			}}
 			on:keypress={handlePosition}
 		>
 			<h1>{textData.meta.title}</h1>
@@ -70,12 +81,13 @@
 	}
 
 	section {
-		overflow: scroll;
+		/* overflow: scroll; */
 	}
 
 	.markdown__container {
-		flex: 2;
-		max-width: 450px;
+		flex: 0 0 450px;
+		width: 450px;
+		overflow-x: scroll;
 	}
 
 	.graph__container {
@@ -83,8 +95,8 @@
 	}
 
 	.item__detail {
-		flex: 2;
-		max-width: 350px;
+		flex: 1;
+		max-width: 450px;
 		border-right: 1px solid #e3e3e3;
 		/* background-color: #e3e3e3; */
 	}

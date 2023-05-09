@@ -19,6 +19,8 @@
 
 	let selectedTriplets = { nodes: [], links: [] };
 	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
+	
+	$: path = `${Api}/resources/${$selectedNode}`;
 
 	onMount(async () => {
 		loadData(data.nodes, 50);
@@ -27,27 +29,24 @@
 	$: {
 		if (data.links) {
 			selectedData = data.links.filter((d) => {
-				const path = `${Api}/resources/${$selectedNode}`;
 				highliteNode = path;
 				return (
 					(d.target != path && d.source != d.target && d.source == path) ||
 					(d.target != path && d.source != d.target && d.target == path)
 				);
 			});
+			initialStep = [...new Map(selectedData.map((item) => [item.title, item])).values()].sort(
+				(a, b) => (a.property || '').localeCompare(b.property || '')
+			);
 		}
 	}
-
 	$: {
-		initialStep = selectedData.reduce((acc, cur) => {
-			if (!acc.includes(cur.title)) {
-				acc.push(cur);
-			}
-			return acc.sort((a, b) => {
-				if (a.property) {
-					return a.property.localeCompare(b.property);
-				}
-			});
-		}, []);
+		$graphSteps;
+		$graphSteps[0] = {
+			id: path,
+			data: initialStep,
+			new: initialStep
+		};
 	}
 
 	$: columnNodes = $graphSteps.map((obj) => obj.data).flat();
@@ -92,10 +91,7 @@
 		}
 
 		highliteNode = node.target;
-	}
-
-	function resetNode() {
-		$graphSteps = [];
+		console.log($graphSteps);
 	}
 
 	async function loadData(nodes, batchSize) {
@@ -128,40 +124,6 @@
 			<h4 class="loading">Loading Graph...</h4>
 		</div>
 	{:else}
-		<div class="links" on:scroll={handlePosition}>
-			{#each initialStep as datum}
-				{#if !markdownNodes.find((d) => d.title == datum.title)}
-					<Card
-						{entities}
-						{updatePosition}
-						{datum}
-						on:click={() => {
-							resetNode();
-							openNode(datum, 0);
-						}}
-						on:keydown={() => {
-							resetNode();
-							openNode(datum, 0);
-						}}
-					/>
-					{#if datum.source && datum.target}
-						<Paths
-							{datum}
-							{updatePosition}
-							{highliteNode}
-							label={datum.property ? datum.property : ''}
-						/>
-					{/if}
-				{:else if datum.source && datum.target}
-					<Paths
-						{datum}
-						{updatePosition}
-						{highliteNode}
-						label={datum.property ? datum.property : ''}
-					/>
-				{/if}
-			{/each}
-		</div>
 		{#each $graphSteps as step, index}
 			<div class="links" on:scroll={handlePosition}>
 				{#each step.data as datum}
@@ -206,9 +168,9 @@
 	.links {
 		height: 100vh;
 		padding-top: 1rem;
-		padding-left: 10vw;
-		width: 180px;
-		flex-basis: 180px;
+		padding-left: 6vw;
+		width: 150px;
+		flex-basis: 150px;
 		flex-grow: 0;
 		flex-shrink: 0;
 		cursor: pointer;

@@ -76,7 +76,7 @@
 	text {
 		font-size: clamp(8px, 0.6vw, 14px);
 		fill: #969696;
-		opacity: 0;
+		/* opacity: 0; */
 	}
 
 	path {
