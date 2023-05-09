@@ -1,5 +1,5 @@
 <script>
-	import { afterUpdate, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	import { Api, selectedNode, graphSteps } from '@stores';
 	import { writable } from 'svelte/store';
 	import Card from '@components/Card.svelte';
@@ -14,41 +14,11 @@
 
 	const entities = writable([]);
 
-	let selectedData,
-		initialStep,
-		newNodes,
-		allNodes = [];
+	let selectedData = [];
+	let initialStep = [];
 
 	let selectedTriplets = { nodes: [], links: [] };
 	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
-	$: columnNodes = $graphSteps.map((obj) => obj.data).flat();
-
-	$: {
-		// check with allNodes to add the previous nodes
-		let update = updateNodes([...markdownNodes, ...initialStep], columnNodes);
-
-		newNodes = update.newNodes;
-		allNodes = update.allNodes;
-
-		if (newNodes.length > 0) {
-			loadData(newNodes, 50);
-		}
-	}
-
-	function updateNodes(nodes, selectedNodes) {
-		const newNodes = selectedNodes.filter((selectedNode) => {
-			return !nodes.some((node) => node.title == selectedNode.title);
-		});
-
-		const addedNodes = newNodes.filter((newNode) => {
-			return !nodes.some((node) => node.title == newNode.title);
-		});
-
-		// console.log(nodes, newNodes);
-		// return addedNodes;
-		const allNodes = [...nodes, ...addedNodes];
-		return { newNodes: addedNodes, allNodes };
-	}
 
 	onMount(async () => {
 		loadData(data.nodes, 50);
@@ -80,6 +50,14 @@
 		}, []);
 	}
 
+	$: columnNodes = $graphSteps.map((obj) => obj.data).flat();
+
+	function updateNodes(nodes, selectedNodes) {
+		return selectedNodes.filter(
+			(selectedNode) => !nodes.some((node) => node.title === selectedNode.title)
+		);
+	}
+
 	async function openNode(node, index) {
 		const response = await fetch(node.target);
 		const data = await response.json();
@@ -93,6 +71,11 @@
 		// Remove all elements in $graphSteps after the given index
 		$graphSteps.splice(index + 1, $graphSteps.length - (index + 1));
 
+		let newNodes = updateNodes(
+			[...markdownNodes, ...initialStep, ...columnNodes],
+			selectedTripletsData
+		);
+
 		// Replace the element at the given index with the new data
 		$graphSteps[index] = {
 			id: node.target,
@@ -100,8 +83,13 @@
 				if (a.property) {
 					return a.property.localeCompare(b.property);
 				}
-			})
+			}),
+			new: newNodes
 		};
+
+		if (newNodes.length > 0) {
+			loadData(newNodes, 50);
+		}
 
 		highliteNode = node.target;
 	}
@@ -177,7 +165,7 @@
 		{#each $graphSteps as step, index}
 			<div class="links" on:scroll={handlePosition}>
 				{#each step.data as datum}
-					{#if newNodes.some((existingNode) => existingNode.title === datum.title)}
+					{#if step.new.some((existingNode) => existingNode.title === datum.title)}
 						<Card
 							{entities}
 							{updatePosition}

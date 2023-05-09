@@ -76,17 +76,19 @@
 	text {
 		font-size: clamp(8px, 0.6vw, 14px);
 		fill: #969696;
+		opacity: 0;
 	}
 
 	path {
 		pointer-events: visibleStroke;
 		stroke: #969696;
-		stroke-width: 0.1;
+		stroke-width: 0.2;
 		cursor: pointer;
 	}
 
 	text.highlite {
 		fill: blue;
+		opacity: 1;
 	}
 
 	path.highlite {

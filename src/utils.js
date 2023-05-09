@@ -169,6 +169,9 @@ export function parseJSONLD(jsonLD, set) {
 
                 // Check if the source and target already exist in triplets array
                 const exists = triplets.some(triplet => triplet.source === source && triplet.target === target);
+                
+                // a regex to remove alphanumeric characters from ontologies as cidoc crm / wikidata
+                const regex = /^[a-zA-Z]\d+\s/;
 
                 if (!exists) {
                     // Add a new triplet to the array
@@ -177,7 +180,7 @@ export function parseJSONLD(jsonLD, set) {
                         target: target,
                         title,
                         img,
-                        property: obj["property_label"] || parentKey
+                        property: obj["property_label"]?.replace("_"," ")?.replace(regex, '') || parentKey?.replace(regex, '')
                     });
                 }
             }

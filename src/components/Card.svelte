@@ -1,5 +1,4 @@
 <script>
-	// import Paths from '@components/Paths.svelte';
 	export let datum;
 	export let entities;
 	export let updatePosition;
@@ -31,7 +30,6 @@
 	on:keydown
 >
 	<div class="title"><strong>{datum.target.split('/').slice(-1)[0]}</strong></div>
-
 	{#if datum.img}
 		<img src={datum.img.replace('square', 'large')} alt={datum.title} on:load={handleLoad} />
 	{:else if imageSrc}
@@ -39,7 +37,6 @@
 	{:else}
 		<div class="title">{datum.title}</div>
 	{/if}
-	<!-- <Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} /> -->
 </div>
 
 <style>
@@ -51,7 +48,7 @@
 
 	.link:hover {
 		/* border: 1px solid; */
-		background-color:black;
+		background-color: black;
 		color: #ececec;
 	}
 
