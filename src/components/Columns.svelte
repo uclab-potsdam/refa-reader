@@ -29,8 +29,13 @@
 	.column {
 		min-width: 300px;
 		padding: 0 1rem;
-		overflow: scroll;
-		height: 100vh;
+		overflow: hidden;
+		display: -webkit-box;
+		-webkit-line-clamp: 40;
+		line-clamp: 40;
+		-webkit-box-orient: vertical;
+		/* overflow: scroll;
+		height: 100vh; */
 	}
 
 	.column:hover {
