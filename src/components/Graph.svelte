@@ -16,6 +16,7 @@
 
 	let selectedData = [];
 	let initialStep = [];
+	let batchSize = 20;
 
 	let selectedTriplets = { nodes: [], links: [] };
 	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
@@ -23,7 +24,7 @@
 	$: path = `${Api}/resources/${$selectedNode}`;
 
 	onMount(async () => {
-		loadData(data.nodes, 50);
+		loadData(data.nodes, batchSize);
 	});
 
 	$: {
@@ -45,7 +46,9 @@
 		$graphSteps[0] = {
 			id: path,
 			data: initialStep,
-			new: initialStep
+			new: initialStep,
+			page: 0,
+			paginate: initialStep
 		};
 	}
 
@@ -76,6 +79,7 @@
 		);
 
 		if (newNodes.length > 0) {
+			let paginate = newNodes.slice(0, batchSize);
 			// Replace the element at the given index with the new data
 			$graphSteps[index] = {
 				id: node.target,
@@ -84,13 +88,15 @@
 						return a.property.localeCompare(b.property);
 					}
 				}),
-				new: newNodes
+				new: newNodes,
+				page: 0,
+				paginate
 			};
-			loadData(newNodes, 50);
+			loadData(paginate, batchSize);
 		}
 
 		highliteNode = node.target;
-		console.log($graphSteps);
+		console.log($graphSteps[index].paginate);
 	}
 
 	async function loadData(nodes, batchSize) {
@@ -115,6 +121,22 @@
 			});
 		}
 	}
+
+	let col;
+
+	const getPaginatedData = (datum, index, col) => {
+		const { scrollTop, scrollHeight, clientHeight } = col;
+		if (scrollTop + clientHeight >= scrollHeight - 50) {
+			const page = $graphSteps[index].page + 1;
+			$graphSteps[index] = {
+				...$graphSteps[index],
+				page,
+				paginate: $graphSteps[index].data.slice(0, page * batchSize)
+			};
+
+			console.log('Scrolled to the end', $graphSteps[index]);
+		}
+	};
 </script>
 
 <div class="graph">
@@ -124,8 +146,15 @@
 		</div>
 	{:else}
 		{#each $graphSteps as step, index}
-			<div class="links" on:scroll={handlePosition}>
-				{#each step.data as datum}
+			<div
+				class="links"
+				bind:this={col}
+				on:scroll={() => {
+					handlePosition();
+					getPaginatedData(step, index, col);
+				}}
+			>
+				{#each step.paginate as datum}
 					{#if !markdownNodes.find((d) => d.title == datum.title)}
 						{#if step.new.some((existingNode) => existingNode.title === datum.title)}
 							<Card
@@ -157,6 +186,9 @@
 						/>
 					{/if}
 				{/each}
+				{#if step.paginate.length < step.new.length}
+					<p>Scroll to load more ...</p>
+				{/if}
 			</div>
 		{/each}
 	{/if}
