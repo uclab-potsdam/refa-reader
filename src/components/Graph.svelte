@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { Api, selectedNode, graphSteps } from '@stores';
-	import { writable } from 'svelte/store';
+	import { get, writable } from 'svelte/store';
 	import Card from '@components/Card.svelte';
 	import Paths from '@components/Paths.svelte';
 	import { createTriplets } from '@utils';
@@ -94,9 +94,7 @@
 			};
 			loadData(paginate, batchSize);
 		}
-
 		highliteNode = node.target;
-		console.log($graphSteps[index].paginate);
 	}
 
 	async function loadData(nodes, batchSize) {
@@ -124,7 +122,7 @@
 
 	let col;
 
-	const getPaginatedData = (datum, index, col) => {
+	const getPaginatedData = (index, col) => {
 		const { scrollTop, scrollHeight, clientHeight } = col;
 		if (scrollTop + clientHeight >= scrollHeight - 50) {
 			const page = $graphSteps[index].page + 1;
@@ -133,14 +131,12 @@
 				page,
 				paginate: $graphSteps[index].data.slice(0, page * batchSize)
 			};
-
-			console.log('Scrolled to the end', $graphSteps[index]);
 		}
 	};
 </script>
 
 <div class="graph">
-	{#if entities.length == 0}
+	{#if $entities.length == 0}
 		<div class="links">
 			<h4 class="loading">Loading Graph...</h4>
 		</div>
@@ -151,11 +147,15 @@
 				bind:this={col}
 				on:scroll={() => {
 					handlePosition();
-					getPaginatedData(step, index, col);
+					getPaginatedData(index, col);
 				}}
 			>
+				<!-- <p class="index">Items[{step.new.length}]</p> -->
 				{#each step.paginate as datum}
-					{#if !markdownNodes.find((d) => d.title == datum.title)}
+					{#if step.new.some((existingNode) => existingNode.title === datum.title)}
+						<!-- {#if $entities.find((d) => d['o:title'] == datum.title)}
+							{$entities.find((d) => d['o:title'] == datum.title)["o:id"]}
+						{/if} -->
 						{#if step.new.some((existingNode) => existingNode.title === datum.title)}
 							<Card
 								{entities}
@@ -187,7 +187,9 @@
 					{/if}
 				{/each}
 				{#if step.paginate.length < step.new.length}
-					<p>Scroll to load more ...</p>
+					<div on:click={getPaginatedData(index, col)} on:keydown={getPaginatedData(index, col)}>
+						Load more
+					</div>
 				{/if}
 			</div>
 		{/each}
@@ -208,5 +210,10 @@
 		flex-shrink: 0;
 		cursor: pointer;
 		overflow: scroll;
+	}
+
+	.index {
+		position: sticky;
+		top: 0;
 	}
 </style>

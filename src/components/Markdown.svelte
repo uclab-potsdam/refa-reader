@@ -25,7 +25,12 @@
 			if (href.startsWith('http')) {
 				return `<a class="external" target="_blank" href="${href}" title="${text}">${text}</a>`;
 			} else {
-				return `<a class="node-highlite" data-id="${href.split('/')[1]}" title="${text}">${text}(${href})</a>`;
+				return `<a class="node-highlite" data-id="${
+					href.split('/')[1]
+				}" title="${text}">${text}<span class="symbol node" data-id="${
+					href.split('/')[1]
+				}">●</span></a>`;
+				// return `<a class="node-highlite" data-id="${href.split('/')[1]}" title="${text}">${text}(${href})</a>`;
 				// let img = getMainImage(`${href.split('/')[1]}`);
 				// if (img) {
 				// 	return `<a class="node-highlite" data-id="${
@@ -90,15 +95,29 @@
 		cursor: pointer;
 	}
 
+	:global(.symbol) {
+		font-size: 32px;
+		line-height: 0;
+		vertical-align: middle;
+		font-style: normal;
+		color: #353535;
+		padding-left: 0.25rem;
+	}
+	
 	:global(.node-highlite) {
-		background-color: rgb(249, 255, 216, .3);
+		background-color: #fefef7;
 		color: black;
 	}
-
-	:global(.selected) {
-		background-color: blue;
-		color: white;
+	
+	:global(.selected > .symbol) {
+		color: blue;
 	}
+	
+	:global(.selected) {
+		background-color: unset;
+		color: blue;
+	}
+	
 
 	:global(sup) {
 		padding-right: 0.5rem;

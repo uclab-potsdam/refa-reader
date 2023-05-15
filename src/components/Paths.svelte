@@ -19,7 +19,7 @@
 
 	function getPositions() {
 		$updatePosition = false;
-		sourceRect = getBounds(datum.source);
+		sourceRect = getBounds(datum.source, 16);
 		targetRect = getBounds(datum.target);
 
 		if (item) {
@@ -28,15 +28,15 @@
 		}
 	}
 
-	function getBounds(datum) {
+	function getBounds(datum, p=0) {
 		const id = datum.split('/').slice(-1)[0];
-		const element = document.querySelector(`[data-id="${id}"]`);
+		const element = document.querySelector(`.node[data-id="${id}"]`);
 		const elementRect = element ? element.getBoundingClientRect() : null;
 
 		if (element) {
 			return {
-				x: element.offsetLeft,
-				y: elementRect.y,
+				x: elementRect.x + p,
+				y: elementRect.y + p,
 				width: elementRect.width,
 				height: elementRect.height
 			};
@@ -70,7 +70,7 @@
 		top: 0;
 		left: 0;
 		pointer-events: none;
-		z-index: -1;
+		/* z-index: -1; */
 	}
 
 	text {

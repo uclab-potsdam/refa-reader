@@ -22,13 +22,13 @@
 </script>
 
 <div
-	class="link"
+	class="node"
 	data-id={datum.target.split('/').slice(-1)[0]}
 	title={datum.title}
 	on:click
 	on:keydown
 >
-	<div class="title"><strong>{datum.target.split('/').slice(-1)[0]}</strong></div>
+	<!-- <div class="title"><strong>{datum.target.split('/').slice(-1)[0]}</strong></div> -->
 	{#if datum.img}
 		<img src={datum.img.replace('square', 'large')} alt={datum.title} on:load={handleLoad} />
 	{:else if imageSrc}
@@ -39,13 +39,13 @@
 </div>
 
 <style>
-	.link {
-		background-color: #ececec;
+	.node {
+		background-color: #f6f6f6;
 		padding: 0.25rem 0.5rem;
 		margin-bottom: 0.5rem;
 	}
 
-	.link:hover {
+	.node:hover {
 		background-color: black;
 		color: #ececec;
 	}

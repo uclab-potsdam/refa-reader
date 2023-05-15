@@ -1,6 +1,6 @@
 body {
     font-family: "Redaction", sans-serif;
-    background-color: #f6f6f6;
+    /* background-color: #f6f6f6; */
     font-size: 18px;
     line-height: 1.15;f
     letter-spacing: .5px;
@@ -36,7 +36,7 @@ h1, h2, h3, h4, h5 {
     font-style: italic;
 }
 
-.node-highlite, .f {
+.node-highlite {
     font-family: "Redaction", serif;
     font-style: italic;
     /* font-size: .875em; */

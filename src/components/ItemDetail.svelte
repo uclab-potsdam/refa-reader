@@ -18,6 +18,7 @@
 <style>
 	section {
 		padding: 0.5rem;
+		font-size: .9rem;
 	}
 
 	img {

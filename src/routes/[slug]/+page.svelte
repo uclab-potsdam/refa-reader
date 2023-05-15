@@ -96,7 +96,7 @@
 
 	.item__detail {
 		flex: 1;
-		max-width: 450px;
+		max-width: 200px;
 		border-right: 1px solid #e3e3e3;
 		/* background-color: #e3e3e3; */
 	}
