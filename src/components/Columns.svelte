@@ -33,7 +33,7 @@
 
 	.column {
 		min-width: 300px;
-		padding: .5rem;
+		padding: 0.5rem;
 		overflow: hidden;
 		display: -webkit-box;
 		-webkit-line-clamp: 40;
@@ -61,7 +61,10 @@
 	}
 
 	img {
-		max-width: 100%;
-		padding-bottom: .5rem;
+		width: 100%;
+		height: 400px;
+		object-fit: cover;
+		object-position: top;
+		padding-bottom: 0.5rem;
 	}
 </style>

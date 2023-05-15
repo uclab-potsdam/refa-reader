@@ -2,8 +2,7 @@
 	import { onMount } from 'svelte';
 	import { Api, selectedNode, graphSteps } from '@stores';
 	import { get, writable } from 'svelte/store';
-	import Card from '@components/Card.svelte';
-	import Paths from '@components/Paths.svelte';
+	import GraphSection from '@components/GraphSection.svelte';
 	import { createTriplets } from '@utils';
 
 	export let updatePosition;
@@ -36,6 +35,7 @@
 					(d.target != path && d.source != d.target && d.target == path)
 				);
 			});
+
 			initialStep = [...new Map(selectedData.map((item) => [item.title, item])).values()].sort(
 				(a, b) => (a.property || '').localeCompare(b.property || '')
 			);
@@ -46,10 +46,11 @@
 		$graphSteps[0] = {
 			id: path,
 			data: initialStep,
-			new: initialStep,
+			new: selectedData.filter((d) => !markdownNodes.some((j) => j.id == d.target)),
 			page: 0,
 			paginate: initialStep
 		};
+		console.log($graphSteps);
 	}
 
 	$: columnNodes = $graphSteps.map((obj) => obj.data).flat();
@@ -142,50 +143,9 @@
 		</div>
 	{:else}
 		{#each $graphSteps as step, index}
-			<div
-				class="links"
-				bind:this={col}
-				on:scroll={() => {
-					handlePosition();
-					getPaginatedData(index, col);
-				}}
-			>
-				<!-- <p class="index">Items[{step.new.length}]</p> -->
-				{#each step.paginate as datum}
-					{#if step.new.some((existingNode) => existingNode.title === datum.title)}
-						<!-- {#if $entities.find((d) => d['o:title'] == datum.title)}
-							{$entities.find((d) => d['o:title'] == datum.title)["o:id"]}
-						{/if} -->
-						{#if step.new.some((existingNode) => existingNode.title === datum.title)}
-							<Card
-								{entities}
-								{updatePosition}
-								{datum}
-								on:click={() => {
-									openNode(datum, index + 1);
-								}}
-								on:keydown={() => {
-									openNode(datum, index + 1);
-								}}
-							/>
-							{#if datum.source && datum.target}
-								<Paths
-									{datum}
-									{updatePosition}
-									{highliteNode}
-									label={datum.property ? datum.property : ''}
-								/>
-							{/if}
-						{/if}
-					{:else if datum.source && datum.target}
-						<Paths
-							{datum}
-							{updatePosition}
-							{highliteNode}
-							label={datum.property ? datum.property : ''}
-						/>
-					{/if}
-				{/each}
+			<div class="links" bind:this={col} on:scroll={() => {handlePosition();getPaginatedData(index, col)}}>
+				<GraphSection desc={"Items"} highlite = {true} {step} {index} {entities} {updatePosition} {highliteNode} {openNode} />
+				<GraphSection desc={"Classification"} highlite = {false} {step} {index} {entities} {updatePosition} {highliteNode} {openNode} />
 				{#if step.paginate.length < step.new.length}
 					<div on:click={getPaginatedData(index, col)} on:keydown={getPaginatedData(index, col)}>
 						Load more
@@ -200,20 +160,16 @@
 	.graph {
 		display: flex;
 	}
+
 	.links {
 		height: 100vh;
 		padding-top: 1rem;
 		padding-left: 6vw;
-		width: 150px;
-		flex-basis: 150px;
+		width: 120px;
+		flex-basis: 120px;
 		flex-grow: 0;
 		flex-shrink: 0;
 		cursor: pointer;
 		overflow: scroll;
-	}
-
-	.index {
-		position: sticky;
-		top: 0;
 	}
 </style>

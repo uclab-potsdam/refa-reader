@@ -80,8 +80,8 @@
 		/* padding: 1rem 0 0 0; */
 	}
 
-	section {
-		/* overflow: scroll; */
+	h1 {
+		margin-bottom: 1rem;
 	}
 
 	.markdown__container {
