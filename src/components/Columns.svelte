@@ -7,12 +7,17 @@
 		{#if post.meta.isPublic}
 			<a href={post.path} target="_self">
 				<div class="column">
+					{#if post.meta.cover}
+						<img src={post.meta.cover} alt={post.meta.title} />
+					{/if}
 					<h2>
 						{post.meta.title}
 					</h2>
-					<div class="text">
-						{@html post.text}
-					</div>
+					{#if post.meta.description}
+						<div class="text">
+							{@html post.meta.description}
+						</div>
+					{/if}
 				</div>
 			</a>
 		{/if}
@@ -28,7 +33,7 @@
 
 	.column {
 		min-width: 300px;
-		padding: 0 1rem;
+		padding: .5rem;
 		overflow: hidden;
 		display: -webkit-box;
 		-webkit-line-clamp: 40;
@@ -39,7 +44,7 @@
 	}
 
 	.column:hover {
-		background-color: #fefefe;
+		background-color: #e6e6e6;
 	}
 
 	a {
@@ -49,5 +54,14 @@
 
 	.text {
 		pointer-events: none;
+	}
+
+	h2 {
+		min-height: 100px;
+	}
+
+	img {
+		max-width: 100%;
+		padding-bottom: .5rem;
 	}
 </style>
