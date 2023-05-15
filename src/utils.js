@@ -1,4 +1,4 @@
-import { Api, visibleLinks, allLinks, selectedNode } from './stores.js';
+import { Api, visibleLinks, allLinks, selectedNode, mainProperties } from '@stores';
 
 export async function extractLinks(markdown) {
     // Regular expression to match links
@@ -147,6 +147,7 @@ export function parseJSONLD(jsonLD, set) {
             target: source,
             img: jsonLD?.thumbnail_display_urls?.large,
             title: jsonLD["o:title"],
+            highlite: true,
         });
     }
 
@@ -169,9 +170,20 @@ export function parseJSONLD(jsonLD, set) {
 
                 // Check if the source and target already exist in triplets array
                 const exists = triplets.some(triplet => triplet.source === source && triplet.target === target);
-                
+
                 // a regex to remove alphanumeric characters from ontologies as cidoc crm / wikidata
-                const regex = /^[a-zA-Z]\d+\s/;
+                const regex = /^[a-zA-Z]\w+\s/;
+                let property = obj["property_label"]?.replace("_", " ")?.replace(regex, '') || parentKey?.replace(regex, '')
+                let highlite;
+
+                mainProperties.subscribe((array) => {
+                    if (array.includes(property)) {
+                        highlite = true;
+                    } else {
+                        highlite = false;
+                    }
+                })
+
                 if (!exists) {
                     // Add a new triplet to the array
                     triplets.push({
@@ -179,7 +191,8 @@ export function parseJSONLD(jsonLD, set) {
                         target: target,
                         title,
                         img,
-                        property: obj["property_label"]?.replace("_"," ")?.replace(regex, '') || parentKey?.replace(regex, '')
+                        highlite,
+                        property
                     });
                 }
             }
