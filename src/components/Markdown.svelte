@@ -127,6 +127,11 @@
 		display: none;
 	}
 
+	:global(sup a) {
+		text-decoration: none;
+		color: black;
+	}
+
 	:global(.node-image) {
 		padding-right: 2.5rem;
 		position: relative;
