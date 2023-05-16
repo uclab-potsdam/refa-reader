@@ -87,7 +87,8 @@
 				page,
 				paginate: $graphSteps[index].data.slice(0, page * batchSize)
 			};
-			loadData($graphSteps[index].data.slice(0, page * batchSize), batchSize);
+			// loading based on the last n items
+			loadData($graphSteps[index].paginate.slice(-batchSize), batchSize);
 		}
 	};
 </script>

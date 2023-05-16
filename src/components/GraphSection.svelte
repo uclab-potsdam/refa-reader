@@ -50,7 +50,7 @@
 				paginate
 			};
 
-            console.log($graphSteps[index])
+            // console.log($graphSteps[index])
 			loadData(paginate, batchSize);
 		}
 		highliteNode = node.target;
