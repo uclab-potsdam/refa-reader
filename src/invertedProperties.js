@@ -1,5 +1,5 @@
 export const invertedProperties = {
-    "is shown by": "shows visual item",
+    // "is shown by": "shows visual item",
     "is composed of": "forms part of",
 
     "creator": "created",
