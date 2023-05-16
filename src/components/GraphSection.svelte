@@ -14,7 +14,7 @@
 
 {#if step.new.some((d) => d.highlite === highlite)}
 	<h4>{desc}</h4>
-	<div class="divider">
+	<div class="divider {highlite === false ? 'classification' : ''}">
 		{#each step.paginate as datum}
 			{#if datum.highlite == highlite}
 				{#if step.new.some((existingNode) => existingNode.title === datum.title)}
@@ -54,12 +54,34 @@
 
 <style>
 	h4 {
-        font-size: 1rem;
+		font-size: 1rem;
 		margin-bottom: 1rem;
+        color: #adadad;
 	}
- 
+
 	.divider {
-		border-bottom: 1px dashed;
-		margin-bottom: 50px;
+		border-bottom: 1px dashed #adadad;
+		margin-bottom: 1rem;
+        padding-bottom: 1rem;
 	}
+
+	.classification {
+		color: #adadad;
+	}
+
+	:global(.classification img) {
+		opacity: 0.3;
+	}
+
+    :global(.classification img:hover) {
+		opacity: 1;
+	}
+
+    /* :global(.classification textPath) {
+        fill: #adadad;
+    }
+
+    :global(.classification path.highlite) {
+        stroke: #adadad;
+    } */
 </style>

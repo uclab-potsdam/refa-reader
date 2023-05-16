@@ -28,7 +28,7 @@
 		}
 	}
 
-	function getBounds(datum, p=0) {
+	function getBounds(datum, p = 0) {
 		const id = datum.split('/').slice(-1)[0];
 		const element = document.querySelector(`.node[data-id="${id}"]`);
 		const elementRect = element ? element.getBoundingClientRect() : null;
@@ -45,7 +45,15 @@
 	onMount(() => {
 		getPositions();
 	});
+
+	$: r = Math.hypot(targetRect?.x - sourceRect?.x, targetRect?.y - sourceRect?.y);
+	$: controlPoint1X = sourceRect?.x + (targetRect?.x - sourceRect?.x) / 2;
+	$: controlPoint1Y = sourceRect?.y;
+	$: controlPoint2X = sourceRect?.x + (targetRect?.x - sourceRect?.x) / 2;
+	$: controlPoint2Y = targetRect?.y;
 </script>
+
+<!-- d={`M ${sourceRect?.x} ${sourceRect?.y} L ${targetRect?.x} ${targetRect?.y}`} -->
 
 <div bind:this={item}>
 	{#if item}
@@ -53,7 +61,7 @@
 			<path
 				id="path_{id}"
 				class={datum.target == highliteNode || datum.source == highliteNode ? 'highlite' : ''}
-				d={`M ${sourceRect?.x} ${sourceRect?.y} L ${targetRect?.x} ${targetRect?.y}`}
+				d={`M${sourceRect?.x},${sourceRect?.y} C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${targetRect?.x},${targetRect?.y}`}
 			/>
 			<text class={datum.target == highliteNode || datum.source == highliteNode ? 'highlite' : ''}>
 				<textPath href="#path_{id}" startOffset="95%" text-anchor="end">{label}</textPath>
@@ -84,6 +92,7 @@
 		stroke: #969696;
 		stroke-width: 0.2;
 		cursor: pointer;
+		fill: none;
 	}
 
 	text.highlite {

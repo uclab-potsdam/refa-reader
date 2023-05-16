@@ -85,13 +85,16 @@
 	}
 
 	.markdown__container {
-		flex: 0 0 450px;
-		width: 450px;
+		/* flex: 1 1 auto; */
+		max-width: 450px;
+		min-width: 150px;
 		overflow-x: scroll;
 	}
 
 	.graph__container {
 		flex: 3;
+		width: 100%;
+		/* overflow-y: hidden; */
 	}
 
 	.item__detail {

@@ -32,7 +32,7 @@
 	}
 
 	.column {
-		min-width: 300px;
+		min-width: 250px;
 		padding: 0.5rem;
 		overflow: hidden;
 		display: -webkit-box;
@@ -45,6 +45,9 @@
 
 	.column:hover {
 		background-color: #e6e6e6;
+	}
+	.column:hover > img {
+		filter: grayscale(0%);
 	}
 
 	a {
@@ -62,9 +65,10 @@
 
 	img {
 		width: 100%;
-		height: 400px;
+		/* height: 250px; */
 		object-fit: cover;
 		object-position: top;
 		padding-bottom: 0.5rem;
+		filter: grayscale(100%);
 	}
 </style>

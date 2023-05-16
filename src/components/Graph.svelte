@@ -50,7 +50,7 @@
 			page: 0,
 			paginate: initialStep
 		};
-		console.log($graphSteps);
+		// console.log($graphSteps);
 	}
 
 	$: columnNodes = $graphSteps.map((obj) => obj.data).flat();
@@ -144,7 +144,7 @@
 	{:else}
 		{#each $graphSteps as step, index}
 			<div class="links" bind:this={col} on:scroll={() => {handlePosition();getPaginatedData(index, col)}}>
-				<GraphSection desc={"Items"} highlite = {true} {step} {index} {entities} {updatePosition} {highliteNode} {openNode} />
+				<GraphSection desc={""} highlite = {true} {step} {index} {entities} {updatePosition} {highliteNode} {openNode} />
 				<GraphSection desc={"Classification"} highlite = {false} {step} {index} {entities} {updatePosition} {highliteNode} {openNode} />
 				{#if step.paginate.length < step.new.length}
 					<div on:click={getPaginatedData(index, col)} on:keydown={getPaginatedData(index, col)}>
@@ -164,9 +164,9 @@
 	.links {
 		height: 100vh;
 		padding-top: 1rem;
-		padding-left: 6vw;
-		width: 120px;
-		flex-basis: 120px;
+		padding-left: 7vw;
+		width: 150px;
+		flex-basis: 150px;
 		flex-grow: 0;
 		flex-shrink: 0;
 		cursor: pointer;

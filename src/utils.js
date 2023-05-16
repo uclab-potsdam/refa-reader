@@ -1,4 +1,5 @@
 import { Api, visibleLinks, allLinks, selectedNode, mainProperties } from '@stores';
+import { invertedProperties } from './invertedProperties';
 
 export async function extractLinks(markdown) {
     // Regular expression to match links
@@ -152,6 +153,7 @@ export function parseJSONLD(jsonLD, set) {
     }
 
     let parentKey;
+    let reverse = false;
 
     /**
      * Recursively parse the JSON-LD data and extract triplets.
@@ -174,8 +176,13 @@ export function parseJSONLD(jsonLD, set) {
                 // a regex to remove alphanumeric characters from ontologies as cidoc crm / wikidata
                 const regex = /^[a-zA-Z]\w+\s/;
                 let property = obj["property_label"]?.replace("_", " ")?.replace(regex, '') || parentKey?.replace(regex, '')
-                let highlite;
 
+                // gotta find a way to fix inveted properties
+                if (reverse) {
+                    property = invertedProperties[property] || "REVERSE: " +  property
+                }
+
+                let highlite;
                 mainProperties.subscribe((array) => {
                     if (array.includes(property)) {
                         highlite = true;
@@ -202,6 +209,9 @@ export function parseJSONLD(jsonLD, set) {
                     const parts = key?.split(":");
                     const label = parts[1]?.split("_")?.join(" ");
                     parentKey = label;
+                    if (key == "@reverse") {
+                        reverse = true
+                    }
                 }
                 parseRecursive(obj[key]);
             }

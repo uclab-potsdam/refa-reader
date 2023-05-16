@@ -15,7 +15,7 @@ Die Sammlung beinhaltet sowohl Ölmalerei auf Pappe, Kupfer-, Eisen- oder Silber
 
 Die Gemäldesammlung weist eine [Gruppe von Frauenbildnissen](set/31735) auf, denen ein markantes Merkmal gemein ist: die sogenannten Schnebbe, eine enganliegende schwarze Haube, die den Hinterkopf bedeckt und keilförmig in die Stirn sowie über die Ohren in das Gesicht hineinragt.[^Sie wird auch als Visierhaube, Hirnkäpplein, Schneppe, Schniepe oder Schnibbe bezeichnet. Um die Schreibweise abzugrenzen von der Miederschneppe wird hier die Schreibweise Schnebbe verwendet.]
     
-Combining the allegory of the [Five Senses](item/10614) with genre scenes and also with family portraits finds its precursors in Dutch painting. For example, the [portrait of the siblings of Duke Augustus of Brunswick-Lüneburg](item/209) was painted at another German court as early as 1637.The children are depicted in an interior room, the open window affording a view of the Braunschweig Burgplatz with the Braunschweig Lion and the so-called “Mosthaus”.
+Combining the allegory of the Five Senses with genre scenes and also with family portraits finds its precursors in Dutch painting. For example, the [portrait of the siblings of Duke Augustus of Brunswick-Lüneburg](item/209) was painted at another German court as early as 1637.The children are depicted in an interior room, the open window affording a view of the Braunschweig Burgplatz with the Braunschweig Lion and the so-called “Mosthaus”.
 ### Portrait of siblings
 The painting [“The Five Senses”](item/159) from the Modebild Collection shows the five children of  [“Count Philipp Ernst zu Hohenlohe-Langenburg”](item/9499).
 From left to right can be seen: [“Eva Christina”](item/9390) as [“auditus”](item/10613) (item/hearing) with a lute, 

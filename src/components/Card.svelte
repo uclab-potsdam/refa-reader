@@ -42,7 +42,7 @@
 	.node {
 		background-color: #f6f6f6;
 		padding: 0.25rem 0.5rem;
-		margin-bottom: 0.5rem;
+		margin-bottom: 0.8rem;
 	}
 
 	.node:hover {

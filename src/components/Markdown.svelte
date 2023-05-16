@@ -105,8 +105,7 @@
 	}
 	
 	:global(.node-highlite) {
-		background-color: #fefef7;
-		background-color: #d3d3ff36;
+		background-color: #fbfbeda1;
 		color: black;
 	}
 	
