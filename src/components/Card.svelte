@@ -1,4 +1,5 @@
 <script>
+	import { graphSteps } from '@stores';
 	export let datum;
 	export let entities;
 	export let updatePosition;
@@ -22,7 +23,7 @@
 </script>
 
 <div
-	class="node"
+	class="node {$graphSteps.find((d) => d.id == datum.target) ? 'selected' : ''}"
 	data-id={datum.target.split('/').slice(-1)[0]}
 	title={datum.title}
 	on:click
@@ -45,9 +46,11 @@
 		margin-bottom: 0.8rem;
 	}
 
-	.node:hover {
+	.node:hover,
+	.selected {
 		background-color: black;
 		color: #ececec;
+		opacity: 1;
 	}
 
 	.title {

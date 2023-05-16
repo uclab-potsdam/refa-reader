@@ -3,7 +3,6 @@
 	import { Api, selectedNode, graphSteps } from '@stores';
 	import { get, writable } from 'svelte/store';
 	import GraphSection from '@components/GraphSection.svelte';
-	import { createTriplets } from '@utils';
 
 	export let updatePosition;
 	export let handlePosition;
@@ -15,9 +14,8 @@
 
 	let selectedData = [];
 	let initialStep = [];
-	let batchSize = 20;
+	let batchSize = 25;
 
-	let selectedTriplets = { nodes: [], links: [] };
 	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
 
 	$: path = `${Api}/resources/${$selectedNode}`;
@@ -55,49 +53,6 @@
 
 	$: columnNodes = $graphSteps.map((obj) => obj.data).flat();
 
-	function updateNodes(nodes, selectedNodes) {
-		return selectedNodes.filter(
-			(selectedNode) => !nodes.some((node) => node.title === selectedNode.title)
-		);
-	}
-
-	async function openNode(node, index) {
-		const response = await fetch(node.target);
-		const data = await response.json();
-		const items = [{ data }];
-
-		selectedTriplets = await createTriplets(items);
-		let selectedTripletsData = selectedTriplets.links.filter((d) => {
-			return d.source === node.target || d.target === node.target;
-		});
-
-		// Remove all elements in $graphSteps after the given index
-		$graphSteps.splice(index + 1, $graphSteps.length - (index + 1));
-
-		let newNodes = updateNodes(
-			[...markdownNodes, ...initialStep, ...columnNodes],
-			selectedTripletsData
-		);
-
-		if (newNodes.length > 0) {
-			let paginate = newNodes.slice(0, batchSize);
-			// Replace the element at the given index with the new data
-			$graphSteps[index] = {
-				id: node.target,
-				data: selectedTripletsData.sort((a, b) => {
-					if (a.property) {
-						return a.property.localeCompare(b.property);
-					}
-				}),
-				new: newNodes,
-				page: 0,
-				paginate
-			};
-			loadData(paginate, batchSize);
-		}
-		highliteNode = node.target;
-	}
-
 	async function loadData(nodes, batchSize) {
 		const ids = nodes.map((d) => {
 			const id = d?.id?.split('/') || d?.target?.split('/');
@@ -132,6 +87,7 @@
 				page,
 				paginate: $graphSteps[index].data.slice(0, page * batchSize)
 			};
+			loadData($graphSteps[index].data.slice(0, page * batchSize), batchSize);
 		}
 	};
 </script>
@@ -143,9 +99,38 @@
 		</div>
 	{:else}
 		{#each $graphSteps as step, index}
-			<div class="links" bind:this={col} on:scroll={() => {handlePosition();getPaginatedData(index, col)}}>
-				<GraphSection desc={""} highlite = {true} {step} {index} {entities} {updatePosition} {highliteNode} {openNode} />
-				<GraphSection desc={"Classification"} highlite = {false} {step} {index} {entities} {updatePosition} {highliteNode} {openNode} />
+			<div
+				class="links"
+				bind:this={col}
+				on:scroll={() => {
+					handlePosition();
+					getPaginatedData(index, col);
+				}}
+			>
+				<GraphSection
+					desc={''}
+					highlite={true}
+					{step}
+					{index}
+					{entities}
+					{updatePosition}
+					{highliteNode}
+					{batchSize}
+					defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
+					{loadData}
+				/>
+				<GraphSection
+					desc={'Classification'}
+					highlite={false}
+					{step}
+					{index}
+					{entities}
+					{updatePosition}
+					{highliteNode}
+					{batchSize}
+					defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
+					{loadData}
+				/>
 				{#if step.paginate.length < step.new.length}
 					<div on:click={getPaginatedData(index, col)} on:keydown={getPaginatedData(index, col)}>
 						Load more
