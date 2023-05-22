@@ -48,7 +48,7 @@
 
 	.node:hover,
 	.selected {
-		background-color: black;
+		background-color: blue;
 		color: #ececec;
 		opacity: 1;
 	}

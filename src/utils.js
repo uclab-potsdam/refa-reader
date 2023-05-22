@@ -179,7 +179,7 @@ export function parseJSONLD(jsonLD, set) {
 
                 // gotta find a way to fix inveted properties
                 if (reverse) {
-                    property = invertedProperties[property] || "REVERSE: " +  property
+                    property = invertedProperties[property] || "REVERSE: " + property
                 }
 
                 let highlite;
@@ -259,7 +259,10 @@ export function observe() {
             }
         });
         visibleLinks.set([...visible]);
-        selectedNode.set([...visible][0])
+
+        if ([...visible][0]) {
+            selectedNode.set([...visible][0])
+        }
     }, options);
 
     const links = document.querySelectorAll(".markdown a[data-id]");

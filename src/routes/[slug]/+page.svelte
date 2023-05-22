@@ -7,7 +7,6 @@
 	import { onMount } from 'svelte';
 	import { extractLinks, createTriplets } from '@utils';
 	import { writable } from 'svelte/store';
-	import { fly } from 'svelte/transition';
 
 	export let data;
 	let textData, triplets, itemsJson;
@@ -34,10 +33,10 @@
 	}
 </script>
 
-<svelte:window on:resize={handlePosition} />
+<svelte:window on:resize={handlePosition} on:scroll={handlePosition} />
 
 {#if triplets != undefined}
-	<article>
+	<article >
 		<!-- {#if !$graphSteps || $graphSteps.length < 1} -->
 		<section class="item__detail">
 			<ItemDetail data={itemsJson} />
@@ -62,7 +61,7 @@
 			<h1>{textData.meta.title}</h1>
 			<Markdown data={textData} items={itemsJson} />
 		</section>
-		<section
+		<section 
 			class="graph__container"
 			on:scroll={handlePosition}
 			on:click={handlePosition}
@@ -77,7 +76,6 @@
 	article {
 		display: flex;
 		height: calc(100vh - 1rem);
-		/* padding: 1rem 0 0 0; */
 	}
 
 	h1 {
@@ -85,28 +83,21 @@
 	}
 
 	.markdown__container {
-		/* flex: 1 1 auto; */
-		max-width: 450px;
-		min-width: 150px;
+		padding: 0.5rem 0rem 0 1rem;
+		/* max-width: 600px; */
+		flex: 0 0 450px;
 		overflow-x: scroll;
 	}
 
 	.graph__container {
 		flex: 3;
-		width: 100%;
-		/* overflow-y: hidden; */
+		/* overflow: hidden; */
+		/* width: 100%; */
 	}
 
 	.item__detail {
-		flex: 1;
-		max-width: 200px;
+		flex: 0 0 180px;
 		border-right: 1px solid #e3e3e3;
-		/* background-color: #e3e3e3; */
-	}
-
-	.markdown__container {
-		padding: 0.5rem 0rem 0 1rem;
-		/* min-width: 700px; */
 	}
 
 	@media only screen and (max-width: 600px) {

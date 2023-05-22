@@ -6,6 +6,7 @@
 	export let highliteNode;
 
 	let item;
+	let padding = 18;
 
 	import newUniqueId from 'locally-unique-id-generator';
 	let id = newUniqueId();
@@ -19,7 +20,7 @@
 
 	function getPositions() {
 		$updatePosition = false;
-		sourceRect = getBounds(datum.source, 16);
+		sourceRect = getBounds(datum.source, padding);
 		targetRect = getBounds(datum.target);
 
 		if (item) {
@@ -32,12 +33,11 @@
 		const id = datum.split('/').slice(-1)[0];
 		const element = document.querySelector(`.node[data-id="${id}"]`);
 		const elementRect = element ? element.getBoundingClientRect() : null;
-
 		if (element) {
 			return {
-				x: elementRect.x + p,
+				x: elementRect.x,
 				y: elementRect.y + p,
-				width: elementRect.width,
+				width: elementRect.width - p / 2,
 				height: elementRect.height
 			};
 		}
@@ -46,10 +46,12 @@
 		getPositions();
 	});
 
-	$: r = Math.hypot(targetRect?.x - sourceRect?.x, targetRect?.y - sourceRect?.y);
-	$: controlPoint1X = sourceRect?.x + (targetRect?.x - sourceRect?.x) / 2;
+	// $: r = Math.hypot(targetRect?.x - sourceRect?.x, targetRect?.y - sourceRect?.y);
+	const controlPointOffset = 50; // Adjust this value to control the curvature of the path
+
+	$: controlPoint1X = sourceRect?.x + sourceRect?.width + controlPointOffset;
 	$: controlPoint1Y = sourceRect?.y;
-	$: controlPoint2X = sourceRect?.x + (targetRect?.x - sourceRect?.x) / 2;
+	$: controlPoint2X = targetRect?.x - controlPointOffset;
 	$: controlPoint2Y = targetRect?.y;
 </script>
 
@@ -61,10 +63,14 @@
 			<path
 				id="path_{id}"
 				class={datum.target == highliteNode || datum.source == highliteNode ? 'highlite' : ''}
-				d={`M${sourceRect?.x},${sourceRect?.y} C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${targetRect?.x},${targetRect?.y}`}
+				d={`M${sourceRect?.x + sourceRect?.width},${
+					sourceRect?.y
+				} C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${
+					targetRect?.x
+				},${targetRect?.y}`}
 			/>
 			<text class={datum.target == highliteNode || datum.source == highliteNode ? 'highlite' : ''}>
-				<textPath href="#path_{id}" startOffset="95%" text-anchor="end">{label}</textPath>
+				<textPath href="#path_{id}" startOffset="98%" text-anchor="end">{label}</textPath>
 			</text>
 		</svg>
 	{/if}
@@ -72,7 +78,7 @@
 
 <style>
 	svg {
-		position: absolute;
+		position: fixed;
 		width: 100vw;
 		height: 100vh;
 		top: 0;
@@ -82,7 +88,7 @@
 	}
 
 	text {
-		font-size: clamp(8px, 0.6vw, 14px);
+		font-size: clamp(8px, 0.4vw, 12px);
 		fill: #969696;
 		/* opacity: 0; */
 	}

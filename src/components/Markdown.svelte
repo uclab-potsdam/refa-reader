@@ -27,18 +27,9 @@
 			} else {
 				return `<a class="node-highlite" data-id="${
 					href.split('/')[1]
-				}" title="${text}">${text}<span class="symbol node" data-id="${
+				}" title="${text}">${text}</a><span class="symbol node" data-id="${
 					href.split('/')[1]
-				}">●</span></a>`;
-				// return `<a class="node-highlite" data-id="${href.split('/')[1]}" title="${text}">${text}(${href})</a>`;
-				// let img = getMainImage(`${href.split('/')[1]}`);
-				// if (img) {
-				// 	return `<a class="node-highlite" data-id="${
-				// 		href.split('/')[1]
-				// 	}" title="${text}">${text}(${href})</a><span class="node-image"><img class="main-image" src="${img}" alt="${text}"></img></span>`;
-				// } else {
-				// 	return `<a class="node-highlite" data-id="${href.split('/')[1]}" title="${text}">${text}(${href})</a>`;
-				// }
+				}">●</span>`;
 			}
 		}
 	);
@@ -103,21 +94,25 @@
 		color: #353535;
 		padding-left: 0.25rem;
 	}
-	
+
 	:global(.node-highlite) {
 		background-color: #fbfbeda1;
 		color: black;
 	}
-	
+
 	:global(.selected > .symbol) {
 		color: blue;
 	}
-	
+
 	:global(.selected) {
-		background-color: unset;
+		background-color: blue;
+		color: white;
+	}
+
+	:global(.selected > .symbol) {
+		background-color: tan;
 		color: blue;
 	}
-	
 
 	:global(sup) {
 		padding-right: 0.5rem;

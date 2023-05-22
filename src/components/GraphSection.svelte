@@ -12,10 +12,10 @@
 	export let index;
 	export let highlite;
 	export let loadData;
-    export let defaultNodes;
-    export let batchSize;
+	export let defaultNodes;
+	export let batchSize;
 
-    let selectedTriplets = { nodes: [], links: [] };
+	let selectedTriplets = { nodes: [], links: [] };
 
 	async function openNode(node, index) {
 		const response = await fetch(node.target);
@@ -30,10 +30,7 @@
 		// Remove all elements in $graphSteps after the given index
 		$graphSteps.splice(index + 1, $graphSteps.length - (index + 1));
 
-		let newNodes = updateNodes(
-			defaultNodes,
-			selectedTripletsData
-		);
+		let newNodes = updateNodes(defaultNodes, selectedTripletsData);
 
 		if (newNodes.length > 0) {
 			let paginate = newNodes.slice(0, batchSize);
@@ -50,7 +47,6 @@
 				paginate
 			};
 
-            // console.log($graphSteps[index])
 			loadData(paginate, batchSize);
 		}
 		highliteNode = node.target;
@@ -63,7 +59,7 @@
 	}
 </script>
 
-{#if step.new.some((d) => d.highlite === highlite)}
+{#if step?.new.some((d) => d.highlite === highlite)}
 	<h4>{desc}</h4>
 	<div class="divider {highlite === false ? 'classification' : ''}">
 		{#each step.paginate as datum}
@@ -119,16 +115,16 @@
 	}
 
 	.classification {
-		color: #adadad;
+		color: #959595;
 	}
 
-	:global(.classification *:not(.selected) > img) {
+	/* :global(.classification *:not(.selected) > img) {
 		opacity: 0.3;
 	}
 
 	:global(.classification img:hover) {
 		opacity: 1;
-	}
+	} */
 
 	/* :global(.classification textPath) {
         fill: #adadad;

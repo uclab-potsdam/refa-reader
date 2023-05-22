@@ -3,6 +3,7 @@
 	import { Api, selectedNode, graphSteps } from '@stores';
 	import { get, writable } from 'svelte/store';
 	import GraphSection from '@components/GraphSection.svelte';
+	import { afterUpdate } from 'svelte';
 
 	export let updatePosition;
 	export let handlePosition;
@@ -15,6 +16,7 @@
 	let selectedData = [];
 	let initialStep = [];
 	let batchSize = 25;
+	let graph;
 
 	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
 
@@ -22,6 +24,10 @@
 
 	onMount(async () => {
 		loadData(data.nodes, batchSize);
+	});
+
+	afterUpdate(() => {
+		graph.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'end' });
 	});
 
 	$: {
@@ -80,7 +86,7 @@
 
 	const getPaginatedData = (index, col) => {
 		const { scrollTop, scrollHeight, clientHeight } = col;
-		if (scrollTop + clientHeight >= scrollHeight - 50) {
+		if (scrollTop != null && scrollTop > 0 && scrollTop + clientHeight >= scrollHeight - 50) {
 			const page = $graphSteps[index].page + 1;
 			$graphSteps[index] = {
 				...$graphSteps[index],
@@ -93,7 +99,7 @@
 	};
 </script>
 
-<div class="graph">
+<div class="graph" bind:this={graph}>
 	{#if $entities.length == 0}
 		<div class="links">
 			<h4 class="loading">Loading Graph...</h4>
@@ -109,7 +115,7 @@
 				}}
 			>
 				<GraphSection
-					desc={''}
+					desc={'Artworks'}
 					highlite={true}
 					{step}
 					{index}
@@ -145,17 +151,18 @@
 <style>
 	.graph {
 		display: flex;
+		/* overflow: hidden; */
 	}
 
 	.links {
-		height: 100vh;
+		height: calc(100vh - 1rem);
 		padding-top: 1rem;
-		padding-left: 7vw;
-		width: 150px;
+		margin-left:6vw;
 		flex-basis: 150px;
+		overflow: scroll;
 		flex-grow: 0;
 		flex-shrink: 0;
 		cursor: pointer;
-		overflow: scroll;
+		word-wrap: break-word;
 	}
 </style>
