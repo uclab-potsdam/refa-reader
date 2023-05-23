@@ -228,7 +228,7 @@ export function observe() {
     let scrollingDirection;
 
     const options = {
-        rootMargin: '-10% 0% -10% 0%',
+        rootMargin: '-10% 50% -10% 50%',
     }
 
     const observer = new IntersectionObserver((entries, observer) => {
