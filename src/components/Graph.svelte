@@ -17,6 +17,7 @@
 	let initialStep = [];
 	let batchSize = 25;
 	let graph;
+	let svg;
 
 	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
 
@@ -85,16 +86,18 @@
 	let col;
 
 	const getPaginatedData = (index, col) => {
-		const { scrollTop, scrollHeight, clientHeight } = col;
-		if (scrollTop != null && scrollTop > 0 && scrollTop + clientHeight >= scrollHeight - 50) {
-			const page = $graphSteps[index].page + 1;
-			$graphSteps[index] = {
-				...$graphSteps[index],
-				page,
-				paginate: $graphSteps[index].data.slice(0, page * batchSize)
-			};
-			// loading based on the last n items
-			loadData($graphSteps[index].paginate.slice(-batchSize), batchSize);
+		if (col != null) {
+			const { scrollTop, scrollHeight, clientHeight } = col;
+			if (scrollTop > 0 && scrollTop + clientHeight >= scrollHeight - 50) {
+				const page = $graphSteps[index].page + 1;
+				$graphSteps[index] = {
+					...$graphSteps[index],
+					page,
+					paginate: $graphSteps[index].data.slice(0, page * batchSize)
+				};
+				// loading based on the last n items
+				loadData($graphSteps[index].paginate.slice(-batchSize), batchSize);
+			}
 		}
 	};
 </script>
@@ -125,6 +128,7 @@
 					{batchSize}
 					defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
 					{loadData}
+					{svg}
 				/>
 				<GraphSection
 					desc={'Classification'}
@@ -137,6 +141,7 @@
 					{batchSize}
 					defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
 					{loadData}
+					{svg}
 				/>
 				{#if step.paginate.length < step.new.length}
 					<div on:click={getPaginatedData(index, col)} on:keydown={getPaginatedData(index, col)}>
@@ -146,6 +151,7 @@
 			</div>
 		{/each}
 	{/if}
+	<svg bind:this={svg} />
 </div>
 
 <style>
@@ -157,12 +163,23 @@
 	.links {
 		height: calc(100vh - 1rem);
 		padding-top: 1rem;
-		margin-left:6vw;
+		margin-left: 8vw;
 		flex-basis: 150px;
 		overflow: scroll;
 		flex-grow: 0;
 		flex-shrink: 0;
 		cursor: pointer;
 		word-wrap: break-word;
+	}
+	
+	svg {
+		position: absolute;
+		width: 100vw;
+		height: 100vh;
+		top: 0;
+		left: 0;
+		pointer-events: none;
+		z-index: -1;
+		transform: translateZ(0);
 	}
 </style>

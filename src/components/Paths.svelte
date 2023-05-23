@@ -1,14 +1,14 @@
 <script>
+	import newUniqueId from 'locally-unique-id-generator';
 	import { onMount } from 'svelte';
 	export let datum;
 	export let label;
+	export let svg;
 	export let updatePosition;
 	export let highliteNode;
 
 	let item;
 	let padding = 18;
-
-	import newUniqueId from 'locally-unique-id-generator';
 	let id = newUniqueId();
 	let sourceRect, targetRect;
 	let x, y;
@@ -47,8 +47,8 @@
 	});
 
 	// $: r = Math.hypot(targetRect?.x - sourceRect?.x, targetRect?.y - sourceRect?.y);
-	const controlPointOffset = 50; // Adjust this value to control the curvature of the path
 
+	const controlPointOffset = 50;
 	$: controlPoint1X = sourceRect?.x + sourceRect?.width + controlPointOffset;
 	$: controlPoint1Y = sourceRect?.y;
 	$: controlPoint2X = targetRect?.x - controlPointOffset;
@@ -85,8 +85,8 @@
 		left: 0;
 		pointer-events: none;
 		z-index: -1;
+		transform: translateZ(0);
 	}
-
 	text {
 		font-size: clamp(8px, 0.4vw, 12px);
 		fill: #969696;

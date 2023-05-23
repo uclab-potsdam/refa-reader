@@ -14,6 +14,7 @@
 	export let loadData;
 	export let defaultNodes;
 	export let batchSize;
+	export let svg;
 
 	let selectedTriplets = { nodes: [], links: [] };
 
@@ -57,10 +58,12 @@
 			(selectedNode) => !nodes.some((node) => node.title === selectedNode.title)
 		);
 	}
+
+	$: dataLength = step.new.filter((d) => d.highlite === highlite).length;
 </script>
 
 {#if step?.new.some((d) => d.highlite === highlite)}
-	<h4>{desc}</h4>
+	<h4>{desc} <sup>[{dataLength}]</sup></h4>
 	<div class="divider {highlite === false ? 'classification' : ''}">
 		{#each step.paginate as datum}
 			{#if datum.highlite == highlite}
@@ -80,6 +83,7 @@
 							/>
 							{#if datum.source && datum.target}
 								<Paths
+									{svg}
 									{datum}
 									{updatePosition}
 									{highliteNode}
@@ -89,6 +93,7 @@
 						{/if}
 					{:else if datum.source && datum.target}
 						<Paths
+							{svg}
 							{datum}
 							{updatePosition}
 							{highliteNode}

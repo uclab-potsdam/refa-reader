@@ -33,15 +33,14 @@
 	}
 </script>
 
+<!-- <svelte:window on:resize={handlePosition}  /> -->
 <svelte:window on:resize={handlePosition} on:scroll={handlePosition} />
 
 {#if triplets != undefined}
-	<article >
-		<!-- {#if !$graphSteps || $graphSteps.length < 1} -->
+	<article>
 		<section class="item__detail">
 			<ItemDetail data={itemsJson} />
 		</section>
-		<!-- {/if} -->
 		<section
 			class="markdown__container"
 			on:wheel={() => {
@@ -61,9 +60,8 @@
 			<h1>{textData.meta.title}</h1>
 			<Markdown data={textData} items={itemsJson} />
 		</section>
-		<section 
+		<section
 			class="graph__container"
-			on:scroll={handlePosition}
 			on:click={handlePosition}
 			on:keypress={handlePosition}
 		>
@@ -91,12 +89,10 @@
 
 	.graph__container {
 		flex: 3;
-		/* overflow: hidden; */
-		/* width: 100%; */
 	}
 
 	.item__detail {
-		flex: 0 0 180px;
+		flex: 0 0 300px;
 		border-right: 1px solid #e3e3e3;
 	}
 
