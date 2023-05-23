@@ -33,7 +33,6 @@
 	}
 </script>
 
-<!-- <svelte:window on:resize={handlePosition}  /> -->
 <svelte:window on:resize={handlePosition} on:scroll={handlePosition} />
 
 {#if triplets != undefined}
@@ -60,11 +59,7 @@
 			<h1>{textData.meta.title}</h1>
 			<Markdown data={textData} items={itemsJson} />
 		</section>
-		<section
-			class="graph__container"
-			on:click={handlePosition}
-			on:keypress={handlePosition}
-		>
+		<section class="graph__container" on:click={handlePosition} on:keypress={handlePosition}>
 			<Graph data={$items} {visibleItemsID} {handlePosition} {updatePosition} />
 		</section>
 	</article>
@@ -74,8 +69,16 @@
 	article {
 		display: flex;
 		height: calc(100vh - 1rem);
+		position: relative;
 	}
 
+	path {
+		pointer-events: visibleStroke;
+		stroke: #969696;
+		stroke-width: 0.2;
+		cursor: pointer;
+		fill: none;
+	}
 	h1 {
 		margin-bottom: 1rem;
 	}

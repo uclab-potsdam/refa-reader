@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { Api, selectedNode, graphSteps } from '@stores';
 	import { get, writable } from 'svelte/store';
+	import Svg from '@components/Svg.svelte';
 	import GraphSection from '@components/GraphSection.svelte';
 	import { afterUpdate } from 'svelte';
 
@@ -17,7 +18,6 @@
 	let initialStep = [];
 	let batchSize = 25;
 	let graph;
-	let svg;
 
 	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
 
@@ -128,7 +128,6 @@
 					{batchSize}
 					defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
 					{loadData}
-					{svg}
 				/>
 				<GraphSection
 					desc={'Classification'}
@@ -141,7 +140,6 @@
 					{batchSize}
 					defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
 					{loadData}
-					{svg}
 				/>
 				{#if step.paginate.length < step.new.length}
 					<div on:click={getPaginatedData(index, col)} on:keydown={getPaginatedData(index, col)}>
@@ -151,8 +149,8 @@
 			</div>
 		{/each}
 	{/if}
-	<svg bind:this={svg} />
 </div>
+<Svg />
 
 <style>
 	.graph {
@@ -164,22 +162,11 @@
 		height: calc(100vh - 1rem);
 		padding-top: 1rem;
 		margin-left: 8vw;
-		flex-basis: 150px;
+		flex-basis: 180px;
 		overflow: scroll;
 		flex-grow: 0;
 		flex-shrink: 0;
 		cursor: pointer;
 		word-wrap: break-word;
-	}
-	
-	svg {
-		position: absolute;
-		width: 100vw;
-		height: 100vh;
-		top: 0;
-		left: 0;
-		pointer-events: none;
-		z-index: -1;
-		transform: translateZ(0);
 	}
 </style>

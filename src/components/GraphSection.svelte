@@ -14,7 +14,6 @@
 	export let loadData;
 	export let defaultNodes;
 	export let batchSize;
-	export let svg;
 
 	let selectedTriplets = { nodes: [], links: [] };
 
@@ -83,7 +82,6 @@
 							/>
 							{#if datum.source && datum.target}
 								<Paths
-									{svg}
 									{datum}
 									{updatePosition}
 									{highliteNode}
@@ -93,7 +91,6 @@
 						{/if}
 					{:else if datum.source && datum.target}
 						<Paths
-							{svg}
 							{datum}
 							{updatePosition}
 							{highliteNode}
@@ -123,19 +120,18 @@
 		color: #959595;
 	}
 
-	/* :global(.classification *:not(.selected) > img) {
+	:global(.classification *:not(.selected) > img) {
 		opacity: 0.3;
 	}
 
 	:global(.classification img:hover) {
 		opacity: 1;
-	} */
+	}
+	:global(.classification textPath) {
+		fill: #adadad;
+	}
 
-	/* :global(.classification textPath) {
-        fill: #adadad;
-    }
-
-    :global(.classification path.highlite) {
-        stroke: #adadad;
-    } */
+	:global(.classification path.highlite) {
+		stroke: #adadad;
+	}
 </style>

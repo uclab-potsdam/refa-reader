@@ -96,7 +96,7 @@
 	}
 
 	:global(.node-highlite) {
-		background-color: #fbfbeda1;
+		background-color: rgba(0, 0, 255, 0.08);
 		color: black;
 	}
 
@@ -110,7 +110,6 @@
 	}
 
 	:global(.selected > .symbol) {
-		background-color: tan;
 		color: blue;
 	}
 
