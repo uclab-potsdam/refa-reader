@@ -6,7 +6,7 @@
 	{#each Object.entries($paths) as [id, path]}
 		<path id="path_{id}" class={path.class} d={path.d} />
 		<!-- <text class={path.class}>
-			<textPath href="#path_{id}" startOffset="98%" text-anchor="end">{path.label}</textPath>
+			<textPath href="#path_{id}" startOffset="95%" text-anchor="end">{path.label}</textPath>
 		</text> -->
 	{/each}
 </svg>
@@ -21,6 +21,7 @@
 		pointer-events: none;
 		z-index: -1;
 		transform: translateZ(0);
+        font-family: "Inter", sans-serif;
 	}
 
 	text {
@@ -33,6 +34,8 @@
 		pointer-events: visibleStroke;
 		stroke: #969696;
 		stroke-width: 0.2;
+		stroke-linecap: round;
+		stroke-linejoin: round;
 		cursor: pointer;
 		fill: none;
 	}
@@ -43,7 +46,7 @@
 	}
 
 	path.highlite {
-		stroke-width: 0.2;
+		/* stroke-width: 0.2; */
 		stroke: blue;
 	}
 </style>

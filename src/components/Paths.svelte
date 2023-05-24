@@ -28,6 +28,8 @@
 			x = item.getBoundingClientRect().x;
 			y = item.getBoundingClientRect().y;
 
+			// d={`M ${sourceRect?.x} ${sourceRect?.y} L ${targetRect?.x} ${targetRect?.y}`} 
+
 			$paths[id] = {
 				class: datum.target == highliteNode || datum.source == highliteNode ? 'highlite' : '',
 				d: `M${sourceRect?.x + sourceRect?.width},${
@@ -68,6 +70,5 @@
 	$: controlPoint2Y = targetRect?.y;
 </script>
 
-<!-- d={`M ${sourceRect?.x} ${sourceRect?.y} L ${targetRect?.x} ${targetRect?.y}`} -->
 
 <div bind:this={item} />

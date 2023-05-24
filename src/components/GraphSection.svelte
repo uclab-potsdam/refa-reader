@@ -120,9 +120,9 @@
 		color: #959595;
 	}
 
-	:global(.classification *:not(.selected) > img) {
+	/* :global(.classification *:not(.selected) > img) {
 		opacity: 0.3;
-	}
+	} */
 
 	:global(.classification img:hover) {
 		opacity: 1;

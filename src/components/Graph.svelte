@@ -162,7 +162,7 @@
 		height: calc(100vh - 1rem);
 		padding-top: 1rem;
 		margin-left: 8vw;
-		flex-basis: 180px;
+		flex-basis: 200px;
 		overflow: scroll;
 		flex-grow: 0;
 		flex-shrink: 0;
