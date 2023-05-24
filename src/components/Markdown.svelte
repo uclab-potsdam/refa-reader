@@ -27,9 +27,9 @@
 			} else {
 				return `<a class="node-highlite" data-id="${
 					href.split('/')[1]
-				}" title="${text}">${text}</a><span class="symbol node" data-id="${
+				}" title="${text}">${text}<span class="symbol node" data-id="${
 					href.split('/')[1]
-				}">●</span>`;
+				}">●</span></a>`;
 			}
 		}
 	);
@@ -86,31 +86,33 @@
 		cursor: pointer;
 	}
 
-	:global(.symbol) {
-		font-size: 32px;
-		line-height: 0;
-		vertical-align: middle;
-		font-style: normal;
-		color: #353535;
-		padding-left: 0.25rem;
-	}
-
 	:global(.node-highlite) {
-		background-color: rgba(0, 0, 255, 0.08);
+		font-family: "Inter", sans-serif;
+		font-weight: 450;
+		font-style: normal;
+		font-size: 16px;
 		color: black;
-	}
-
-	:global(.selected > .symbol) {
-		color: blue;
+		background-color: rgb(242, 242, 242);
+		cursor: pointer;
+		border-radius: 2px;
+		padding: 2px;
 	}
 
 	:global(.selected) {
-		background-color: blue;
 		color: white;
+		background-color: blue;
 	}
 
-	:global(.selected > .symbol) {
+	:global(.symbol) {
+		font-size: 18px;
+		line-height: 0;
+		vertical-align: middle;
 		color: blue;
+		padding-left: 0.25rem;
+	}
+
+	:global(.selected .symbol) {
+		color: white;
 	}
 
 	:global(sup) {
@@ -124,18 +126,5 @@
 	:global(sup a) {
 		text-decoration: none;
 		color: black;
-	}
-
-	:global(.node-image) {
-		padding-right: 2.5rem;
-		position: relative;
-	}
-
-	:global(.main-image) {
-		display: inline-block;
-		padding: 0.5rem;
-		max-height: 1.5rem;
-		position: absolute;
-		vertical-align: middle;
 	}
 </style>
