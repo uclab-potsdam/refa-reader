@@ -100,7 +100,22 @@
 	}
 
 	@media only screen and (max-width: 600px) {
-		.item__detail,
+		article {
+			height: 180vh;
+		}
+
+		.markdown__container::before {
+			content: 'This website contains complex visualizations that are not supported by small screen formats. To navigate the essays, go to your desktop browser.';
+			display: block;
+			background-color: blue;
+			color: white;
+			font-size: 28px;
+			padding: 1rem;
+		}
+
+		.item__detail {
+			flex: 0 0 200px;
+		}
 		.graph__container {
 			display: none;
 		}

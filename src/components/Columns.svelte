@@ -47,7 +47,7 @@
 		background-color: #e6e6e6;
 	}
 	.column:hover > img {
-		filter: grayscale(0%);
+		/* filter: grayscale(0%); */
 	}
 
 	a {
@@ -69,6 +69,6 @@
 		object-fit: cover;
 		object-position: top;
 		padding-bottom: 0.5rem;
-		filter: grayscale(100%);
+		/* filter: grayscale(100%); */
 	}
 </style>
