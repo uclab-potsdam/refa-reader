@@ -52,7 +52,7 @@
 			page: 0,
 			paginate: initialStep
 		};
-		// console.log($graphSteps);
+		console.log($graphSteps);
 	}
 
 	$: columnNodes = $graphSteps.map((obj) => obj.data).flat();
@@ -106,48 +106,54 @@
 		</div>
 	{:else}
 		{#each $graphSteps as step, index}
-			<div
-				class="links"
-				bind:this={col}
-				on:scroll={() => {
-					handlePosition();
-					getPaginatedData(index, col);
-				}}
-			>
-				<GraphSection
-					desc={'Related Artworks'}
-					highlite={true}
-					{step}
-					{index}
-					{entities}
-					{updatePosition}
-					{batchSize}
-					defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
-					{loadData}
-				/>
-				<GraphSection
-					desc={'Classification'}
-					highlite={false}
-					{step}
-					{index}
-					{entities}
-					{updatePosition}
-					{batchSize}
-					defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
-					{loadData}
-				/>
-				<!-- {#if step.paginate.length < step.new.length}
+			{#if step?.new.length > 0}
+				<div
+					class="links"
+					bind:this={col}
+					on:scroll={() => {
+						handlePosition();
+						getPaginatedData(index, col);
+					}}
+				>
+					<GraphSection
+						desc={'Related Artworks'}
+						highlite={true}
+						{step}
+						{index}
+						{entities}
+						{updatePosition}
+						{batchSize}
+						defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
+						{loadData}
+					/>
+					<GraphSection
+						desc={'Classification'}
+						highlite={false}
+						{step}
+						{index}
+						{entities}
+						{updatePosition}
+						{batchSize}
+						defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
+						{loadData}
+					/>
+					<!-- {#if step.paginate.length < step.new.length}
 					<div on:click={getPaginatedData(index, col)} on:keydown={getPaginatedData(index, col)}>
 						Load more
 					</div>
 				{/if} -->
-			</div>
+				</div>
+			{/if}
 		{/each}
 	{/if}
 </div>
 <Svg />
 
 <style>
+	.loading {
+		font-family: 'Redaction', serif;
+	}
+
 	.graph {
 		display: flex;
 		/* overflow: hidden; */

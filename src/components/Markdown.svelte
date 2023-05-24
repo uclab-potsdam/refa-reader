@@ -87,12 +87,12 @@
 	}
 
 	:global(.node-highlite) {
-		font-family: "Inter", sans-serif;
+		font-family: 'Inter', sans-serif;
 		font-weight: 450;
 		font-style: normal;
 		font-size: 16px;
 		color: black;
-		background-color: rgb(242, 242, 242);
+		background-color: #f2f2f2;
 		cursor: pointer;
 		border-radius: 2px;
 		padding: 2px;
@@ -101,6 +101,8 @@
 	:global(.selected) {
 		color: white;
 		background-color: blue;
+		mix-blend-mode: color-burn;
+		/* background: linear-gradient(to right, #f2f2f2, blue); */
 	}
 
 	:global(.symbol) {

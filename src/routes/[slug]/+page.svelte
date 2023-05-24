@@ -85,8 +85,7 @@
 
 	.markdown__container {
 		padding: 0.5rem 0rem 0 1rem;
-		/* max-width: 600px; */
-		flex: 0 0 450px;
+		flex: 0 0 600px;
 		overflow-x: scroll;
 	}
 
