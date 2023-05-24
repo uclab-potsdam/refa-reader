@@ -26,7 +26,9 @@
 	});
 
 	afterUpdate(() => {
-		graph.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'end' });
+		if (graph.lastElementChild) {
+			graph.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'end' });
+		}
 	});
 
 	$: {
@@ -52,7 +54,7 @@
 			page: 0,
 			paginate: initialStep
 		};
-		console.log($graphSteps);
+		// console.log($graphSteps);
 	}
 
 	$: columnNodes = $graphSteps.map((obj) => obj.data).flat();
