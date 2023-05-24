@@ -27,8 +27,8 @@
 <style>
 	.columns {
 		display: flex;
-		/* flex-wrap: nowrap; */
-		overflow-x: auto;
+		overflow-x: scroll;
+		scroll-snap-type: x mandatory;
 	}
 
 	.column {
@@ -39,8 +39,8 @@
 		-webkit-line-clamp: 40;
 		line-clamp: 40;
 		-webkit-box-orient: vertical;
-		/* overflow: scroll;
-		height: 100vh; */
+		scroll-snap-align: center;
+		cursor: pointer;
 	}
 
 	.column:hover {
