@@ -10,7 +10,6 @@
 	export let handlePosition;
 	export let data;
 	export let visibleItemsID;
-	export let highliteNode;
 
 	const entities = writable([]);
 
@@ -18,7 +17,6 @@
 	let initialStep = [];
 	let batchSize = 25;
 	let graph;
-
 	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
 
 	$: path = `${Api}/resources/${$selectedNode}`;
@@ -34,7 +32,6 @@
 	$: {
 		if (data.links) {
 			selectedData = data.links.filter((d) => {
-				highliteNode = path;
 				return (
 					(d.target != path && d.source != d.target && d.source == path) ||
 					(d.target != path && d.source != d.target && d.target == path)
@@ -118,13 +115,12 @@
 				}}
 			>
 				<GraphSection
-					desc={'Artworks'}
+					desc={'Related Artworks'}
 					highlite={true}
 					{step}
 					{index}
 					{entities}
 					{updatePosition}
-					{highliteNode}
 					{batchSize}
 					defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
 					{loadData}
@@ -136,16 +132,15 @@
 					{index}
 					{entities}
 					{updatePosition}
-					{highliteNode}
 					{batchSize}
 					defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
 					{loadData}
 				/>
-				{#if step.paginate.length < step.new.length}
+				<!-- {#if step.paginate.length < step.new.length}
 					<div on:click={getPaginatedData(index, col)} on:keydown={getPaginatedData(index, col)}>
 						Load more
 					</div>
-				{/if}
+				{/if} -->
 			</div>
 		{/each}
 	{/if}

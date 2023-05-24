@@ -3,17 +3,18 @@
 	import Paths from '@components/Paths.svelte';
 	import { graphSteps } from '@stores';
 	import { createTriplets } from '@utils';
+	import { afterUpdate } from 'svelte';
 
 	export let desc;
 	export let step;
 	export let entities;
 	export let updatePosition;
-	export let highliteNode;
 	export let index;
 	export let highlite;
 	export let loadData;
 	export let defaultNodes;
 	export let batchSize;
+	let section;
 
 	let selectedTriplets = { nodes: [], links: [] };
 
@@ -49,7 +50,6 @@
 
 			loadData(paginate, batchSize);
 		}
-		highliteNode = node.target;
 	}
 
 	function updateNodes(nodes, selectedNodes) {
@@ -59,48 +59,47 @@
 	}
 
 	$: dataLength = step.new.filter((d) => d.highlite === highlite).length;
+
+	afterUpdate(() => {
+		if (section) {
+			section.scrollTop = 0;
+		}
+	});
 </script>
 
 {#if step?.new.some((d) => d.highlite === highlite)}
-	<h4>{desc} <sup>[{dataLength}]</sup></h4>
-	<div class="divider {highlite === false ? 'classification' : ''}">
-		{#each step.paginate as datum}
-			{#if datum.highlite == highlite}
-				<div>
-					{#if step.new.some((existingNode) => existingNode.title === datum.title)}
+	<section bind:this={section}>
+		<h4>{desc} <sup>[{dataLength}]</sup></h4>
+		<div class="divider {highlite === false ? 'classification' : ''}">
+			{#each step.paginate as datum}
+				{#if datum.highlite == highlite}
+					<div>
 						{#if step.new.some((existingNode) => existingNode.title === datum.title)}
-							<Card
-								{entities}
-								{updatePosition}
-								{datum}
-								on:click={() => {
-									openNode(datum, index + 1);
-								}}
-								on:keydown={() => {
-									openNode(datum, index + 1);
-								}}
-							/>
-							{#if datum.source && datum.target}
-								<Paths
-									{datum}
+							{#if step.new.some((existingNode) => existingNode.title === datum.title)}
+								<Card
+									{entities}
 									{updatePosition}
-									{highliteNode}
-									label={datum.property ? datum.property : ''}
+									{datum}
+									on:click={() => {
+										openNode(datum, index + 1);
+									}}
+									on:keydown={() => {
+										openNode(datum, index + 1);
+									}}
 								/>
+								{#if datum.source && datum.target}
+									<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
+								{/if}
 							{/if}
 						{/if}
-					{:else if datum.source && datum.target}
-						<Paths
-							{datum}
-							{updatePosition}
-							{highliteNode}
-							label={datum.property ? datum.property : ''}
-						/>
-					{/if}
-				</div>
-			{/if}
-		{/each}
-	</div>
+						<!-- {#if datum.source && datum.target}
+						<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
+					{/if} -->
+					</div>
+				{/if}
+			{/each}
+		</div>
+	</section>
 {/if}
 
 <style>

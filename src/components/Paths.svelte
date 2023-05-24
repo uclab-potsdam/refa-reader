@@ -1,12 +1,11 @@
 <script>
 	import newUniqueId from 'locally-unique-id-generator';
 	import { onMount, onDestroy } from 'svelte';
-	import { paths } from '@stores';
+	import { paths, graphSteps } from '@stores';
 
 	export let datum;
 	export let label;
 	export let updatePosition;
-	export let highliteNode;
 
 	let item;
 	let padding = 18;
@@ -19,6 +18,29 @@
 		getPositions();
 	}
 
+	$: identifier = $graphSteps.slice(-1)[0].id;
+	$: highlite = datum.target == identifier || datum.source == identifier ? 'highlite' : '';
+	$: d = `M${sourceRect?.x + sourceRect?.width},${sourceRect?.y} 
+			C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},
+			${controlPoint2Y} ${targetRect?.x},${targetRect?.y}`;
+
+	$: {
+		if (
+			sourceRect &&
+			targetRect &&
+			controlPoint1X &&
+			controlPoint2X &&
+			controlPoint1Y &&
+			controlPoint2Y
+		) {
+			$paths[id] = {
+				class: highlite,
+				d: d,
+				label: label
+			};
+		}
+	}
+
 	function getPositions() {
 		$updatePosition = false;
 		sourceRect = getBounds(datum.source, padding);
@@ -28,17 +50,7 @@
 			x = item.getBoundingClientRect().x;
 			y = item.getBoundingClientRect().y;
 
-			// d={`M ${sourceRect?.x} ${sourceRect?.y} L ${targetRect?.x} ${targetRect?.y}`} 
-
-			$paths[id] = {
-				class: datum.target == highliteNode || datum.source == highliteNode ? 'highlite' : '',
-				d: `M${sourceRect?.x + sourceRect?.width},${
-					sourceRect?.y
-				} C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${
-					targetRect?.x
-				},${targetRect?.y}`,
-				label: label
-			};
+			// d={`M ${sourceRect?.x} ${sourceRect?.y} L ${targetRect?.x} ${targetRect?.y}`}
 		}
 	}
 
@@ -69,6 +81,5 @@
 	$: controlPoint2X = targetRect?.x - controlPointOffset;
 	$: controlPoint2Y = targetRect?.y;
 </script>
-
 
 <div bind:this={item} />
