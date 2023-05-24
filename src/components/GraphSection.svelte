@@ -32,22 +32,22 @@
 		$graphSteps.splice(index + 1, $graphSteps.length - (index + 1));
 
 		let newNodes = updateNodes(defaultNodes, selectedTripletsData);
+		let paginate = newNodes.slice(0, batchSize);
+
+		// Replace the element at the given index with the new data
+		$graphSteps[index] = {
+			id: node.target,
+			data: selectedTripletsData.sort((a, b) => {
+				if (a.property) {
+					return a.property.localeCompare(b.property);
+				}
+			}),
+			new: newNodes,
+			page: 0,
+			paginate
+		};
 
 		if (newNodes.length > 0) {
-			let paginate = newNodes.slice(0, batchSize);
-			// Replace the element at the given index with the new data
-			$graphSteps[index] = {
-				id: node.target,
-				data: selectedTripletsData.sort((a, b) => {
-					if (a.property) {
-						return a.property.localeCompare(b.property);
-					}
-				}),
-				new: newNodes,
-				page: 0,
-				paginate
-			};
-
 			loadData(paginate, batchSize);
 		}
 	}
