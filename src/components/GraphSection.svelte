@@ -72,7 +72,7 @@
 		<h4>{desc} <sup>[{dataLength}]</sup></h4>
 		<div class="divider {highlite === false ? 'classification' : ''}">
 			{#each step.paginate as datum}
-				{#if datum.highlite == highlite}
+				{#if !datum.skip && datum.highlite == highlite}
 					<div>
 						{#if step.new.some((existingNode) => existingNode.title === datum.title)}
 							{#if step.new.some((existingNode) => existingNode.title === datum.title)}
@@ -87,15 +87,18 @@
 										openNode(datum, index + 1);
 									}}
 								/>
-								{#if datum.source && datum.target}
+								<!-- {#if datum.source && datum.target}
 									<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
-								{/if}
+								{/if} -->
 							{/if}
 						{/if}
 						<!-- {#if datum.source && datum.target}
-						<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
-					{/if} -->
+							<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
+						{/if} -->
 					</div>
+				{/if}
+				{#if datum.source && datum.target}
+					<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
 				{/if}
 			{/each}
 		</div>

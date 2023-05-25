@@ -46,15 +46,24 @@
 		}
 	}
 	$: {
+		let selected = [
+			...selectedData
+				.filter((v, i, a) => a.findIndex((v2) => v2.target === v.target) === i)
+				.map((d) => {
+					const inMarkdown = markdownNodes.find((j) => j.id == d.target);
+					return { ...d, skip: inMarkdown != undefined ? true : false };
+				})
+		];
+
 		$graphSteps; // change the way to detect reactivness
 		$graphSteps[0] = {
 			id: path,
 			data: initialStep,
-			new: selectedData.filter((d) => !markdownNodes.some((j) => j.id == d.target)),
+			new: selected,
 			page: 0,
-			paginate: initialStep
+			paginate: selected
 		};
-		// console.log($graphSteps);
+		console.log($graphSteps);
 	}
 
 	$: columnNodes = $graphSteps.map((obj) => obj.data).flat();

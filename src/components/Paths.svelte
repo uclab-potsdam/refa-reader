@@ -39,6 +39,7 @@
 				label: label
 			};
 		}
+
 	}
 
 	function getPositions() {

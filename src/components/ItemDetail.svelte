@@ -9,9 +9,11 @@
 {#if itemDetail != undefined && itemDetail.data != undefined}
 	<section>
 		{#if itemDetail.data.thumbnail_display_urls?.large != null && !itemDetail.set}
-			<img src={itemDetail.data.thumbnail_display_urls.large} alt={itemDetail.data['o:title']} />
+		<img src={itemDetail.data.thumbnail_display_urls.large} alt={itemDetail.data['o:title']} />
 		{/if}
 		<h1 class="metadata-title">{itemDetail.data['o:title']}</h1>
+		<br>
+		{itemDetail.data['o:id']}
 	</section>
 {/if}
 
