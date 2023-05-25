@@ -63,7 +63,7 @@
 			page: 0,
 			paginate: selected
 		};
-		console.log($graphSteps);
+		// console.log($graphSteps);
 	}
 
 	$: columnNodes = $graphSteps.map((obj) => obj.data).flat();

@@ -82,7 +82,7 @@
 
 <style>
 	:global(a) {
-		color: blue;
+		color: var(--theme-color);
 		cursor: pointer;
 	}
 
@@ -100,16 +100,16 @@
 
 	:global(.selected) {
 		color: white;
-		background-color: blue;
+		background-color: var(--theme-color);
 		mix-blend-mode: color-burn;
-		/* background: linear-gradient(to right, #f2f2f2, blue); */
+		/* background: linear-gradient(to right, #f2f2f2, var(--theme-color)); */
 	}
 
 	:global(.symbol) {
 		font-size: 18px;
 		line-height: 0;
 		vertical-align: middle;
-		color: blue;
+		color: var(--theme-color);
 		padding-left: 0.25rem;
 	}
 

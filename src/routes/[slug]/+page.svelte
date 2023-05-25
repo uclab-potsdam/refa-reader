@@ -10,13 +10,12 @@
 
 	export let data;
 	let textData, triplets, itemsJson;
+	let visibleItemsID = [];
 
 	const updatePosition = writable(false);
 	const handlePosition = () => {
 		$updatePosition = true;
 	};
-
-	let visibleItemsID = [];
 
 	onMount(async () => {
 		textData = [...data.posts].find((d) => d.path.includes($page.params.slug));
@@ -36,7 +35,7 @@
 <svelte:window on:resize={handlePosition} on:scroll={handlePosition} />
 
 {#if triplets != undefined}
-	<article>
+	<article style="--theme-color: {textData.meta?.color || 'blue'}">
 		<section class="item__detail">
 			<ItemDetail data={itemsJson} />
 		</section>
@@ -94,7 +93,7 @@
 	}
 
 	.item__detail {
-		flex: 0 0 300px;
+		flex: 0 0 400px;
 		border-right: 1px solid #e3e3e3;
 	}
 
@@ -106,8 +105,6 @@
 		.markdown__container::before {
 			content: 'This website contains complex visualizations that are not supported by small screen formats. To navigate the essays, go to your desktop browser.';
 			display: block;
-			background-color: blue;
-			color: white;
 			font-size: 28px;
 			padding: 1rem;
 		}

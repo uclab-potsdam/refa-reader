@@ -22,7 +22,7 @@
 		top: 0;
 		left: 0;
 		pointer-events: none;
-		/* z-index: -1; */
+		z-index: -1;
 		transform: translateZ(0);
 		font-family: 'Inter', sans-serif;
 	}
@@ -36,7 +36,7 @@
 	path {
 		pointer-events: visibleStroke;
 		stroke: #969696;
-		stroke-width: 0.4;
+		stroke-width: 0.1;
 		stroke-linecap: round;
 		stroke-linejoin: round;
 		cursor: pointer;
@@ -44,12 +44,12 @@
 	}
 
 	text.highlite {
-		fill: blue;
+		fill: var(--theme-color);
 		opacity: 1;
 	}
 
 	path.highlite {
 		/* stroke-width: 0.2; */
-		stroke: blue;
+		stroke: var(--theme-color);
 	}
 </style>
