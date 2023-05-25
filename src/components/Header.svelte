@@ -5,7 +5,7 @@
 <style>
 	header {
 		min-height: 150px;
-		padding: 1rem;
+		padding: 2rem;
 	}
 
 	h3 {

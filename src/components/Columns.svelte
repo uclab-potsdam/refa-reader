@@ -7,12 +7,12 @@
 		{#if post.meta.isPublic}
 			<a href={post.path} target="_self">
 				<div class="column">
-					{#if post.meta.cover}
-						<img src={post.meta.cover} alt={post.meta.title} />
-					{/if}
 					<h2>
 						{post.meta.title}
 					</h2>
+					{#if post.meta.cover}
+						<img src={post.meta.cover} alt={post.meta.title} />
+					{/if}
 					{#if post.meta.description}
 						<div class="text">
 							{@html post.meta.description}
@@ -31,9 +31,13 @@
 		scroll-snap-type: x mandatory;
 	}
 
+	.columns a {
+		flex: 0 0 330px;
+	}
+
 	.column {
-		min-width: 250px;
-		padding: 0.5rem;
+		height: calc(100% - 4rem);
+		padding: 2rem;
 		overflow: hidden;
 		display: -webkit-box;
 		-webkit-line-clamp: 40;
@@ -47,7 +51,7 @@
 		background-color: #e6e6e6;
 	}
 	.column:hover > img {
-		/* filter: grayscale(0%); */
+		filter: grayscale(0%);
 	}
 
 	a {
@@ -60,15 +64,19 @@
 	}
 
 	h2 {
-		min-height: 100px;
+		min-height: 150px;
+		text-align: center;
+		font-size: 30px;
+		line-height: 30px;
+		padding-bottom: 10px;
 	}
 
 	img {
 		width: 100%;
-		/* height: 250px; */
-		object-fit: cover;
+		/* height: 180px; */
+		/* object-fit: cover; */
 		object-position: top;
 		padding-bottom: 0.5rem;
-		/* filter: grayscale(100%); */
+		filter: grayscale(100%);
 	}
 </style>
