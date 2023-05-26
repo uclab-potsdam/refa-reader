@@ -55,15 +55,15 @@
 				})
 		];
 
-		$graphSteps; // change the way to detect reactivness
-		$graphSteps[0] = {
-			id: path,
-			data: initialStep,
-			new: selected,
-			page: 0,
-			paginate: selected
-		};
-		// console.log($graphSteps);
+		if (($graphSteps && $graphSteps.length == 0) || $graphSteps?.[0]?.data.length == 0) {
+			$graphSteps[0] = {
+				id: path,
+				data: initialStep,
+				new: selected,
+				page: 0,
+				paginate: selected.slice(0, batchSize)
+			};
+		}
 	}
 
 	$: columnNodes = $graphSteps.map((obj) => obj.data).flat();
