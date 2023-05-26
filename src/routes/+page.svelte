@@ -5,5 +5,7 @@
 	export let data;
 </script>
 
-<Header />
-<Columns {data} />
+<article style="--theme-color:blue">
+	<Header />
+	<Columns {data} />
+</article>
