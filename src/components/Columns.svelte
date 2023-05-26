@@ -37,7 +37,7 @@
 
 	.column {
 		height: calc(100% - 4rem);
-		padding: 2rem;
+		padding: 1.4rem;
 		overflow: hidden;
 		display: -webkit-box;
 		-webkit-line-clamp: 40;
