@@ -92,12 +92,12 @@
 								{/if} -->
 							{/if}
 						{/if}
-						<!-- {#if datum.source && datum.target}
+						{#if datum.source && datum.target}
 							<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
-						{/if} -->
+						{/if}
 					</div>
 				{/if}
-				{#if datum.source && datum.target}
+				{#if datum.skip && datum.source && datum.target }
 					<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
 				{/if}
 			{/each}
