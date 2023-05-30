@@ -15,7 +15,7 @@
 
 	let selectedData = [];
 	let initialStep = [];
-	let batchSize = 25;
+	let batchSize = 50;
 	let graph;
 	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
 
