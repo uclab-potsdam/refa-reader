@@ -8,7 +8,7 @@
 	export let updatePosition;
 
 	let item;
-	let padding = 18;
+	let padding = 0;
 	let id = newUniqueId();
 	let sourceRect, targetRect;
 	let x, y;
