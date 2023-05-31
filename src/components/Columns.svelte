@@ -32,7 +32,7 @@
 	}
 
 	.columns a {
-		flex: 0 0 330px;
+		flex: 0 0 380px;
 	}
 
 	.column {
