@@ -39,7 +39,6 @@
 				label: label
 			};
 		}
-
 	}
 
 	function getPositions() {
@@ -77,10 +76,22 @@
 	});
 
 	const controlPointOffset = 50;
-	$: controlPoint1X = sourceRect?.x + sourceRect?.width + controlPointOffset;
-	$: controlPoint1Y = sourceRect?.y;
-	$: controlPoint2X = targetRect?.x - controlPointOffset;
-	$: controlPoint2Y = targetRect?.y;
+
+	let controlPoint1X, controlPoint1Y, controlPoint2X, controlPoint2Y;
+
+	$: {
+		controlPoint1X = sourceRect?.x + sourceRect?.width + controlPointOffset;
+		controlPoint1Y = sourceRect?.y;
+
+		// Adjust the controlPoint2X based on the direction of the curve
+		if (targetRect?.x < sourceRect?.x) {
+			controlPoint2X = targetRect?.x - controlPointOffset * 8;
+		} else {
+			controlPoint2X = targetRect?.x - controlPointOffset;
+		}
+
+		controlPoint2Y = targetRect?.y;
+	}
 </script>
 
 <div bind:this={item} />
