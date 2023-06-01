@@ -140,18 +140,20 @@
 							/>
 						{/if}
 					{/each}
-					<GraphSection
-						desc={secondayCategoriesLabel}
-						data={step.paginate.filter((d) => {
-							return !mainCategories.some((cat) => cat.props.includes(d.property));
-						})}
-						{index}
-						{entities}
-						{updatePosition}
-						{batchSize}
-						defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
-						{loadData}
-					/>
+					{#if step.paginate.filter((d) => !mainCategories.some( (cat) => cat.props.includes(d.property) ).length > 0)}
+						<GraphSection
+							desc={secondayCategoriesLabel}
+							data={step.paginate.filter((d) => {
+								return !mainCategories.some((cat) => cat.props.includes(d.property));
+							})}
+							{index}
+							{entities}
+							{updatePosition}
+							{batchSize}
+							defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
+							{loadData}
+						/>
+					{/if}
 
 					<!-- {#if step.paginate.length < step.new.length}
 					<div on:click={getPaginatedData(index, col)} on:keydown={getPaginatedData(index, col)}>
