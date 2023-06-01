@@ -145,6 +145,7 @@
 						data={step.paginate.filter((d) => {
 							return !mainCategories.some((cat) => cat.props.includes(d.property));
 						})}
+						{index}
 						{entities}
 						{updatePosition}
 						{batchSize}

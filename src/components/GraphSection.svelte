@@ -62,6 +62,10 @@
 			section.scrollTop = 0;
 		}
 	});
+
+	$: {
+		console.log($graphSteps);
+	}
 </script>
 
 <!-- {#if step?.new.some((d) => d.highlite === highlite)} -->

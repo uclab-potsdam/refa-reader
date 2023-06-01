@@ -24,5 +24,5 @@ export const mainCategories =
         },
     ];
 
-export const setCategory = "Related Artworks";
 export const secondayCategoriesLabel = "Classification";
+export const setCategory = "Related Artworks";
