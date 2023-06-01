@@ -6,11 +6,10 @@
 	import { afterUpdate } from 'svelte';
 
 	export let desc;
-	export let step;
+	export let data;
 	export let entities;
 	export let updatePosition;
 	export let index;
-	export let highlite;
 	export let loadData;
 	export let defaultNodes;
 	export let batchSize;
@@ -58,8 +57,6 @@
 		);
 	}
 
-	$: dataLength = step.new.filter((d) => d.highlite === highlite).length;
-
 	afterUpdate(() => {
 		if (section) {
 			section.scrollTop = 0;
@@ -67,44 +64,40 @@
 	});
 </script>
 
-{#if step?.new.some((d) => d.highlite === highlite)}
-	<section bind:this={section}>
-		<h4>{desc} <sup>[{dataLength}]</sup></h4>
-		<div class="divider {highlite === false ? 'classification' : ''}">
-			{#each step.paginate as datum}
-				{#if !datum.skip && datum.highlite == highlite}
-					<div>
-						{#if step.new.some((existingNode) => existingNode.title === datum.title)}
-							{#if step.new.some((existingNode) => existingNode.title === datum.title)}
-								<Card
-									{entities}
-									{updatePosition}
-									{datum}
-									on:click={() => {
-										openNode(datum, index + 1);
-									}}
-									on:keydown={() => {
-										openNode(datum, index + 1);
-									}}
-								/>
-								<!-- {#if datum.source && datum.target}
-									<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
-								{/if} -->
-							{/if}
+<!-- {#if step?.new.some((d) => d.highlite === highlite)} -->
+<section bind:this={section}>
+	<h4>{desc} <sup>[{data.length}]</sup></h4>
+	<div class="divider">
+		{#each data as datum}
+			{#if !datum.skip}
+				<div>
+					{#if data.some((existingNode) => existingNode.title === datum.title)}
+						{#if data.some((existingNode) => existingNode.title === datum.title)}
+							<Card
+								{entities}
+								{updatePosition}
+								{datum}
+								on:click={() => {
+									openNode(datum, index + 1);
+								}}
+								on:keydown={() => {
+									openNode(datum, index + 1);
+								}}
+							/>
 						{/if}
-						{#if datum.source && datum.target}
-							<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
-						{/if}
-					</div>
-				{/if}
-				{#if datum.skip && datum.source && datum.target }
-					<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
-				{/if}
-			{/each}
-		</div>
-	</section>
-{/if}
+					{/if}
+					{#if datum.source && datum.target}
+						<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
+					{/if}
+				</div>
+			{:else if datum.source && datum.target}
+				<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
+			{/if}
+		{/each}
+	</div>
+</section>
 
+<!-- {/if} -->
 <style>
 	h4 {
 		font-size: 1rem;
@@ -118,22 +111,22 @@
 		padding-bottom: 1rem;
 	}
 
-	.classification {
+	/* .classification {
 		color: #959595;
-	}
+	} */
 
 	/* :global(.classification *:not(.selected) > img) {
 		opacity: 0.3;
 	} */
 
-	:global(.classification img:hover) {
+	/* :global(.classification img:hover) {
 		opacity: 1;
 	}
 	:global(.classification textPath) {
 		fill: #adadad;
-	}
+	} */
 
-	:global(.classification path.highlite) {
+	/* :global(.classification path.highlite) {
 		stroke: #adadad;
-	}
+	} */
 </style>

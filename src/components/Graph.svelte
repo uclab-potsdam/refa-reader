@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { Api, selectedNode, graphSteps } from '@stores';
+	import { Api, selectedNode, graphSteps, mainCategories, secondayCategoriesLabel } from '@stores';
 	import { get, writable } from 'svelte/store';
 	import Svg from '@components/Svg.svelte';
 	import GraphSection from '@components/GraphSection.svelte';
@@ -126,28 +126,32 @@
 						getPaginatedData(index, col);
 					}}
 				>
+					{#each mainCategories as cat}
+						{#if step.paginate.filter((d) => cat.props.includes(d.property)).length > 0}
+							<GraphSection
+								desc={cat.key}
+								data={step.paginate.filter((d) => cat.props.includes(d.property))}
+								{index}
+								{entities}
+								{updatePosition}
+								{batchSize}
+								defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
+								{loadData}
+							/>
+						{/if}
+					{/each}
 					<GraphSection
-						desc={'Related Artworks'}
-						highlite={true}
-						{step}
-						{index}
+						desc={secondayCategoriesLabel}
+						data={step.paginate.filter((d) => {
+							return !mainCategories.some((cat) => cat.props.includes(d.property));
+						})}
 						{entities}
 						{updatePosition}
 						{batchSize}
 						defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
 						{loadData}
 					/>
-					<GraphSection
-						desc={'Classification'}
-						highlite={false}
-						{step}
-						{index}
-						{entities}
-						{updatePosition}
-						{batchSize}
-						defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
-						{loadData}
-					/>
+
 					<!-- {#if step.paginate.length < step.new.length}
 					<div on:click={getPaginatedData(index, col)} on:keydown={getPaginatedData(index, col)}>
 						Load more
@@ -173,8 +177,8 @@
 	.links {
 		height: calc(100vh - 1rem);
 		padding-top: 1rem;
-		margin-left: 8vw;
-		flex-basis: 200px;
+		margin-left: 10vw;
+		flex-basis: 220px;
 		overflow: scroll;
 		flex-grow: 0;
 		flex-shrink: 0;

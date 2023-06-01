@@ -127,6 +127,6 @@
 
 	:global(sup a) {
 		text-decoration: none;
-		color: black;
+		color: var(--theme-color);
 	}
 </style>

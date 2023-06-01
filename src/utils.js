@@ -1,5 +1,6 @@
-import { Api, visibleLinks, allLinks, selectedNode, mainProperties } from '@stores';
+import { Api, visibleLinks, allLinks, selectedNode, mainCategories, secondayCategoriesLabel, setCategory } from '@stores';
 import { invertedProperties } from './invertedProperties';
+
 
 export async function extractLinks(markdown) {
     // Regular expression to match links
@@ -148,7 +149,7 @@ export function parseJSONLD(jsonLD, set) {
             target: source,
             img: jsonLD?.thumbnail_display_urls?.large,
             title: jsonLD["o:title"],
-            highlite: true,
+            category: setCategory
         });
     }
 
@@ -182,14 +183,9 @@ export function parseJSONLD(jsonLD, set) {
                     property = invertedProperties[property] || "REVERSE: " + property
                 }
 
-                let highlite;
-                mainProperties.subscribe((array) => {
-                    if (array.includes(property)) {
-                        highlite = true;
-                    } else {
-                        highlite = false;
-                    }
-                })
+                const category = mainCategories
+                    .map(d => (d.props.includes(property) ? d.key : secondayCategoriesLabel))
+                    .find(Boolean);
 
                 if (!exists) {
                     // Add a new triplet to the array
@@ -198,8 +194,8 @@ export function parseJSONLD(jsonLD, set) {
                         target: target,
                         title,
                         img,
-                        highlite,
-                        property
+                        property,
+                        category: category,
                     });
                 }
             }

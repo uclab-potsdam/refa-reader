@@ -6,7 +6,7 @@ export const invertedProperties = {
     "forms part of": "consists of",
     
     "shows visual item": "is shown by",
-    "is shown by": "shows visual item",
+    "is shown by": "is shown by",
 
     "shows features of": "features are also found on",
     "refers to": "shows features of",
