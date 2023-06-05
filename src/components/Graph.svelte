@@ -101,7 +101,7 @@
 				$graphSteps[index] = {
 					...$graphSteps[index],
 					page,
-					paginate: $graphSteps[index].data.slice(0, page * batchSize)
+					paginate: $graphSteps[index].new.slice(0, page * batchSize)
 				};
 				// loading based on the last n items
 				loadData($graphSteps[index].paginate.slice(-batchSize), batchSize);
