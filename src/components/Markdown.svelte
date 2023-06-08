@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { selectedNode } from '@stores';
+	import { selectedNode, customIcons } from '@stores';
 	import { observe } from '@utils';
 
 	export let data;
@@ -27,9 +27,30 @@
 			} else {
 				return `<a class="node-highlite" data-id="${
 					href.split('/')[1]
-				}" title="${text}">${text}<span class="symbol node" data-id="${
-					href.split('/')[1]
-				}">●</span></a>`;
+				}" title="${text}">${text}<span class="symbol node" data-id="${href.split('/')[1]}"
+				data-class="${items
+					.filter((d) => d.label == text)
+					.map((d) => {
+						return d.data?.['@type']?.[1];
+					})}">
+					${
+						customIcons[
+							items
+								.filter((d) => d.label == text)
+								.map((d) => {
+									return d.data?.['@type']?.[1];
+								})
+						]
+							? customIcons[
+									items
+										.filter((d) => d.label == text)
+										.map((d) => {
+											return d.data?.['@type']?.[1];
+										})
+							  ]
+							: '●'
+					}
+					</span></a>`;
 			}
 		}
 	);
@@ -81,6 +102,10 @@
 </div>
 
 <style>
+	.markdown {
+		padding-bottom: 40vh;
+	}
+
 	:global(a) {
 		color: var(--theme-color);
 		cursor: pointer;

@@ -8,7 +8,7 @@
 	export let updatePosition;
 
 	let item;
-	let padding = 0;
+	let padding = 0; // change if thicker lines
 	let id = newUniqueId();
 	let sourceRect, targetRect;
 	let x, y;
@@ -20,9 +20,15 @@
 
 	$: identifier = $graphSteps.slice(-1)[0].id;
 	$: highlite = datum.target == identifier || datum.source == identifier ? 'highlite' : '';
-	$: d = `M${sourceRect?.x + sourceRect?.width},${sourceRect?.y} 
+	$: d = `M${sourceRect?.x + sourceRect?.width},${sourceRect?.y}
 			C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},
 			${controlPoint2Y} ${targetRect?.x},${targetRect?.y}`;
+
+	// $: d = `M${sourceRect?.x + sourceRect?.width},${sourceRect?.y}
+	//     C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},
+	//     ${controlPoint2Y} ${
+	// 	targetRect?.x + (sourceRect?.x > targetRect?.x ? targetRect?.width : 0)
+	// },${targetRect?.y}`;
 
 	$: {
 		if (
@@ -44,7 +50,7 @@
 	function getPositions() {
 		$updatePosition = false;
 		sourceRect = getBounds(datum.source, padding);
-		targetRect = getBounds(datum.target);
+		targetRect = getBounds(datum.target, padding);
 
 		if (item) {
 			x = item.getBoundingClientRect().x;
@@ -75,7 +81,7 @@
 		delete $paths[id];
 	});
 
-	const controlPointOffset = 50;
+	const controlPointOffset = 100;
 
 	let controlPoint1X, controlPoint1Y, controlPoint2X, controlPoint2Y;
 
@@ -85,7 +91,9 @@
 
 		// Adjust the controlPoint2X based on the direction of the curve
 		if (targetRect?.x < sourceRect?.x) {
-			controlPoint2X = targetRect?.x - controlPointOffset * 8;
+			controlPoint2X = targetRect?.x - controlPointOffset * 4; //controlPointOffset * 4;
+		} else if (targetRect?.x == sourceRect?.x) {
+			controlPoint2X = targetRect?.x - controlPointOffset * 2;
 		} else {
 			controlPoint2X = targetRect?.x - controlPointOffset;
 		}

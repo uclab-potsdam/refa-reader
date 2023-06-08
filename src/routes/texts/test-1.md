@@ -1,10 +1,10 @@
 ---
-title: The Five Senses
+title: A test essay
 date: "2023-12-14"
 color: "blue"
 isPublic: true
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at imperdiet sapien. Fusce dolor ex, lobortis sit amet tincidunt id, posuere vel metus. Donec et ipsum et odio ullamcorper tincidunt sit amet id sem. Mauris non lorem imperdiet, rutrum mi nec, condimentum tortor. Quisque sit amet odio facilisis, porttitor nunc quis, dictum est. Quisque sollicitudin lorem et est ullamcorper vestibulum. Quisque a aliquet tortor. Morbi ac purus nibh. Cras a mauris sodales, maximus tellus eu, efficitur lectus. Quisque congue iaculis massa quis bibendum. In mauris turpis, scelerisque id faucibus et, vestibulum id risus. Nam consequat rhoncus libero, ut molestie lectus tincidunt tristique. Vivamus ut fringilla arcu, vitae eleifend quam. Integer pretium quam sed eleifend rhoncus. Aenean faucibus nunc non commodo hendrerit. Morbi sodales vel lectus id facilisis."
-cover: "https://uclab.fh-potsdam.de/refa/files/large/3462bf943aaa761056dba91c89a90652c4833aaf.jpg"
+description: "Die Sammlung beinhaltet sowohl Ölmalerei auf Pappe, Kupfer-, Eisen- oder Silberblech, als auch Wasserfarbenmalerei auf Elfenbein, außerdem Hinterglasmalerei, Lackarbeiten und Emaillemalerei auf Keramik. So ist das Bildnis eines Herrn im Wams mit Schulterkragen aus der zweiten Hälfte des 17. Jahrhunderts mit Öl auf Schildpatt gemalt, eine Schäferszene mit einem galanten Paar ist auf einen Seidenuntergrund aufgestickt und 19 Miniaturbildnisse auf Papier oder Pergament von Mitgliedern des Hauses Anspach-Bayreuth-Brandenburg sind auf einen Seidengrund vereinigt und mit Paillettenschnüren und Metallfäden gerahmt. Auch das scherenschnittartige Bildnis einer Frau im Biedermeierkleid mit Haube und Schulterkragen hat einen ungewöhnlichen Bildgrund Stein oder Glas), das Spiegelkästchen mit drei Ansichten von persischen Reitern oder das runde Medaillon mit dem Bildnis eines Herrn im Oberrock besteht ebenfalls aus einem Materialmix. Die Bildnisplastiken sind zum größten Teil aus Wachs ­gefertigt, mehrere Plastiken tragen Applikationen von Textilien, Edelsteinen, Haaren und Tierzähnen. Der Gruppe der Plastiken ist ebenfalls ein Tableau oder Plafondi mit bezogenen und bestickten Knöpfen zugeordnet."
+cover: "https://uclab.fh-potsdam.de/refa/files/original/af6d3f80b1b5690cf68dae59dcfb0909bd2e6ea9.jpg"
 
 ---
 

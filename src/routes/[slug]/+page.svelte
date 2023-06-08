@@ -71,13 +71,6 @@
 		position: relative;
 	}
 
-	path {
-		pointer-events: visibleStroke;
-		stroke: #969696;
-		stroke-width: 0.2;
-		cursor: pointer;
-		fill: none;
-	}
 	h1 {
 		margin-bottom: 1rem;
 	}

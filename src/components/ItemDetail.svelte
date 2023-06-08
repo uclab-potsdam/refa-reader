@@ -4,10 +4,6 @@
 	export let data;
 
 	$: itemDetail = data.find((d) => d.id == $selectedNode);
-
-	// $: {
-	// 	console.log(itemDetail);
-	// }
 </script>
 
 {#if itemDetail != undefined && itemDetail.data != undefined}

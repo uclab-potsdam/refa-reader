@@ -6,6 +6,6 @@
 </script>
 
 <article style="--theme-color:blue">
-	<Header />
+	<Header essays={data.posts.length} />
 	<Columns {data} />
 </article>

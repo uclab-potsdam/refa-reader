@@ -1,5 +1,16 @@
+<script>
+	export let essays;
+</script>
+
 <header>
-	<h3>This collection contains and describes the “Lipperheidesche Kostümbibliothek”. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at imperdiet sapien. Fusce dolor ex, lobortis sit amet tincidunt id, posuere vel metus. Donec et ipsum et odio ullamcorper tincidunt sit amet id sem. Mauris non lorem imperdiet, rutrum mi nec, condimentum tortor. Quisque sit amet odio facilisis, porttitor nunc quis, dictum est. Quisque sollicitudin lorem et est ullamcorper vestibulum. Quisque a aliquet tortor. Morbi ac purus nibh. Cras a mauris sodales, maximus tellus eu, efficitur lectus.</h3>
+	<h3>
+		An interactive visualisation that provides access to a selection of objects from the
+		'Lipperheidesche Kostümbibliothek'. <br />
+		<span>{essays}</span> essays are juxtaposed with a graph navigation that allows the user to browse the paintings,
+		prints, drawings and clothes in the collection. Instead of showing the collection in its entirety,
+		it is accessible through a curated selection of essays designed to provide a better understanding
+		of it. The aim is to combine editorial approaches with free navigation of the collection.
+	</h3>
 </header>
 
 <style>
@@ -11,5 +22,9 @@
 	h3 {
 		font-weight: 400;
 		width: 65%;
+		font-size: 1.4rem;
+	}
+	span {
+		color: blue;
 	}
 </style>
