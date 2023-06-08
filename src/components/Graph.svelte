@@ -15,7 +15,7 @@
 
 	let selectedData = [];
 	let initialStep = [];
-	let batchSize = 50;
+	let batchSize = 35; // cant be more than the pagination in omeka s
 	let graph;
 	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
 
@@ -58,15 +58,13 @@
 		if (($graphSteps && $graphSteps.length == 0) || $graphSteps?.[0]?.data.length == 0) {
 			$graphSteps[0] = {
 				id: path,
-				data: initialStep,
+				data: selected, // initialStep ?
 				new: selected,
 				page: 0,
 				paginate: selected.slice(0, batchSize)
 			};
 		}
 	}
-
-	$: columnNodes = $graphSteps.map((obj) => obj.data).flat();
 
 	async function loadData(nodes, batchSize) {
 		const ids = nodes.map((d) => {
@@ -101,7 +99,7 @@
 				$graphSteps[index] = {
 					...$graphSteps[index],
 					page,
-					paginate: $graphSteps[index].new.slice(0, page * batchSize)
+					paginate: $graphSteps[index].data.slice(0, page * batchSize)
 				};
 				// loading based on the last n items
 				loadData($graphSteps[index].paginate.slice(-batchSize), batchSize);
@@ -127,30 +125,45 @@
 					}}
 				>
 					{#each mainCategories as cat}
-						{#if step.paginate.filter((d) => cat.props.includes(d.property)).length > 0}
+						{@const filteredData = step.paginate.filter((d) => cat.props.includes(d.property))}
+						{@const dataLen = step.data.filter((d) => cat.props.includes(d.property)).length}
+
+						{#if filteredData.length > 0}
 							<GraphSection
 								desc={cat.key}
-								data={step.paginate.filter((d) => cat.props.includes(d.property))}
+								data={filteredData}
+								newData={step.new}
+								{dataLen}
 								{index}
 								{entities}
 								{updatePosition}
+								{handlePosition}
 								{batchSize}
-								defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
+								defaultNodes={[...markdownNodes, ...initialStep]}
 								{loadData}
 							/>
 						{/if}
 					{/each}
-					{#if step.paginate.filter((d) => !mainCategories.some( (cat) => cat.props.includes(d.property) ).length > 0)}
+
+					{#if step.paginate.filter((d) => !mainCategories.some( (cat) => cat.props.includes(d.property) )).length > 0}
+						{@const filteredSecondaryData = step.paginate.filter(
+							(d) => !mainCategories.some((cat) => cat.props.includes(d.property))
+						)}
+						{@const dataLen = step.data.filter(
+							(d) => !mainCategories.some((cat) => cat.props.includes(d.property))
+						).length}
+
 						<GraphSection
 							desc={secondayCategoriesLabel}
-							data={step.paginate.filter((d) => {
-								return !mainCategories.some((cat) => cat.props.includes(d.property));
-							})}
+							data={filteredSecondaryData}
+							newData={step.new}
+							{dataLen}
 							{index}
 							{entities}
 							{updatePosition}
+							{handlePosition}
 							{batchSize}
-							defaultNodes={[...markdownNodes, ...initialStep, ...columnNodes]}
+							defaultNodes={[...markdownNodes, ...initialStep]}
 							{loadData}
 						/>
 					{/if}
@@ -187,5 +200,6 @@
 		flex-shrink: 0;
 		cursor: pointer;
 		word-wrap: break-word;
+		z-index: 1;
 	}
 </style>
