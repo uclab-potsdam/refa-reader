@@ -37,20 +37,22 @@
 	{:else}
 		<div class="title">{datum.title}</div>
 	{/if}
-	<!-- <div class="title">{datum.title}</div> -->
+	<!-- <div class="title">{datum.target}</div> -->
 </div>
 
 <style>
 	.node {
 		background-color: #f6f6f6;
 		padding: 0.25rem 0.5rem;
-		margin-bottom: 0.8rem;
+		margin-bottom: 1rem;
 	}
-
+	
 	.node:hover,
 	.selected {
 		background-color: var(--theme-color);
-		color: #ececec;
+		color: black;
+		background-color: white;
+		border:1px solid var(--theme-color);
 		opacity: 1;
 	}
 
