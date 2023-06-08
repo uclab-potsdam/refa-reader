@@ -3,21 +3,32 @@
 	import Paths from '@components/Paths.svelte';
 	import { graphSteps } from '@stores';
 	import { createTriplets } from '@utils';
-	import { afterUpdate } from 'svelte';
 
 	export let desc;
 	export let data;
+	export let newData;
+	export let dataLen;
 	export let entities;
 	export let updatePosition;
+	export let handlePosition;
 	export let index;
 	export let loadData;
 	export let defaultNodes;
 	export let batchSize;
+
 	let section;
 
 	let selectedTriplets = { nodes: [], links: [] };
 
 	async function openNode(node, index) {
+		// Remove all elements in $graphSteps after the given index
+		$graphSteps.splice(index, $graphSteps.length - index);
+
+		let columnNodes = $graphSteps
+			// .slice(0, index )
+			.map((obj) => obj.data)
+			.flat();
+
 		const response = await fetch(node.target);
 		const data = await response.json();
 		const items = [{ data }];
@@ -27,11 +38,8 @@
 			return d.source === node.target || d.target === node.target;
 		});
 
-		// Remove all elements in $graphSteps after the given index
-		$graphSteps.splice(index + 1, $graphSteps.length - (index + 1));
-
-		let newNodes = updateNodes(defaultNodes, selectedTripletsData);
-		let paginate = newNodes.slice(0, batchSize);
+		let newNodes = updateNodes([...defaultNodes, ...columnNodes], selectedTripletsData);
+		let paginate = selectedTripletsData.slice(0, batchSize);
 
 		// Replace the element at the given index with the new data
 		$graphSteps[index] = {
@@ -43,12 +51,13 @@
 			}),
 			new: newNodes,
 			page: 0,
-			paginate
+			paginate: paginate
 		};
 
 		if (newNodes.length > 0) {
 			loadData(paginate, batchSize);
 		}
+		handlePosition();
 	}
 
 	function updateNodes(nodes, selectedNodes) {
@@ -56,45 +65,34 @@
 			(selectedNode) => !nodes.some((node) => node.title === selectedNode.title)
 		);
 	}
-
-	afterUpdate(() => {
-		if (section) {
-			section.scrollTop = 0;
-		}
-	});
-
-	$: {
-		console.log($graphSteps);
-	}
 </script>
 
 <!-- {#if step?.new.some((d) => d.highlite === highlite)} -->
+
 <section bind:this={section}>
-	<h4>{desc} <sup>[{data.length}]</sup></h4>
+	<h4>{desc} <sup>[{dataLen}]</sup></h4>
 	<div class="divider">
 		{#each data as datum}
-			{#if !datum.skip}
+			{#if !datum.skip && datum.source && datum.target}
 				<div>
-					{#if data.some((existingNode) => existingNode.title === datum.title)}
-						{#if data.some((existingNode) => existingNode.title === datum.title)}
-							<Card
-								{entities}
-								{updatePosition}
-								{datum}
-								on:click={() => {
-									openNode(datum, index + 1);
-								}}
-								on:keydown={() => {
-									openNode(datum, index + 1);
-								}}
-							/>
-						{/if}
+					{#if newData.some((existingNode) => existingNode.title === datum.title)}
+						<Card
+							{entities}
+							{updatePosition}
+							{datum}
+							on:click={() => {
+								openNode(datum, index + 1);
+							}}
+							on:keydown={() => {
+								openNode(datum, index + 1);
+							}}
+						/>
 					{/if}
-					{#if datum.source && datum.target}
+					{#if datum.source && datum.target && datum.source != datum.target}
 						<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
 					{/if}
 				</div>
-			{:else if datum.source && datum.target}
+			{:else if datum.source && datum.target && datum.source != datum.target}
 				<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
 			{/if}
 		{/each}
