@@ -66,7 +66,7 @@ export async function extractLinks(markdown) {
         const json = parseitems.find(d => d["o:id"] == link.id);
 
         // If the JSON data includes an "o:items" property, it is a set link
-        if (json["o:items"]) {
+        if (json?.["o:items"]) {
             link.data = json;
             link.set = {
                 id: json["o:id"],
