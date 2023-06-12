@@ -23,8 +23,8 @@ h1, h2, h3, h4, h5 {
 }
 
 .markdown {
-    font-size: 1.25rem;
-    line-height: 1.22;
+    /* font-size: 1.25rem;
+    line-height: 1.22; */
     padding-bottom: 3rem;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;

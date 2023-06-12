@@ -72,7 +72,9 @@
 	}
 
 	h1 {
+		margin-top: .5rem;
 		margin-bottom: 1rem;
+		font-size: 2.4rem;
 	}
 
 	.markdown__container {

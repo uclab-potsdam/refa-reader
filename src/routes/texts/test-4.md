@@ -2,14 +2,14 @@
 title: The Five Senses
 date: "2023-12-14"
 isPublic: true
-color: "green"
+color: "blue"
 description: "Combining the allegory of the Five Senses with genre scenes and also with family portraits finds its precursors in Dutch painting. For example, the portrait of the siblings of Duke Augustus of Brunswick-Lüneburg was painted at another German court as early as 1637. The children are depicted in an interior room, the open window affording a view of the Braunschweig Burgplatz with the Braunschweig Lion and the so-called Mosthaus. In contrast to the Hohenlohe painting, the iconography of the allegorical representation is more complex. While there one attribute is attached to each figure, here several senses are assigned to the eldest, Rudolf August."
 cover: "https://uclab.fh-potsdam.de/refa/files/large/3462bf943aaa761056dba91c89a90652c4833aaf.jpg"
 ---
 
 
     
-Combining the allegory of the [Five Senses](item/10614) with genre scenes and also with family portraits finds its precursors in Dutch painting. For example, the [portrait of the siblings of Duke Augustus of Brunswick-Lüneburg](item/209) was painted at another German court as early as 1637.The children are depicted in an interior room, the open window affording a view of the Braunschweig Burgplatz with the Braunschweig Lion and the so-called “Mosthaus”.
+Combining the allegory of the [Five Senses](item/10614) with genre scenes and also with family portraits finds its precursors in Dutch painting. For example, the [portrait of the siblings of Duke Augustus of Brunswick-Lüneburg](item/43003) was painted at another German court as early as 1637. The children are depicted in an interior room, the open window affording a view of the Braunschweig Burgplatz with the Braunschweig Lion and the so-called “Mosthaus”.
 ### Portrait of siblings
 The painting [“The Five Senses”](item/159) from the Modebild Collection shows the five children of  [“Count Philipp Ernst zu Hohenlohe-Langenburg”](item/9499).
 From left to right can be seen: [“Eva Christina”](item/9390) as [“auditus”](item/10613) (hearing) with a lute, 

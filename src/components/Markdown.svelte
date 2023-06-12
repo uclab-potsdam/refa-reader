@@ -104,6 +104,9 @@
 <style>
 	.markdown {
 		padding-bottom: 40vh;
+		padding-top: 5vh;
+		font-size: 1.4rem;
+		line-height: 1.3;
 	}
 
 	:global(a) {
@@ -115,7 +118,7 @@
 		font-family: 'Inter', sans-serif;
 		font-weight: 450;
 		font-style: normal;
-		font-size: 16px;
+		font-size: 0.7em;
 		color: black;
 		background-color: #f2f2f2;
 		cursor: pointer;
@@ -131,7 +134,7 @@
 	}
 
 	:global(.symbol) {
-		font-size: 18px;
+		font-size: 1em;
 		line-height: 0;
 		vertical-align: middle;
 		color: var(--theme-color);

@@ -47,12 +47,12 @@
 	}
 	$: {
 		let selected = [
-			...selectedData
-				.filter((v, i, a) => a.findIndex((v2) => v2.target === v.target) === i)
-				.map((d) => {
-					const inMarkdown = markdownNodes.find((j) => j.id == d.target);
-					return { ...d, skip: inMarkdown != undefined ? true : false };
-				})
+			...selectedData.filter((v, i, a) => a.findIndex((v2) => v2.target === v.target) === i)
+			// remove skip
+			// .map((d) => {
+			// 	const inMarkdown = markdownNodes.find((j) => j.id == d.target);
+			// 	return { ...d, skip: inMarkdown != undefined ? true : false };
+			// })
 		];
 
 		if (($graphSteps && $graphSteps.length == 0) || $graphSteps?.[0]?.data.length == 0) {
@@ -76,9 +76,9 @@
 
 		for (let i = 0; i < numBatches; i++) {
 			const batchIds = ids.slice(i * batchSize, (i + 1) * batchSize);
-			const query = `${Api}/items?${batchIds.map((id) => `id[]=${id}`).join('&')}`;
-			const response = await fetch(query);
-			const jsonItems = await response.json();
+			let query = `${Api}/items?${batchIds.map((id) => `id[]=${id}`).join('&')}`;
+			let response = await fetch(query);
+			let jsonItems = await response.json();
 
 			entities.update((items) => {
 				if (!items.includes(...jsonItems)) {
@@ -86,6 +86,20 @@
 				}
 				return items;
 			});
+
+			// BUG: query for /resources/ to get also the medias. So far it's not possible in Omeka-S / wait for the next release
+			if (jsonItems.length != batchIds.length) {
+				query = `${Api}/media?${batchIds.map((id) => `id[]=${id}`).join('&')}`;
+				response = await fetch(query);
+				jsonItems = await response.json();
+
+				entities.update((items) => {
+					if (!items.includes(...jsonItems)) {
+						items.push(...jsonItems);
+					}
+					return items;
+				});
+			}
 		}
 	}
 
@@ -139,7 +153,7 @@
 								{updatePosition}
 								{handlePosition}
 								{batchSize}
-								defaultNodes={[...markdownNodes, ...initialStep]}
+								defaultNodes={[[...markdownNodes, ...initialStep]]}
 								{loadData}
 							/>
 						{/if}
@@ -163,7 +177,7 @@
 							{updatePosition}
 							{handlePosition}
 							{batchSize}
-							defaultNodes={[...markdownNodes, ...initialStep]}
+							defaultNodes={[[...markdownNodes, ...initialStep]]}
 							{loadData}
 						/>
 					{/if}

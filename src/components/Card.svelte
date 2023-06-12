@@ -49,9 +49,10 @@
 	
 	.node:hover,
 	.selected {
-		background-color: var(--theme-color);
-		color: black;
+		/* background-color: var(--theme-color);
+		color: white; */
 		background-color: white;
+		color: black;
 		border:1px solid var(--theme-color);
 		opacity: 1;
 	}

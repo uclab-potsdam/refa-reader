@@ -162,8 +162,9 @@ export function parseJSONLD(jsonLD, set) {
      */
     let parseRecursive = async function (obj) {
         for (let key in obj) {
+
             // Check if the key is "@id" and the value starts with the API base URL and has a title
-            if (key === "@id" && obj[key].startsWith(Api) && (obj["o:title"] || obj.display_title)) {
+            if (key === "@id" && obj[key].startsWith(Api) && (obj["o:title"] || obj.display_title || reverse == true)) {
                 // Extract the target URL, title, and image
                 let splitId = obj[key].split("/");
                 let id = splitId[splitId.length - 1];
@@ -180,7 +181,7 @@ export function parseJSONLD(jsonLD, set) {
 
                 // gotta find a way to fix inveted properties
                 if (reverse) {
-                    property = invertedProperties[property] || "REVERSE: " + property
+                    // property = invertedProperties[property] || "REVERSE: " + property
                 }
 
                 const category = mainCategories
