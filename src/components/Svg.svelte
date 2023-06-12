@@ -1,9 +1,5 @@
 <script>
 	import { paths } from '@stores';
-
-	$: {
-		console.log($paths);
-	}
 </script>
 
 {#if Object.keys($paths).length > 0}
