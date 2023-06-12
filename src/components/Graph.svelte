@@ -154,7 +154,7 @@
 								{updatePosition}
 								{handlePosition}
 								{batchSize}
-								defaultNodes={[[...markdownNodes, ...initialStep]]}
+								defaultNodes={[...markdownNodes, ...initialStep]}
 								{loadData}
 							/>
 						{/if}
@@ -178,7 +178,7 @@
 							{updatePosition}
 							{handlePosition}
 							{batchSize}
-							defaultNodes={[[...markdownNodes, ...initialStep]]}
+							defaultNodes={[...markdownNodes, ...initialStep]}
 							{loadData}
 						/>
 					{/if}
