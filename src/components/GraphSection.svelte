@@ -71,8 +71,8 @@
 	<h4>{desc} <sup>[{dataLen}]</sup></h4>
 	<div class="divider">
 		{#each data as datum}
-			{#if !datum.skip && datum.source && datum.target}
-			<!-- {#if datum.source && datum.target} -->
+			<!-- {#if !datum.skip && datum.source && datum.target} -->
+			{#if datum.source && datum.target}
 				<div>
 					{#if newData.some((existingNode) => existingNode.title === datum.title)}
 						<Card

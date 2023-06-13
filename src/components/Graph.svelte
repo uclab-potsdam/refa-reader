@@ -47,13 +47,12 @@
 	}
 	$: {
 		let selected = [
-			...selectedData
-				.filter((v, i, a) => a.findIndex((v2) => v2.target === v.target) === i)
-				// remove skip
-				.map((d) => {
-					const inMarkdown = markdownNodes.find((j) => j.id == d.target);
-					return { ...d, skip: inMarkdown != undefined ? true : false };
-				})
+			...selectedData.filter((v, i, a) => a.findIndex((v2) => v2.target === v.target) === i)
+			// remove skip
+			// .map((d) => {
+			// 	const inMarkdown = markdownNodes.find((j) => j.id == d.target);
+			// 	return { ...d, skip: inMarkdown != undefined ? true : false };
+			// })
 		];
 
 		if (($graphSteps && $graphSteps.length == 0) || $graphSteps?.[0]?.data.length == 0) {
@@ -107,6 +106,7 @@
 	let col;
 
 	const getPaginatedData = (index, col) => {
+		console.log(index, col, $graphSteps[index]);
 		if (col != null) {
 			const { scrollTop, scrollHeight, clientHeight } = col;
 			if (scrollTop > 0 && scrollTop + clientHeight >= scrollHeight - 50) {
@@ -116,8 +116,10 @@
 					page,
 					paginate: $graphSteps[index].data.slice(0, page * batchSize)
 				};
-				// loading based on the last n items
-				loadData($graphSteps[index].paginate.slice(-batchSize), batchSize);
+				if ($graphSteps[index].paginate.length != $graphSteps[index].data.length) {
+					// loading based on the last n items
+					loadData($graphSteps[index].paginate.slice(-batchSize), batchSize);
+				}
 			}
 		}
 	};

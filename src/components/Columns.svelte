@@ -6,7 +6,7 @@
 	{#each data.posts as post}
 		{#if post.meta.isPublic}
 			<a href={post.path} target="_self">
-				<div class="column">
+				<div class="column" style="--meta-color: {post.meta.color}">
 					<h2>
 						{post.meta.title}
 					</h2>
@@ -49,7 +49,9 @@
 
 	.column:hover {
 		background-color: #e6e6e6;
+		color: var(--meta-color);
 	}
+
 	.column:hover > img {
 		filter: grayscale(0%);
 	}

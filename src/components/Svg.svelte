@@ -5,33 +5,33 @@
 {#if Object.keys($paths).length > 0}
 	<svg>
 		{#each Object.entries($paths) as [id, path]}
-			<!-- {#each path as item} -->
-			<path id="path_{id}" class={path.class} d={path.d} />
+			{#each path as item}
+				<path id="path_{id}" class={item.class} d={item.d} />
 
-			{#if path.class != undefined && path.class == 'highlite'}
-				<text class="{path.class} background">
-					<textPath
-						dominant-baseline="middle"
-						href="#path_{id}"
-						startOffset="98%"
-						text-anchor="end"
-					>
-						{path.label}
-					</textPath>
-				</text>
-				<text class={path.class}>
-					<textPath
-						dominant-baseline="middle"
-						href="#path_{id}"
-						startOffset="98%"
-						text-anchor="end"
-					>
-						{path.label}
-					</textPath>
-				</text>
-			{/if}
+				{#if item.class != undefined && item.class == 'highlite'}
+					<text class="{item.class} background">
+						<textPath
+							dominant-baseline="middle"
+							href="#path_{id}"
+							startOffset="98%"
+							text-anchor="end"
+						>
+							{item.label}
+						</textPath>
+					</text>
+					<text class={item.class}>
+						<textPath
+							dominant-baseline="middle"
+							href="#path_{id}"
+							startOffset="98%"
+							text-anchor="end"
+						>
+							{item.label}
+						</textPath>
+					</text>
+				{/if}
+			{/each}
 		{/each}
-		<!-- {/each} -->
 	</svg>
 {/if}
 
