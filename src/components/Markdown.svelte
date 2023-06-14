@@ -114,6 +114,11 @@
 		cursor: pointer;
 	}
 
+	:global(.markdown a) {
+		color: black;
+		text-decoration: underline dotted;
+	}
+
 	:global(.node-highlite) {
 		font-family: 'Inter', sans-serif;
 		font-weight: 450;
@@ -124,6 +129,7 @@
 		cursor: pointer;
 		border-radius: 2px;
 		padding: 2px;
+		text-decoration: unset !important;
 	}
 
 	:global(.selected) {
