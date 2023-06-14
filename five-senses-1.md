@@ -12,6 +12,8 @@ cover: "https://uclab.fh-potsdam.de/refa/files/large/3462bf943aaa761056dba91c89a
 Combining the allegory of the [Five Senses](item/33836) with genre scenes and also with family portraits finds its precursors in Dutch painting. For example, the [portrait of the siblings of Duke Augustus of Brunswick-Lüneburg](item/43003) was painted at another German court as early as 1637. The children are depicted in an interior room, the open window affording a view of the Braunschweig Burgplatz with the Braunschweig Lion and the so-called “Mosthaus”.
 
 ### Portrait of siblings
+
+
 The painting [“The Five Senses”](item/159) from the Modebild Collection shows the five children of “Count Philipp Ernst zu Hohenlohe-Langenburg”.
 From left to right can be seen: [“Eva Christina”](item/9390) as [“auditus”](item/10613) (hearing) with a lute, 
 Anna Magdalena, as  [visus](item/10536) (seeing) with a [mirror](item/10946), as [tactus](item/10586) (feeling) with a bird pecking into the hand, Joachim Albrecht as [Gustus](item/10913) (tasting) with an apple and [Heinrich Friedrich](item/9499) as [Odoratus](item/10550) (smelling) with a flower. Thus this is a portrait of a sibling combined with an allegory of the five senses. This is unique in the oeuvre of the painter Joachim Georg Creuzfelder. In this portrait of siblings, the young Hohenlohe court painter combines the common iconographic sign inventory of the allegory of the Five Senses with a family portrait. Creuzfelder chose a simple assignment of five sense attributes to one portrait each, in which no biographically based assignment pattern can be read.
