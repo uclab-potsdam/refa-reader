@@ -41,8 +41,8 @@ export async function extractLinks(markdown) {
     // Create queries for each type of link
     const itemQuery = `${Api}/items?${itemUrls.map((i) => `id[]=${i}`).join("&")}`;
     const setQuery = `${Api}/item_sets?${setUrls.map((i) => `id[]=${i}`).join("&")}`;
-    const mediaQuery = `${Api}/medias?${mediaUrls.map((i) => `id[]=${i}`).join("&")}`;
-
+    const mediaQuery = `${Api}/media?${mediaUrls.map((i) => `id[]=${i}`).join("&")}`;
+    console.log(mediaQuery)
     // Fetch data for each type of link
     const [itemResponse, setResponse, mediaResponse] = await Promise.all([
         itemUrls.length ? fetch(itemQuery) : Promise.resolve({}),
