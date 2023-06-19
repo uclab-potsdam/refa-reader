@@ -42,50 +42,32 @@ Die Gemäldesammlung weist eine [Gruppe von Frauenbildnissen](31735) auf, denen 
 Das [Gemälde](75) aus anonymer Hand zeigt eine Dame im Dreiviertelprofil, bekleidet mit einem dunklen Obergewand mit halblangen Ärmeln und breitem Ärmelumschlag, den sogenannten Flossenärmeln, und Spitzenmanschetten. Ein breiter Spitzenkragen mit rundem Halsausschnitt bedeckt die Brust und die Schultern und fällt vorne spitz über ihr Dekolleté. Ein schwarzes Florband mit eingehängtem Kreuzschmuck und eine mehrfach geschlungene Perlenkette zieren ihren Hals. Den Kopf bedeckt eine dreiteilig aufgebaute Haube. Zuunterst trägt sie eine schwarze Schnebbenhaube mit drahtverstärkten Schnebben. Die darüber getragene Haube besteht aus einem mit Spitze und Perlen reich verzierten goldfarbenen Band und einem hellroten, ebenfalls mit Spitze überzogenen Haubenteil am Hinterkopf. Die Form der Haube, des Hirnkäppleins und des Spitzenkragens verweisen auf eine süddeutsche Kleidertradition. [süddeutsche Kleidertradition](xxxfind textual sourcexxx).
 
 ## Kombinierte Genre
-### Bildnis der fünf Kinder Graf Philipp Ernsts zu Hohenlohe-Langenburg als Allegorie der Fünf Sinne
-neu neu neu
-Unterscheidung in Werkgruppen:
+Wie andere Zyklen - beispielsweise der "Vier Kontinente" oder der "Todsünden" - wurden die *Fünf Sinne* im 16. Jahrhundert zu einem beliebten allegorischen Sujet, das sich vorwiegend über die niederländische Druckgraphik verbreitete. Begleiter der Fünf Sinne *gustus, odoratus, visus, auditus und tactus* sind die folgenden Tiersymbole oder Attribute:
+Dem Sinn *Visus* werden die Tiere Adler, Luchs, Katze oder Eule oder die Attribute Fernrohr, Lupe, Brille oder [Spiegel](10538) beigegeben. Der Hörsinn (Auditus) wird begleitet von Eber, Maulwurf oder Hirsch oder einem Musikinstrument, meist der Laute. Der Geruchssinn (Oderatus) hat als Begleiter entweder einen Geier oder Hund oder als Attribut eine [Blume](10300), meist die [Nelke](45235). Der Geschmack (Gustus), wie in diesem Beispiel [*Der Geschmack*](item/538), wird von einem [Affen](10475) begleitet oder mit Früchten, einem Früchtekorb oder mit [Weinglas](10431) dargestellt. Asls fünfter Sinn gilt der Tastsinn (Tactus), der entweder von einer Spinne, einer Schildkröte, einem Skorpion oder einem [Vogel](10587) mit einem symbolischen Gehalt, etwa einem in die Hand pickenden [Ziervogel](583),  oder von einer Harfe begleitet wird.
+
 1. Mannigfaltigkeit allegorischer Darstellungen der fünf Sinne in der flämischen und holländischen Malerei des 17. Jahrhunderts: Großformatige Allegorien und kleine Kabinettgemälde mit Bildzyklen von Altmeistern wie Cornelis de Vos, Adriaen van Ostade, Jan Miense Molenaer, Barent Fabritius, Ambrosius Francken d.J. und Herman van Aldewereld.
 2. In den 1620er/30er Jahren aufblühende französische Stilllebenmalerei und ihrem Umgang mit dem Thema der fünf Sinne. Maler wie Jacques Linard und die Malerin Louise Moillon in Paris
 3. biblische Geschichte vom verlorenen Sohn, die oftmals mit gedrängten Wirtshausszenen illustriert wird, in denen man musiziert, trinkt und raucht. Wenngleich die Darstellungen noch als Ermahnung verstanden werden wollten, so herrscht für den Betrachter doch die Sinnenfreude vor. Maler wie Simon de Vos und David Teniers d.J. widmeten sich diesem seit dem Ende des 16. Jahrhunderts in den Niederlanden populären Bildthema.
 4. Verdrängung des Allegorischen durch eine erzählerische Darstellung der Sinne: Gemälden des 17. bis 19. Jahrhunderts. Werke von Philip van Dijk, Luca Giordano, Gerard de Lairesse, Jacob Duck oder Michiel Sweerts zeigen Genreszenen, musizierende Personen, Liebespaare oder galante Szenen mit versteckten Anspielungen auf die einzelnen Sinne. 
 Quelle: Austellungskatalog: Die fünf Sinne in der Malerei
+ 
+Wegweisend für die Verbreitung war der Fünf-Sinne-Zyklus von Cornelis Cort nach Entwürfen von Frans Floris (1561). Er kombiniert darin zwei Konzepte, die schon im Mittelalter verbreitet waren: Durch Attribute (signifikante Gegenstände) ausgestattete weibliche Personifikationen der Sinne werden von symbolisierenden sinnbegabten Tieren begleitet. Solche Bildzyklen oder Einzelszenen, in denen jeweils ein Sinn herausgegriffen und als Sinnbild gedeutet wird, waren besonders beliebt (Beispiel: Tactus). 
+
+Seit Ende des 16. Jahrhunderts gibt es aber auch allegorische Gesamtdarstellungen der fünf Sinne. Nach 1587 schuf Adam van Noort die Zeichnungen für zwei Stiche, in denen die Fünf Sinne auf einem Blatt vereint sind.[^Allegorie der fünf Sinne, Adam van Noort (Entwerfer), Adriane Collaert (Stecher), 1570-1618, Kupferstich, 22 x 27,1 cm, Rijksmuseum (Amsterdam)]
+/A_FBE6A93_HUBOX_ALLEGORIE_vermeld_op_object_prentmaker_Collaert_Adriaen_vermeld_op_object_naar_3273c919.jpg
+In dem von Adriane Collaert umgesetzten Stich lässt sich eine neue realistische Konzeption des Themas erkennen, mit dem der Wandel vom ursprünglichen Sinnbild zu einem Bürgerlichen Gesellschaftsbild einsetzt (Beispiel Noort/Collaert).
+Auch mit dem Thema der Fünf Sinne kombinierte Genredarstellung und Familienbildnisse finden ihre Verbreitung zunächst vorwiegend in den Niederlanden. Das Gemälde "Die Fünf Sinne" der Sammlung Modebild ist ein Beispiel dafür.
+
+
+
+### Bildnis der fünf Kinder Graf Philipp Ernsts zu Hohenlohe-Langenburg als Allegorie der Fünf Sinne
+
 
 #### Ein Familienbildnis als Allegorie der Fünf Sinne
 Das kleinformatige Gemälde im Querformat zeigt als Allegorie der fünf Sinne drei Frauen und zwei Männer in einer Landschaft stehend. Die Figuren stehen auf einem schmalen Grashügel, der am rechten Bildrand mit einem Baum endet, im Vordergrund, links die drei Damen und rechts zwei Herren. Die Dame am linken Bildrand spielt eine Mandoline. Neben ihr stehen der ersten Dame zugewandt die beiden anderen Frauen. Die eine hält einen Spiegel in ihrer Rechten, die andere, mit rötlichbraunen Haaren, hebt ihr Obergewand leicht an und wird von einem grünen Papagei, der auf ihrer Hand sitzt, in den Finger gepickt. Alle drei Damen tragen gelbweiße Obergewänder. Diese sind gänzlich aus einem weißen, gelbgemusterten Stoff erstellt, wobei ein anliegendes Oberteil in einen bodenlangen faltenreichen Rock übergeht. Die weiten Ärmel werden von einem Bund geschlossen und über der Schulter liegt ein breiter, weißer Kragen. Durch einen schmalen Pfad, der sich parallel zu einem Fluss in die Tiefe schlängelt, getrennt stehen rechts unter dem Baum die beiden Herren. Während ersterer, den Rücken den Damen zugewandt, mit seiner Linken zu einer roten Frucht in den Baum greift und seine Rechte den Hut haltend in der Hüfte gestützt hat, führt der neben ihm Stehende, die linke Hand in die Hüfte gestützt, mit seiner Rechten eine Blüte an die Nase. Beide Herren tragen schulterlanges Haar und blicken aus dem Bild heraus den Betrachter an. Hinter den Figuren öffnet sich die Landschaft. Von links führt ein Fluss in die Bildtiefe nach rechts, den der Pfad rechterhand durch die Wiesen an einem Baum vorbei begleitet. Hinter diesem Gewässer werden zwischen den Damen links die Gebäude einer Ansiedlung sichtbar und dahinter schließt sich eine den gesamten Hintergrund einnehmende Bergkette an. Der Himmel wird vom Weiß in der tiefsten Aussicht zum oberen Bildrand hin blau wobei sich Wolkenformationen in dieser Farbgebung abzeichnen. 
 
 Das [*Bildnis der fünf Kinder Graf Philipp Ernsts zu Hohenlohe-Langenburg als Allegorie der Fünf Sinne*](item/159)zeigt die fünf Kinder Graf Philipp Ernsts zu Hohenlohe-Langenburg. Von links nach rechts sind zu sehen: Eva Christina (23.8.1621-25.5.1687, vermählt 23.8.1646) als Auditus (Hören) mit einer Laute, Anna Magdalena (23.6.1617-4.10.1670, verheiratet, ohne Jahresangabe) als Visus (Sehen) mit einem Spiegel, Maria Juliana (6.7.1623-11.1.1695, 1. Ehe 14.11.1647, 2. Ehe 1663) als Tactus (Fühlen) mit einem in die Hand pickenden Vogel, Joachim Albrecht (3.8.1619-15.7.1675, unverheiratet) als Gustus (Schmecken) mit einem Apfel und [Heinrich Friedrich](item/607) (5.9.1625-2.6.1699, 1. Ehe 25.1.1652, 2. Ehe 5.7.1658) als Odoratus (Riechen) mit einer Blume. Damit handelt es sich hierbei um ein Geschwisterbildnis, das mit einer Allegorie der fünf Sinne kombiniert wurde. Im Oeuvre des Malers Joachim Georg Creuzfelder ist dies einzigartig. In dem Geschwisterporträt vereint der junge Hofmaler der Hohenlohe das gängige ikonographische Zeicheninventar der Allegorie der Fünf Sinne mit einem Familienbildnis. Creuzfelder wählte eine einfache Zuordnung von fünf Sinnesattributen zu je einem Porträt, bei der kein biographisch begründetes Zuordnungsmuster ablesbar ist.
 
-#### Tiersymbole und Attribute als Begleitung der Fünf Sinne
-Wie andere Zyklen - beispielsweise der "Vier Kontinente" oder der "Todsünden" - wurden die *Fünf Sinne* im 16. Jahrhundert zu einem beliebten allegorischen Sujet, das sich vorwiegend über die niederländische Druckgraphik verbreitete. Wegweisend dafür war der Fünf-Sinne-Zyklus von Cornelis Cort nach Entwürfen von Frans Floris (1561). Er kombiniert darin zwei Konzepte, die schon im Mittelalter verbreitet waren: Durch Attribute (signifikante Gegenstände) ausgestattete weibliche Personifikationen der Sinne werden von symbolisierenden sinnbegabten Tieren begleitet.
-Solche Bildzyklen oder Einzelszenen, in denen jeweils ein Sinn herausgegriffen und als Sinnbild gedeutet wird, waren besonders beliebt (Beispiel: Tactus). Seit Ende des 16. Jahrhunderts gibt es aber auch allegorische Gesamtdarstellungen der fünf Sinne. Nach 1587 schuf Adam van Noort die Zeichnungen für zwei Stiche, in denen die Fünf Sinne auf einem Blatt vereint sind.[^Allegorie der fünf Sinne, Adam van Noort (Entwerfer), Adriane Collaert (Stecher), 1570-1618, Kupferstich, 22 x 27,1 cm, Rijksmuseum (Amsterdam)]
-/A_FBE6A93_HUBOX_ALLEGORIE_vermeld_op_object_prentmaker_Collaert_Adriaen_vermeld_op_object_naar_3273c919.jpg
-In dem von Adriane Collaert umgesetzten Stich lässt sich eine neue realistische Konzeption des Themas erkennen, mit dem der Wandel vom ursprünglichen Sinnbild zu einem Bürgerlichen Gesellschaftsbild einsetzt (Beispiel Noort/Collaert).
-Auch mit dem Thema der Fünf Sinne kombinierte Genredarstellung und Familienbildnisse finden ihre Verbreitung zunächst vorwiegend in den Niederlanden. Das Gemälde "Die Fünf Sinne" der Sammlung Modebild ist ein Beispiel dafür.
-
-gustus-odoratus-visus-auditus-tactus
-Gesicht - Visum
-Tiere: Adler, Luchs, Katze, Eule
-Attribute: Fernrohr, Lupe, Brille, Spiegel etc.
-
-Gehör - Auditus
-Tiere: Eber, Maulwurf, Hirsch
-Attribute: Musikinstrument, Laute
-
-Geruch - Odoratus
-Tiere: Geier, Hund
-Attribute: Blume, Nelke
-
-Geschmack - Gustus
-Tiere: Affe
-Attribute: Frucht, Früchtekorb, Weinglas
-https://www.metmuseum.org/art/collection/search/350802
-[*Der Geschmack*](item/538)
-
-Tastsinn - Tactus
-Tiere: Spinne, Schildkröte, pickender Vogel, Papagei, Skorpion
-Attribute: Harfe
-[*Bildnis einer Frau als Personifikation des Gefühls*](item/583)
 
 Vergleich
 [Die Kinder Herzog Augustus d. J. von Braunschweig-Lüneburg (Wolffenbüttel) (1579-1666), unbekannter Maler, 1637, Öl auf Leinwand, 145 x 210 cm, Braunschweig, Städtisches Museum, Inv.-Nr.: 1200-1166-00, Alt-Nr.: 450 ](https://kulturerbe.niedersachsen.de/piresolver?id=record_kuniweb_402012)(CC BY-NC-ND 4.0)
