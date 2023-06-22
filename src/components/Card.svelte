@@ -32,12 +32,13 @@
 	<!-- <div class="title"><strong>{datum.target.split('/').slice(-1)[0]}</strong></div> -->
 	{#if datum.img}
 		<img src={datum.img.replace('square', 'large')} alt={datum.title} on:load={handleLoad} />
+		<div class="title">{datum.title}</div>
 	{:else if imageSrc}
 		<img src={imageSrc} alt={datum.title} on:load={handleLoad} />
+		<div class="title">{datum.title}</div>
 	{:else}
 		<div class="title">{datum.title}</div>
 	{/if}
-	<!-- <div class="title">{datum.target}</div> -->
 </div>
 
 <style>
@@ -46,14 +47,14 @@
 		padding: 0.25rem 0.5rem;
 		margin-bottom: 1rem;
 	}
-	
+
 	.node:hover,
 	.selected {
 		/* background-color: var(--theme-color);
 		color: white; */
 		background-color: white;
 		color: black;
-		border:1px solid var(--theme-color);
+		border: 1px solid var(--theme-color);
 		opacity: 1;
 	}
 

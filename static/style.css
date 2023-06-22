@@ -2,7 +2,7 @@ body {
     font-family: "Redaction", sans-serif;
     /* background-color: #f6f6f6; */
     font-size: 18px;
-    line-height: 1.15;f
+    line-height: 1.15;
     letter-spacing: .5px;
     margin: 0;
     padding: 0;
@@ -13,7 +13,7 @@ body {
 
 ::selection {
     background-color: var(--theme-color);
-    color: white;;
+    color: white;
 }
 
 h1, h2, h3, h4, h5 {
@@ -39,6 +39,19 @@ h1, h2, h3, h4, h5 {
 .markdown *:is(h1, h2, h3, h4, h5, h6) {
     font-family: "Redaction", serif;
     font-style: italic;
+}
+
+
+.markdown h1 {
+    font-size: 1.3em;
+}
+
+.markdown h2 {
+    font-size: 1.2em;
+}
+
+.markdown h3, .markdown h4 {
+    font-size: 1.1em;
 }
 
 .node-highlite {

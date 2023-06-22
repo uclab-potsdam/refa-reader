@@ -133,10 +133,13 @@
 	}
 
 	:global(.selected) {
-		color: white !important;
 		background-color: var(--theme-color);
 		mix-blend-mode: color-burn;
 		/* background: linear-gradient(to right, #f2f2f2, var(--theme-color)); */
+	}
+
+	:global(.markdown .selected) {
+		color: white !important;
 	}
 
 	:global(.symbol) {
