@@ -106,7 +106,6 @@
 	let col;
 
 	const getPaginatedData = (index, col) => {
-		console.log(index, col, $graphSteps[index]);
 		if (col != null) {
 			const { scrollTop, scrollHeight, clientHeight } = col;
 			if (scrollTop > 0 && scrollTop + clientHeight >= scrollHeight - 50) {

@@ -38,41 +38,106 @@ export async function extractLinks(markdown) {
         }
     }
 
-    // Create queries for each type of link
-    const itemQuery = `${Api}/items?${itemUrls.map((i) => `id[]=${i}`).join("&")}`;
-    const setQuery = `${Api}/item_sets?${setUrls.map((i) => `id[]=${i}`).join("&")}`;
-    const mediaQuery = `${Api}/media?${mediaUrls.map((i) => `id[]=${i}`).join("&")}`;
-    console.log(mediaQuery)
-    // Fetch data for each type of link
-    const [itemResponse, setResponse, mediaResponse] = await Promise.all([
-        itemUrls.length ? fetch(itemQuery) : Promise.resolve({}),
-        setUrls.length ? fetch(setQuery) : Promise.resolve({}),
-        mediaUrls.length ? fetch(mediaQuery) : Promise.resolve({})
-    ]);
+    // // Create queries for each type of link
+    // const itemQuery = `${Api}/items?${itemUrls.map((i) => `id[]=${i}`).join("&")}`;
+    // const setQuery = `${Api}/item_sets?${setUrls.map((i) => `id[]=${i}`).join("&")}`;
+    // const mediaQuery = `${Api}/media?${mediaUrls.map((i) => `id[]=${i}`).join("&")}`;
 
-    // Parse the JSON data for each type of link
-    const [itemJsons, setJsons, mediaJsons] = await Promise.all([
-        itemUrls.length ? itemResponse.json() : Promise.resolve([]),
-        setUrls.length ? setResponse.json() : Promise.resolve([]),
-        mediaUrls.length ? mediaResponse.json() : Promise.resolve([])
-    ]);
+    // // Fetch data for each type of link
+    // const [itemResponse, setResponse, mediaResponse] = await Promise.all([
+    //     itemUrls.length ? fetch(itemQuery) : Promise.resolve({}),
+    //     setUrls.length ? fetch(setQuery) : Promise.resolve({}),
+    //     mediaUrls.length ? fetch(mediaQuery) : Promise.resolve({})
+    // ]);
+
+    // // Parse the JSON data for each type of link
+    // const [itemJsons, setJsons, mediaJsons] = await Promise.all([
+    //     itemUrls.length ? itemResponse.json() : Promise.resolve([]),
+    //     setUrls.length ? setResponse.json() : Promise.resolve([]),
+    //     mediaUrls.length ? mediaResponse.json() : Promise.resolve([])
+    // ]);
+
+    // // Combine the JSON data into a single array
+    // let parseitems = [...itemJsons, ...mediaJsons, ...setJsons]
+
+    // // Loop through each link object and add additional data as needed
+    // for (let i = 0; i < parseitems.length; i++) {
+    //     const link = links[i];
+    //     const json = parseitems.find(d => d["o:id"] == link.id);
+    //     // If the JSON data includes an "o:items" property, it is a set link
+    //     if (json?.["o:items"]) {
+    //         link.data = json;
+    //         link.set = {
+    //             id: json["o:id"],
+    //             title: json["o:title"]
+    //         };
+    //         // Fetch the items in the set
+    //         const items = json["o:items"]["@id"];
+    //         const responseSet = await fetch(items);
+    //         const jsonSet = await responseSet.json();
+    //         jsonSet.forEach(item => {
+    //             links.push({
+    //                 label: item["o:title"],
+    //                 id: item["o:id"],
+    //                 data: item,
+    //                 set: {
+    //                     id: json["o:id"],
+    //                     title: json["o:title"]
+    //                 }
+    //             });
+    //         });
+    //     }
+    //     else {
+    //         link.data = json;
+    //     }
+
+    // }
+    // console.log(itemUrls.length, itemJsons.length)
+    // return links;
+
+    const batchSize = 4; // Bug in Omeka, it does not load all items...
+
+    // Split the itemUrls into batches of batchSize
+    const itemUrlBatches = splitIntoBatches(itemUrls, batchSize);
+    const itemPromises = itemUrlBatches.map(batch => {
+        const itemQuery = `${Api}/items?${batch.map(i => `id[]=${i}`).join("&")}&&limit=all`;
+        return fetch(itemQuery).then(response => response.json());
+    });
+
+    // Split the setUrls into batches of batchSize
+    const setUrlBatches = splitIntoBatches(setUrls, batchSize);
+    const setPromises = setUrlBatches.map(batch => {
+        const setQuery = `${Api}/item_sets?${batch.map(i => `id[]=${i}`).join("&")}&&limit=all`;
+        return fetch(setQuery).then(response => response.json());
+    });
+
+    // Split the mediaUrls into batches of batchSize
+    const mediaUrlBatches = splitIntoBatches(mediaUrls, batchSize);
+    const mediaPromises = mediaUrlBatches.map(batch => {
+        const mediaQuery = `${Api}/media?${batch.map(i => `id[]=${i}`).join("&")}&&limit=all`;
+        return fetch(mediaQuery).then(response => response.json());
+    });
+
+    // Fetch data for each type of link
+    const itemJsons = await Promise.all(itemPromises);
+    const setJsons = await Promise.all(setPromises);
+    const mediaJsons = await Promise.all(mediaPromises);
 
     // Combine the JSON data into a single array
-    let parseitems = [...itemJsons, ...mediaJsons, ...setJsons]
+    const parseitems = [...itemJsons.flat(), ...mediaJsons.flat(), ...setJsons.flat()];
 
     // Loop through each link object and add additional data as needed
-    for (let i = 0; i < parseitems.length; i++) {
+    for (let i = 0; i < links.length; i++) {
         const link = links[i];
         const json = parseitems.find(d => d["o:id"] == link.id);
 
-        // If the JSON data includes an "o:items" property, it is a set link
         if (json?.["o:items"]) {
             link.data = json;
             link.set = {
                 id: json["o:id"],
                 title: json["o:title"]
             };
-            // Fetch the items in the set
+
             const items = json["o:items"]["@id"];
             const responseSet = await fetch(items);
             const jsonSet = await responseSet.json();
@@ -87,13 +152,23 @@ export async function extractLinks(markdown) {
                     }
                 });
             });
-        }
-        else {
+        } else {
             link.data = json;
         }
     }
 
+    console.log(links);
     return links;
+
+
+    // Helper function to split an array into batches
+    function splitIntoBatches(arr, batchSize) {
+        const batches = [];
+        for (let i = 0; i < arr.length; i += batchSize) {
+            batches.push(arr.slice(i, i + batchSize));
+        }
+        return batches;
+    }
 }
 
 
@@ -129,6 +204,7 @@ export async function createTriplets(data) {
         links: allTriplets,
     }
 
+
     return { ...graph };
 }
 
@@ -162,6 +238,22 @@ export function parseJSONLD(jsonLD, set) {
      */
     let parseRecursive = async function (obj) {
         for (let key in obj) {
+
+
+            if (key == "o:item") {
+                const mainItemUrl = obj[key]["@id"];
+                const mainItemData = await fetch(mainItemUrl).then(response => response.json());
+
+                triplets.push({
+                    source: source,
+                    target: obj[key]["@id"],
+                    title: mainItemData["o:title"],
+                    img: mainItemData?.thumbnail_url || mainItemData?.thumbnail_display_urls?.large,
+                    property: "",
+                    category: mainCategories[0].key,
+                });
+                console.log(triplets)
+            }
 
             // Check if the key is "@id" and the value starts with the API base URL and has a title
             if (key === "@id" && obj[key].startsWith(Api) && (obj["o:title"] || obj.display_title || reverse == true)) {
