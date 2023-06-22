@@ -7,8 +7,8 @@ on:
         description: 'Manually run workflow'     
         required: true
   #push:
-    #branches:
-      #- essays
+   # branches:
+    #  - essays
 
 jobs:
   merge_to_main:
@@ -22,12 +22,11 @@ jobs:
 
       - name: Move files to specific folder
         run: |
-          rm -rf src/routes/texts/*
           mkdir -p src/routes/texts
-          rsync -u ./*.md src/routes/texts
+          cp -R ./*.md src/routes/texts
           git add .
           git stash
-          
+
       - name: Checkout main branch
         uses: actions/checkout@v2
 
