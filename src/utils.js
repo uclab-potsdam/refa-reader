@@ -100,21 +100,21 @@ export async function extractLinks(markdown) {
     // Split the itemUrls into batches of batchSize
     const itemUrlBatches = splitIntoBatches(itemUrls, batchSize);
     const itemPromises = itemUrlBatches.map(batch => {
-        const itemQuery = `${Api}/items?${batch.map(i => `id[]=${i}`).join("&")}&&limit=all`;
+        const itemQuery = `${Api}/items?${batch.map(i => `id[]=${i}`).join("&")}`;
         return fetch(itemQuery).then(response => response.json());
     });
 
     // Split the setUrls into batches of batchSize
     const setUrlBatches = splitIntoBatches(setUrls, batchSize);
     const setPromises = setUrlBatches.map(batch => {
-        const setQuery = `${Api}/item_sets?${batch.map(i => `id[]=${i}`).join("&")}&&limit=all`;
+        const setQuery = `${Api}/item_sets?${batch.map(i => `id[]=${i}`).join("&")}`;
         return fetch(setQuery).then(response => response.json());
     });
 
     // Split the mediaUrls into batches of batchSize
     const mediaUrlBatches = splitIntoBatches(mediaUrls, batchSize);
     const mediaPromises = mediaUrlBatches.map(batch => {
-        const mediaQuery = `${Api}/media?${batch.map(i => `id[]=${i}`).join("&")}&&limit=all`;
+        const mediaQuery = `${Api}/media?${batch.map(i => `id[]=${i}`).join("&")}`;
         return fetch(mediaQuery).then(response => response.json());
     });
 
@@ -152,6 +152,7 @@ export async function extractLinks(markdown) {
                     }
                 });
             });
+            console.log("here", jsonSet)
         } else {
             link.data = json;
         }
@@ -243,7 +244,7 @@ export function parseJSONLD(jsonLD, set) {
             if (key == "o:item") {
                 const mainItemUrl = obj[key]["@id"];
                 const mainItemData = await fetch(mainItemUrl).then(response => response.json());
-
+                console.log(mainItemData)
                 triplets.push({
                     source: source,
                     target: obj[key]["@id"],
@@ -252,7 +253,6 @@ export function parseJSONLD(jsonLD, set) {
                     property: "",
                     category: mainCategories[0].key,
                 });
-                console.log(triplets)
             }
 
             // Check if the key is "@id" and the value starts with the API base URL and has a title
