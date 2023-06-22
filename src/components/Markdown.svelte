@@ -88,10 +88,13 @@
 				link.classList.remove('selected');
 			});
 
-			let selected = document.querySelector(`a[data-id="${$selectedNode}"]`);
+			let selected = document.querySelectorAll(`a[data-id="${$selectedNode}"]`);
+
 			if (selected) {
 				$selectedNode == $selectedNode;
-				selected.classList.add('selected');
+				selected.forEach((link) => {
+					link.classList.add('selected');
+				});
 			}
 		}
 	}
