@@ -130,14 +130,12 @@ export async function extractLinks(markdown) {
     for (let i = 0; i < links.length; i++) {
         const link = links[i];
         const json = parseitems.find(d => d["o:id"] == link.id);
-
         if (json?.["o:items"]) {
             link.data = json;
             link.set = {
                 id: json["o:id"],
                 title: json["o:title"]
             };
-
             const items = json["o:items"]["@id"];
             const responseSet = await fetch(items);
             const jsonSet = await responseSet.json();
@@ -204,8 +202,6 @@ export async function createTriplets(data) {
         }, []),
         links: allTriplets,
     }
-
-
     return { ...graph };
 }
 
