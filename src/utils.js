@@ -1,6 +1,6 @@
 import { Api, visibleLinks, allLinks, selectedNode, mainCategories, secondayCategoriesLabel, setCategory } from '@stores';
 import { invertedProperties } from './invertedProperties';
-
+import newUniqueId from 'locally-unique-id-generator';
 
 export async function extractLinks(markdown) {
     // Regular expression to match links
@@ -95,7 +95,8 @@ export async function extractLinks(markdown) {
     // console.log(itemUrls.length, itemJsons.length)
     // return links;
 
-    const batchSize = 4; // Bug in Omeka, it does not load all items...
+    // Bug in Omeka, it does not load all items... I have to batch with small amounts for now 
+    const batchSize = 1;
 
     // Split the itemUrls into batches of batchSize
     const itemUrlBatches = splitIntoBatches(itemUrls, batchSize);
@@ -122,12 +123,11 @@ export async function extractLinks(markdown) {
     const itemJsons = await Promise.all(itemPromises);
     const setJsons = await Promise.all(setPromises);
     const mediaJsons = await Promise.all(mediaPromises);
-
     // Combine the JSON data into a single array
     const parseitems = [...itemJsons.flat(), ...mediaJsons.flat(), ...setJsons.flat()];
 
     // Loop through each link object and add additional data as needed
-    for (let i = 0; i < links.length; i++) {
+    for (let i = 0; i < parseitems.length; i++) {
         const link = links[i];
         const json = parseitems.find(d => d["o:id"] == link.id);
         if (json?.["o:items"]) {
@@ -136,6 +136,7 @@ export async function extractLinks(markdown) {
                 id: json["o:id"],
                 title: json["o:title"]
             };
+            // Fetch the items in the set
             const items = json["o:items"]["@id"];
             const responseSet = await fetch(items);
             const jsonSet = await responseSet.json();
@@ -144,16 +145,41 @@ export async function extractLinks(markdown) {
                     label: item["o:title"],
                     id: item["o:id"],
                     data: item,
+                    uniqueId: newUniqueId(),
                     set: {
                         id: json["o:id"],
                         title: json["o:title"]
                     }
                 });
             });
-            console.log("here", jsonSet)
-        } else {
+        }
+        else if (json?.["o:item"]) {
+            link.data = json;
+            link.set = {
+                id: json["o:id"],
+                title: json["o:title"]
+            };
+            // Fetch the items in the set
+            const item = json["o:item"]["@id"];
+            const responseItem = await fetch(item);
+            const jsonItem = await responseItem.json();
+
+            links.push({
+                label: jsonItem["o:title"],
+                id: jsonItem["o:id"],
+                data: jsonItem,
+                uniqueId: newUniqueId(),
+                set: {
+                    id: json["o:id"],
+                    title: json["o:title"]
+                }
+            });
+        }
+        else {
+            link.uniqueId = newUniqueId();
             link.data = json;
         }
+
     }
 
     console.log(links);
@@ -235,21 +261,6 @@ export function parseJSONLD(jsonLD, set) {
      */
     let parseRecursive = async function (obj) {
         for (let key in obj) {
-
-
-            if (key == "o:item") {
-                const mainItemUrl = obj[key]["@id"];
-                const mainItemData = await fetch(mainItemUrl).then(response => response.json());
-                console.log(mainItemData)
-                triplets.push({
-                    source: source,
-                    target: obj[key]["@id"],
-                    title: mainItemData["o:title"],
-                    img: mainItemData?.thumbnail_url || mainItemData?.thumbnail_display_urls?.large,
-                    property: "",
-                    category: mainCategories[0].key,
-                });
-            }
 
             // Check if the key is "@id" and the value starts with the API base URL and has a title
             if (key === "@id" && obj[key].startsWith(Api) && (obj["o:title"] || obj.display_title || reverse == true)) {
