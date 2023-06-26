@@ -130,7 +130,6 @@ export async function extractLinks(markdown) {
     for (let i = 0; i < parseitems.length; i++) {
         const link = links[i];
         const json = parseitems.find(d => d["o:id"] == link.id);
-        // If the JSON data includes an "o:items" property, it is a set link
         if (json?.["o:items"]) {
             link.data = json;
             link.set = {
@@ -229,8 +228,6 @@ export async function createTriplets(data) {
         }, []),
         links: allTriplets,
     }
-
-
     return { ...graph };
 }
 
