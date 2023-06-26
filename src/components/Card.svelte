@@ -1,5 +1,6 @@
 <script>
 	import { graphSteps } from '@stores';
+	import PropLabel from '@components/PropLabel.svelte';
 	export let datum;
 	export let entities;
 	export let updatePosition;
@@ -22,6 +23,7 @@
 	}
 </script>
 
+<PropLabel label={datum.property} />
 <div
 	class="node {$graphSteps.find((d) => d.id == datum.target) ? 'selected' : ''}"
 	data-id={datum.target.split('/').slice(-1)[0]}
