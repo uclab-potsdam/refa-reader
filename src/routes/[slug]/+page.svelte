@@ -34,7 +34,13 @@
 
 <svelte:window on:resize={handlePosition} on:scroll={handlePosition} />
 
-{#if triplets != undefined}
+{#if triplets == undefined}
+	<article>
+		<section class="markdown__container">
+			<h4>Loading...</h4>
+		</section>
+	</article>
+{:else}
 	<article style="--theme-color: {textData.meta?.color || 'blue'}">
 		<section class="item__detail">
 			<ItemDetail data={itemsJson} />
@@ -72,7 +78,7 @@
 	}
 
 	h1 {
-		margin-top: .5rem;
+		margin-top: 0.5rem;
 		margin-bottom: 1rem;
 		font-size: 2.4rem;
 	}

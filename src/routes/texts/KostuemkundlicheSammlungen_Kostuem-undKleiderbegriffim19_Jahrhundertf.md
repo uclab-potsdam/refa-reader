@@ -1,8 +1,8 @@
 ---
 title: Kostümkundliche Sammlungen und der Kostüm- und Kleiderbegriff im 19. Jahrhundert (interim)
 date: "2023-12-14"
-color: "pink"
-isPublic: false
+color: "blue"
+isPublic: true
 description: "Das Projekt „Restaging Fashion“ widmet sich der Kulturgeschichte der Kleidung, ihrer Erscheinung und Zeichenhaftigkeit und führt vestimentäre Quellen im Digitalen zusammen, um eine quellenübergreifende und multidisziplinäre Forschung an den Objekten zu ermöglichen.
 "
 cover: "https://uclab.fh-potsdam.de/refa/files/original/af6d3f80b1b5690cf68dae59dcfb0909bd2e6ea9.jpg"

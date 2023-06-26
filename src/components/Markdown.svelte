@@ -88,10 +88,13 @@
 				link.classList.remove('selected');
 			});
 
-			let selected = document.querySelector(`a[data-id="${$selectedNode}"]`);
+			let selected = document.querySelectorAll(`a[data-id="${$selectedNode}"]`);
+
 			if (selected) {
 				$selectedNode == $selectedNode;
-				selected.classList.add('selected');
+				selected.forEach((link) => {
+					link.classList.add('selected');
+				});
 			}
 		}
 	}
@@ -116,6 +119,7 @@
 
 	:global(.markdown a) {
 		color: black;
+		font-size: .9em;
 		text-decoration: underline dotted;
 	}
 
@@ -123,7 +127,7 @@
 		font-family: 'Inter', sans-serif;
 		font-weight: 450;
 		font-style: normal;
-		font-size: 0.7em;
+		font-size: 0.7em !important;
 		color: black;
 		background-color: #f2f2f2;
 		cursor: pointer;

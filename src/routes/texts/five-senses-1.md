@@ -1,6 +1,6 @@
 ---
 title: The Five Senses
-date: "2023-12-14"
+date: "2024-12-14"
 isPublic: true
 color: "tomato"
 description: "Like other cycles - for example the Four Continents or the Deadly Sins - the Five Senses became a popular allegorical subject in the 16th century, spreading mainly through Dutch prints. The five senses gustus, odoratus, visus, auditus and tactus are accompanied by animal symbols or attributes."
