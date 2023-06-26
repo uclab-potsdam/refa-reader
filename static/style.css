@@ -11,9 +11,18 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+:root {
+	--grey: #2d2d2d;
+	--light-grey: #dfdfdf;
+	--white: #efefef;
+	--black: #202020;
+	--selection: red;
+	--node-highlite: blue;
+}
+
 ::selection {
     background-color: var(--theme-color);
-    color: white;
+    color: var(--white);
 }
 
 h1, h2, h3, h4, h5 {
@@ -38,20 +47,60 @@ h1, h2, h3, h4, h5 {
 
 .markdown *:is(h1, h2, h3, h4, h5, h6) {
     font-family: "Redaction", serif;
-    /* font-style: italic; */
 }
 
 
+h1,h2,h3,h4,p {
+	font-weight: normal;
+	margin: 0;
+	padding: .2rem;
+}
+
 .markdown h1 {
-    font-size: 1.3em;
+	font-size: 1.33vw;
+    font-weight: 400;
 }
 
 .markdown h2 {
-    font-size: 1.2em;
+	font-size: 1.2vw;
+    font-weight: 400;
+}
+	
+.markdown h3 {
+	font-size: 1.1vw;
+    font-weight: 400;
 }
 
-.markdown h3, .markdown h4 {
-    font-size: 1.1em;
+.markdown h4 {
+	font-size: 1vw;
+    font-weight: 400;
+}
+
+/* p {
+	font-size: 1.4vw;
+} */
+
+.biblio { 
+	font-size: .875vw;
+}
+
+.markdown h1, .markdown h2, .markdown h3,.markdown h4 {
+	text-align: center;
+	border-bottom: 1px solid var(--grey);
+	margin: 3rem 0 1rem 0;
+}
+
+.markdown > p, .markdown blockquote, .markdown ul, .biblio {
+	font-family: "Redaction", sans-serif;
+	margin-bottom: 1rem;
+}
+
+.markdown li {
+	padding-bottom: 1rem;
+}
+
+.markdown > p {
+	text-indent: 3rem;
 }
 
 .node-highlite {
