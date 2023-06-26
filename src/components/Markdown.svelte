@@ -119,6 +119,7 @@
 
 	:global(.markdown a) {
 		color: black;
+		font-size: .9em;
 		text-decoration: underline dotted;
 	}
 
@@ -126,7 +127,7 @@
 		font-family: 'Inter', sans-serif;
 		font-weight: 450;
 		font-style: normal;
-		font-size: 0.7em;
+		font-size: 0.7em !important;
 		color: black;
 		background-color: #f2f2f2;
 		cursor: pointer;
