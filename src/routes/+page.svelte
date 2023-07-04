@@ -6,6 +6,6 @@
 </script>
 
 <article style="--theme-color:blue">
-	<Header essays={data.posts.length} />
+	<Header essays={data.posts.filter(d=>d.meta.isPublic).length} />
 	<Columns {data} />
 </article>

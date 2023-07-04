@@ -8,20 +8,10 @@
 			{#each path as item}
 				<path id="path_{id}" class={item.class} d={item.d} />
 
-				{#if item.class != undefined && item.class == 'highlite'}
-					<text class="{item.class} background">
-						<textPath
-							dominant-baseline="middle"
-							href="#path_{id}"
-							startOffset="98%"
-							text-anchor="end"
-						>
-							{item.label}
-						</textPath>
-					</text>
+				<!-- {#if item.class != undefined && item.class == 'highlite'}
 					<text class={item.class}>
 						<textPath
-							dominant-baseline="middle"
+							dominant-baseline="hanging"
 							href="#path_{id}"
 							startOffset="98%"
 							text-anchor="end"
@@ -29,7 +19,7 @@
 							{item.label}
 						</textPath>
 					</text>
-				{/if}
+				{/if} -->
 			{/each}
 		{/each}
 	</svg>
@@ -82,7 +72,7 @@
 
 	path.highlite {
 		stroke-width: 7;
-		stroke-width: 0.2;
+		stroke-width: 0.5;
 
 		stroke: white;
 		stroke: var(--theme-color);

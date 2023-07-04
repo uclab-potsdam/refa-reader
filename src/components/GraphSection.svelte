@@ -110,23 +110,4 @@
 		margin-bottom: 1rem;
 		padding-bottom: 1rem;
 	}
-
-	/* .classification {
-		color: #959595;
-	} */
-
-	/* :global(.classification *:not(.selected) > img) {
-		opacity: 0.3;
-	} */
-
-	/* :global(.classification img:hover) {
-		opacity: 1;
-	}
-	:global(.classification textPath) {
-		fill: #adadad;
-	} */
-
-	/* :global(.classification path.highlite) {
-		stroke: #adadad;
-	} */
 </style>

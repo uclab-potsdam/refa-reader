@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { selectedNode, customIcons } from '@stores';
 	import { observe } from '@utils';
+	import newUniqueId from 'locally-unique-id-generator';
 
 	export let data;
 	export let items;
@@ -25,7 +26,7 @@
 			if (href.startsWith('http')) {
 				return `<a class="external" target="_blank" href="${href}" title="${text}">${text}</a>`;
 			} else {
-				return `<a class="node-highlite" data-id="${
+				return `<a class="node-highlite" unique-id="${newUniqueId()}" data-id="${
 					href.split('/')[1]
 				}" title="${text}">${text}<span class="symbol node" data-id="${href.split('/')[1]}"
 				data-class="${items
@@ -67,7 +68,7 @@
 		)[1];
 		return `<li id="fnref-${footnoteNumber}"> ${footnoteContent}</li>`;
 	}).join('');
-	const finalHtml = `${htmlWithFootnotes}<ol>${footnotes}</ol>`;
+	const finalHtml = `${htmlWithFootnotes}<ol class="biblio">${footnotes}</ol>`;
 
 	onMount(async () => {
 		observe();
@@ -108,7 +109,7 @@
 	.markdown {
 		padding-bottom: 40vh;
 		padding-top: 5vh;
-		font-size: 1.4rem;
+		font-size: 1.3rem;
 		line-height: 1.3;
 	}
 
@@ -119,8 +120,10 @@
 
 	:global(.markdown a) {
 		color: black;
-		font-size: .9em;
-		text-decoration: underline dotted;
+		font-size: 0.9em;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+		text-decoration-color: var(--theme-color);
 	}
 
 	:global(.node-highlite) {
