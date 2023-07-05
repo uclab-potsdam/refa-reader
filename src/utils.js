@@ -274,7 +274,7 @@ export function parseJSONLD(jsonLD, set) {
 
                 // a regex to remove alphanumeric characters from ontologies as cidoc crm / wikidata
                 // const regex = /\b[a-zA-Z]+\w*\d+\w*\b/;
-                const regex = /^[a-zA-Z]+\w*\d+\w*\s/;
+                const regex = /^[a-zA-Z]+\w*\d+\w+\s/;
 
                 let property = obj["property_label"]?.replace("_", " ")?.replace(regex, '') || parentKey?.replace(regex, '')
                 console.log(property)
