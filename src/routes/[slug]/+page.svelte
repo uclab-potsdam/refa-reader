@@ -94,7 +94,7 @@
 	}
 
 	.item__detail {
-		flex: 0 0 300px;
+		flex: 0 0 400px;
 		border-right: 1px solid #e3e3e3;
 	}
 
