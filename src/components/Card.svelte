@@ -23,7 +23,7 @@
 	}
 </script>
 
-<PropLabel label={datum.property} />
+<!-- <PropLabel label={datum.property} /> -->
 <div
 	class="node {$graphSteps.find((d) => d.id == datum.target) ? 'selected' : ''}"
 	data-id={datum.target.split('/').slice(-1)[0]}
@@ -37,9 +37,9 @@
 		<div class="title">{datum.title}</div>
 	{:else if imageSrc}
 		<img src={imageSrc} alt={datum.title} on:load={handleLoad} />
-		<div class="title">{datum.title}</div>
+		<div class="title">{datum.title || ""}</div>
 	{:else}
-		<div class="title">{datum.title}</div>
+		<div class="title">{datum.title || ""}</div>
 	{/if}
 </div>
 
