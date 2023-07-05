@@ -181,8 +181,6 @@ export async function extractLinks(markdown) {
         }
 
     }
-
-    console.log(links);
     return links;
 
 
@@ -275,9 +273,10 @@ export function parseJSONLD(jsonLD, set) {
                 const exists = triplets.some(triplet => triplet.source === source && triplet.target === target);
 
                 // a regex to remove alphanumeric characters from ontologies as cidoc crm / wikidata
-                const regex = /^[a-zA-Z]\w+\s/;
-                let property = obj["property_label"]?.replace("_", " ")?.replace(regex, '') || parentKey?.replace(regex, '')
+                const regex = /\b[a-zA-Z]+\w*\d+\w*\b/;
 
+                
+                let property = obj["property_label"]?.replace("_", " ")?.replace(regex, '') || parentKey?.replace(regex, '')
                 // gotta find a way to fix inveted properties
                 if (reverse) {
                     // property = invertedProperties[property] || "REVERSE: " + property
