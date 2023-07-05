@@ -9,7 +9,7 @@ export const paths = writable([]);
 //  Customise these properties
 
 export const Api = 'https://uclab.fh-potsdam.de/refa/api';
-export const mainProperties = writable(["shows features of", "is shown by", "is type of", "created", "features are also found on"]);
+// export const mainProperties = writable(["shows features of", "is shown by", "is type of", "created", "features are also found on"]);
 
 //  item sets will take the first key
 export const mainCategories =
