@@ -21,6 +21,11 @@
 			imageSrc = getImageByNode(datum.target);
 		}
 	}
+
+	let siteId = datum.target.replace(
+		'https://uclab.fh-potsdam.de/refa/api/resources/',
+		'https://uclab.fh-potsdam.de/refa/s/pinacotheca/item/'
+	);
 </script>
 
 <!-- <PropLabel label={datum.property} /> -->
@@ -37,10 +42,11 @@
 		<div class="title">{datum.title}</div>
 	{:else if imageSrc}
 		<img src={imageSrc} alt={datum.title} on:load={handleLoad} />
-		<div class="title">{datum.title || ""}</div>
+		<div class="title">{datum.title || ''}</div>
 	{:else}
-		<div class="title">{datum.title || ""}</div>
+		<div class="title">{datum.title || ''}</div>
 	{/if}
+	<a class="link" href={siteId} target="_blank" rel="noopener noreferrer">See in Collection</a>
 </div>
 
 <style>
@@ -63,6 +69,18 @@
 	.title {
 		font-size: 0.7rem;
 		overflow-wrap: break-word;
+	}
+
+	.link {
+		margin-top: 1rem;
+		margin-bottom: 0.5rem;
+		font-size: 0.7rem;
+		line-height: 0.7;
+		display: none;
+	}
+
+	.selected > .link {
+		display: block;
 	}
 
 	img {

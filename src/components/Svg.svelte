@@ -51,7 +51,7 @@
 
 	.background {
 		stroke: white;
-		stroke-width: 0.6em;
+		stroke-width: 0.8em;
 	}
 
 	text {
