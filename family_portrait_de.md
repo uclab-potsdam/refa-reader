@@ -2,6 +2,7 @@
 title: Genre-Mix
 date: "2023-12-14"
 isPublic: true
+lang: de
 color: "tomato"
 description: "Wie andere Zyklen - beispielsweise der Vier Kontinente oder der Todsünden - wurden die Fünf Sinne im 16. Jahrhundert zu einem beliebten allegorischen Sujet, das sich vorwiegend über die niederländische Druckgraphik verbreitete. Begleitet werden die Fünf Sinne *gustus, odoratus, visus, auditus und tactus* von Tiersymbolen oder Attributen."
 cover: "https://uclab.fh-potsdam.de/refa/files/large/3462bf943aaa761056dba91c89a90652c4833aaf.jpg"
