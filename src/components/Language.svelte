@@ -1,19 +1,10 @@
 <script>
-	import { onMount } from 'svelte';
-
 	export let lang;
 
 	function switchLanguage(newLang) {
 		lang = newLang;
 		localStorage.setItem('selectedLanguage', newLang);
 	}
-
-	onMount(() => {
-		const storedLanguage = localStorage.getItem('selectedLanguage');
-		if (storedLanguage) {
-			lang = storedLanguage;
-		}
-	});
 </script>
 
 <div>
