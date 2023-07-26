@@ -38,65 +38,7 @@ export async function extractLinks(markdown) {
         }
     }
 
-    // // Create queries for each type of link
-    // const itemQuery = `${Api}/items?${itemUrls.map((i) => `id[]=${i}`).join("&")}`;
-    // const setQuery = `${Api}/item_sets?${setUrls.map((i) => `id[]=${i}`).join("&")}`;
-    // const mediaQuery = `${Api}/media?${mediaUrls.map((i) => `id[]=${i}`).join("&")}`;
-
-    // // Fetch data for each type of link
-    // const [itemResponse, setResponse, mediaResponse] = await Promise.all([
-    //     itemUrls.length ? fetch(itemQuery) : Promise.resolve({}),
-    //     setUrls.length ? fetch(setQuery) : Promise.resolve({}),
-    //     mediaUrls.length ? fetch(mediaQuery) : Promise.resolve({})
-    // ]);
-
-    // // Parse the JSON data for each type of link
-    // const [itemJsons, setJsons, mediaJsons] = await Promise.all([
-    //     itemUrls.length ? itemResponse.json() : Promise.resolve([]),
-    //     setUrls.length ? setResponse.json() : Promise.resolve([]),
-    //     mediaUrls.length ? mediaResponse.json() : Promise.resolve([])
-    // ]);
-
-    // // Combine the JSON data into a single array
-    // let parseitems = [...itemJsons, ...mediaJsons, ...setJsons]
-
-    // // Loop through each link object and add additional data as needed
-    // for (let i = 0; i < parseitems.length; i++) {
-    //     const link = links[i];
-    //     const json = parseitems.find(d => d["o:id"] == link.id);
-    //     // If the JSON data includes an "o:items" property, it is a set link
-    //     if (json?.["o:items"]) {
-    //         link.data = json;
-    //         link.set = {
-    //             id: json["o:id"],
-    //             title: json["o:title"]
-    //         };
-    //         // Fetch the items in the set
-    //         const items = json["o:items"]["@id"];
-    //         const responseSet = await fetch(items);
-    //         const jsonSet = await responseSet.json();
-    //         jsonSet.forEach(item => {
-    //             links.push({
-    //                 label: item["o:title"],
-    //                 id: item["o:id"],
-    //                 data: item,
-    //                 set: {
-    //                     id: json["o:id"],
-    //                     title: json["o:title"]
-    //                 }
-    //             });
-    //         });
-    //     }
-    //     else {
-    //         link.data = json;
-    //     }
-
-    // }
-    // console.log(itemUrls.length, itemJsons.length)
-    // return links;
-
-    // Bug in Omeka, it does not load all items... I have to batch with small amounts for now 
-    const batchSize = 1;
+    const batchSize = 20;
 
     // Split the itemUrls into batches of batchSize
     const itemUrlBatches = splitIntoBatches(itemUrls, batchSize);
@@ -128,8 +70,10 @@ export async function extractLinks(markdown) {
 
     // Loop through each link object and add additional data as needed
     for (let i = 0; i < parseitems.length; i++) {
-        const link = links[i];
-        const json = parseitems.find(d => d["o:id"] == link.id);
+        const link = links.find(d => parseitems[i]["o:id"] == d.id)
+        // const json = parseitems.find(d => d["o:id"] == link.id);
+        const json = parseitems[i]
+
         if (json?.["o:items"]) {
             link.data = json;
             link.set = {
@@ -275,7 +219,7 @@ export function parseJSONLD(jsonLD, set) {
                 // a regex to remove alphanumeric characters from ontologies as cidoc crm / wikidata
                 const regex = /\b[a-zA-Z]+\d+[a-zA-Z]*\s/;
                 let property = obj["property_label"]?.replace("_", " ")?.replace(regex, '') || parentKey?.replace(regex, '')
-                
+
                 // gotta find a way to fix inveted properties
                 if (reverse) {
                     // property = invertedProperties[property] || "REVERSE: " + property
