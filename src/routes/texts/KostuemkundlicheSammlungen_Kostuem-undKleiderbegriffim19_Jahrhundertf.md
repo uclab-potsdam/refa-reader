@@ -3,8 +3,9 @@ title: Kostümkundliche Sammlungen und der Kostüm- und Kleiderbegriff im 19. Ja
 date: "2024-01-14"
 color: "blue"
 isPublic: true
+lang: de
 description: "Das Projekt „Restaging Fashion“ widmet sich der Kulturgeschichte der Kleidung, ihrer Erscheinung und Zeichenhaftigkeit und führt vestimentäre Quellen im Digitalen zusammen, um eine quellenübergreifende und multidisziplinäre Forschung an den Objekten zu ermöglichen."
-cover: "https://uclab.fh-potsdam.de/refa/files/original/af6d3f80b1b5690cf68dae59dcfb0909bd2e6ea9.jpg"
+cover: "https://uclab.fh-potsdam.de/refa/files/asset/b45ebf56145fabf19a9a8e05f767d815f5826108.png"
 ---
 Das Projekt "Restaging Fashion. Digitale Kontextualisierung vestimentärer Quellen" vereint Konvolute aus der [Sammlung Modebild - Lipperheidesche Kostümbibliothek](https://www.smb.museum/museen-einrichtungen/kunstbibliothek/sammeln-forschen/ueber-die-sammlungen/sammlung-modebild-lipperheidesche-kostuembibliothek/) der Kunstbibliothek zu Berlin mit historischer Kleidung aus der [Sammlung Textilien, Kleidung und Schmuck](https://www.gnm.de/sammlungen/sammlungen-a-z/textilien-kleidung-und-schmuck/) des Germanischen Nationalmuseums Nürnberg. Eine umfangreiche und bislang nicht publizierte Gemälde- und Miniaturensammlung des Verlegerehepaares [Franz](item/9364) und [Frieda](item/18762) von Lipperheide, sowie [Druckgrafiken](item/25340) und [Handzeichungen](item/25341) aus ihrem Sammlungsbestand und späteren Schenkungskonvolut wurden im Rahmen des Projektes konservatorisch bearbeitet, digitalisiert und im Hinblick auf ihren kleidungshistorischen Inhalt und Quellenwert kunsthistorisch erfasst. Der bereits bearbeiteten und erschlossenen Gemälde- und Miniaturensammlung[^Vgl. de Günther 2022] bildete die Basis für eine Zusammenführung relevanter vestimentärer Quellen. Die ausgewählten und eingebundenen Grafiken und Handzeichnungen aus der Sammlung Modebild - Lipperheidesche Kostümbibliothek ergänzen und kontextualisieren den Gemälde- und Miniaturenbestand. [Ingesamt 15 exemplarische historische Kleidungselemente](item-set/45212) aus dem Germanischen Nationalmuseum wurden in ihrer Dreimensionalität digitalisiert und erweiteren die Quellenlage zu historischer Kleidung. Zusätzlich wurden exemplarisch historische Textquellen ausgewählt, welche die Quellentrias Bild-Text-Kleidung vervollständigen und den methodischen Ansatz des Projektes exemplifizieren."
 
@@ -114,6 +115,3 @@ Der Entstehung des Germanischen Nationalmuseums in Nürnberg lag die Idee der Id
 In die sich noch in der Findung begriffene Sammlung des Germanischen Nationalmuseums, die im Jahr 1870 bereits 282 Originalkleidungsstücke umfasste, flossen ab 1870 eine Reihe von Ankäufen von Kleidung, darunter ein Bestand an Realien des 17. bis 19. Jahrhunderts ein, welche seit der Mitte der 1870er Jahre in einer Dauerausstellung präsentiert wurden. Diese Präsentation wird nicht ohne Eindruck auf die Eheleute von Lipperheide gewesen sein, die sich im November 1878 in Nürnberg aufhielten und dort eine Reihe von Werken erwarben. Es sind die erwerbungsstarken Jahre 1878 bis 1882 der Sammler, in die die noch jungen Präsentationen von Kleidung, Textilien und Waffen im Germanischen Nationalmuseum fallen.
 
 xxxVorbild-Funktion für FvL's Blätter für Kostümkundexxx
-
-[^]:
-[^]:

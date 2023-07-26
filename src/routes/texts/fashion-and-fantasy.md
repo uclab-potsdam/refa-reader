@@ -3,6 +3,7 @@ title: Fashion and Fantasy
 date: "2023-12-14"
 color: "blue"
 isPublic: false
+lang: de
 description: ""
 cover: ""
 ---

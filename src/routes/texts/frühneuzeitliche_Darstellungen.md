@@ -3,6 +3,7 @@ title: Frühneuzeitliche Darstellungen von Kleidung, Sitten und Gebräuchen
 date: "2023-12-14"
 color: "blue"
 isPublic: true
+lang: de
 description: "Frühneuzeitliche ethnographische Aufstellungen von Landessitten und Gebräuchen wurden über die Darstellung der Kleidung einzelner Länder, ihrer Bewohner und der verschiedenen Stände abgebildet. Das frühneuzeitliche Interesse an Exotica - also an Gegenständen, Menschen, Tieren, Pflanzen, Traditionen usw. aus unbekannten Regionen - ist in diesem KOntext von besonderem Interesse. Die Öffnung der Neuen Welt, sowohl Amerikas als auch Asiens, für den internationalen Handel ermöglichte es Sammlern, exotische Objekte für ihre Museen zu sammeln. Naturhistoriker und Mediziner mussten den Status quo der nachmittelalterlichen Biologie und Wissenschaft neu überdenken. Die Erfindung des Buchdrucks sorgte ab 1500 für eine schnelle Verbreitung dieses neuen Wissens in der gesamten westlichen Welt.
 Derartige Darstellungen finden sich beispielsweise in dem Genre des Kostümbuchs oder Reisebeichts, aber auch in sogenannten Stammbüchern, auch Album Amicorum genannt."
 cover: "https://uclab.fh-potsdam.de/refa/files/original/af6d3f80b1b5690cf68dae59dcfb0909bd2e6ea9.jpg"

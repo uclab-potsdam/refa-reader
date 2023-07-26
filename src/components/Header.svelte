@@ -1,16 +1,29 @@
 <script>
 	export let essays;
+	export let lang;
 </script>
 
 <header>
-	<h3>
-		An interactive visualisation that provides access to a selection of objects from the
-		'Lipperheidesche Kostümbibliothek'. <br />
-		<span>{essays}</span> essays are juxtaposed with a graph navigation that allows the user to browse the paintings,
-		prints, drawings and clothes in the collection. Instead of showing the collection in its entirety,
-		it is accessible through a curated selection of essays designed to provide a better understanding
-		of it. The aim is to combine editorial approaches with free navigation of the collection.
-	</h3>
+	{#if lang == 'en'}
+		<h3>
+			An interactive visualisation that provides access to a selection of objects from the
+			'Lipperheidesche Kostümbibliothek'. <br />
+			<span>{essays}</span> essays are juxtaposed with a graph navigation that allows the user to browse
+			the paintings, prints, drawings and clothes in the collection. Instead of showing the collection
+			in its entirety, it is accessible through a curated selection of essays designed to provide a better
+			understanding of it. The aim is to combine editorial approaches with free navigation of the collection.
+		</h3>
+	{:else if lang == 'de'}
+		IN GERMAN
+		<h3>
+			An interactive visualisation that provides access to a selection of objects from the
+			'Lipperheidesche Kostümbibliothek'. <br />
+			<span>{essays}</span> essays are juxtaposed with a graph navigation that allows the user to browse
+			the paintings, prints, drawings and clothes in the collection. Instead of showing the collection
+			in its entirety, it is accessible through a curated selection of essays designed to provide a better
+			understanding of it. The aim is to combine editorial approaches with free navigation of the collection.
+		</h3>
+	{/if}
 </header>
 
 <style>
