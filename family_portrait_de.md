@@ -1,5 +1,5 @@
 ---
-title: Allegorie der fünf Sinne
+title: Genre-Mix
 date: "2023-12-14"
 isPublic: true
 color: "tomato"
