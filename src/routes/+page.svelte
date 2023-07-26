@@ -11,6 +11,8 @@
 		const storedLanguage = localStorage.getItem('selectedLanguage');
 		if (storedLanguage) {
 			lang = storedLanguage;
+		} else {
+			lang = 'en';
 		}
 	});
 </script>
