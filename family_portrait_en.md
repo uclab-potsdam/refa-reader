@@ -2,6 +2,7 @@
 title: Mixed genre
 date: "2024-12-14"
 isPublic: true
+lang: en
 color: "blueviolet"
 description: "The following art work allows for multiple views: while at first sight it depicts the five senses, it is lso a family portrait of five siblings of the Hohenlohe family and hence depicts the fashion of the time of the 30 years war in Germany. Like other cycles - for example the Four Continents or the Deadly Sins - the Five Senses became a popular allegorical subject in the 16th century, spreading mainly through Dutch prints. The five senses gustus, odoratus, visus, auditus and tactus are accompanied by animal symbols or attributes."
 cover: "https://uclab.fh-potsdam.de/refa/files/large/3462bf943aaa761056dba91c89a90652c4833aaf.jpg"
