@@ -1,18 +1,19 @@
 <script>
 	import { paths } from '@stores';
+	import newUniqueId from 'locally-unique-id-generator';
 </script>
 
 {#if Object.keys($paths).length > 0}
 	<svg>
 		{#each Object.entries($paths) as [id, path]}
 			{#each path as item}
-				<path id="path_{id}" class={item.class} d={item.d} />
-
+				{@const uniqueId = newUniqueId()}
+				<path id="path_{uniqueId || id}" class={item.class} d={item.d} />
 				{#if item.class != undefined && item.class == 'highlite'}
 					<text class="{item.class} background">
 						<textPath
 							dominant-baseline="middle"
-							href="#path_{id}"
+							href="#path_{uniqueId || id}"
 							startOffset="98%"
 							text-anchor="end"
 						>
@@ -22,7 +23,7 @@
 					<text class={item.class}>
 						<textPath
 							dominant-baseline="middle"
-							href="#path_{id}"
+							href="#path_{uniqueId || id}"
 							startOffset="98%"
 							text-anchor="end"
 						>
@@ -50,7 +51,7 @@
 
 	.background {
 		stroke: white;
-		stroke-width: 0.6em;
+		stroke-width: 0.8em;
 	}
 
 	text {

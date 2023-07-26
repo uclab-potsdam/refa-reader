@@ -1,5 +1,6 @@
 <script>
 	import newUniqueId from 'locally-unique-id-generator';
+	
 	import { onMount, onDestroy } from 'svelte';
 	import { paths, graphSteps } from '@stores';
 
@@ -66,12 +67,7 @@
 				}
 
 				const controlPoint2Y = targetRect.y;
-				const d = `M${sourceRect.x + sourceRect.width},${
-					sourceRect.y
-				}C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${targetRect.x},${
-					targetRect.y
-				}`;
-
+				const d = `M${sourceRect.x + sourceRect.width},${sourceRect.y}C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${targetRect.x},${targetRect.y}`;	
 				$paths[id] = $paths[id] || [];
 				$paths[id].push({
 					class: highlite,

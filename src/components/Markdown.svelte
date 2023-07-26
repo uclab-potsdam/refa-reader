@@ -139,6 +139,13 @@
 		text-decoration: unset !important;
 	}
 
+	:global(em .node-highlite ) {
+		font-style: italic;		
+	}
+	:global(.node-highlite span) {
+		font-style: normal;		
+	}
+
 	:global(.selected) {
 		background-color: var(--theme-color);
 		mix-blend-mode: color-burn;
