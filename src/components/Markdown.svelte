@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { selectedNode, customIcons } from '@stores';
+	import { selectedNode, selectedNodeUniqueId, customIcons } from '@stores';
 	import { observe } from '@utils';
 	import newUniqueId from 'locally-unique-id-generator';
 
@@ -26,9 +26,10 @@
 			if (href.startsWith('http')) {
 				return `<a class="external" target="_blank" href="${href}" title="${text}">${text}</a>`;
 			} else {
-				return `<a class="node-highlite" unique-id="${newUniqueId()}" data-id="${
+				let uniqueId = newUniqueId()
+				return `<a class="node-highlite" unique-id="${uniqueId}" data-id="${
 					href.split('/')[1]
-				}" title="${text}">${text}<span class="symbol node" data-id="${href.split('/')[1]}"
+				}" title="${text}">${text}<span class="symbol node" unique-id="${uniqueId}" data-id="${href.split('/')[1]}"
 				data-class="${items
 					.filter((d) => d.label == text)
 					.map((d) => {
@@ -79,6 +80,7 @@
 			if (event.target.getAttribute('data-id')) {
 				$selectedNode = event.target.getAttribute('data-id');
 				event.target.classList.toggle('selected');
+				$selectedNodeUniqueId = event.target.getAttribute('unique-id');
 			}
 		}
 	}
@@ -89,7 +91,8 @@
 				link.classList.remove('selected');
 			});
 
-			let selected = document.querySelectorAll(`a[data-id="${$selectedNode}"]`);
+			// let selected = document.querySelectorAll(`a[data-id="${$selectedNode}"]`);
+			let selected = document.querySelectorAll(`a[unique-id="${$selectedNodeUniqueId}"]`);
 
 			if (selected) {
 				$selectedNode == $selectedNode;
@@ -139,11 +142,11 @@
 		text-decoration: unset !important;
 	}
 
-	:global(em .node-highlite ) {
-		font-style: italic;		
+	:global(em .node-highlite) {
+		font-style: italic;
 	}
 	:global(.node-highlite span) {
-		font-style: normal;		
+		font-style: normal;
 	}
 
 	:global(.selected) {

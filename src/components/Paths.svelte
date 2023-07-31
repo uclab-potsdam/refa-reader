@@ -1,8 +1,8 @@
 <script>
 	import newUniqueId from 'locally-unique-id-generator';
-	
+
 	import { onMount, onDestroy } from 'svelte';
-	import { paths, graphSteps } from '@stores';
+	import { paths, graphSteps, selectedNodeUniqueId } from '@stores';
 
 	export let datum;
 	export let label;
@@ -28,11 +28,13 @@
 
 		elements.forEach((element) => {
 			const elementRect = element.getBoundingClientRect();
+			let selected = element.getAttribute('unique-id') == null ? "not-a-text-node" : element.getAttribute('unique-id') == $selectedNodeUniqueId ? "selected" : "not-selected";
 			const bound = {
 				x: elementRect.x,
 				y: elementRect.y + p,
 				width: elementRect.width - p / 2,
-				height: elementRect.height
+				height: elementRect.height,
+				selected: selected
 			};
 			bounds.push(bound);
 		});
@@ -56,7 +58,8 @@
 				const controlPointOffset = 100;
 				const controlPoint1X = sourceRect.x + sourceRect.width + controlPointOffset;
 				const controlPoint1Y = sourceRect.y;
-
+				const selected = sourceRect.selected;
+				
 				let controlPoint2X;
 				if (targetRect.x < sourceRect.x) {
 					controlPoint2X = targetRect.x - controlPointOffset * 4;
@@ -67,12 +70,17 @@
 				}
 
 				const controlPoint2Y = targetRect.y;
-				const d = `M${sourceRect.x + sourceRect.width},${sourceRect.y}C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${targetRect.x},${targetRect.y}`;	
+				const d = `M${sourceRect.x + sourceRect.width},${
+					sourceRect.y
+				}C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${targetRect.x},${
+					targetRect.y
+				}`;
 				$paths[id] = $paths[id] || [];
 				$paths[id].push({
 					class: highlite,
 					d: d,
-					label: label
+					label: label,
+					selected: selected
 				});
 			});
 		});

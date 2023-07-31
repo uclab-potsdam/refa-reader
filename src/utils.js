@@ -1,4 +1,4 @@
-import { Api, visibleLinks, allLinks, selectedNode, mainCategories, secondayCategoriesLabel, setCategory } from '@stores';
+import { Api, visibleLinks, allLinks, selectedNode, selectedNodeUniqueId, mainCategories, secondayCategoriesLabel, setCategory } from '@stores';
 import { invertedProperties } from './invertedProperties';
 import newUniqueId from 'locally-unique-id-generator';
 
@@ -38,7 +38,7 @@ export async function extractLinks(markdown) {
         }
     }
 
-    const batchSize = 20;
+    const batchSize = 40;
 
     // Split the itemUrls into batches of batchSize
     const itemUrlBatches = splitIntoBatches(itemUrls, batchSize);
@@ -222,7 +222,7 @@ export function parseJSONLD(jsonLD, set) {
 
                 // gotta find a way to fix inveted properties
                 if (reverse) {
-                    // property = invertedProperties[property] || "REVERSE: " + property
+                    property = invertedProperties[property] || property
                 }
 
                 const category = mainCategories
@@ -266,7 +266,8 @@ export function observe() {
     let scrollingDirection;
 
     const options = {
-        rootMargin: '-50px 0px 50px 0px',
+        // rootMargin: '-50px 0px 50px 0px',
+        rootMargin: "-20%",
     }
 
     const observer = new IntersectionObserver((entries, observer) => {
@@ -276,7 +277,8 @@ export function observe() {
                 scrollingDirection = entry.boundingClientRect.y > entry.rootBounds.y ? "down" : "up";
             }
 
-            const newItem = entry.target.getAttribute("data-id");
+            const newItem = entry.target
+
             // Update the allLinks array to include the new item if it doesn't already exist
             allLinks.update((items) => {
                 if (!items.includes(newItem)) {
@@ -290,6 +292,7 @@ export function observe() {
                     visible.add(newItem);
                 } else {
                     visible = new Set([newItem, ...visible]);
+
                 }
                 // If the current entry is not intersecting with the viewport, remove it from the visible set
             } else {
@@ -299,8 +302,10 @@ export function observe() {
         visibleLinks.set([...visible]);
 
         if ([...visible][0]) {
-            selectedNode.set([...visible][0])
+            selectedNode.set([...visible][0].getAttribute("data-id"))
+            selectedNodeUniqueId.set([...visible][0].getAttribute("unique-id"))
         }
+
     }, options);
 
     const links = document.querySelectorAll(".markdown a[data-id]");

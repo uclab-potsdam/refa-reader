@@ -8,8 +8,8 @@
 		{#each Object.entries($paths) as [id, path]}
 			{#each path as item}
 				{@const uniqueId = newUniqueId()}
-				<path id="path_{uniqueId || id}" class={item.class} d={item.d} />
-				{#if item.class != undefined && item.class == 'highlite'}
+				<path id="path_{uniqueId || id}" class="{item.class} {item.selected}" d={item.d}/>
+				{#if item.class != undefined && item.selected != "not-selected" && item.class == 'highlite'}
 					<text class="{item.class} background">
 						<textPath
 							dominant-baseline="middle"
@@ -64,28 +64,33 @@
 		pointer-events: visibleStroke;
 		stroke: #969696;
 		stroke-width: 0.1;
-		/* stroke-linecap: round;
-		stroke-linejoin: round; */
 		cursor: pointer;
 		fill: none;
 	}
 
 	text.highlite {
 		fill: var(--theme-color);
-		/* fill: white; */
 		opacity: 1;
 	}
 
-	path.background.highlite {
-		/* stroke-width: 8; */
+	/* path.background.highlite {
 		stroke: var(--theme-color);
-	}
+	} */
 
+	
 	path.highlite {
-		stroke-width: 7;
 		stroke-width: 0.5;
-
-		stroke: white;
+		/* stroke: white; */
 		stroke: var(--theme-color);
 	}
+
+	path.selected {
+		stroke: var(--theme-color);
+	}
+
+	path.not-selected {
+		stroke: #969696;
+		stroke-width: 0.1;
+	}
+
 </style>

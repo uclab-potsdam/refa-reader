@@ -9,7 +9,8 @@
 	import { writable } from 'svelte/store';
 
 	export let data;
-	let textData, triplets, itemsJson;
+	let textData = [];
+	let triplets, itemsJson;
 	let visibleItemsID = [];
 
 	const updatePosition = writable(false);
@@ -33,8 +34,13 @@
 </script>
 
 <svelte:window on:resize={handlePosition} on:scroll={handlePosition} />
-
-{#if triplets == undefined}
+{#if textData == undefined && triplets == undefined}
+	<article>
+		<section class="markdown__container">
+			<h4>404 Page not found</h4>
+		</section>
+	</article>
+{:else if triplets == undefined}
 	<article>
 		<section class="markdown__container">
 			<h4>Loading...</h4>
