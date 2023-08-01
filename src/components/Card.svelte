@@ -46,7 +46,7 @@
 
 <style>
 	.node {
-		background-color: #f6f6f6;
+		background-color: #f6f6f6 !important;
 		padding: 0.25rem 0.5rem;
 		margin-bottom: 1.5rem;
 	}
