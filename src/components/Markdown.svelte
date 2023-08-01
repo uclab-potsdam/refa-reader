@@ -26,10 +26,12 @@
 			if (href.startsWith('http')) {
 				return `<a class="external" target="_blank" href="${href}" title="${text}">${text}</a>`;
 			} else {
-				let uniqueId = newUniqueId()
+				let uniqueId = newUniqueId();
 				return `<a class="node-highlite" unique-id="${uniqueId}" data-id="${
 					href.split('/')[1]
-				}" title="${text}">${text}<span class="symbol node" unique-id="${uniqueId}" data-id="${href.split('/')[1]}"
+				}" title="${text}">${text}<span class="symbol node" unique-id="${uniqueId}" data-id="${
+					href.split('/')[1]
+				}"
 				data-class="${items
 					.filter((d) => d.label == text)
 					.map((d) => {
@@ -88,16 +90,23 @@
 	$: {
 		if ($selectedNode != null && typeof document !== 'undefined') {
 			document.querySelectorAll('a[data-id]').forEach((link) => {
+				link.classList.remove('related');
 				link.classList.remove('selected');
 			});
 
-			// let selected = document.querySelectorAll(`a[data-id="${$selectedNode}"]`);
-			let selected = document.querySelectorAll(`a[unique-id="${$selectedNodeUniqueId}"]`);
+			let selectedId = document.querySelectorAll(`a[data-id="${$selectedNode}"]`);
+			let selectedUnique = document.querySelectorAll(`a[unique-id="${$selectedNodeUniqueId}"]`);
 
-			if (selected) {
+			if (selectedUnique) {
 				$selectedNode == $selectedNode;
-				selected.forEach((link) => {
+				selectedUnique.forEach((link) => {
 					link.classList.add('selected');
+				});
+			}
+			if (selectedId) {
+				$selectedNode == $selectedNode;
+				selectedId.forEach((link) => {
+					link.classList.add('related');
 				});
 			}
 		}
@@ -150,9 +159,13 @@
 	}
 
 	:global(.selected) {
-		background-color: var(--theme-color);
+		background-color: var(--theme-color) !important;
 		mix-blend-mode: color-burn;
 		/* background: linear-gradient(to right, #f2f2f2, var(--theme-color)); */
+	}
+
+	:global(.related) {
+		color: var(--theme-color) !important;
 	}
 
 	:global(.markdown .selected) {
