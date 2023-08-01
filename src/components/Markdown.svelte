@@ -81,7 +81,7 @@
 		if (event.target.tagName === 'A') {
 			if (event.target.getAttribute('data-id')) {
 				$selectedNode = event.target.getAttribute('data-id');
-				event.target.classList.toggle('selected');
+				event.target.classList.add('selected');
 				$selectedNodeUniqueId = event.target.getAttribute('unique-id');
 			}
 		}

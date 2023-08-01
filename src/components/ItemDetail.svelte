@@ -54,11 +54,9 @@
 
 	.metadata{
 		padding-left: 5px;
-		display: flex;
-		flex-wrap: wrap;
 	}
 
 	.metadata span {
-		display: inline-block;
+		display: contents;
 	}
 </style>
