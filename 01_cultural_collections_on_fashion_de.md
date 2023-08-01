@@ -63,8 +63,4 @@ Im März 1900 wurde der Lichthof des Kunstgewerbemuseums in einen Präsentations
 Der große [Saal des Lipperheideschen Lesesaals](item/17693) war allein der kleider­kundlichen Quellensammlung vorbehalten und gliederte sich in sechs Raumteile, die mit [Lesetischen, ­elektrischer Beleuchtung und Bücherschränken](item/18718) ausgestattet waren.
 [Die rund 300 Ölgemälde waren oberhalb der Bücherschränke und an den Wänden angeordnet](item/18720). Die Gemälde schmückten im Stil einer Petersburger Hängung die Wände des Studiensaals und die Miniaturen waren auf [grünen Plafonds in die birkenen Sammlungsschränke](item/650) integriert. Auch auf die Halle, das Foyer und auch auf Nebenräumen verteilte man Gemälde, einige Bilder galten als Reservebilder und wurden in Bibliotheksräumen verwahrt. Strategien der Semantisierung, Wissensordnung oder spezifische Vermittlungsziele sind in dieser Aufstellung nicht erkennbar.
 
-
 xxxVorbild-Funktion für FvL's Blätter für Kostümkundexxx
-
-[^]:
-[^]:
