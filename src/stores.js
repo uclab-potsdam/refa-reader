@@ -22,8 +22,10 @@ export const mainCategories =
     ];
 export const ItemDetailMetaData =
     [
+        "ecrm:P92i_was_brought_into_existence_by",
+        "dcterms:created",
         "ecrm:P45_consists_of",
-        "ecrm:P92i_was_brought_into_existence_by"
+        "ecrm:P43_has_dimension"
     ];
 
 export const secondayCategoriesLabel = "Classification";
