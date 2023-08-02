@@ -82,4 +82,10 @@
 		padding-bottom: 0.5rem;
 		filter: grayscale(100%);
 	}
+
+	@media only screen and (max-width: 600px) {
+		.columns {
+			flex-wrap: wrap;
+		}
+	}
 </style>

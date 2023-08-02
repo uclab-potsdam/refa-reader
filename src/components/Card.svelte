@@ -1,6 +1,6 @@
 <script>
 	import { graphSteps } from '@stores';
-	import PropLabel from '@components/PropLabel.svelte';
+	// import PropLabel from '@components/PropLabel.svelte';
 	export let datum;
 	export let entities;
 	export let updatePosition;
@@ -30,6 +30,8 @@
 	title={datum.title}
 	on:click
 	on:keydown
+	on:mouseover
+	on:focus
 >
 	<!-- <div class="title"><strong>{datum.target.split('/').slice(-1)[0]}</strong></div> -->
 	{#if datum.img}
@@ -41,7 +43,13 @@
 	{:else}
 		<div class="title">{datum.title || ''}</div>
 	{/if}
-	<a class="link" href={`https://uclab.fh-potsdam.de/refa/s/pinacotheca/item/${datum.target.split('/').slice(-1)[0]}`} target="_blank" rel="noopener noreferrer">See in Collection</a>
+
+	<!-- not title == is media -->
+	{#if datum.title == undefined}
+		<a class="link" href={`https://uclab.fh-potsdam.de/refa/s/pinacotheca/media/${datum.target.split('/').slice(-1)[0]}`} target="_blank" rel="noopener noreferrer">See in Collection</a>
+	{:else}
+		<a class="link" href={`https://uclab.fh-potsdam.de/refa/s/pinacotheca/item/${datum.target.split('/').slice(-1)[0]}`} target="_blank" rel="noopener noreferrer">See in Collection</a>
+	{/if}
 </div>
 
 <style>

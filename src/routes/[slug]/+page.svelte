@@ -91,7 +91,9 @@
 
 	.markdown__container {
 		padding: 0.5rem 0rem 0 1rem;
-		flex: 0 0 600px;
+		/* flex: 0 0 600px; */
+		max-width: 600px;
+		flex: 0 0 40vw;
 		overflow-x: scroll;
 	}
 
@@ -100,7 +102,9 @@
 	}
 
 	.item__detail {
-		flex: 0 0 400px;
+		/* flex: 0 0 400px; */
+		flex: 0 0 20vw;
+		max-width: 400px;
 		border-right: 1px solid #e3e3e3;
 	}
 
@@ -108,16 +112,22 @@
 		article {
 			height: 180vh;
 		}
+		.markdown__container {
+			flex: 1;
+		}
 
 		.markdown__container::before {
-			content: 'This website contains complex visualizations that are not supported by small screen formats. To navigate the essays, go to your desktop browser.';
+			content: 'This website contains visualizations that are not supported by small screen formats. To navigate the graphs, go to your desktop browser.';
 			display: block;
 			font-size: 28px;
 			padding: 1rem;
+			border-bottom: 1px dashed;
+			margin-bottom: 10rem;
 		}
 
 		.item__detail {
-			flex: 0 0 200px;
+			flex: 0 0 150px;
+			display: none;
 		}
 		.graph__container {
 			display: none;
