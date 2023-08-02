@@ -1,5 +1,7 @@
 # ReFa Essays
 
+![Snap](https://github.com/uclab-potsdam/refa-essays/assets/20107875/f2f895fa-8d00-4415-ac1c-8e6307de5edf)
+
 An interactive visualisation that provides access to a selection of objects from the 'Lipperheidesche Kostümbibliothek'.
 Different texts are juxtaposed with a graph navigation that allows the user to browse the paintings, prints, drawings and clothes in the collection. Instead of showing the collection in its entirety, it is accessible through a curated selection of essays designed to provide a better understanding of it, combining editorial approaches with free exploration and user-driven granularity.
 
