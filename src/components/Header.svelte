@@ -12,8 +12,8 @@
 			{essays === 1 ? 'essay is' : 'essays are'} juxtaposed with a graph navigation that allows the user
 			to browse the paintings, prints, drawings and clothes in the collection. Instead of showing the
 			collection in its entirety, it is accessible through a curated selection of essays designed to
-			provide a better understanding of it. The aim is to combine editorial approaches with free navigation
-			of the collection.
+			provide a better understanding of it, combining editorial approaches with free exploration and
+			user-driven granularity.
 		</h3>
 	{:else if lang == 'de'}
 		IN GERMAN
@@ -24,8 +24,8 @@
 			{essays === 1 ? 'essay is' : 'essays are'} juxtaposed with a graph navigation that allows the user
 			to browse the paintings, prints, drawings and clothes in the collection. Instead of showing the
 			collection in its entirety, it is accessible through a curated selection of essays designed to
-			provide a better understanding of it. The aim is to combine editorial approaches with free navigation
-			of the collection.
+			provide a better understanding of it, combining editorial approaches with free exploration and
+			user-driven granularity.
 		</h3>
 	{/if}
 </header>
