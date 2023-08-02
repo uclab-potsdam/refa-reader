@@ -54,9 +54,6 @@
 
 	.metadata{
 		padding-left: 5px;
-	}
-
-	.metadata span {
 		display: contents;
 	}
 </style>
