@@ -22,5 +22,7 @@ yarn build
 ### Configuration
 
 Insert the markdown files to load inside the `src/route/essays/` folder.
+
 Customise `src/stores.js` and `src/invertedProperties.js` to change labels and properties.
+
 So far, it relies on the Omeka S API to function.
