@@ -18,12 +18,8 @@ Zusammenfassend kann die ikonologische Bedeutungsebene des Schmucks, die das kö
 
 Die ganzfigurigen Porträts von Paul van Somer (ca. 1576–1621) und seiner Werkstatt, wie jenes Bildnis aus dem *[Royal Collections Trust (London)]*(item/45250) können als Vorbild für weitere von seinen Nachfolgern geschaffenen Brustbildern ist. Er schuf diese in den Jahren zwischen ca. 1617 und 1618 für das englische Königshaus. Das Berliner Gemälde verweist stilistisch auf Paul van Somer oder seine Werkstatt.
 
-# Regionalspezifische Charakteristica
-Die Gemäldesammlung weist eine [Gruppe von Frauenbildnissen](item-set/31735) auf, denen ein markantes Merkmal gemein ist: die sogenannten Schnebbe, eine enganliegende schwarze Haube, die den Hinterkopf bedeckt und keilförmig in die Stirn sowie über die Ohren in das Gesicht hineinragt.[^Sie wird auch als Visierhaube, Hirnkäpplein, Schneppe, Schniepe oder Schnibbe bezeichnet. Um die Schreibweise abzugrenzen von der Miederschneppe wird hier die Schreibweise Schnebbe verwendet.]
 
-Das Gemälde [Bildnis einer Frau mit Schnebbe und Spitzenkragen](item/75) aus anonymer Hand zeigt eine Dame im Dreiviertelprofil, bekleidet mit einem dunklen Obergewand mit halblangen Ärmeln und breitem Ärmelumschlag, den sogenannten Flossenärmeln, und Spitzenmanschetten. Ein breiter Spitzenkragen mit rundem Halsausschnitt bedeckt die Brust und die Schultern und fällt vorne spitz über ihr Dekolleté. Ein schwarzes Florband mit eingehängtem Kreuzschmuck und eine mehrfach geschlungene Perlenkette zieren ihren Hals. Den Kopf bedeckt eine dreiteilig aufgebaute Haube. Zuunterst trägt sie eine schwarze Schnebbenhaube mit drahtverstärkten Schnebben. Die darüber getragene Haube besteht aus einem mit Spitze und Perlen reich verzierten goldfarbenen Band und einem hellroten, ebenfalls mit Spitze überzogenen Haubenteil am Hinterkopf. Die Form der Haube, des Hirnkäppleins und des Spitzenkragens verweisen auf eine süddeutsche Kleidertradition. [süddeutsche Kleidertradition](xxxfind textual sourcexxx).
-
-# Wechselporträts im Miniaturformat
+## Wechselporträts im Miniaturformat
 Das ovale Miniaturbildnis einer [Frau mit Spitzendekolleté und Perlenhalskette](item/464) zeigt eine nach links ausgerichtete junge Frau im Brustformat. Das rote, bauschig fallende und tief dekolletierte Kleid wird von einem Spitzenkragen gesäumt. Eine Perlenkette liegt eng am Hals und eine Haube fasst die am Hinterkopf zu einem Dutt arrangierten Haare zusammen. Das betont schlicht angelegte Bild der jungen Frau war Teil eines "Wechselbildes", ein im höfischen Kontext des 17. Jahrhundert anzutreffendes Phänomen. Dabei wurden bemalte Folien auf das Abbild aufgelegt und die unterschiedlichen Motive auf den Folien veränderten die Identität der Dargestellten: Aus einer jungen Frau wurde wahlweise [ein junger Mann mit Schnurrbart, Halskrause und Hut, eine Nonne im Ordenskleid, eine Dame mit Löwenkopf, eine maskierte elegante Dame, ein Orientale oder ein Pirat](https://www.gardnermuseum.org/experience/collection/15800). So wandelte sich die Frau analog zu den Folien, von denen bis zu 23 unterschiedliche Stücke überliefert sind. 
 Der Typus der Frau auf der vorliegenden Variante von Wechselbildern entwickelte sich im Laufe der Zeit, wie Evelyn Ackerman in dem Aufsatz *Costume is the Key. Seventeenth Century Miniature Portraits with Overlays*[^1] zeigte. Für dieses Verwandlungsspiel eigneten sich aufgrund ihrer Zeitlosigkeit die schlicht gehaltenen Bildnisse besonders gut. Die Identität des weiblichen Bildnisses wird noch diskutiert, Ackerman vertritt die nachvollziehbare Ansicht, dass es sich bei der Dame, die der Lipperheideschen Miniatur ähnelt, um [Henrietta Maria, Königin von England, Schottland und Irland](item/45244) und Frau von Karl I., handelt. Unterstützt wird diese These zum einen durch ein vergleichbares Bildnis, das [Abbild von Henrietta Maria im Royal Collections Trust](https://www.rct.uk/collection/422348/set-of-mica-overlays-and-miniature-of-henrietta-maria-1609-1669)und zum anderen durch eine Reihe von königlichen Attributen auf den Wechselfolien, wie beispielsweise den Hermelinpelz. Vergleichbar ist das unter dem Titel [Miniature Portrait with Overlays](https://collections.lacma.org/node/224596) geführte und circa 1650 ausgeführte Miniaturbildnis. Für dieses Porträt zeigt Ackermann zehn vergleichbare Miniaturen aus verschiedenen Sammlungen auf.[^2] Auch Sandra L. Rosenbaum verweist in ihrem Aufsatz *Seventeenth Century Miniature Portraits with Costume Overlays* auf eine Miniatur, welche die gleichen Kleiderelemente zeigt.[^3] Variierend kommt der Typus einer hellbrünetten Haartracht oder ein grünes, anstelle eines roten Kleides ins Spiel. Denis Bruna wiederum zeigt in dem Ausstellungskatalog *Tenue correcte exigée: quand le vêtement fait scandale*[^4] ein Bildnis, welches dem Abbild aus der Sammlung Lipperheide hinsichtlich des Stils, der Posen, der Farbigkeit und der Accessoires am nächsten kommt.
 
@@ -31,5 +27,23 @@ Den ca. 25 unterschiedlichen überlieferten Frauenbildnissen mit Folien stehen e
 
 Derartige Metamorphosen entlehnten ihre Kleiderelemente aus zeitgenössischen Grafiken, wie beispielsweise aus den Darstellungen von [Wenzel Hollar](item/9799). Hier stand etwa die Kopfbedeckung in dem Blatt [Mulier Coloniensis bonae qualitatis](https://hollar.library.utoronto.ca/islandora/object/hollar%3AHollar_k_1751) Pate für ein Wechselbil mit ähnlichem Aussehen. Nicht ungewöhnlich waren auch ganzfigurige Bildnisse.
 
+## Das [Familienbildnis der Hohenlohe](xxx)
 
-Siehe auch das [Familienbildnis der Hohenlohe](xxx)
+# Karikaturen auf zeitgenössisches modisches Gebaren
+xxx
+
+# Frühneuzeitliche Darstellungen von Kleidung, Sitten und Gebräuchen
+Vgl 06_earlymodern_images_de
+
+# Textile Opulenz
+
+## Eine Robe à la francaise
+xxx (aus dem Vortragstext Amsterdam)
+
+## Männerwesten
+xxx
+
+## Eine Hochzeitshaube aus Nürnberg
+xxx
+
+
