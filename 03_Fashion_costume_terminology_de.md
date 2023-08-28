@@ -4,7 +4,7 @@ date: "2024-01-14"
 color: "blue"
 isPublic: true
 lang: de
-description: "Ein Exkurs zur Begriffstrias Kostüm, Mode und Tracht soll auf die Verwendung der Bezeichnungen *Mode*, *Bekleidung*, *Tracht* und *Kostüm* im zeitlichen Kontext der Entstehung der Lipperheideschen Kostümbibliothek und der Textilsammlung des Germanische Nationalmuseums Nürnberg, verweisen. Ihre 
+description: "Ein Exkurs zur Begriffstrias Kostüm, Mode und Tracht soll auf die Verwendung der Bezeichnungen Mode, Bekleidung, Tracht und Kostüm im zeitlichen Kontext der Entstehung der Lipperheideschen Kostümbibliothek und der Textilsammlung des Germanische Nationalmuseums Nürnberg, verweisen. Ihre 
 Definitionen in der wissenschaftlichen Publizistik um 1900 und in der frühen Kleiderforschung ab der Mitte des 19. Jahrhunderts erlebten einen elementaren Bedeutungswandel."
 cover: "https://uclab.fh-potsdam.de/refa/files/original/af6d3f80b1b5690cf68dae59dcfb0909bd2e6ea9.jpg"
 ---
