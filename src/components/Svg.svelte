@@ -8,9 +8,9 @@
 		{#each Object.entries($paths) as [id, path]}
 			{#each path as item}
 				{@const uniqueId = newUniqueId()}
-				<path id="path_{uniqueId || id}" class="{item.class}" data-attr="{item.selected}" d={item.d}/>
-				{#if item.class != undefined && item.selected != "not-selected" && item.class == 'highlite'}
-					<text class="{item.class} background">
+				<path id="path_{uniqueId || id}" class={item.class} data-attr={item.selected} d={item.d} />
+				{#if item.class != undefined && item.selected != 'not-selected' && item.class == 'highlite'}
+					<!-- <text class="{item.class} background">
 						<textPath
 							dominant-baseline="middle"
 							href="#path_{uniqueId || id}"
@@ -19,10 +19,11 @@
 						>
 							{item.label}
 						</textPath>
-					</text>
+					</text> -->
 					<text class={item.class}>
 						<textPath
-							dominant-baseline="middle"
+							alignment-baseline="baseline"
+							dominant-baseline="text-before-edge"
 							href="#path_{uniqueId || id}"
 							startOffset="98%"
 							text-anchor="end"
@@ -82,13 +83,12 @@
 		stroke: var(--theme-color);
 	}
 
-	path[data-attr="selected"] {
+	path[data-attr='selected'] {
 		stroke: var(--theme-color);
 	}
 
-	path[data-attr="not-selected"] {
+	path[data-attr='not-selected'] {
 		stroke: #969696;
 		stroke-width: 0.2;
 	}
-
 </style>
