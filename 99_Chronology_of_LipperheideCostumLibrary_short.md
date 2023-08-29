@@ -65,7 +65,7 @@ Zum Ende des Jahres 1920 wurden die musealen Objekt des *Kunstgewerbemuseums* in
 ### 1924: Umbenennung
 Auf Betreiben Peter Jessens und gemäß des Erlasses des Kultusministeriums vom **27. Mai 1924** wurde die Bibliothek umbenannt in *Staatliche Kunstbibliothek* mit dem erläuternden Zusatz „vormals Bibliothek des Kunstgewerbemuseums“.
 ### 1933: Nachlass Elisabeth von Lipperheide
-Der Nachlass von Elisabeth von Lipperheide, der zweiten Ehefrau Franz von Lipperheides, wurde ebenfalls von [Hugo Helbing](item/18765) verwaltet und in der [Auktion aus dem Jahr 1933](item/6115) versteigert.
+Der Nachlass von Elisabeth von Lipperheide, der zweiten Ehefrau Franz von Lipperheides, wurde ebenfalls von [Hugo Helbing](item/18765) verwaltet und in der [Auktion aus dem Jahr 1933](https://doi.org/10.11588/diglit.5761) versteigert.
 ### 1934: Besetzung des Gebäudes durch die Gestapo
 Das *Geheime Staatspolizeiamt (Gestapo)*  beanspruchte **1934** den Erweiterungsbau in der Prinz-Albrecht-Straße 7a als ihren [Dienstsitz](media/48641). Der seit 1933 als Direktor der Kunstbibliothek eingesetzte *[Hermann Schmitz](item/18817)* hatte seine Erwerbungspolitik und Öffentlichkeitsarbeit bereits den Forderungen des NS-Regimes angeglichen. Unter dem Vorwand der Staatsnotwehr und Staatssicherung im Zuge des Röhm-Putsches wurde die Räumung des Bibliotheksgebäudes im Juli 1934 erzwungen. Der [Umzug](media/48643) in den Martin-Gropius-Bau erfolgte in der Nacht vom **3. auf den 4. Juli 1934** und war am Vormittag abgeschlossen. Buch- und Grafikbestände wie auch die Lipperheidesche [Gemäldesammlung](media/48642) wurden in den Lichthof des Martin-Gropius-Baus umgelagert. 
 
