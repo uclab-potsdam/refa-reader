@@ -193,7 +193,7 @@
 	}
 
 	:global(sup a) {
-		text-decoration: none;
-		color: var(--theme-color);
+		text-decoration: none !important; 
+		color: var(--theme-color) !important;
 	}
 </style>

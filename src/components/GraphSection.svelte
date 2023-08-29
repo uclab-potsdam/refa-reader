@@ -1,7 +1,7 @@
 <script>
 	import Card from '@components/Card.svelte';
 	import Paths from '@components/Paths.svelte';
-	import { graphSteps } from '@stores';
+	import { graphSteps,selectedNode } from '@stores';
 	import { createTriplets } from '@utils';
 
 	export let desc;
@@ -21,6 +21,8 @@
 	let selectedTriplets = { nodes: [], links: [] };
 
 	async function openNode(node, index) {
+		$selectedNode = "";
+
 		// Remove all elements in $graphSteps after the given index
 		$graphSteps.splice(index, $graphSteps.length - index);
 
