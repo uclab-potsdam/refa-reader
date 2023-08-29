@@ -5,7 +5,7 @@ color: "blue"
 isPublic: true
 lang: de
 description: "Maßgebliche Auskunft geben die oft fragilen historischen Textilien; sie erweitern die Bild- und Textinformationen um die Objekthaftigkeit und Materialität selbst. Mittels einer Kombination aus 3D-Scan und photogrammetrischer Erfassung konnten 15 ausgewählte textile Ensembles aus dem Germanischen Nationalmuseum zu navigierbaren 3D-Modellen erstellt werden."
-cover: "https://uclab.fh-potsdam.de/refa/files/original/af6d3f80b1b5690cf68dae59dcfb0909bd2e6ea9.jpg"
+cover: "https://uclab.fh-potsdam.de/refa/files/asset/5712cdf6fb0051df34f92ff28a7603c7bb2fc2f7.png"
 ---
  In dem Projekt Projekt *Restaging Fashion. Digitale Kontextualisierung vestimentärer Quellen* wurden ingesamt [15 historische Kleidungselemente](item-set/45212) erweiteren die Quellenlage zu  der bildlichen Darstellung historischer Kleidung und Tracht. Zusätzlich wurden exemplarische historische Textquellen ausgewählt, welche die Quellentrias Bild-Text-Kleidung vervollständigen und den methodischen Ansatz des Projektes zu exemplifizieren.
 
