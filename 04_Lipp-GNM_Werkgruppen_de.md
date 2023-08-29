@@ -49,7 +49,9 @@ Die spiralförmigen Blüten des Kleiderstoffs sind dem Gemeinen Jasmin *(Jasminu
 
 ### Die Unterkleidung
 Der gemeinsam mit dem hellblauen Seidenkleid in das Germanische Museum gekommene aus zyklamrotem Seidengewebe bestehende Reifrock, frz. [Jupe de baleine*](http://objektkatalog.gnm.de/objekt/T8504) ist ein weit ausgesteifter Unterrock, der die verschiedenen Kleidersilhouetten des Rokoko formte. Etwa knielang unterstützt die Anordnung der Reifenreihe besonders im Hüftbereich und trägt das Gewicht des darüberliegenden Kleides Die Ausformung der Silhouette mittels versteifter Unterröcke und insbesondere die dadurch entstenden aussergwöhnlichen Volumina waren Gegenstand von Spott und Kritik. Unzählige [Karikatur-Blätter](item/45219) und [Schmähschriften oder moralische Texte](item/45716) trugen jedoch auch zur Verbreitung dieser modischen Ausprägung bei. Bereits 1740 wurde der Reifrock bildlich [ins Exil](item/48668) geschickt.
-Die Trägerin wird neben dem oben erwähnten langen Leinenhemd noch ein diesem [Paar ähnliche seidene Strümpfe](http://objektkatalog.gnm.de/objekt/T2602), und dazu Schuhe mit einem relativ flachen Absatz getragen haben. 
+Die Trägerin wird neben dem oben erwähnten langen Leinenhemd noch ein diesem [Paar ähnliche seidene Strümpfe](http://objektkatalog.gnm.de/objekt/T2602), und dazu Schuhe mit einem relativ flachen Absatz getragen haben.
+
+Bereits 100 Jahre zuvor, war die Auspolsterung der Hüfte in einer Karikatur aufgenommen worden: Zwischen 1580 und 1600 entstanden zeigt die Karikatur *[Die Eitelkeit der Frauen](item/18030)* die Ausstaffierung der Hüften mit sogenannten Hüftpolstern und ein enstsprechendes Volumen der Kleidung.
 
 ## Männerwesten
 xxx
