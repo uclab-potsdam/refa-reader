@@ -127,6 +127,7 @@
 
 		.item__detail {
 			flex: 0 0 150px;
+			width: 150px;
 			display: none;
 		}
 		.graph__container {

@@ -177,7 +177,6 @@
 		line-height: 0;
 		vertical-align: middle;
 		color: var(--theme-color);
-		padding-left: 0.25rem;
 	}
 
 	:global(.selected .symbol) {

@@ -1,5 +1,5 @@
 <script>
-	import { selectedNode, ItemDetailMetaData } from '@stores';
+	import { selectedNode, ItemDetailMetaData, graphSteps } from '@stores';
 	import { afterUpdate } from 'svelte';
 	export let data;
 	$: itemDetail = data.find((d) => d.id == $selectedNode);
@@ -9,13 +9,15 @@
 			const selectedItem = document.querySelector(`${element}[data-id="${detail}"]`);
 			if (selectedItem) {
 				// selectedItem.scrollIntoView({ behavior: 'smooth' });
-				selectedItem.scrollIntoView({ behavior: 'auto', block: 'start' });
+				selectedItem.scrollIntoView({ behavior: 'auto', block: 'center' });
 			}
 		}
 	}
 
 	afterUpdate(() => {
-		scrollToSelected('.item-detail', $selectedNode);
+		if ($graphSteps.length < 2) {
+			scrollToSelected('.item-detail', $selectedNode);
+		}
 	});
 </script>
 
@@ -76,13 +78,18 @@
 
 	.selected {
 		scroll-behavior: smooth;
-		font-size: 1.4rem;
+		font-size: 1.3rem;
+		animation: color 0.5;
+		min-height: 200px;
 	}
 
 	.item-detail:not(.selected) {
-		/* opacity: 0.1; */
-		/* font-size: 1rem; */
+		background: white;
 		filter: grayscale(1);
+	}
+
+	.item-detail:not(.selected) * {
+		opacity: 0.1;
 	}
 
 	.item-detail:hover {
@@ -94,7 +101,7 @@
 		padding: 0.5rem;
 		font-size: 0.9rem;
 		overflow: scroll;
-		height: 100vh;
+		height: calc(100vh - 1rem);
 	}
 
 	img {
