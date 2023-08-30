@@ -49,7 +49,7 @@
 {:else}
 	<article style="--theme-color: {textData.meta?.color || 'blue'}">
 		<section class="item__detail">
-			<ItemDetail data={itemsJson} />
+			<ItemDetail data={itemsJson.filter((d) => !d.hasOwnProperty('fromSet'))} />
 		</section>
 		<section
 			class="markdown__container"
@@ -127,6 +127,7 @@
 
 		.item__detail {
 			flex: 0 0 150px;
+			width: 150px;
 			display: none;
 		}
 		.graph__container {

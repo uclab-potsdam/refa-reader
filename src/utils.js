@@ -93,7 +93,8 @@ export async function extractLinks(markdown) {
                     set: {
                         id: json["o:id"],
                         title: json["o:title"]
-                    }
+                    },
+                    fromSet: true
                 });
             });
         }
@@ -116,7 +117,8 @@ export async function extractLinks(markdown) {
                 set: {
                     id: json["o:id"],
                     title: json["o:title"]
-                }
+                },
+                fromSet: true
             });
         }
         else {

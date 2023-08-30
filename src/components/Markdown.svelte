@@ -177,7 +177,6 @@
 		line-height: 0;
 		vertical-align: middle;
 		color: var(--theme-color);
-		padding-left: 0.25rem;
 	}
 
 	:global(.selected .symbol) {
@@ -193,7 +192,7 @@
 	}
 
 	:global(sup a) {
-		text-decoration: none;
-		color: var(--theme-color);
+		text-decoration: none !important; 
+		color: var(--theme-color) !important;
 	}
 </style>

@@ -89,6 +89,7 @@
 
 	onDestroy(() => {
 		delete $paths[id];
+		$paths = [];
 	});
 </script>
 
