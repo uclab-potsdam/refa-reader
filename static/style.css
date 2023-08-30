@@ -7,8 +7,9 @@ body {
     margin: 0;
     padding: 0;
     font-size-adjust: 0.5;
-    text-rendering: optimizeLegibility;
+    text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
 }
 
 :root {
