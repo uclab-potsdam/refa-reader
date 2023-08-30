@@ -34,47 +34,49 @@
 </script>
 
 <svelte:window on:resize={handlePosition} on:scroll={handlePosition} />
-{#if textData == undefined && triplets == undefined}
-	<article>
-		<section class="markdown__container">
-			<h4>404 Page not found</h4>
-		</section>
-	</article>
-{:else if triplets == undefined}
-	<article>
-		<section class="markdown__container">
-			<h4>Loading...</h4>
-		</section>
-	</article>
-{:else}
-	<article style="--theme-color: {textData.meta?.color || 'blue'}">
-		<section class="item__detail">
-			<ItemDetail data={itemsJson.filter((d) => !d.hasOwnProperty('fromSet'))} />
-		</section>
-		<section
-			class="markdown__container"
-			on:wheel={() => {
-				resetNode();
-				handlePosition();
-			}}
-			on:touchmove={() => {
-				resetNode();
-				handlePosition();
-			}}
-			on:click={() => {
-				resetNode();
-				handlePosition();
-			}}
-			on:keypress={handlePosition}
-		>
-			<h1>{textData.meta.title}</h1>
-			<Markdown data={textData} items={itemsJson} />
-		</section>
-		<section class="graph__container" on:click={handlePosition} on:keypress={handlePosition}>
-			<Graph data={$items} {visibleItemsID} {handlePosition} {updatePosition} />
-		</section>
-	</article>
-{/if}
+<div>
+	{#if textData == undefined && triplets == undefined}
+		<article>
+			<section class="markdown__container">
+				<h4>404 Page not found</h4>
+			</section>
+		</article>
+	{:else if triplets == undefined}
+		<article>
+			<section class="markdown__container">
+				<h4>Loading...</h4>
+			</section>
+		</article>
+	{:else}
+		<article style="--theme-color: {textData.meta?.color || 'blue'}">
+			<section class="item__detail">
+				<ItemDetail data={itemsJson.filter((d) => !d.hasOwnProperty('fromSet'))} />
+			</section>
+			<section
+				class="markdown__container"
+				on:wheel={() => {
+					resetNode();
+					handlePosition();
+				}}
+				on:touchmove={() => {
+					resetNode();
+					handlePosition();
+				}}
+				on:click={() => {
+					resetNode();
+					handlePosition();
+				}}
+				on:keypress={handlePosition}
+			>
+				<h1>{textData.meta.title}</h1>
+				<Markdown data={textData} items={itemsJson} />
+			</section>
+			<section class="graph__container" on:click={handlePosition} on:keypress={handlePosition}>
+				<Graph data={$items} {visibleItemsID} {handlePosition} {updatePosition} />
+			</section>
+		</article>
+	{/if}
+</div>
 
 <style>
 	article {
@@ -113,23 +115,27 @@
 			height: 180vh;
 		}
 		.markdown__container {
-			flex: 1;
+			flex: 2;
+			padding: 0.5rem;
 		}
 
-		.markdown__container::before {
+		h1 {
+			font-size: 1.4rem;
+		}
+
+		div::before {
 			content: 'This website contains visualizations that are not supported by small screen formats. To navigate the graphs, go to your desktop browser.';
 			display: block;
-			font-size: 28px;
+			font-size: 20px;
 			padding: 1rem;
-			border-bottom: 1px dashed;
-			margin-bottom: 10rem;
+			background: blue;
 		}
 
 		.item__detail {
-			flex: 0 0 150px;
-			width: 150px;
-			display: none;
+			flex: 1;
+			/* display: none; */
 		}
+
 		.graph__container {
 			display: none;
 		}
