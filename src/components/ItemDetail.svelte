@@ -8,24 +8,16 @@
 	function scrollToSelected(element, detail, align) {
 		if (detail) {
 			const selectedItem = document.querySelector(`${element}[data-id="${detail}"]`);
-			// console.log($selectedNode, selectedItem);
-
 			if (selectedItem) {
 				// selectedItem.scrollIntoView({ behavior: 'smooth' });
-				selectedItem.scrollIntoView({ behavior: 'auto', block: 'center' });
+				selectedItem.scrollIntoView({behavior: 'smooth', block: 'center' });
 			}
 		}
 	}
 
-	let update = false;
 	afterUpdate(() => {
 		if ($graphSteps.length < 2) {
 			scrollToSelected('.item-detail', $selectedNode);
-		}
-
-		if (update) {
-			scrollToSelected('.node-highlite', $selectedNode);
-			update = false;
 		}
 	});
 </script>
@@ -38,16 +30,13 @@
 					class="item-detail"
 					on:click={() => {
 						$selectedNode = d.data?.['o:id'];
-						update == true;
+						// scrollToSelected('.node-highlite', d.data?.['o:id']);
 					}}
-					on:keydown={() => {
-						$selectedNode = d.data?.['o:id'];
-						update == true;
-					}}
+					on:keydown
 					data-id={d.data?.['o:id']}
 					class:selected={itemDetail != undefined ? itemDetail.id == d.data?.['o:id'] : ''}
 				>
-					{#if d.data?.thumbnail_display_urls.large}
+					{#if d.data?.thumbnail_display_urls.large && !d.data?.['o:items']}
 						<img src={d.data?.thumbnail_display_urls.large} alt={d.data?.['o:title']} />
 					{/if}
 
