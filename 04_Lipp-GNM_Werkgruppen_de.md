@@ -29,8 +29,11 @@ Derartige Metamorphosen entlehnten ihre Kleiderelemente aus zeitgenössischen Gr
 
 ## Das [Familienbildnis der Hohenlohe](xxx)
 
-# Karikaturen auf zeitgenössisches modisches Gebaren
-xxx
+# Modekarikaturen als Bildquellen
+Die Gruppe der hier aufgenommenen [modekritischen druckgrafischen Blätter](xxx) stellen eine besondere Bildgattung mit einem spezifischen Informationswert dar. Ihre Botschaften werden witzig, sarkastisch, mal verdeckt und schwer dechiffrierbar und mal explizit und mit Unterstützung von beigefügten Texten oder in den Mund gelegten Aussagen überbracht. Die Auslegung von Karikaturen ist oft spekulativ, Modekarikaturen bergen zusätzlich die Anforderung, die dargestellten Moden in ihrer regionalen und zeitlichen Ausprägung zu identifizieren, besonders unter dem Aspekt einer meist verzerrten Darstellung.[^Vgl. Ridikül! 2003, S. 33-35]
+
+Als zum einen amüsantes, aber auch als ernst zu nehmendes Zeitdokument geben sie nicht nur Auskunft über die modischen Stile der Zeit, sondern auch über die gesellschaftlichen Befindlichkeiten in Bezug auf diese. Modekarikaturen erweitern die Kenntnis über die Rezeption von Mode, über die Bewertung durch die Zeitgenossen, ihre Haltung zu Schönheitsidealen, über die zeitgenössische Lesart beispielsweise von politischen Konnotationen und über die Mode-Klientel selbst. Darüber hinaus zeigt sie auch die Sicht auf die nach der letzten Mode bekleideten Zeitgenossen. So wurden beispielsweise Trägerinnen von höfischen Hochfrisuren der 1770er Jahre, wie auf dem [Bildnis einer Frau im Kleid und Hochfrisur](item/580) zu sehen, von Seiten der Engländer Verschwendungssucht attestiert, während die französischen Modekritiker sich an den Gegensätzen „Natürlichkeit“ und „Affektiertheit“, respektive „Moral versus Unmoral“ rieben. [^Vgl. Ridikül! 2003, S. 34]
+Das Lesen von Modekarikaturen muss den zeitlichen Kontext der Entstehung wie auch das Publikum einbeziehen, spekulative Interpretationen sollten mit überlieferten Schriftquellen abgeglichen werden.
 
 # Frühneuzeitliche Darstellungen von Kleidung, Sitten und Gebräuchen
 Vgl 06_earlymodern_images_de
