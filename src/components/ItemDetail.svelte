@@ -92,8 +92,8 @@
 		opacity: 0.1;
 	}
 
-	.item-detail:hover {
-		/* opacity: 1; */
+	.item-detail:hover, .item-detail:hover * {
+		opacity: 1;
 		filter: grayscale(0);
 	}
 
