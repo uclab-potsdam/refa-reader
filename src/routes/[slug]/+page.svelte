@@ -3,7 +3,7 @@
 	import Graph from '@components/Graph.svelte';
 	import ItemDetail from '@components/ItemDetail.svelte';
 	import { page } from '$app/stores';
-	import { Api, items, graphSteps } from '@stores';
+	import { Api, items, graphSteps, selectedNode } from '@stores';
 	import { onMount } from 'svelte';
 	import { extractLinks, createTriplets } from '@utils';
 	import { writable } from 'svelte/store';
@@ -18,6 +18,11 @@
 		$updatePosition = true;
 	};
 
+	$: {
+		$selectedNode;
+		console.log('changed');
+		handlePosition();
+	}
 	onMount(async () => {
 		textData = [...data.posts].find((d) => d.path.includes($page.params.slug));
 		itemsJson = await extractLinks(textData.text);
@@ -49,7 +54,14 @@
 		</article>
 	{:else}
 		<article style="--theme-color: {textData.meta?.color || 'blue'}">
-			<section class="item__detail">
+			<section
+				class="item__detail"
+				on:click={() => {
+					resetNode();
+					handlePosition();
+				}}
+				on:keypress={handlePosition}
+			>
 				<ItemDetail data={itemsJson.filter((d) => !d.hasOwnProperty('fromSet'))} />
 			</section>
 			<section
