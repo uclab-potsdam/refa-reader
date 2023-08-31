@@ -1,7 +1,7 @@
 ---
 title: "Exkurs: Kostüm, Mode und Tracht"
 date: "2024-01-14"
-color: "blue"
+color: "darkorange"
 isPublic: true
 lang: de
 description: "Ein Exkurs zur Begriffstrias Kostüm, Mode und Tracht soll auf die Verwendung der Bezeichnungen Mode, Bekleidung, Tracht und Kostüm im zeitlichen Kontext der Entstehung der Lipperheideschen Kostümbibliothek und der Textilsammlung des Germanische Nationalmuseums Nürnberg, verweisen. Ihre Definitionen in der wissenschaftlichen Publizistik um 1900 und in der frühen Kleiderforschung ab der Mitte des 19. Jahrhunderts erlebten einen elementaren Bedeutungswandel."
