@@ -4,11 +4,9 @@ date: "2024-01-14"
 color: "blue"
 isPublic: true
 lang: de
-description: "Maßgebliche Auskunft geben die oft fragilen historischen Textilien; sie erweitern die Bild- und Textinformationen um die Objekthaftigkeit und Materialität selbst. Mittels einer Kombination aus 3D-Scan und photogrammetrischer Erfassung konnten 15 ausgewählte textile Ensembles aus dem Germanischen Nationalmuseum zu navigierbaren 3D-Modellen erstellt werden."
+description: "Maßgebliche Auskunft über getragene historische Kleidung geben die oft fragilen historischen Textilien; sie erweitern die Informationen aus Bild- und Schriftquellen um die Objekthaftigkeit und Materialität selbst. Mittels einer Kombination aus 3D-Scan und photogrammetrischer Erfassung konnten für 15 ausgewählte textile Ensembles aus dem Germanischen Nationalmuseum navigierbare 3D-Modelle erstellt werden."
 cover: "https://uclab.fh-potsdam.de/refa/files/asset/5712cdf6fb0051df34f92ff28a7603c7bb2fc2f7.png"
 ---
- In dem Projekt Projekt *Restaging Fashion. Digitale Kontextualisierung vestimentärer Quellen* wurden ingesamt [15 historische Kleidungselemente](item-set/45212) erweiteren die Quellenlage zu  der bildlichen Darstellung historischer Kleidung und Tracht. Zusätzlich wurden exemplarische historische Textquellen ausgewählt, welche die Quellentrias Bild-Text-Kleidung vervollständigen und den methodischen Ansatz des Projektes zu exemplifizieren.
-
 # Die Entstehung des Germanischen Nationalmuseums (Nürnberg)
 Das Germanische Nationalmuseum in Nürnberg gehörte, wie auch das Kunstgewerbemuseum Berlins mit zugehöriger Unterrichtsanstalt, welches seit 1867 bestand, und dem in München durch Maximilian II. initiierte [Bayerische Nationalmuseum](https://d-nb.info/gnd/2005502-X) (1869), zu den Museumsgründungen und Vorlagensammlungen, welche Muster- und Modellsammlungen für Künstler, Kunsthandwerker und Forscher zusammentrugen und die Kleidung, Kostüm und Textilien als Ausdruck nationaler Kulturgeschichte in ihre Sammlungen integrierten. Außerdem beherbergten das kulturhistorische Museum für Alltagskultur als Teil des Württembergischen Landesmuseums (1862) und das Kunsthistorische Museum in Wien (1891) Abteilungen oder Mustersammlungen mit Kleidung, Gewebe und Alltagskultur.
 
@@ -26,8 +24,7 @@ Der zunächst als Zeichenlehrer an der Gewerbeschule in Aschaffenburg tätige vo
 Das Wirken des Zeichners, Stechers, Sammlers, Kultur- und Kunsthistorikers von Hefner-Alteneck kann wie eine Folie für das Forscher- und Sammlerinteresse der von Lipperheides gelesen werden.
 
 ## Ausgewählte historische Textilien aus der Sammlung Textilien und Schmuck
-In der Auswahl von 15 historischen Textilien oder Objekten für die Kontextualisierung im Rahmen des Projektes *Restaging Fashion* waren die folgenden Parameter entscheidend: die ausgewählten Objekte sollten maßgebliche Informationen zur Kleidungsgeschichte ergänzen, welche von einem zweidimensionalen Gemälden oder einem entweder monochromen oder kolorierten Stich nicht abgeleitet werden können. 
-Ein digitales 3D-Bildgebungsverfahren der Objekte, die im Web durch den Betrachter navigierbar sind, erweiterten das Verständnis dieser kulturellen Artefakte. 
+In der Auswahl von [15 historischen Textilien oder textilen Objekten](item-set/45212) für die Kontextualisierung im Rahmen des Projektes *Restaging Fashion* waren die folgenden Parameter entscheidend: die ausgewählten Objekte sollten maßgebliche Informationen zur Kleidungsgeschichte ergänzen, welche von einem zweidimensionalen Gemälde oder einem  monochromen oder kolorierten Stich nicht abgeleitet werden können. Ein digitales 3D-Bildgebungsverfahren der Objekte, die im Web durch den Betrachter navigierbar sind, erweiterten das Verständnis dieser kulturellen Artefakte. 
 
 Die licht- und druckempfindlichen Textilien wurden dafür auf Figurinen montiert und in einem photogrammetrischen und einem 3D-Scanverfahren digitalisiert.  Die bildgebenden Verfahren wurden im Zuge der Datenbearbeitung bei Bedarf kombiniert.[^Vgl. die ausführliche Prozessbeschreibung in den Metadaten der Einzelobjekte] Textilien stellen noch immer eine Herausforderung für die digitale 3D-Reproduktion dar; sie sind zerbrechlich, detailreich und sind oft schwierig zu stabilisieren (z.B. Federn, leichte Textilien). Der beträchtliche Aufwand und das noch experimentelle Verfahren ergab eine Beschränkung auf 15 textile Objekte, die je unterschiedliche Schwierigkeitsgrade aufwiesen und etwas andere Herangehensweisen erforderten: 
 
