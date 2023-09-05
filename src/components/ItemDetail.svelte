@@ -10,14 +10,15 @@
 			const selectedItem = document.querySelector(`${element}[data-id="${detail}"]`);
 			if (selectedItem) {
 				// selectedItem.scrollIntoView({ behavior: 'smooth' });
-				selectedItem.scrollIntoView({ behavior: 'auto', block: 'center' });
+				selectedItem.scrollIntoView({ behavior: 'auto', block: align });
+				// $selectedNode = detail;
 			}
 		}
 	}
 
 	afterUpdate(() => {
 		if ($graphSteps.length < 2) {
-			scrollToSelected('.item-detail', $selectedNode);
+			scrollToSelected('.item-detail', $selectedNode, 'center');
 		}
 	});
 </script>
@@ -30,7 +31,10 @@
 					class="item-detail"
 					on:click={() => {
 						$selectedNode = d.data?.['o:id'];
-						// scrollToSelected('.node-highlite', d.data?.['o:id']);
+						let item = document.querySelector(`.node-highlite[data-id="${d.data?.['o:id']}"]`);
+						console.log(item)
+						item.classList.add('selected');
+						// scrollToSelected('.node-highlite', d.data?.['o:id'], 'start');
 					}}
 					on:keydown
 					data-id={d.data?.['o:id']}

@@ -12,6 +12,7 @@
 	let textData = [];
 	let triplets, itemsJson;
 	let visibleItemsID = [];
+	let essaysItems = [];
 
 	const updatePosition = writable(false);
 	const handlePosition = () => {
@@ -20,9 +21,9 @@
 
 	$: {
 		$selectedNode;
-		console.log('changed');
 		handlePosition();
 	}
+
 	onMount(async () => {
 		textData = [...data.posts].find((d) => d.path.includes($page.params.slug));
 		itemsJson = await extractLinks(textData.text);
@@ -31,6 +32,40 @@
 			.map((obj) => `${Api}/resources/${obj.data?.['o:id']}`);
 		triplets = await createTriplets(itemsJson);
 		$items = triplets;
+
+		const storedLanguage = localStorage.getItem('selectedLanguage');
+
+		essaysItems = data.posts.reduce((result, item) => {
+			// ignore current path and filter by lang
+			if (!item.path.includes($page.params.slug) && item.meta.lang == storedLanguage) {
+				item.links.map((link) => {
+					const existingEntry = result.find((entry) => entry.id === link);
+
+					const essay = {
+						title: item.meta.title,
+						url: item.path
+					};
+
+					if (existingEntry) {
+						// Check if the essay doesn't already exist in the 'essays' array
+						if (
+							!existingEntry.essays.some(
+								(existingEssay) =>
+									existingEssay.title === essay.title && existingEssay.url === essay.url
+							)
+						) {
+							existingEntry.essays.push(essay);
+						}
+					} else {
+						result.push({
+							id: link,
+							essays: [essay]
+						});
+					}
+				});
+			}
+			return result;
+		}, []);
 	});
 
 	function resetNode() {
@@ -57,6 +92,10 @@
 			<section
 				class="item__detail"
 				on:click={() => {
+					document.querySelectorAll('a[data-id]').forEach((link) => {
+						link.classList.remove('related');
+						link.classList.remove('selected');
+					});
 					resetNode();
 					handlePosition();
 				}}
@@ -84,7 +123,7 @@
 				<Markdown data={textData} items={itemsJson} />
 			</section>
 			<section class="graph__container" on:click={handlePosition} on:keypress={handlePosition}>
-				<Graph data={$items} {visibleItemsID} {handlePosition} {updatePosition} />
+				<Graph {essaysItems} data={$items} {visibleItemsID} {handlePosition} {updatePosition} />
 			</section>
 		</article>
 	{/if}

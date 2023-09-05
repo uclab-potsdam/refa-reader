@@ -1,9 +1,12 @@
 <script>
 	import { graphSteps } from '@stores';
+	import { each } from 'svelte/internal';
 	// import PropLabel from '@components/PropLabel.svelte';
 	export let datum;
 	export let entities;
 	export let updatePosition;
+	export let essaysItems;
+
 	let imageSrc;
 
 	function handleLoad() {
@@ -21,11 +24,14 @@
 			imageSrc = getImageByNode(datum.target);
 		}
 	}
+
+	let essaysItemsLinks = essaysItems.find((d) => d.id == datum.target.split('/').slice(-1)[0]);
 </script>
 
 <!-- <PropLabel label={datum.property} /> -->
 <div
 	class="node {$graphSteps.find((d) => d.id == datum.target) ? 'selected' : ''}"
+	class:linkToEssay={essaysItemsLinks != undefined}
 	data-id={datum.target.split('/').slice(-1)[0]}
 	title={datum.title}
 	on:click
@@ -44,11 +50,35 @@
 		<div class="title">{datum.title || ''}</div>
 	{/if}
 
+	<!-- Links -->
+
+	{#if essaysItemsLinks != undefined}
+		{#each essaysItemsLinks.essays as d}
+			<a class="link" href={d.url} target="_blank" rel="noopener noreferrer"
+				>Read in <em>{d.title}</em></a
+			>
+		{/each}
+	{/if}
+
 	<!-- not title == is media -->
 	{#if datum.title == undefined}
-		<a class="link" href={`https://uclab.fh-potsdam.de/refa/s/pinacotheca/media/${datum.target.split('/').slice(-1)[0]}`} target="_blank" rel="noopener noreferrer">See in Collection</a>
+		<a
+			class="link"
+			href={`https://uclab.fh-potsdam.de/refa/s/pinacotheca/media/${
+				datum.target.split('/').slice(-1)[0]
+			}`}
+			target="_blank"
+			rel="noopener noreferrer">See in Collection</a
+		>
 	{:else}
-		<a class="link" href={`https://uclab.fh-potsdam.de/refa/s/pinacotheca/item/${datum.target.split('/').slice(-1)[0]}`} target="_blank" rel="noopener noreferrer">See in Collection</a>
+		<a
+			class="link"
+			href={`https://uclab.fh-potsdam.de/refa/s/pinacotheca/item/${
+				datum.target.split('/').slice(-1)[0]
+			}`}
+			target="_blank"
+			rel="noopener noreferrer">See in Collection</a
+		>
 	{/if}
 </div>
 
@@ -78,8 +108,10 @@
 		margin-top: 1rem;
 		margin-bottom: 0.5rem;
 		font-size: 0.7rem;
-		line-height: 0.7;
+		/* line-height: 0.7; */
 		display: none;
+		padding-bottom: 1rem;
+		border-bottom: 1px solid gainsboro;
 	}
 
 	.selected > .link {
@@ -90,5 +122,9 @@
 		padding-top: 0.5rem;
 		width: 100%;
 		object-fit: contain;
+	}
+
+	.linkToEssay {
+		border: 2px dotted var(--theme-color) !important;
 	}
 </style>

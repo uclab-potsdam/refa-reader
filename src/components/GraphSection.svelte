@@ -15,6 +15,7 @@
 	export let loadData;
 	export let defaultNodes;
 	export let batchSize;
+	export let essaysItems;
 
 	let section;
 
@@ -81,6 +82,7 @@
 							{entities}
 							{updatePosition}
 							{datum}
+							{essaysItems}
 							on:click={() => {
 								openNode(datum, index + 1);
 							}}
