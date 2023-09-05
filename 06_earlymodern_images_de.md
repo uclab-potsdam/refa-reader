@@ -1,5 +1,5 @@
 ---
-title: Frühneuzeitliche Darstellungen von Kleidung, Sitten und Gebräuchen
+title: Kleidung, Sitten und Gebräuchen in der frühen Neuzeit
 date: "2023-12-14"
 color: "forestgreen"
 isPublic: true
