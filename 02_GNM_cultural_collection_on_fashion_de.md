@@ -1,5 +1,5 @@
 ---
-title: Sammlungen zur Kleiderkunde_Germanisches Nationalmuseum
+title: Materielle textile Kultur
 date: "2024-01-14"
 color: "blue"
 isPublic: true
