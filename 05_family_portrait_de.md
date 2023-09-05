@@ -1,5 +1,5 @@
 ---
-title: Genre-Mix
+title: Das Familienbildnis der Hohenlohe
 date: "2023-12-14"
 isPublic: true
 lang: de
