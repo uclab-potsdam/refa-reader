@@ -1,5 +1,5 @@
 ---
-title: Porträts, Karikaturen, Kostümbücher
+title: Porträts, Karikaturen, Kostüme & Trachten
 date: "2023-12-14"
 color: "aubergine"
 isPublic: false
