@@ -1,5 +1,5 @@
 ---
-title: Sammlungen zur Kleiderkunde
+title: Bildkosmos der Moden 
 date: "2024-01-14"
 color: "blueviolet"
 isPublic: true
