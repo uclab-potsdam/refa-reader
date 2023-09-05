@@ -1,5 +1,5 @@
 ---
-title: Chronologie, Quellen und Archivalien zur Lipperheideschen Gemälde- und Miniaturensammlung 
+title: Chronologie, Quellen und Archivalien 
 date: "2023-12-14"
 color: "red"
 isPublic: true
