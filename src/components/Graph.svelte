@@ -10,7 +10,7 @@
 	export let handlePosition;
 	export let data;
 	export let visibleItemsID;
-
+	export let essaysItems;
 	const entities = writable([]);
 
 	let selectedData = [];
@@ -146,6 +146,7 @@
 
 						{#if filteredData.length > 0}
 							<GraphSection
+								{essaysItems}
 								desc={cat.key}
 								data={filteredData}
 								newData={step.new}
@@ -170,6 +171,7 @@
 						).length}
 
 						<GraphSection
+							{essaysItems}
 							desc={secondayCategoriesLabel}
 							data={filteredSecondaryData}
 							newData={step.new}
