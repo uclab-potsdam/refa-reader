@@ -1,5 +1,5 @@
 ---
-title: "Exkurs: Kostüm, Mode und Tracht"
+title: "Begriffswelten: Kostüm, Mode und Tracht"
 date: "2024-01-14"
 color: "darkorange"
 isPublic: true
