@@ -1,5 +1,5 @@
 ---
-title: Werkbetrachtungen
+title: Porträts, Karikaturen, Kostümbücher
 date: "2023-12-14"
 color: "aubergine"
 isPublic: false
