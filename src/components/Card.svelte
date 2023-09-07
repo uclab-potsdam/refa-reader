@@ -58,27 +58,6 @@
 			>
 		{/each}
 	{/if}
-
-	<!-- not title == is media -->
-	{#if datum.title == undefined}
-		<a
-			class="link"
-			href={`https://uclab.fh-potsdam.de/refa/s/pinacotheca/media/${
-				datum.target.split('/').slice(-1)[0]
-			}`}
-			target="_blank"
-			rel="noopener noreferrer">See in Collection</a
-		>
-	{:else}
-		<a
-			class="link"
-			href={`https://uclab.fh-potsdam.de/refa/s/pinacotheca/item/${
-				datum.target.split('/').slice(-1)[0]
-			}`}
-			target="_blank"
-			rel="noopener noreferrer">See in Collection</a
-		>
-	{/if}
 </div>
 
 <style>
