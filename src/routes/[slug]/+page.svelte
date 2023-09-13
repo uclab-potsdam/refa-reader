@@ -33,11 +33,9 @@
 		triplets = await createTriplets(itemsJson);
 		$items = triplets;
 
-		const storedLanguage = localStorage.getItem('selectedLanguage');
 
 		essaysItems = data.posts.reduce((result, item) => {
-			// ignore current path and filter by lang
-			if (!item.path.includes($page.params.slug) && item.meta.lang == storedLanguage) {
+			if (!item.path.includes($page.params.slug)) {
 				item.links.map((link) => {
 					const existingEntry = result.find((entry) => entry.id === link);
 

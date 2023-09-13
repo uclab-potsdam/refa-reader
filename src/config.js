@@ -1,12 +1,3 @@
-import { writable } from 'svelte/store';
-export const visibleLinks = writable([]);
-export const allLinks = writable([]);
-export const selectedNode = writable("");
-export const selectedNodeUniqueId = writable("");
-export const items = writable([])
-export const graphSteps = writable([]);
-export const paths = writable([]);
-
 //  Customise these properties
 export const Api = 'https://uclab.fh-potsdam.de/refa/api';
 export const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce in tellus faucibus, elementum urna ut, convallis dui. Mauris euismod at tellus sed fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non tristique lectus.";
