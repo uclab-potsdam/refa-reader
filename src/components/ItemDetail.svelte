@@ -32,7 +32,6 @@
 					on:click={() => {
 						$selectedNode = d.data?.['o:id'];
 						let item = document.querySelector(`.node-highlite[data-id="${d.data?.['o:id']}"]`);
-						console.log(item)
 						item.classList.add('selected');
 						// scrollToSelected('.node-highlite', d.data?.['o:id'], 'start');
 					}}

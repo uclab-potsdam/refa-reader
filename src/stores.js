@@ -9,6 +9,9 @@ export const paths = writable([]);
 
 //  Customise these properties
 export const Api = 'https://uclab.fh-potsdam.de/refa/api';
+// Leave empty if you don't want that entities link to the site
+export const site = 'https://uclab.fh-potsdam.de/refa/s/pinacotheca/';
+
 export const mainCategories =
     [
         {
