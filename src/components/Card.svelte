@@ -124,5 +124,7 @@
 
 	.linkToEssay {
 		border: 2px dotted var(--theme-color);
+		border: 1px solid var(--theme-color);
+		box-shadow: inset -1px 1px 13px 0px var(--theme-color);
 	}
 </style>

@@ -170,35 +170,32 @@
 					{/each}
 
 					{#if step.paginate.filter((d) => d.category == setCategory)}
+						{@const filteredSecondaryData = step.paginate.filter((d) => d.category == setCategory)}
+						{@const dataLen = filteredSecondaryData.length}
+						{#if dataLen > 0}
+							<GraphSection
+								{essaysItems}
+								category={setCategory}
+								data={filteredSecondaryData}
+								newData={step.new}
+								{dataLen}
+								{index}
+								{entities}
+								{updatePosition}
+								{handlePosition}
+								{batchSize}
+								defaultNodes={[...markdownNodes, ...initialStep]}
+								{loadData}
+							/>
+						{/if}{/if}
+
+					{#if step.paginate.filter((d) => !mainCategories.some( (cat) => cat.props.includes(d.property) )).length > 0}
 						{@const filteredSecondaryData = step.paginate.filter(
 							(d) => !mainCategories.some((cat) => cat.props.includes(d.property))
 						)}
 						{@const dataLen = step.data.filter(
 							(d) => !mainCategories.some((cat) => cat.props.includes(d.property))
 						).length}
-
-						<GraphSection
-							{essaysItems}
-							category={setCategory}
-							data={filteredSecondaryData}
-							newData={step.new}
-							{dataLen}
-							{index}
-							{entities}
-							{updatePosition}
-							{handlePosition}
-							{batchSize}
-							defaultNodes={[...markdownNodes, ...initialStep]}
-							{loadData}
-						/>
-					{:else if step.paginate.filter((d) => !mainCategories.some( (cat) => cat.props.includes(d.property) )).length > 0}
-						{@const filteredSecondaryData = step.paginate.filter(
-							(d) => !mainCategories.some((cat) => cat.props.includes(d.property))
-						)}
-						{@const dataLen = step.data.filter(
-							(d) => !mainCategories.some((cat) => cat.props.includes(d.property))
-						).length}
-
 						<GraphSection
 							{essaysItems}
 							category={secondayCategoriesLabel}
