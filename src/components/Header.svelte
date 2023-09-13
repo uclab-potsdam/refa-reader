@@ -16,7 +16,6 @@
 			user-driven granularity.
 		</h3>
 	{:else if lang == 'de'}
-		IN GERMAN
 		<h3>
 			An interactive visualisation that provides access to a selection of objects from the
 			'Lipperheidesche Kostümbibliothek'. <br />

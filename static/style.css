@@ -148,3 +148,20 @@ body {
     display: none;
 }
   
+
+/* Mobile Typography */
+
+@media only screen and (max-width: 600px) {
+    
+    .body *{
+        font-size: 14px;
+    }
+
+    .markdown * {
+        font-size: 14px !important;
+    }
+
+    .item-detail {
+        font-size: 14px !important;
+    }
+}

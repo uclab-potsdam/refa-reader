@@ -1,6 +1,5 @@
 <script>
 	import { graphSteps } from '@stores';
-	import { each } from 'svelte/internal';
 	// import PropLabel from '@components/PropLabel.svelte';
 	export let datum;
 	export let entities;
@@ -116,6 +115,7 @@
 
 	.selected > .link {
 		display: block;
+		transition: all 1s;
 	}
 
 	img {
@@ -125,6 +125,6 @@
 	}
 
 	.linkToEssay {
-		border: 2px dotted var(--theme-color) !important;
+		border: 2px dotted var(--theme-color);
 	}
 </style>
