@@ -160,7 +160,6 @@
 
 	:global(.selected) {
 		background-color: var(--theme-color) !important;
-		mix-blend-mode: color-burn;
 		/* background: linear-gradient(to right, #f2f2f2, var(--theme-color)); */
 	}
 
