@@ -1,5 +1,5 @@
 <script>
-	import { graphSteps } from '@stores';
+	import { graphSteps, site } from '@stores';
 	// import PropLabel from '@components/PropLabel.svelte';
 	export let datum;
 	export let entities;
@@ -60,24 +60,22 @@
 	{/if}
 
 	<!-- not title == is media -->
-	{#if datum.title == undefined}
-		<a
-			class="link"
-			href={`https://uclab.fh-potsdam.de/refa/s/pinacotheca/media/${
-				datum.target.split('/').slice(-1)[0]
-			}`}
-			target="_blank"
-			rel="noopener noreferrer">See in Collection</a
-		>
-	{:else}
-		<a
-			class="link"
-			href={`https://uclab.fh-potsdam.de/refa/s/pinacotheca/item/${
-				datum.target.split('/').slice(-1)[0]
-			}`}
-			target="_blank"
-			rel="noopener noreferrer">See in Collection</a
-		>
+	{#if site}
+		{#if datum.title == undefined}
+			<a
+				class="link"
+				href={`${site}/media/${datum.target.split('/').slice(-1)[0]}`}
+				target="_blank"
+				rel="noopener noreferrer">See in Collection</a
+			>
+		{:else}
+			<a
+				class="link"
+				href={`${site}/item/${datum.target.split('/').slice(-1)[0]}`}
+				target="_blank"
+				rel="noopener noreferrer">See in Collection</a
+			>
+		{/if}
 	{/if}
 </div>
 
@@ -126,5 +124,7 @@
 
 	.linkToEssay {
 		border: 2px dotted var(--theme-color);
+		border: 1px solid var(--theme-color);
+		box-shadow: inset -1px 1px 13px 0px var(--theme-color);
 	}
 </style>

@@ -4,7 +4,7 @@
 	import { graphSteps,selectedNode } from '@stores';
 	import { createTriplets } from '@utils';
 
-	export let desc;
+	export let category;
 	export let data;
 	export let newData;
 	export let dataLen;
@@ -15,8 +15,7 @@
 	export let loadData;
 	export let defaultNodes;
 	export let batchSize;
-	export let essaysItems;
-
+	export let essaysItems;	
 	let section;
 
 	let selectedTriplets = { nodes: [], links: [] };
@@ -71,7 +70,7 @@
 </script>
 
 <section bind:this={section}>
-	<h4>{desc} <sup>[{dataLen}]</sup></h4>
+	<h4>{category} <sup>[{dataLen}]</sup></h4>
 	<div class="divider">
 		{#each data as datum}
 			<!-- {#if !datum.skip && datum.source && datum.target} -->

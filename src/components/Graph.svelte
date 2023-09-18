@@ -1,6 +1,13 @@
 <script>
 	import { onMount } from 'svelte';
-	import { Api, selectedNode, graphSteps, mainCategories, secondayCategoriesLabel } from '@stores';
+	import {
+		Api,
+		selectedNode,
+		graphSteps,
+		mainCategories,
+		secondayCategoriesLabel,
+		setCategory
+	} from '@stores';
 	import { get, writable } from 'svelte/store';
 	import Svg from '@components/Svg.svelte';
 	import GraphSection from '@components/GraphSection.svelte';
@@ -147,7 +154,7 @@
 						{#if filteredData.length > 0}
 							<GraphSection
 								{essaysItems}
-								desc={cat.key}
+								category={cat.key}
 								data={filteredData}
 								newData={step.new}
 								{dataLen}
@@ -162,6 +169,26 @@
 						{/if}
 					{/each}
 
+					{#if step.paginate.filter((d) => d.category == setCategory)}
+						{@const filteredSecondaryData = step.paginate.filter((d) => d.category == setCategory)}
+						{@const dataLen = filteredSecondaryData.length}
+						{#if dataLen > 0}
+							<GraphSection
+								{essaysItems}
+								category={setCategory}
+								data={filteredSecondaryData}
+								newData={step.new}
+								{dataLen}
+								{index}
+								{entities}
+								{updatePosition}
+								{handlePosition}
+								{batchSize}
+								defaultNodes={[...markdownNodes, ...initialStep]}
+								{loadData}
+							/>
+						{/if}{/if}
+
 					{#if step.paginate.filter((d) => !mainCategories.some( (cat) => cat.props.includes(d.property) )).length > 0}
 						{@const filteredSecondaryData = step.paginate.filter(
 							(d) => !mainCategories.some((cat) => cat.props.includes(d.property))
@@ -169,10 +196,9 @@
 						{@const dataLen = step.data.filter(
 							(d) => !mainCategories.some((cat) => cat.props.includes(d.property))
 						).length}
-
 						<GraphSection
 							{essaysItems}
-							desc={secondayCategoriesLabel}
+							category={secondayCategoriesLabel}
 							data={filteredSecondaryData}
 							newData={step.new}
 							{dataLen}
@@ -187,10 +213,10 @@
 					{/if}
 
 					<!-- {#if step.paginate.length < step.new.length}
-					<div on:click={getPaginatedData(index, col)} on:keydown={getPaginatedData(index, col)}>
-						Load more
-					</div>
-				{/if} -->
+						<div on:click={getPaginatedData(index, col)} on:keydown={getPaginatedData(index, col)}>
+							Load more
+						</div>
+					{/if} -->
 				</div>
 			{/if}
 		{/each}
