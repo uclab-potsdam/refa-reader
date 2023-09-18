@@ -187,9 +187,10 @@
 								defaultNodes={[...markdownNodes, ...initialStep]}
 								{loadData}
 							/>
-						{/if}{/if}
+						{/if}
+					{/if}
 
-					{#if step.paginate.filter((d) => !mainCategories.some( (cat) => cat.props.includes(d.property) )).length > 0}
+					{#if step.paginate.filter((d) => !mainCategories.some( (cat) => cat.props.includes(d.property) ) && d.category != setCategory).length > 0}
 						{@const filteredSecondaryData = step.paginate.filter(
 							(d) => !mainCategories.some((cat) => cat.props.includes(d.property))
 						)}
