@@ -10,16 +10,6 @@
 				{@const uniqueId = newUniqueId()}
 				<path id="path_{uniqueId || id}" class={item.class} data-attr={item.selected} d={item.d} />
 				{#if item.class != undefined && item.selected != 'not-selected' && item.class == 'highlite'}
-					<!-- <text class="{item.class} background">
-						<textPath
-							dominant-baseline="middle"
-							href="#path_{uniqueId || id}"
-							startOffset="98%"
-							text-anchor="end"
-						>
-							{item.label}
-						</textPath>
-					</text> -->
 					<text class={item.class}>
 						<textPath
 							alignment-baseline="baseline"
@@ -48,6 +38,7 @@
 		/* z-index: -1; */
 		transform: translateZ(0);
 		font-family: 'Inter', sans-serif;
+		text-rendering:optimizeSpeed
 	}
 
 	.background {
@@ -58,6 +49,7 @@
 	text {
 		font-size: clamp(10px, 0.8vw, 12px);
 		fill: #969696;
+		text-rendering:optimizeSpeed
 		/* opacity: 0; */
 	}
 
