@@ -81,6 +81,6 @@
 
 	path[data-attr='not-selected'] {
 		stroke: #969696;
-		stroke-width: 0.2;
+		stroke-width: 0.1;
 	}
 </style>
