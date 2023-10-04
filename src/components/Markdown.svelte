@@ -168,6 +168,7 @@
 
 	:global(sup) {
 		padding-right: 0.5rem;
+		line-height: 0;
 	}
 
 	:global(sup ~ span) {
