@@ -107,6 +107,7 @@
 		padding-top: 5vh;
 		font-size: 1.3rem;
 		line-height: 1.3;
+		text-shadow: 1px 1px 15px white;
 	}
 
 	:global(a) {
@@ -133,6 +134,7 @@
 		border-radius: 2px;
 		padding: 2px;
 		text-decoration: unset !important;
+		text-shadow: none;
 	}
 
 	:global(em .node-highlite) {
@@ -176,7 +178,7 @@
 	}
 
 	:global(sup a) {
-		text-decoration: none !important; 
+		text-decoration: none !important;
 		color: var(--theme-color) !important;
 	}
 </style>

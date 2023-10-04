@@ -10,7 +10,6 @@
 	export let dataLen;
 	export let entities;
 	export let updatePosition;
-	export let handlePosition;
 	export let index;
 	export let loadData;
 	export let defaultNodes;
@@ -59,7 +58,6 @@
 		if (newNodes.length > 0) {
 			loadData(paginate, batchSize);
 		}
-		handlePosition();
 	}
 
 	function updateNodes(nodes, selectedNodes) {
@@ -69,7 +67,7 @@
 	}
 </script>
 
-<section bind:this={section}>
+<section bind:this={section} >
 	<h4>{category} <sup>[{dataLen}]</sup></h4>
 	<div class="divider">
 		{#each data as datum}

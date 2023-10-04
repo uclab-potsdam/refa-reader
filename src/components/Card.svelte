@@ -25,6 +25,8 @@
 	}
 
 	let essaysItemsLinks = essaysItems.find((d) => d.id == datum.target.split('/').slice(-1)[0]);
+	let isHovered = false;
+
 </script>
 
 <!-- <PropLabel label={datum.property} /> -->

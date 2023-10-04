@@ -38,7 +38,8 @@
 		z-index: -1;
 		transform: translateZ(0);
 		font-family: 'Inter', sans-serif;
-		text-rendering:optimizeSpeed
+		text-rendering: optimizeSpeed;
+		/* shape-rendering: optimizeSpeed; */
 	}
 
 	.background {
@@ -49,7 +50,8 @@
 	text {
 		font-size: clamp(10px, 0.8vw, 12px);
 		fill: #969696;
-		text-rendering:optimizeSpeed
+		text-rendering: optimizeSpeed;
+		display: none;
 		/* opacity: 0; */
 	}
 
@@ -64,6 +66,7 @@
 	text.highlite {
 		fill: var(--theme-color);
 		opacity: 1;
+		display: block;
 	}
 
 	/* path.background.highlite {
@@ -82,5 +85,6 @@
 	path[data-attr='not-selected'] {
 		stroke: #969696;
 		stroke-width: 0.1;
+		opacity: 0;
 	}
 </style>

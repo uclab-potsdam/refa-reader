@@ -143,8 +143,8 @@
 					class="links"
 					bind:this={col}
 					on:scroll={() => {
-						handlePosition();
 						getPaginatedData(index, col);
+						handlePosition();
 					}}
 				>
 					{#each mainCategories as cat}
@@ -161,7 +161,6 @@
 								{index}
 								{entities}
 								{updatePosition}
-								{handlePosition}
 								{batchSize}
 								defaultNodes={[...markdownNodes, ...initialStep]}
 								{loadData}
@@ -182,7 +181,6 @@
 								{index}
 								{entities}
 								{updatePosition}
-								{handlePosition}
 								{batchSize}
 								defaultNodes={[...markdownNodes, ...initialStep]}
 								{loadData}
@@ -206,7 +204,6 @@
 							{index}
 							{entities}
 							{updatePosition}
-							{handlePosition}
 							{batchSize}
 							defaultNodes={[...markdownNodes, ...initialStep]}
 							{loadData}
