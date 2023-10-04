@@ -56,7 +56,7 @@
 	path {
 		pointer-events: visibleStroke;
 		stroke: #969696;
-		stroke-width: 0.2;
+		stroke-width: 0.1;
 		cursor: pointer;
 		fill: none;
 	}
