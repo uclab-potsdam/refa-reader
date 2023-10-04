@@ -33,10 +33,3 @@ export const ItemDetailMetaData =
 
 export const secondayCategoriesLabel = "Classification";
 export const setCategory = "Related";
-
-// specify custom icons for the markdown texts, the default is ●
-export const customIcons = {
-    "ecrm:E22_Human-Made_Object": "●",
-    "skos:Concept": "◼"
-}
-

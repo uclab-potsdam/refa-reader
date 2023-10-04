@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { selectedNode, selectedNodeUniqueId, customIcons } from '@stores';
+	import { selectedNode, selectedNodeUniqueId } from '@stores';
 	import { observe } from '@utils';
 	import newUniqueId from 'locally-unique-id-generator';
 
@@ -37,23 +37,7 @@
 					.map((d) => {
 						return d.data?.['@type']?.[1];
 					})}">
-					${
-						customIcons[
-							items
-								.filter((d) => d.label == text)
-								.map((d) => {
-									return d.data?.['@type']?.[1];
-								})
-						]
-							? customIcons[
-									items
-										.filter((d) => d.label == text)
-										.map((d) => {
-											return d.data?.['@type']?.[1];
-										})
-							  ]
-							: '●'
-					}
+					●
 					</span></a>`;
 			}
 		}
