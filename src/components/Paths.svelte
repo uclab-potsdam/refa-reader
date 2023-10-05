@@ -28,7 +28,12 @@
 
 		elements.forEach((element) => {
 			const elementRect = element.getBoundingClientRect();
-			let selected = element.getAttribute('unique-id') == null ? "not-a-text-node" : element.getAttribute('unique-id') == $selectedNodeUniqueId ? "selected" : "not-selected";
+			let selected =
+				element.getAttribute('unique-id') == null
+					? 'not-a-text-node'
+					: element.getAttribute('unique-id') == $selectedNodeUniqueId
+					? 'selected'
+					: 'not-selected';
 			const bound = {
 				x: elementRect.x,
 				y: elementRect.y + p,
@@ -59,7 +64,7 @@
 				const controlPoint1X = sourceRect.x + sourceRect.width + controlPointOffset;
 				const controlPoint1Y = sourceRect.y;
 				const selected = sourceRect.selected;
-				
+
 				let controlPoint2X;
 				if (targetRect.x < sourceRect.x) {
 					controlPoint2X = targetRect.x - controlPointOffset * 4;
@@ -70,14 +75,19 @@
 				}
 
 				const controlPoint2Y = targetRect.y;
-				const d = `M${sourceRect.x + sourceRect.width},${sourceRect.y}C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${targetRect.x},${targetRect.y}`;
+				const d = `M${sourceRect.x + sourceRect.width},${
+					sourceRect.y
+				}C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${targetRect.x},${
+					targetRect.y
+				}`;
 
 				$paths[id] = $paths[id] || [];
 				$paths[id].push({
 					class: highlite,
 					d: d,
 					label: label,
-					selected: selected
+					selected: selected,
+					datum: { source: datum.source.split('/').at(-1), target: datum.target.split('/').at(-1) }
 				});
 			});
 		});

@@ -1,7 +1,8 @@
 <script>
 	import Card from '@components/Card.svelte';
 	import Paths from '@components/Paths.svelte';
-	import { graphSteps,selectedNode } from '@stores';
+	import { slide } from 'svelte/transition';
+	import { graphSteps, selectedNode } from '@stores';
 	import { createTriplets } from '@utils';
 
 	export let category;
@@ -10,18 +11,18 @@
 	export let dataLen;
 	export let entities;
 	export let updatePosition;
-	export let handlePosition;
 	export let index;
 	export let loadData;
 	export let defaultNodes;
 	export let batchSize;
-	export let essaysItems;	
+	export let essaysItems;
+	export let handlePosition;
 	let section;
 
 	let selectedTriplets = { nodes: [], links: [] };
 
 	async function openNode(node, index) {
-		$selectedNode = "";
+		$selectedNode = '';
 
 		// Remove all elements in $graphSteps after the given index
 		$graphSteps.splice(index, $graphSteps.length - index);
@@ -59,7 +60,6 @@
 		if (newNodes.length > 0) {
 			loadData(paginate, batchSize);
 		}
-		handlePosition();
 	}
 
 	function updateNodes(nodes, selectedNodes) {
@@ -69,7 +69,12 @@
 	}
 </script>
 
-<section bind:this={section}>
+<section
+	bind:this={section}
+	transition:slide
+	on:introend={() => handlePosition()}
+	on:outroend={() => handlePosition()}
+>
 	<h4>{category} <sup>[{dataLen}]</sup></h4>
 	<div class="divider">
 		{#each data as datum}

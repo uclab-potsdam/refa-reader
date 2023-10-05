@@ -2,6 +2,7 @@ import { writable } from 'svelte/store';
 export const visibleLinks = writable([]);
 export const allLinks = writable([]);
 export const selectedNode = writable("");
+export const hoverNode = writable("");
 export const selectedNodeUniqueId = writable("");
 export const items = writable([])
 export const graphSteps = writable([]);
@@ -33,10 +34,3 @@ export const ItemDetailMetaData =
 
 export const secondayCategoriesLabel = "Classification";
 export const setCategory = "Related";
-
-// specify custom icons for the markdown texts, the default is ●
-export const customIcons = {
-    "ecrm:E22_Human-Made_Object": "●",
-    "skos:Concept": "◼"
-}
-

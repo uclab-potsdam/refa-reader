@@ -143,8 +143,8 @@
 					class="links"
 					bind:this={col}
 					on:scroll={() => {
-						handlePosition();
 						getPaginatedData(index, col);
+						handlePosition();
 					}}
 				>
 					{#each mainCategories as cat}
@@ -153,6 +153,7 @@
 
 						{#if filteredData.length > 0}
 							<GraphSection
+							{handlePosition}
 								{essaysItems}
 								category={cat.key}
 								data={filteredData}
@@ -161,7 +162,6 @@
 								{index}
 								{entities}
 								{updatePosition}
-								{handlePosition}
 								{batchSize}
 								defaultNodes={[...markdownNodes, ...initialStep]}
 								{loadData}
@@ -174,6 +174,7 @@
 						{@const dataLen = filteredSecondaryData.length}
 						{#if dataLen > 0}
 							<GraphSection
+							{handlePosition}
 								{essaysItems}
 								category={setCategory}
 								data={filteredSecondaryData}
@@ -182,7 +183,6 @@
 								{index}
 								{entities}
 								{updatePosition}
-								{handlePosition}
 								{batchSize}
 								defaultNodes={[...markdownNodes, ...initialStep]}
 								{loadData}
@@ -198,6 +198,7 @@
 							(d) => !mainCategories.some((cat) => cat.props.includes(d.property))
 						).length}
 						<GraphSection
+						{handlePosition}
 							{essaysItems}
 							category={secondayCategoriesLabel}
 							data={filteredSecondaryData}
@@ -206,7 +207,6 @@
 							{index}
 							{entities}
 							{updatePosition}
-							{handlePosition}
 							{batchSize}
 							defaultNodes={[...markdownNodes, ...initialStep]}
 							{loadData}

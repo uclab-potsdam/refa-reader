@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { selectedNode, selectedNodeUniqueId, customIcons } from '@stores';
+	import { selectedNode, hoverNode, selectedNodeUniqueId } from '@stores';
 	import { observe } from '@utils';
 	import newUniqueId from 'locally-unique-id-generator';
 
@@ -37,23 +37,7 @@
 					.map((d) => {
 						return d.data?.['@type']?.[1];
 					})}">
-					${
-						customIcons[
-							items
-								.filter((d) => d.label == text)
-								.map((d) => {
-									return d.data?.['@type']?.[1];
-								})
-						]
-							? customIcons[
-									items
-										.filter((d) => d.label == text)
-										.map((d) => {
-											return d.data?.['@type']?.[1];
-										})
-							  ]
-							: '●'
-					}
+					●
 					</span></a>`;
 			}
 		}
@@ -81,6 +65,7 @@
 		if (event.target.tagName === 'A') {
 			if (event.target.getAttribute('data-id')) {
 				$selectedNode = event.target.getAttribute('data-id');
+				$hoverNode = event.target.getAttribute('data-id');
 				event.target.classList.add('selected');
 				$selectedNodeUniqueId = event.target.getAttribute('unique-id');
 			}
@@ -121,8 +106,9 @@
 	.markdown {
 		padding-bottom: 40vh;
 		padding-top: 5vh;
-		font-size: 1.3rem;
+		font-size: 1.4rem;
 		line-height: 1.3;
+		text-shadow: 1px 1px 15px white;
 	}
 
 	:global(a) {
@@ -149,6 +135,7 @@
 		border-radius: 2px;
 		padding: 2px;
 		text-decoration: unset !important;
+		text-shadow: none;
 	}
 
 	:global(em .node-highlite) {
@@ -184,6 +171,7 @@
 
 	:global(sup) {
 		padding-right: 0.5rem;
+		line-height: 0;
 	}
 
 	:global(sup ~ span) {
@@ -191,7 +179,7 @@
 	}
 
 	:global(sup a) {
-		text-decoration: none !important; 
+		text-decoration: none !important;
 		color: var(--theme-color) !important;
 	}
 </style>

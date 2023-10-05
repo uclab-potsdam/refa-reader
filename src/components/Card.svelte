@@ -1,5 +1,5 @@
 <script>
-	import { graphSteps, site } from '@stores';
+	import { graphSteps, site, hoverNode } from '@stores';
 	// import PropLabel from '@components/PropLabel.svelte';
 	export let datum;
 	export let entities;
@@ -31,11 +31,11 @@
 <div
 	class="node {$graphSteps.find((d) => d.id == datum.target) ? 'selected' : ''}"
 	class:linkToEssay={essaysItemsLinks != undefined}
-	data-id={datum.target.split('/').slice(-1)[0]}
 	title={datum.title}
+	data-id={datum.target.split('/').slice(-1)[0]}
+	on:mouseover={() => {$hoverNode = datum.target.split('/').slice(-1)[0]}}
 	on:click
 	on:keydown
-	on:mouseover
 	on:focus
 >
 	<!-- <div class="title"><strong>{datum.target.split('/').slice(-1)[0]}</strong></div> -->

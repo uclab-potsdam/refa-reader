@@ -1,5 +1,5 @@
 <script>
-	import { paths } from '@stores';
+	import { paths, hoverNode } from '@stores';
 	import newUniqueId from 'locally-unique-id-generator';
 </script>
 
@@ -9,18 +9,20 @@
 			{#each path as item}
 				{@const uniqueId = newUniqueId()}
 				<path id="path_{uniqueId || id}" class={item.class} data-attr={item.selected} d={item.d} />
-				{#if item.class != undefined && item.selected != 'not-selected' && item.class == 'highlite'}
-					<text class={item.class}>
-						<textPath
-							alignment-baseline="baseline"
-							dominant-baseline="text-before-edge"
-							href="#path_{uniqueId || id}"
-							startOffset="98%"
-							text-anchor="end"
-						>
-							{item.label}
-						</textPath>
-					</text>
+				<!-- {#if item.class != undefined && item.selected != 'not-selected' && item.class == 'highlite'} -->
+					{#if $hoverNode == item.datum.source && item.selected != 'not-selected' || $hoverNode == item.datum.target}
+						<text class={item.class} source={item.datum.source} target={item.datum.target}>
+							<textPath
+								alignment-baseline="baseline"
+								dominant-baseline="text-before-edge"
+								href="#path_{uniqueId || id}"
+								startOffset="98%"
+								text-anchor="end"
+							>
+								{item.label}
+							</textPath>
+						</text>
+					<!-- {/if} -->
 				{/if}
 			{/each}
 		{/each}
@@ -35,10 +37,11 @@
 		top: 0;
 		left: 0;
 		pointer-events: none;
-		/* z-index: -1; */
+		z-index: -1;
 		transform: translateZ(0);
 		font-family: 'Inter', sans-serif;
-		text-rendering:optimizeSpeed
+		text-rendering: optimizeSpeed;
+		/* shape-rendering: optimizeSpeed; */
 	}
 
 	.background {
@@ -49,7 +52,7 @@
 	text {
 		font-size: clamp(10px, 0.8vw, 12px);
 		fill: #969696;
-		text-rendering:optimizeSpeed
+		text-rendering: optimizeSpeed;
 		/* opacity: 0; */
 	}
 
@@ -64,11 +67,8 @@
 	text.highlite {
 		fill: var(--theme-color);
 		opacity: 1;
+		display: block;
 	}
-
-	/* path.background.highlite {
-		stroke: var(--theme-color);
-	} */
 
 	path.highlite {
 		stroke-width: 0.5;

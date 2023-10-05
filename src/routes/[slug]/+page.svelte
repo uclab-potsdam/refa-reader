@@ -3,7 +3,7 @@
 	import Graph from '@components/Graph.svelte';
 	import ItemDetail from '@components/ItemDetail.svelte';
 	import { page } from '$app/stores';
-	import { Api, items, graphSteps, selectedNode } from '@stores';
+	import { Api, items, graphSteps, selectedNode, hoverNode } from '@stores';
 	import { onMount } from 'svelte';
 	import { extractLinks, createTriplets } from '@utils';
 	import { writable } from 'svelte/store';
@@ -21,6 +21,11 @@
 
 	$: {
 		$selectedNode;
+		handlePosition();
+	}
+	
+	$: {
+		$hoverNode;
 		handlePosition();
 	}
 
@@ -73,7 +78,10 @@
 	}
 </script>
 
-<svelte:window on:resize={handlePosition} on:scroll={handlePosition} />
+<svelte:window
+	on:resize={handlePosition}
+	on:click={handlePosition}
+/>
 <div>
 	{#if textData == undefined && triplets == undefined}
 		<article>
@@ -88,7 +96,11 @@
 			</section>
 		</article>
 	{:else}
-		<article style="--theme-color: {textData.meta?.color || 'blue'}">
+		<article
+			style="--theme-color: {textData.meta?.color || 'blue'}"
+			on:resize={handlePosition}
+			on:scroll={handlePosition}
+		>
 			<section
 				class="item__detail"
 				on:click={() => {
@@ -132,8 +144,9 @@
 <style>
 	article {
 		display: flex;
-		height: calc(100vh - 1rem);
-		position: relative;
+		height: 100vh;
+		/* position: relative; */
+		overflow: scroll;
 	}
 
 	h1 {
