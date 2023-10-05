@@ -1,5 +1,6 @@
 <script>
 	import { graphSteps, site, hoverNode } from '@stores';
+	import { blur } from 'svelte/transition';
 	// import PropLabel from '@components/PropLabel.svelte';
 	export let datum;
 	export let entities;
@@ -40,10 +41,10 @@
 >
 	<!-- <div class="title"><strong>{datum.target.split('/').slice(-1)[0]}</strong></div> -->
 	{#if datum.img}
-		<img src={datum.img.replace('square', 'large')} alt={datum.title} on:load={handleLoad} />
+		<img src={datum.img.replace('square', 'large')} alt={datum.title} on:load={handleLoad} transition:blur={{ amount: 1 }}/>
 		<div class="title">{datum.title}</div>
 	{:else if imageSrc}
-		<img src={imageSrc} alt={datum.title} on:load={handleLoad} />
+		<img src={imageSrc} alt={datum.title} on:load={handleLoad} transition:blur={{ amount: 1 }}/>
 		<div class="title">{datum.title || ''}</div>
 	{:else}
 		<div class="title">{datum.title || ''}</div>
