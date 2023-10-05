@@ -10,7 +10,7 @@
 			const selectedItem = document.querySelector(`${element}[data-id="${detail}"]`);
 			if (selectedItem) {
 				// selectedItem.scrollIntoView({ behavior: 'smooth' });
-				selectedItem.scrollIntoView({ behavior: 'auto', block: align });
+				selectedItem.scrollIntoView({ behavior: 'smooth', block: align });
 				// $selectedNode = detail;
 			}
 		}
