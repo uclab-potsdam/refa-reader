@@ -3,7 +3,7 @@
 	import Graph from '@components/Graph.svelte';
 	import ItemDetail from '@components/ItemDetail.svelte';
 	import { page } from '$app/stores';
-	import { Api, items, graphSteps, selectedNode } from '@stores';
+	import { Api, items, graphSteps, selectedNode, hoverNode } from '@stores';
 	import { onMount } from 'svelte';
 	import { extractLinks, createTriplets } from '@utils';
 	import { writable } from 'svelte/store';
@@ -21,6 +21,11 @@
 
 	$: {
 		$selectedNode;
+		handlePosition();
+	}
+	
+	$: {
+		$hoverNode;
 		handlePosition();
 	}
 

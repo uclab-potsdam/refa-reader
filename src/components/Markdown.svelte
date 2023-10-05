@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { selectedNode, selectedNodeUniqueId } from '@stores';
+	import { selectedNode, hoverNode, selectedNodeUniqueId } from '@stores';
 	import { observe } from '@utils';
 	import newUniqueId from 'locally-unique-id-generator';
 
@@ -65,6 +65,7 @@
 		if (event.target.tagName === 'A') {
 			if (event.target.getAttribute('data-id')) {
 				$selectedNode = event.target.getAttribute('data-id');
+				$hoverNode = event.target.getAttribute('data-id');
 				event.target.classList.add('selected');
 				$selectedNodeUniqueId = event.target.getAttribute('unique-id');
 			}
@@ -105,7 +106,7 @@
 	.markdown {
 		padding-bottom: 40vh;
 		padding-top: 5vh;
-		font-size: 1.3rem;
+		font-size: 1.4rem;
 		line-height: 1.3;
 		text-shadow: 1px 1px 15px white;
 	}

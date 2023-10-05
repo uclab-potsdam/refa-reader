@@ -153,6 +153,7 @@
 
 						{#if filteredData.length > 0}
 							<GraphSection
+							{handlePosition}
 								{essaysItems}
 								category={cat.key}
 								data={filteredData}
@@ -173,6 +174,7 @@
 						{@const dataLen = filteredSecondaryData.length}
 						{#if dataLen > 0}
 							<GraphSection
+							{handlePosition}
 								{essaysItems}
 								category={setCategory}
 								data={filteredSecondaryData}
@@ -196,6 +198,7 @@
 							(d) => !mainCategories.some((cat) => cat.props.includes(d.property))
 						).length}
 						<GraphSection
+						{handlePosition}
 							{essaysItems}
 							category={secondayCategoriesLabel}
 							data={filteredSecondaryData}

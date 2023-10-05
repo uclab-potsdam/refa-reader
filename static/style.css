@@ -65,22 +65,22 @@ h1,h2,h3,h4,p {
 }
 
 .markdown h1 {
-	font-size: 1.33vw;
+	font-size: 1.33em;
     font-weight: 400;
 }
 
 .markdown h2 {
-	font-size: 1.2vw;
+	font-size: 1em;
     font-weight: 400;
 }
 	
 .markdown h3 {
-	font-size: 1.1vw;
+	font-size: .9em;
     font-weight: 400;
 }
 
 .markdown h4 {
-	font-size: 1vw;
+	font-size: .8em;
     font-weight: 400;
 }
 
@@ -89,7 +89,7 @@ h1,h2,h3,h4,p {
 } */
 
 .biblio { 
-	font-size: .875vw;
+	font-size: .875rem;
 }
 
 .markdown h1, .markdown h2, .markdown h3,.markdown h4 {

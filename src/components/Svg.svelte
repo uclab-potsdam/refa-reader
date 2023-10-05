@@ -1,5 +1,5 @@
 <script>
-	import { paths } from '@stores';
+	import { paths, hoverNode } from '@stores';
 	import newUniqueId from 'locally-unique-id-generator';
 </script>
 
@@ -9,18 +9,20 @@
 			{#each path as item}
 				{@const uniqueId = newUniqueId()}
 				<path id="path_{uniqueId || id}" class={item.class} data-attr={item.selected} d={item.d} />
-				{#if item.class != undefined && item.selected != 'not-selected' && item.class == 'highlite'}
-					<text class={item.class}>
-						<textPath
-							alignment-baseline="baseline"
-							dominant-baseline="text-before-edge"
-							href="#path_{uniqueId || id}"
-							startOffset="98%"
-							text-anchor="end"
-						>
-							{item.label}
-						</textPath>
-					</text>
+				<!-- {#if item.class != undefined && item.selected != 'not-selected' && item.class == 'highlite'} -->
+					{#if $hoverNode == item.datum.source && item.selected != 'not-selected' || $hoverNode == item.datum.target}
+						<text class={item.class} source={item.datum.source} target={item.datum.target}>
+							<textPath
+								alignment-baseline="baseline"
+								dominant-baseline="text-before-edge"
+								href="#path_{uniqueId || id}"
+								startOffset="98%"
+								text-anchor="end"
+							>
+								{item.label}
+							</textPath>
+						</text>
+					<!-- {/if} -->
 				{/if}
 			{/each}
 		{/each}
@@ -51,14 +53,13 @@
 		font-size: clamp(10px, 0.8vw, 12px);
 		fill: #969696;
 		text-rendering: optimizeSpeed;
-		display: none;
 		/* opacity: 0; */
 	}
 
 	path {
 		pointer-events: visibleStroke;
 		stroke: #969696;
-		stroke-width: 0.1;
+		stroke-width: 0.2;
 		cursor: pointer;
 		fill: none;
 	}
@@ -68,10 +69,6 @@
 		opacity: 1;
 		display: block;
 	}
-
-	/* path.background.highlite {
-		stroke: var(--theme-color);
-	} */
 
 	path.highlite {
 		stroke-width: 0.5;
@@ -84,7 +81,6 @@
 
 	path[data-attr='not-selected'] {
 		stroke: #969696;
-		stroke-width: 0.1;
-		opacity: 0;
+		stroke-width: 0.2;
 	}
 </style>
