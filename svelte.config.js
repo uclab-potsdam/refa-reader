@@ -12,7 +12,8 @@ const config = {
 	],
 	kit: {
 		adapter: adapter({
-			fallback: 'index.html'
+			fallback: 'index.html',
+			precompress:true
 		}),
 		paths: {
 			base: dev ? '' : process.env.BASE_PATH,
