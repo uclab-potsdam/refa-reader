@@ -14,6 +14,7 @@
 
 	$: {
 		$updatePosition;
+		$scrollX;
 		getPositions();
 	}
 
