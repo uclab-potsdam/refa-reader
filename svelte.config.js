@@ -19,7 +19,8 @@ const config = {
 		},
 		prerender: {
 			crawl: true,
-			//entries: ['*'],
+			entries: ['*'],
+			handleHttpError: "ignore",
 		},
 		alias: {
 			'@components': 'src/components',
