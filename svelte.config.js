@@ -19,7 +19,7 @@ const config = {
 		},
 		prerender: {
 			crawl: true,
-			entries: ['*'],
+			//entries: ['*'],
 		},
 		alias: {
 			'@components': 'src/components',
