@@ -16,7 +16,7 @@ const config = {
 			precompress:true
 		}),
 		paths: {
-			relative: true,
+			base: dev ? '' : process.env.BASE_PATH,
 		},
 		prerender: {
 			crawl: true,
