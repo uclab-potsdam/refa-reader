@@ -1,17 +1,17 @@
 <script>
-	import { selectedNode, ItemDetailMetaData, graphSteps } from '@stores';
+	import { visibleLinks, selectedNode, ItemDetailMetaData, graphSteps } from '@stores';
 	import { afterUpdate } from 'svelte';
 	export let data;
 
 	$: itemDetail = data.find((d) => d.id == $selectedNode);
+	$: visibleIds = $visibleLinks.map((d) => d.getAttribute('data-id'));
+	$: visibleData = data.filter((d) => visibleIds.includes(d.id));
 
 	function scrollToSelected(element, detail, align) {
 		if (detail) {
 			const selectedItem = document.querySelector(`${element}[data-id="${detail}"]`);
 			if (selectedItem) {
-				// selectedItem.scrollIntoView({ behavior: 'smooth' });
 				selectedItem.scrollIntoView({ behavior: 'smooth', block: align });
-				// $selectedNode = detail;
 			}
 		}
 	}
@@ -20,20 +20,17 @@
 		if ($graphSteps.length < 2) {
 			scrollToSelected('.item-detail', $selectedNode, 'center');
 		}
-	});
+	});;
 </script>
 
-{#if data != undefined}
+{#if visibleData != undefined}
 	<section>
-		{#each data as d}
+		{#each visibleData as d}
 			{#if d.data != undefined}
 				<div
 					class="item-detail"
 					on:click={() => {
-						$selectedNode = d.data?.['o:id'];
-						let item = document.querySelector(`.node-highlite[data-id="${d.data?.['o:id']}"]`);
-						item.classList.add('selected');
-						// scrollToSelected('.node-highlite', d.data?.['o:id'], 'start');
+						$selectedNode = d.data?.['o:id'].toString();
 					}}
 					on:keydown
 					data-id={d.data?.['o:id']}
@@ -49,7 +46,6 @@
 						<div class="metadata">
 							{#each ItemDetailMetaData as meta, i}
 								{#if itemDetail.data[meta]}
-									<!-- {#if i === 0}<span>, </span>{/if} -->
 									<span>
 										{itemDetail.data[meta]?.[0]['simpleValue'] ||
 											itemDetail.data[meta]?.[0]['@value'] ||

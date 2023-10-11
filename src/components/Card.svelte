@@ -30,21 +30,28 @@
 
 <!-- <PropLabel label={datum.property} /> -->
 <div
-	class="node {$graphSteps.find((d) => d.id == datum.target) ? 'selected' : ''}"
+	class="node {$graphSteps.find((d) => d?.id == datum.target) ? 'selected' : ''}"
 	class:linkToEssay={essaysItemsLinks != undefined}
 	title={datum.title}
 	data-id={datum.target.split('/').slice(-1)[0]}
-	on:mouseover={() => {$hoverNode = datum.target.split('/').slice(-1)[0]}}
+	on:mouseover={() => {
+		$hoverNode = datum.target.split('/').slice(-1)[0];
+	}}
 	on:click
 	on:keydown
 	on:focus
 >
 	<!-- <div class="title"><strong>{datum.target.split('/').slice(-1)[0]}</strong></div> -->
 	{#if datum.img}
-		<img src={datum.img.replace('square', 'large')} alt={datum.title} on:load={handleLoad} transition:blur={{ amount: 1 }}/>
+		<img
+			src={datum.img.replace('square', 'large')}
+			alt={datum.title}
+			on:load={handleLoad}
+			transition:blur={{ amount: 1 }}
+		/>
 		<div class="title">{datum.title}</div>
 	{:else if imageSrc}
-		<img src={imageSrc} alt={datum.title} on:load={handleLoad} transition:blur={{ amount: 1 }}/>
+		<img src={imageSrc} alt={datum.title} on:load={handleLoad} transition:blur={{ amount: 1 }} />
 		<div class="title">{datum.title || ''}</div>
 	{:else}
 		<div class="title">{datum.title || ''}</div>
@@ -54,8 +61,13 @@
 
 	{#if essaysItemsLinks != undefined}
 		{#each essaysItemsLinks.essays as d}
-			<a class="link" href={d.url} target="_blank" rel="noopener noreferrer"
-				>Read in <em>{d.title}</em></a
+			<a
+				class="link"
+				href="{d.url}#item_{essaysItemsLinks.id}"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				→<em>{d.title}</em></a
 			>
 		{/each}
 	{/if}
@@ -67,14 +79,14 @@
 				class="link"
 				href={`${site}/media/${datum.target.split('/').slice(-1)[0]}`}
 				target="_blank"
-				rel="noopener noreferrer">See in Collection</a
+				rel="noopener noreferrer">→ Metadata</a
 			>
 		{:else}
 			<a
 				class="link"
 				href={`${site}/item/${datum.target.split('/').slice(-1)[0]}`}
 				target="_blank"
-				rel="noopener noreferrer">See in Collection</a
+				rel="noopener noreferrer">→ Metadata</a
 			>
 		{/if}
 	{/if}
@@ -93,7 +105,7 @@
 		color: white; */
 		background-color: white;
 		color: black;
-		border: 1px solid var(--theme-color);
+		box-shadow: inset 0px 0px 6px 1px var(--theme-color);
 		opacity: 1;
 	}
 

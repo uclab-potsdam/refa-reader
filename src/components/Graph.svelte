@@ -9,7 +9,6 @@
 		setCategory
 	} from '@stores';
 	import { get, writable } from 'svelte/store';
-	import Svg from '@components/Svg.svelte';
 	import GraphSection from '@components/GraphSection.svelte';
 	import { afterUpdate } from 'svelte';
 
@@ -18,6 +17,7 @@
 	export let data;
 	export let visibleItemsID;
 	export let essaysItems;
+
 	const entities = writable([]);
 
 	let selectedData = [];
@@ -146,6 +146,12 @@
 						getPaginatedData(index, col);
 						handlePosition();
 					}}
+					on:click={() => {
+						handlePosition();
+					}}
+					on:keypress={() => {
+						handlePosition();
+					}}
 				>
 					{#each mainCategories as cat}
 						{@const filteredData = step.paginate.filter((d) => cat.props.includes(d.property))}
@@ -153,7 +159,7 @@
 
 						{#if filteredData.length > 0}
 							<GraphSection
-							{handlePosition}
+								{handlePosition}
 								{essaysItems}
 								category={cat.key}
 								data={filteredData}
@@ -174,7 +180,7 @@
 						{@const dataLen = filteredSecondaryData.length}
 						{#if dataLen > 0}
 							<GraphSection
-							{handlePosition}
+								{handlePosition}
 								{essaysItems}
 								category={setCategory}
 								data={filteredSecondaryData}
@@ -198,7 +204,7 @@
 							(d) => !mainCategories.some((cat) => cat.props.includes(d.property))
 						).length}
 						<GraphSection
-						{handlePosition}
+							{handlePosition}
 							{essaysItems}
 							category={secondayCategoriesLabel}
 							data={filteredSecondaryData}
@@ -223,7 +229,6 @@
 		{/each}
 	{/if}
 </div>
-<Svg />
 
 <style>
 	.loading {
