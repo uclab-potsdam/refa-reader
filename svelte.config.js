@@ -12,15 +12,14 @@ const config = {
 	],
 	kit: {
 		adapter: adapter({
-			fallback: 'index.html',
-			precompress:true
+			fallback: 'index.html'
 		}),
 		paths: {
 			base: dev ? '' : process.env.BASE_PATH,
 		},
 		prerender: {
 			crawl: true,
-			entries: ['/'],
+			entries: ['*'],
 		},
 		alias: {
 			'@components': 'src/components',
