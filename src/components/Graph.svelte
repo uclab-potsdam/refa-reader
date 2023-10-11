@@ -229,14 +229,44 @@
 		{/each}
 	{/if}
 </div>
+{#if $graphSteps.length >= 2}
+	<div
+		class="close"
+		on:click={() => {
+			$graphSteps = [];
+		}}
+		on:keypress={() => {
+			$graphSteps = [];
+		}}
+	>
+		x
+	</div>
+{/if}
 
 <style>
+	.close {
+		width: 25px;
+		height: 25px;
+		position: fixed;
+		top: 10px;
+		right: 10px;
+		border-radius: 100%;
+		background-color: gainsboro;
+		color: var(--theme-color);
+		text-align: center;
+		line-height: 22px;
+		font-family: 'Inter', sans-serif;
+		z-index: 100;
+		cursor: pointer;
+	}
+
 	.loading {
 		font-family: 'Redaction', serif;
 	}
 
 	.graph {
 		display: flex;
+		user-select: none;
 		/* overflow: hidden; */
 	}
 
