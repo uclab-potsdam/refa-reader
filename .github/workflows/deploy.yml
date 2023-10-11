@@ -22,7 +22,7 @@ jobs:
 
       - name: build
         env:
-          BASE_PATH: '/refa-essays'
+          BASE_PATH: ''
         run: |
           npm run build
 
