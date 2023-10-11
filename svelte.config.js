@@ -19,7 +19,7 @@ const config = {
 		},
 		prerender: {
 			crawl: true,
-			entries: ['*'],
+			entries: ['*', "/01_Lipp_cultural_collection_on_fashion_en"],
 			handleHttpError: "ignore",
 		},
 		alias: {
