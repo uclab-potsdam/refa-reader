@@ -72,8 +72,12 @@
 <section
 	bind:this={section}
 	transition:slide
-	on:introend={() => handlePosition()}
-	on:outroend={() => handlePosition()}
+	on:introend={() => {
+		// handlePosition();
+	}}
+	on:outroend={() => {
+		// handlePosition();
+	}}
 >
 	<h4>{category} <sup>[{dataLen}]</sup></h4>
 	<div class="divider">

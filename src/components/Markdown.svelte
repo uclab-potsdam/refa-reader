@@ -27,7 +27,9 @@
 				return `<a class="external" target="_blank" href="${href}" title="${text}">${text}</a>`;
 			} else {
 				let uniqueId = newUniqueId();
-				return `<a class="node-highlite" unique-id="${uniqueId}" data-id="${
+				return `<a class="node-highlite" unique-id="${uniqueId}" id="item_${
+					href.split('/')[1]
+				}" data-id="${
 					href.split('/')[1]
 				}" title="${text}">${text}<span class="symbol node" unique-id="${uniqueId}" data-id="${
 					href.split('/')[1]
@@ -59,6 +61,16 @@
 
 	onMount(async () => {
 		observe();
+
+		if (window.location.hash) {
+			let hash = window.location.hash;
+
+			let target = document.querySelector(hash);
+			if (target) {
+				target.scrollIntoView({ block: 'center' });
+				$selectedNode = target.getAttribute('data-id');
+			}
+		}
 	});
 
 	function handleClick(event) {
@@ -73,6 +85,7 @@
 	}
 
 	$: {
+		// console.log($selectedNode, typeof $selectedNode, $selectedNode.length)
 		if ($selectedNode != null && typeof document !== 'undefined') {
 			document.querySelectorAll('a[data-id]').forEach((link) => {
 				link.classList.remove('related');
@@ -83,13 +96,13 @@
 			let selectedUnique = document.querySelectorAll(`a[unique-id="${$selectedNodeUniqueId}"]`);
 
 			if (selectedUnique) {
-				$selectedNode == $selectedNode;
+				// $selectedNode == $selectedNode;
 				selectedUnique.forEach((link) => {
 					link.classList.add('selected');
 				});
 			}
 			if (selectedId) {
-				$selectedNode == $selectedNode;
+				// $selectedNode == $selectedNode;
 				selectedId.forEach((link) => {
 					link.classList.add('related');
 				});
@@ -145,17 +158,20 @@
 		font-style: normal;
 	}
 
-	:global(.selected) {
-		background-color: var(--theme-color) !important;
-		/* background: linear-gradient(to right, #f2f2f2, var(--theme-color)); */
-	}
-
 	:global(.related) {
 		color: var(--theme-color) !important;
 	}
 
+	:global(.selected) {
+		background-color: var(--theme-color) !important;
+	}
+	
 	:global(.markdown .selected) {
 		color: white !important;
+	}
+	
+	:global(.selected .symbol) {
+		color: white;
 	}
 
 	:global(.symbol) {
@@ -165,9 +181,7 @@
 		color: var(--theme-color);
 	}
 
-	:global(.selected .symbol) {
-		color: white;
-	}
+
 
 	:global(sup) {
 		padding-right: 0.5rem;

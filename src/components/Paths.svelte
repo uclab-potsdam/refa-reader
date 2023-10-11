@@ -2,12 +2,11 @@
 	import newUniqueId from 'locally-unique-id-generator';
 
 	import { onMount, onDestroy } from 'svelte';
-	import { paths, graphSteps, selectedNodeUniqueId } from '@stores';
+	import { paths, graphSteps, selectedNodeUniqueId, scrollX } from '@stores';
 
 	export let datum;
 	export let label;
 	export let updatePosition;
-
 	let item;
 	let padding = 0; // change if thicker lines
 	let id = newUniqueId();
@@ -15,6 +14,7 @@
 
 	$: {
 		$updatePosition;
+		$scrollX;
 		getPositions();
 	}
 
@@ -35,7 +35,7 @@
 					? 'selected'
 					: 'not-selected';
 			const bound = {
-				x: elementRect.x,
+				x: elementRect.x + $scrollX,
 				y: elementRect.y + p,
 				width: elementRect.width - p / 2,
 				height: elementRect.height,
@@ -80,7 +80,6 @@
 				}C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${targetRect.x},${
 					targetRect.y
 				}`;
-
 				$paths[id] = $paths[id] || [];
 				$paths[id].push({
 					class: highlite,

@@ -2,8 +2,9 @@
 	import Markdown from '@components/Markdown.svelte';
 	import Graph from '@components/Graph.svelte';
 	import ItemDetail from '@components/ItemDetail.svelte';
+	import Svg from '@components/Svg.svelte';
 	import { page } from '$app/stores';
-	import { Api, items, graphSteps, selectedNode, hoverNode } from '@stores';
+	import { Api, items, graphSteps, selectedNode, hoverNode, scrollX } from '@stores';
 	import { onMount } from 'svelte';
 	import { extractLinks, createTriplets } from '@utils';
 	import { writable } from 'svelte/store';
@@ -23,7 +24,7 @@
 		$selectedNode;
 		handlePosition();
 	}
-	
+
 	$: {
 		$hoverNode;
 		handlePosition();
@@ -76,12 +77,10 @@
 	function resetNode() {
 		$graphSteps = [];
 	}
+	let article;
 </script>
 
-<svelte:window
-	on:resize={handlePosition}
-	on:click={handlePosition}
-/>
+<svelte:window on:resize={handlePosition} on:click={handlePosition} />
 <div>
 	{#if textData == undefined && triplets == undefined}
 		<article>
@@ -99,7 +98,11 @@
 		<article
 			style="--theme-color: {textData.meta?.color || 'blue'}"
 			on:resize={handlePosition}
-			on:scroll={handlePosition}
+			on:scroll={() => {
+				$scrollX = article?.scrollLeft;
+				// handlePosition();
+			}}
+			bind:this={article}
 		>
 			<section
 				class="item__detail"
@@ -111,7 +114,7 @@
 					resetNode();
 					handlePosition();
 				}}
-				on:keypress={handlePosition}
+				on:keypress
 			>
 				<ItemDetail data={itemsJson.filter((d) => !d.hasOwnProperty('fromSet'))} />
 			</section>
@@ -129,14 +132,15 @@
 					resetNode();
 					handlePosition();
 				}}
-				on:keypress={handlePosition}
+				on:keypress
 			>
 				<h1>{textData.meta.title}</h1>
 				<Markdown data={textData} items={itemsJson} />
 			</section>
-			<section class="graph__container" on:click={handlePosition} on:keypress={handlePosition}>
-				<Graph {essaysItems} data={$items} {visibleItemsID} {handlePosition} {updatePosition} />
+			<section class="graph__container">
+				<Graph {essaysItems} data={$items} {visibleItemsID} {handlePosition} {updatePosition}/>
 			</section>
+			<Svg/>
 		</article>
 	{/if}
 </div>
@@ -145,8 +149,8 @@
 	article {
 		display: flex;
 		height: 100vh;
-		/* position: relative; */
 		overflow: scroll;
+		position: relative;
 	}
 
 	h1 {
