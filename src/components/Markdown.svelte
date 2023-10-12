@@ -85,7 +85,6 @@
 	}
 
 	$: {
-		// console.log($selectedNode, typeof $selectedNode, $selectedNode.length)
 		if ($selectedNode != null && typeof document !== 'undefined') {
 			document.querySelectorAll('a[data-id]').forEach((link) => {
 				link.classList.remove('related');
