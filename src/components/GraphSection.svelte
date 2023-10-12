@@ -17,6 +17,7 @@
 	export let batchSize;
 	export let essaysItems;
 	export let handlePosition;
+	export let site;
 	let section;
 
 	let selectedTriplets = { nodes: [], links: [] };
@@ -84,6 +85,7 @@
 				<div>
 					{#if newData.some((existingNode) => existingNode.title === datum.title)}
 						<Card
+							{site}
 							{entities}
 							{updatePosition}
 							{datum}

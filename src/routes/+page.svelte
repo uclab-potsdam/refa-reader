@@ -3,26 +3,27 @@
 	import Header from '@components/Header.svelte';
 	import Language from '@components/Language.svelte';
 	import { onMount } from 'svelte';
-
+	import * as config from '../setup.json';
 	export let data;
 
 	let lang = '';
-	onMount(() => {
+	onMount(async () => {
 		const storedLanguage = localStorage.getItem('selectedLanguage');
 		if (storedLanguage) {
 			lang = storedLanguage;
 		} else {
-			lang = 'en';
+			lang = config.languages[0];
 		}
 	});
 </script>
 
-{#if lang}
+{#if config && lang}
 	<article style="--theme-color:blue">
-		<Language bind:lang />
+		<Language bind:lang languages={config.languages}/>
 		<Header
 			essays={data.posts.filter((d) => d.meta.isPublic & (d.meta.lang == lang)).length}
 			{lang}
+			description={config.description}
 		/>
 		<Columns {data} {lang} />
 	</article>

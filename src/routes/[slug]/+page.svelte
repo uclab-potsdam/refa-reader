@@ -1,15 +1,16 @@
 <script>
+	import * as config from '../../setup.json';
 	import Markdown from '@components/Markdown.svelte';
 	import Graph from '@components/Graph.svelte';
 	import ItemDetail from '@components/ItemDetail.svelte';
 	import Svg from '@components/Svg.svelte';
 	import { page } from '$app/stores';
-	import { Api, items, graphSteps, selectedNode, hoverNode, scrollX } from '@stores';
+	import { items, graphSteps, selectedNode, hoverNode, scrollX } from '@stores';
 	import { onMount } from 'svelte';
 	import { extractLinks, createTriplets } from '@utils';
 	import { writable } from 'svelte/store';
-
 	export let data;
+
 	let textData = [];
 	let triplets, itemsJson;
 	let visibleItemsID = [];
@@ -35,7 +36,7 @@
 		itemsJson = await extractLinks(textData.text);
 		visibleItemsID = itemsJson
 			.filter((obj) => !obj.set)
-			.map((obj) => `${Api}/resources/${obj.data?.['o:id']}`);
+			.map((obj) => `${config.Api}/resources/${obj.data?.['o:id']}`);
 		triplets = await createTriplets(itemsJson);
 		$items = triplets;
 
@@ -118,7 +119,7 @@
 				}}
 				on:keypress
 			>
-				<ItemDetail data={itemsJson.filter((d) => !d.hasOwnProperty('fromSet'))} />
+				<ItemDetail data={itemsJson.filter((d) => !d.hasOwnProperty('fromSet'))} itemDetailMetaData={config.itemDetailMetaData} />
 			</section>
 			<section
 				class="markdown__container"
@@ -140,7 +141,7 @@
 				<Markdown data={textData} items={itemsJson} />
 			</section>
 			<section class="graph__container">
-				<Graph {essaysItems} data={$items} {visibleItemsID} {handlePosition} {updatePosition}/>
+				<Graph {essaysItems} data={$items} {visibleItemsID} {handlePosition} {updatePosition} {config}/>
 			</section>
 			<Svg/>
 		</article>
