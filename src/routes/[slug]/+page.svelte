@@ -100,7 +100,9 @@
 			on:resize={handlePosition}
 			on:scroll={() => {
 				$scrollX = article?.scrollLeft;
-				// handlePosition();
+			}}
+			on:click={() => {
+				handlePosition();
 			}}
 			bind:this={article}
 		>

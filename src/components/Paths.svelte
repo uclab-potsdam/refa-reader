@@ -1,7 +1,7 @@
 <script>
 	import newUniqueId from 'locally-unique-id-generator';
 
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount, onDestroy, afterUpdate } from 'svelte';
 	import { paths, graphSteps, selectedNodeUniqueId, scrollX } from '@stores';
 
 	export let datum;
@@ -93,6 +93,10 @@
 	}
 
 	onMount(() => {
+		getPositions();
+	});
+
+	afterUpdate(() => {
 		getPositions();
 	});
 
