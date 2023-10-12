@@ -51,7 +51,7 @@
 	}
 
 	text {
-		font-size: clamp(10px, 0.8vw, 12px);
+		font-size: clamp(8px, 0.8vw, 10px);
 		fill: #969696;
 		text-rendering: optimizeSpeed;
 		/* opacity: 0; */
