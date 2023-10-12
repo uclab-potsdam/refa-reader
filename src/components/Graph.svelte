@@ -272,6 +272,12 @@
 		font-family: 'Inter', sans-serif;
 		z-index: 100;
 		cursor: pointer;
+		transition: all .5s linear;
+	}
+	.close:hover{
+		width: 30px;
+		height: 30px;
+		line-height: 28px;
 	}
 
 	.loading {
