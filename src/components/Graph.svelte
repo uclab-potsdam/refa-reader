@@ -115,7 +115,7 @@
 	const getPaginatedData = (index, col) => {
 		if (col != null) {
 			const { scrollTop, scrollHeight, clientHeight } = col;
-			if (scrollTop > 0 && scrollTop + clientHeight >= scrollHeight - 50) {
+			if (scrollTop >= 0 && scrollTop + clientHeight >= scrollHeight - 50) {
 				const page = $graphSteps[index].page + 1;
 				$graphSteps[index] = {
 					...$graphSteps[index],
@@ -219,11 +219,19 @@
 						/>
 					{/if}
 
-					<!-- {#if step.paginate.length < step.new.length}
-						<div on:click={getPaginatedData(index, col)} on:keydown={getPaginatedData(index, col)}>
+					<!-- paginate:{step.paginate.length}
+					new:{step.new.length}
+					data:{step.data.length} -->
+
+					{#if step.paginate.length < step.data.length}
+						<div
+							class="more"
+							on:click={getPaginatedData(index, col)}
+							on:keydown={getPaginatedData(index, col)}
+						>
 							Load more
 						</div>
-					{/if} -->
+					{/if}
 				</div>
 			{/if}
 		{/each}
@@ -244,6 +252,13 @@
 {/if}
 
 <style>
+	.more {
+		padding-bottom: 20px;
+		text-align: center;
+		color: gainsboro;
+		cursor: pointer;
+	}
+
 	.close {
 		width: 25px;
 		height: 25px;
