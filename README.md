@@ -2,8 +2,8 @@
 ![Screenshot 2023-10-11 at 15 50 12](https://github.com/uclab-potsdam/refa-essays/assets/20107875/1f044cf6-d8de-46e2-a26e-6fab4613c908)
 
 
-An interactive visualization that juxtaposes essays and graphs. 
-It allows readers to browse items from Omeka-S-based collections, by accessing them through a curated selection of texts designed to provide better understanding, combining editorial approaches with free exploration and user-driven granularity.
+An interactive visualisation that provides access to a selection of objects from the 'Lipperheidesche Kostümbibliothek'.
+Different texts are juxtaposed with a graph navigation that allows the user to browse the paintings, prints, drawings and clothes in the collection. Instead of showing the collection in its entirety, it is accessible through a curated selection of essays designed to provide a better understanding of it, combining editorial approaches with free exploration and user-driven granularity.
 
 ## Project setup
 
@@ -27,3 +27,4 @@ Preview the production build with `npm run preview`.
 
 Insert the markdown files to load inside the `src/route/essays/` folder.
 Customise `src/setup.js` to customise languages, texts and properties.
+So far, it relies on the Omeka S API to function.
