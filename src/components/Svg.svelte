@@ -1,5 +1,5 @@
 <script>
-	import { paths, hoverNode, scrollX } from '@stores';
+	import { paths, hoverNode } from '@stores';
 </script>
 
 {#if Object.keys($paths).length > 0}
