@@ -1,7 +1,8 @@
 <script>
-	import { visibleLinks, selectedNode, ItemDetailMetaData, graphSteps } from '@stores';
+	import { visibleLinks, selectedNode, graphSteps } from '@stores';
 	import { afterUpdate } from 'svelte';
 	export let data;
+	export let itemDetailMetaData;
 
 	$: itemDetail = data.find((d) => d.id == $selectedNode);
 	$: visibleIds = $visibleLinks.map((d) => d.getAttribute('data-id'));
@@ -44,14 +45,14 @@
 
 					{#if itemDetail != undefined && itemDetail.id == d.data?.['o:id']}
 						<div class="metadata">
-							{#each ItemDetailMetaData as meta, i}
+							{#each itemDetailMetaData as meta, i}
 								{#if itemDetail.data[meta]}
 									<span>
 										{itemDetail.data[meta]?.[0]['simpleValue'] ||
 											itemDetail.data[meta]?.[0]['@value'] ||
 											itemDetail.data[meta]?.[0][
 												'display_title'
-											]}{#if meta !== ItemDetailMetaData[ItemDetailMetaData.length - 1]},{/if}
+											]}{#if meta !== itemDetailMetaData[itemDetailMetaData.length - 1]},{/if}
 									</span>
 								{/if}
 							{/each}

@@ -1,11 +1,12 @@
 <script>
-	import { graphSteps, site, hoverNode } from '@stores';
+	import { graphSteps, hoverNode } from '@stores';
 	import { blur } from 'svelte/transition';
 	// import PropLabel from '@components/PropLabel.svelte';
 	export let datum;
 	export let entities;
 	export let updatePosition;
 	export let essaysItems;
+	export let site;
 
 	let imageSrc;
 

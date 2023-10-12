@@ -1,28 +1,22 @@
 <script>
 	export let lang;
-
+	export let languages;
 	function switchLanguage(newLang) {
 		lang = newLang;
 		localStorage.setItem('selectedLanguage', newLang);
 	}
+
 </script>
 
 <div>
-	<span
-		on:click={() => switchLanguage('en')}
-		on:keydown={() => switchLanguage('en')}
-		class:selected={lang === 'en'}
-		disabled={lang === 'en'}>EN</span
-	>
-	/
-	<span
-		on:click={() => switchLanguage('de')}
-		on:keydown={() => switchLanguage('de')}
-		class:selected={lang === 'de'}
-		disabled={lang === 'de'}
-	>
-		DE</span
-	>
+	{#each languages as language}
+		<span
+			on:click={() => switchLanguage(language)}
+			on:keydown={() => switchLanguage(language)}
+			class:selected={lang === language}
+			disabled={lang === language}>{language.toUpperCase()}</span
+		>
+	{/each}
 </div>
 
 <style>
@@ -31,6 +25,14 @@
 		top: 10px;
 		right: 10px;
 		cursor: pointer;
+	}
+	
+	span::after {
+		content: "/";
+	}
+
+	span:last-of-type::after {
+		content: "";
 	}
 
 	.selected {

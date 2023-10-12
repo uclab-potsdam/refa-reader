@@ -1,14 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
-	import {
-		Api,
-		selectedNode,
-		graphSteps,
-		mainCategories,
-		secondayCategoriesLabel,
-		setCategory
-	} from '@stores';
-	import { get, writable } from 'svelte/store';
+	import { selectedNode, graphSteps } from '@stores';
+	import { writable } from 'svelte/store';
 	import GraphSection from '@components/GraphSection.svelte';
 	import { afterUpdate } from 'svelte';
 
@@ -17,6 +10,7 @@
 	export let data;
 	export let visibleItemsID;
 	export let essaysItems;
+	export let config;
 
 	const entities = writable([]);
 
@@ -26,7 +20,7 @@
 	let graph;
 	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
 
-	$: path = `${Api}/resources/${$selectedNode}`;
+	$: path = `${config.api}/resources/${$selectedNode}`;
 
 	onMount(async () => {
 		loadData(data.nodes, batchSize);
@@ -83,7 +77,7 @@
 
 		for (let i = 0; i < numBatches; i++) {
 			const batchIds = ids.slice(i * batchSize, (i + 1) * batchSize);
-			let query = `${Api}/items?${batchIds.map((id) => `id[]=${id}`).join('&')}`;
+			let query = `${config.api}/items?${batchIds.map((id) => `id[]=${id}`).join('&')}`;
 			let response = await fetch(query);
 			let jsonItems = await response.json();
 
@@ -96,7 +90,7 @@
 
 			// BUG: query for /resources/ to get also the medias. So far it's not possible in Omeka-S / wait for the next release
 			if (jsonItems.length != batchIds.length) {
-				query = `${Api}/media?${batchIds.map((id) => `id[]=${id}`).join('&')}`;
+				query = `${config.api}/media?${batchIds.map((id) => `id[]=${id}`).join('&')}`;
 				response = await fetch(query);
 				jsonItems = await response.json();
 
@@ -153,12 +147,13 @@
 						handlePosition();
 					}}
 				>
-					{#each mainCategories as cat}
+					{#each config.mainCategories as cat}
 						{@const filteredData = step.paginate.filter((d) => cat.props.includes(d.property))}
 						{@const dataLen = step.data.filter((d) => cat.props.includes(d.property)).length}
 
 						{#if filteredData.length > 0}
 							<GraphSection
+								site={config.publicSite}
 								{handlePosition}
 								{essaysItems}
 								category={cat.key}
@@ -175,14 +170,17 @@
 						{/if}
 					{/each}
 
-					{#if step.paginate.filter((d) => d.category == setCategory)}
-						{@const filteredSecondaryData = step.paginate.filter((d) => d.category == setCategory)}
+					{#if step.paginate.filter((d) => d.category == config.setCategory)}
+						{@const filteredSecondaryData = step.paginate.filter(
+							(d) => d.category == config.setCategory
+						)}
 						{@const dataLen = filteredSecondaryData.length}
 						{#if dataLen > 0}
 							<GraphSection
+								site={config.publicSite}
 								{handlePosition}
 								{essaysItems}
-								category={setCategory}
+								category={config.setCategory}
 								data={filteredSecondaryData}
 								newData={step.new}
 								{dataLen}
@@ -196,17 +194,18 @@
 						{/if}
 					{/if}
 
-					{#if step.paginate.filter((d) => !mainCategories.some( (cat) => cat.props.includes(d.property) ) && d.category != setCategory).length > 0}
+					{#if step.paginate.filter((d) => !config.mainCategories.some( (cat) => cat.props.includes(d.property) ) && d.category != config.setCategory).length > 0}
 						{@const filteredSecondaryData = step.paginate.filter(
-							(d) => !mainCategories.some((cat) => cat.props.includes(d.property))
+							(d) => !config.mainCategories.some((cat) => cat.props.includes(d.property))
 						)}
 						{@const dataLen = step.data.filter(
-							(d) => !mainCategories.some((cat) => cat.props.includes(d.property))
+							(d) => !config.mainCategories.some((cat) => cat.props.includes(d.property))
 						).length}
 						<GraphSection
+							site={config.publicSite}
 							{handlePosition}
 							{essaysItems}
-							category={secondayCategoriesLabel}
+							category={config.secondayCategoriesLabel}
 							data={filteredSecondaryData}
 							newData={step.new}
 							{dataLen}

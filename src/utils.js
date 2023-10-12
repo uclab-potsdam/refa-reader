@@ -1,5 +1,6 @@
-import { Api, visibleLinks, allLinks, selectedNode, selectedNodeUniqueId, mainCategories, secondayCategoriesLabel, setCategory } from '@stores';
-import { invertedProperties } from './invertedProperties';
+import * as config from './setup.json';
+import { visibleLinks, allLinks, selectedNode, selectedNodeUniqueId } from '@stores';
+// import { invertedProperties } from './invertedProperties';
 import newUniqueId from 'locally-unique-id-generator';
 
 export async function extractLinks(markdown) {
@@ -43,21 +44,21 @@ export async function extractLinks(markdown) {
     // Split the itemUrls into batches of batchSize
     const itemUrlBatches = splitIntoBatches(itemUrls, batchSize);
     const itemPromises = itemUrlBatches.map(batch => {
-        const itemQuery = `${Api}/items?${batch.map(i => `id[]=${i}`).join("&")}`;
+        const itemQuery = `${config.api}/items?${batch.map(i => `id[]=${i}`).join("&")}`;
         return fetch(itemQuery).then(response => response.json());
     });
 
     // Split the setUrls into batches of batchSize
     const setUrlBatches = splitIntoBatches(setUrls, batchSize);
     const setPromises = setUrlBatches.map(batch => {
-        const setQuery = `${Api}/item_sets?${batch.map(i => `id[]=${i}`).join("&")}`;
+        const setQuery = `${config.api}/item_sets?${batch.map(i => `id[]=${i}`).join("&")}`;
         return fetch(setQuery).then(response => response.json());
     });
 
     // Split the mediaUrls into batches of batchSize
     const mediaUrlBatches = splitIntoBatches(mediaUrls, batchSize);
     const mediaPromises = mediaUrlBatches.map(batch => {
-        const mediaQuery = `${Api}/media?${batch.map(i => `id[]=${i}`).join("&")}`;
+        const mediaQuery = `${config.api}/media?${batch.map(i => `id[]=${i}`).join("&")}`;
         return fetch(mediaQuery).then(response => response.json());
     });
 
@@ -183,16 +184,16 @@ export async function createTriplets(data) {
  */
 export function parseJSONLD(jsonLD, set) {
     let triplets = [];
-    let source = `${Api}/resources/${jsonLD["o:id"]}`;
+    let source = `${config.api}/resources/${jsonLD["o:id"]}`;
 
     // Add a triplet for the set if available
     if (set) {
         triplets.push({
-            source: `${Api}/resources/${set.id}`,
+            source: `${config.api}/resources/${set.id}`,
             target: source,
             img: jsonLD?.thumbnail_display_urls?.large,
             title: jsonLD["o:title"],
-            category: setCategory
+            category: config.setCategory
         });
     }
 
@@ -207,11 +208,11 @@ export function parseJSONLD(jsonLD, set) {
         for (let key in obj) {
 
             // Check if the key is "@id" and the value starts with the API base URL and has a title
-            if (key === "@id" && obj[key].startsWith(Api) && (obj["o:title"] || obj.display_title || reverse == true)) {
+            if (key === "@id" && obj[key].startsWith(config.api) && (obj["o:title"] || obj.display_title || reverse == true)) {
                 // Extract the target URL, title, and image
                 let splitId = obj[key].split("/");
                 let id = splitId[splitId.length - 1];
-                const target = `${Api}/resources/${id}`;
+                const target = `${config.api}/resources/${id}`;
                 const title = obj["o:title"] || obj.display_title;
                 const img = obj?.thumbnail_url || obj?.thumbnail_display_urls?.large;
 
@@ -223,12 +224,12 @@ export function parseJSONLD(jsonLD, set) {
                 let property = obj["property_label"]?.replace("_", " ")?.replace(regex, '') || parentKey?.replace(regex, '')
 
                 // gotta find a way to fix inveted properties
-                if (reverse) {
-                    property = invertedProperties[property] || property
-                }
+                // if (reverse) {
+                //     property = invertedProperties[property] || property
+                // }
 
-                const category = mainCategories
-                    .map(d => (d.props.includes(property) ? d.key : secondayCategoriesLabel))
+                const category = config.mainCategories
+                    .map(d => (d.props.includes(property) ? d.key : config.secondayCategoriesLabel))
                     .find(Boolean);
 
                 if (!exists) {
