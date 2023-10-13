@@ -1,5 +1,5 @@
 # ReFa Essays
-![Screenshot 2023-10-11 at 15 50 12](https://github.com/uclab-potsdam/refa-essays/assets/20107875/1f044cf6-d8de-46e2-a26e-6fab4613c908)
+![Screenshot 2023-10-13 at 17 06 33](https://github.com/uclab-potsdam/refa-reader-template/assets/20107875/3cfdb390-9ed6-4a58-83c3-4aa9cd3d80d6)
 
 
 An interactive visualization that juxtaposes essays and graphs. 
