@@ -28,6 +28,8 @@
 <style>
 	.columns {
 		display: flex;
+		height: 100%;
+		align-items: stretch;
 		overflow-x: scroll;
 		scroll-snap-type: x mandatory;
 	}
@@ -37,8 +39,7 @@
 	}
 
 	.column {
-		height: calc(100% - 4rem);
-		padding: 1.4rem;
+		padding: 10px;
 		overflow: hidden;
 		display: -webkit-box;
 		-webkit-line-clamp: 40;
