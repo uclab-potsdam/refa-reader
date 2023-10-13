@@ -1,37 +1,14 @@
 {
     "title": "ReFa Reader",
-    "api": "https://uclab.fh-potsdam.de/refa/api",
+    "api": "https://hyperotlet.huma-num.fr/api",
     "publicSite": "",
     "languages": ["en"],
     "description": {
-        "en": "Just a test"
+        "en": "Lorem ipsum dolor sit amet, consectetur adipiscing. Sed vel augue viverra, suscipit nisi sagittis, molestie neque."
     },
-    "mainCategories": [
-        {
-            "key": "Related Artworks",
-            "props": [
-                "is refered to it",
-                "shows features of",
-                "is shown by",
-                "is type of",
-                "created",
-                "features are also found on"
-            ]
-        },
-        {
-            "key": "Documentation",
-            "props": [
-                "is documented in",
-                "incorporates"
-            ]
-        }
-    ],
     "itemDetailMetaData": [
-        "ecrm:P92i_was_brought_into_existence_by",
-        "dcterms:created",
-        "ecrm:P45_consists_of",
-        "ecrm:P43_has_dimension"
+        "dcterms:description"
     ],
-    "secondayCategoriesLabel": "Classification",
-    "setCategory": "Related"
+    "mainCategories": [],
+    "categories": "Related"
 }

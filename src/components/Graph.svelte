@@ -170,9 +170,9 @@
 						{/if}
 					{/each}
 
-					{#if step.paginate.filter((d) => d.category == config.setCategory)}
+					{#if step.paginate.filter((d) => d.category == config.categories)}
 						{@const filteredSecondaryData = step.paginate.filter(
-							(d) => d.category == config.setCategory
+							(d) => d.category == config.categories
 						)}
 						{@const dataLen = filteredSecondaryData.length}
 						{#if dataLen > 0}
@@ -180,7 +180,7 @@
 								site={config.publicSite}
 								{handlePosition}
 								{essaysItems}
-								category={config.setCategory}
+								category={config.categories}
 								data={filteredSecondaryData}
 								newData={step.new}
 								{dataLen}
@@ -194,7 +194,7 @@
 						{/if}
 					{/if}
 
-					{#if step.paginate.filter((d) => !config.mainCategories.some( (cat) => cat.props.includes(d.property) ) && d.category != config.setCategory).length > 0}
+					{#if step.paginate.filter((d) => !config.mainCategories.some( (cat) => cat.props.includes(d.property) ) && d.category != config.categories).length > 0}
 						{@const filteredSecondaryData = step.paginate.filter(
 							(d) => !config.mainCategories.some((cat) => cat.props.includes(d.property))
 						)}
@@ -205,7 +205,7 @@
 							site={config.publicSite}
 							{handlePosition}
 							{essaysItems}
-							category={config.secondayCategoriesLabel}
+							category={config.categories}
 							data={filteredSecondaryData}
 							newData={step.new}
 							{dataLen}
