@@ -1,4 +1,4 @@
-# ReFa Essays
+# ReFa Reader Template
 ![Screenshot 2023-10-13 at 17 06 33](https://github.com/uclab-potsdam/refa-reader-template/assets/20107875/3cfdb390-9ed6-4a58-83c3-4aa9cd3d80d6)
 
 
