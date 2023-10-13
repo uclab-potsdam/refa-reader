@@ -1,11 +1,16 @@
 ---
-title: A test essay
+title: An example with data from the hyperotlet project.
 date: "2023-12-14"
 color: "blue"
-isPublic: false
+isPublic: true
 lang: en
-description: "Description of the essay"
-cover: "https://uclab.fh-potsdam.de/refa/files/original/af6d3f80b1b5690cf68dae59dcfb0909bd2e6ea9.jpg"
+description: "Lorem ipsum dolor sit amet, consectetur adipiscing. Sed vel augue viverra, suscipit nisi sagittis, molestie neque."
+cover: "https://hyperotlet.huma-num.fr/files/large/0b782b9ebd2f60e807f6f22fcf25a1b1e38c3930.jpg"
 ---
 
-This is an [item](item/463), this is a [media](media/1602) and this is an [item set](set/31735).
+Lorem ipsum dolor sit amet, consectetur adipiscing [Le Corbusier](item/537). Sed vel augue viverra, suscipit nisi sagittis, molestie neque. Fusce tincidunt quam non metus luctus ultrices. Etiam ullamcorper, sapien non lacinia scelerisque, diam diam ultrices nisi, accumsan ornare massa velit a eros. Suspendisse condimentum lectus leo, vel convallis velit ornare id. [Fusce](item/10437) at ipsum non turpis fermentum fermentum. Curabitur convallis erat id ante maximus porttitor. Sed gravida interdum efficitur. Praesent tincidunt quam elit.
+Linking to the [bibliography](item/650) Nullam pharetra facilisis porttitor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras nibh nisl, facilisis non dignissim vel, mattis feugiat sem. Sed dictum erat sem, id tincidunt mi convallis sed. Praesent tristique tempus tortor a venenatis. Fusce mollis porttitor mauris, quis venenatis justo. Duis eros ante, condimentum et volutpat sed, tempor nec ante. Pellentesque a suscipit [risus](item/521). Proin posuere tincidunt suscipit. Vivamus a ipsum eget nulla blandit congue.
+
+In aliquet est eget vehicula eleifend. Maecenas a molestie eros. Vestibulum iaculis ipsum ligula, non pharetra elit tristique ac. Duis sed urna ac ex mollis iaculis ac et tellus. Maecenas lobortis turpis vitae erat pharetra, varius volutpat ipsum euismod. In quis consectetur leo. Vestibulum varius convallis vestibulum. Sed [venenatis](set/429) erat a sodales bibendum. Mauris luctus ante metus, aliquet faucibus urna aliquam et. Nullam vitae sapien mollis, pulvinar nibh et, rhoncus dui. Vivamus augue ligula, condimentum nec pellentesque vitae, tristique ac massa. Sed et arcu tempus odio mollis porta et gravida elit. Maecenas id aliquam elit. Vestibulum vehicula velit volutpat libero mattis, vel dapibus nisi posuere. Vestibulum id scelerisque risus, sit amet rhoncus sem. [Maecenas](item/610) vitae tellus scelerisque augue eleifend ultricies quis vel lectus.
+
+Vestibulum at sodales arcu. Integer nec porttitor nisi, quis porta dui. Nullam dictum enim id augue suscipit dignissim. Morbi sodales scelerisque erat, eu posuere turpis interdum et. Nam accumsan dolor eget nulla congue pretium. Donec eu ipsum feugiat, faucibus lacus nec, ultrices metus. Vestibulum molestie augue sit amet posuere facilisis. [Orci](item/598) varius natoque penatibus et magnis dis parturient [montes](item/10404), nascetur ridiculus mus. Vivamus vel tellus id massa pharetra vulputate pulvinar et diam. Sed convallis hendrerit tortor in mollis. Quisque at eros blandit turpis elementum porta eu sit amet risus. Ut sit amet leo ac arcu vulputate vehicula. Integer ante leo, porttitor eu tellus vitae, tincidunt vulputate eros. Quisque nec diam orci. Phasellus sodales sem id libero scelerisque gravida.

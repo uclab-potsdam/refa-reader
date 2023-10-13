@@ -193,7 +193,7 @@ export function parseJSONLD(jsonLD, set) {
             target: source,
             img: jsonLD?.thumbnail_display_urls?.large,
             title: jsonLD["o:title"],
-            category: config.setCategory
+            category: config.categories
         });
     }
 
@@ -229,7 +229,7 @@ export function parseJSONLD(jsonLD, set) {
                 // }
 
                 const category = config.mainCategories
-                    .map(d => (d.props.includes(property) ? d.key : config.secondayCategoriesLabel))
+                    .map(d => (d.props.includes(property) ? d.key : config.categories))
                     .find(Boolean);
 
                 if (!exists) {
