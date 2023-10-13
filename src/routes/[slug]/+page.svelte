@@ -119,7 +119,10 @@
 				}}
 				on:keypress
 			>
-				<ItemDetail data={itemsJson.filter((d) => !d.hasOwnProperty('fromSet'))} itemDetailMetaData={config.itemDetailMetaData} />
+				<ItemDetail
+					data={itemsJson.filter((d) => !d.hasOwnProperty('fromSet'))}
+					itemDetailMetaData={config.itemDetailMetaData}
+				/>
 			</section>
 			<section
 				class="markdown__container"
@@ -141,9 +144,16 @@
 				<Markdown data={textData} items={itemsJson} />
 			</section>
 			<section class="graph__container">
-				<Graph {essaysItems} data={$items} {visibleItemsID} {handlePosition} {updatePosition} {config}/>
+				<Graph
+					{essaysItems}
+					data={$items}
+					{visibleItemsID}
+					{handlePosition}
+					{updatePosition}
+					{config}
+				/>
 			</section>
-			<Svg/>
+			<Svg />
 		</article>
 	{/if}
 </div>
@@ -182,33 +192,32 @@
 	}
 
 	@media only screen and (max-width: 600px) {
-		article {
-			height: 180vh;
+		.item__detail {
+			display: none;
 		}
+
 		.markdown__container {
 			flex: 2;
 			padding: 0.5rem;
+			flex-basis: 30vw;
+			overflow-x: hidden;
+			overflow-y: scroll;
+		}
+
+		.graph__container {
+			flex: 1;
 		}
 
 		h1 {
 			font-size: 1.4rem;
 		}
 
-		div::before {
+		/* div::before {
 			content: 'This website contains visualizations that are not supported by small screen formats. To navigate the graphs, go to your desktop browser.';
 			display: block;
 			font-size: 20px;
 			padding: 1rem;
 			background: blue;
-		}
-
-		.item__detail {
-			flex: 1;
-			/* display: none; */
-		}
-
-		.graph__container {
-			display: none;
-		}
+		} */
 	}
 </style>

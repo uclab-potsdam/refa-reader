@@ -27,9 +27,9 @@
 	});
 
 	afterUpdate(() => {
-		if (graph.lastElementChild) {
-			graph.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'end' });
-		}
+		// if (graph.lastElementChild) {
+		// 	graph.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'end' });
+		// }
 	});
 
 	$: {

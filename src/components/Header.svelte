@@ -1,10 +1,11 @@
 <script>
-	export let essays;
+	export let title;
 	export let lang;
 	export let description;
 </script>
 
 <header>
+	<h1>{title}</h1>
 	{#if description[lang]}
 		<h3>
 			{description[lang]}
@@ -15,7 +16,7 @@
 <style>
 	header {
 		min-height: 200px;
-		padding: 1.4rem;
+		padding: 10px;
 	}
 
 	h3 {

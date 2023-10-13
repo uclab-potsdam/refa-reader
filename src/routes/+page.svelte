@@ -24,6 +24,7 @@
 			essays={data.posts.filter((d) => d.meta.isPublic & (d.meta.lang == lang)).length}
 			{lang}
 			description={config.description}
+			title={config.title}
 		/>
 		<Columns {data} {lang} />
 	</article>
