@@ -110,7 +110,7 @@
 		if (col != null) {
 			const { scrollTop, scrollHeight, clientHeight } = col;
 			if (scrollTop >= 0 && scrollTop + clientHeight >= scrollHeight - 50) {
-				const page = $graphSteps[index].page + 1;
+				const page = $graphSteps[index].page + 1 || 0;
 				$graphSteps[index] = {
 					...$graphSteps[index],
 					page,
