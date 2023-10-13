@@ -39,7 +39,7 @@ export async function extractLinks(markdown) {
         }
     }
 
-    const batchSize = 40;
+    const batchSize = 20;
 
     // Split the itemUrls into batches of batchSize
     const itemUrlBatches = splitIntoBatches(itemUrls, batchSize);
