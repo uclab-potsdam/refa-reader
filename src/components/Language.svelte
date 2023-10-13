@@ -5,19 +5,20 @@
 		lang = newLang;
 		localStorage.setItem('selectedLanguage', newLang);
 	}
-
 </script>
 
-<div>
-	{#each languages as language}
-		<span
-			on:click={() => switchLanguage(language)}
-			on:keydown={() => switchLanguage(language)}
-			class:selected={lang === language}
-			disabled={lang === language}>{language.toUpperCase()}</span
-		>
-	{/each}
-</div>
+{#if languages.length > 1}
+	<div>
+		{#each languages as language}
+			<span
+				on:click={() => switchLanguage(language)}
+				on:keydown={() => switchLanguage(language)}
+				class:selected={lang === language}
+				disabled={lang === language}>{language.toUpperCase()}</span
+			>
+		{/each}
+	</div>
+{/if}
 
 <style>
 	div {
@@ -26,13 +27,13 @@
 		right: 10px;
 		cursor: pointer;
 	}
-	
+
 	span::after {
-		content: "/";
+		content: '/';
 	}
 
 	span:last-of-type::after {
-		content: "";
+		content: '';
 	}
 
 	.selected {
