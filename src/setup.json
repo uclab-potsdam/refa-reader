@@ -1,5 +1,5 @@
 {
-    "title": "ReFa Reader",
+    "title": "ReFa",
     "api": "https://uclab.fh-potsdam.de/refa/api",
     "publicSite": "https://uclab.fh-potsdam.de/refa/s/pinacotheca/",
     "languages": ["en","de"],
