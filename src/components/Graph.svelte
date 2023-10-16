@@ -11,7 +11,7 @@
 	export let visibleItemsID;
 	export let essaysItems;
 	export let config;
-
+	let screenSize;
 	const entities = writable([]);
 
 	let selectedData = [];
@@ -27,7 +27,7 @@
 	});
 
 	afterUpdate(() => {
-		if (graph.lastElementChild) {
+		if (graph.lastElementChild && screenSize > 600) {
 			graph.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'end' });
 		}
 	});
@@ -124,6 +124,8 @@
 		}
 	};
 </script>
+
+<svelte:window bind:innerWidth={screenSize} />
 
 <div class="graph" bind:this={graph}>
 	{#if $entities.length == 0}
