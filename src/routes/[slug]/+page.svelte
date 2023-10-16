@@ -199,7 +199,8 @@
 		.markdown__container {
 			flex: 2;
 			padding: 0.5rem;
-			flex-basis: 30vw;
+			flex-basis: 70vw;
+			min-width: 70vw;
 			overflow-x: hidden;
 			overflow-y: scroll;
 		}

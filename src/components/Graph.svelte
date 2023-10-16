@@ -27,9 +27,9 @@
 	});
 
 	afterUpdate(() => {
-		// if (graph.lastElementChild) {
-		// 	graph.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'end' });
-		// }
+		if (graph.lastElementChild) {
+			graph.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'end' });
+		}
 	});
 
 	$: {
@@ -301,5 +301,11 @@
 		cursor: pointer;
 		word-wrap: break-word;
 		z-index: 1;
+	}
+
+	@media only screen and (max-width: 600px) {
+		.links:not(:first-of-type) {
+			margin-left: 30vw;
+		}
 	}
 </style>
