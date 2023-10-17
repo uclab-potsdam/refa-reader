@@ -98,6 +98,7 @@
 				// $selectedNode == $selectedNode;
 				selectedUnique.forEach((link) => {
 					link.classList.add('selected');
+					$hoverNode = $selectedNode;
 				});
 			}
 			if (selectedId) {
