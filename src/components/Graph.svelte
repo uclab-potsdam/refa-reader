@@ -124,9 +124,6 @@
 		}
 	};
 
-	$:{
-		console.log($graphSteps)
-	}
 </script>
 
 <svelte:window bind:innerWidth={screenSize} />
