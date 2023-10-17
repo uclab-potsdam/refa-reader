@@ -114,7 +114,7 @@
 				$graphSteps[index] = {
 					...$graphSteps[index],
 					page,
-					paginate: $graphSteps[index].data.slice(0, page * batchSize)
+					paginate: $graphSteps[index]?.data.slice(0, page * batchSize)
 				};
 				if ($graphSteps[index].paginate.length != $graphSteps[index].data.length) {
 					// loading based on the last n items
@@ -123,6 +123,10 @@
 			}
 		}
 	};
+
+	$:{
+		console.log($graphSteps)
+	}
 </script>
 
 <svelte:window bind:innerWidth={screenSize} />
@@ -172,7 +176,7 @@
 						{/if}
 					{/each}
 
-					{#if step.paginate.filter((d) => d.category == config.categories)}
+					<!-- {#if step.paginate.filter((d) => d.category == config.categories)}
 						{@const filteredSecondaryData = step.paginate.filter(
 							(d) => d.category == config.categories
 						)}
@@ -194,9 +198,9 @@
 								{loadData}
 							/>
 						{/if}
-					{/if}
+					{/if} -->
 
-					{#if step.paginate.filter((d) => !config.mainCategories.some( (cat) => cat.props.includes(d.property) ) && d.category != config.categories).length > 0}
+					{#if step.paginate.filter((d) => !config.mainCategories.some( (cat) => cat.props.includes(d.property) ) && d.category == config.categories).length > 0}
 						{@const filteredSecondaryData = step.paginate.filter(
 							(d) => !config.mainCategories.some((cat) => cat.props.includes(d.property))
 						)}
@@ -219,12 +223,7 @@
 							{loadData}
 						/>
 					{/if}
-
-					<!-- paginate:{step.paginate.length}
-					new:{step.new.length}
-					data:{step.data.length} -->
-
-					{#if step.paginate.length < step.data.length}
+					{#if step.paginate.length < step.new.length}
 						<div
 							class="more"
 							on:click={getPaginatedData(index, col)}
