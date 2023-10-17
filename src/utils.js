@@ -192,8 +192,7 @@ export function parseJSONLD(jsonLD, set) {
             source: `${config.api}/resources/${set.id}`,
             target: source,
             img: jsonLD?.thumbnail_display_urls?.large,
-            title: jsonLD["o:title"],
-            category: config.categories
+            title: jsonLD["o:title"]
         });
     }
 
@@ -229,7 +228,7 @@ export function parseJSONLD(jsonLD, set) {
                 // }
 
                 const category = config.mainCategories
-                    .map(d => (d.props.includes(property) ? d.key : config.categories))
+                    .map(d => (d.props.includes(property) ? d.key : ""))
                     .find(Boolean);
 
                 if (!exists) {

@@ -172,30 +172,6 @@
 						{/if}
 					{/each}
 
-					<!-- {#if step.paginate.filter((d) => d.category == config.categories)}
-						{@const filteredSecondaryData = step.paginate.filter(
-							(d) => d.category == config.categories
-						)}
-						{@const dataLen = filteredSecondaryData.length}
-						{#if dataLen > 0}
-							<GraphSection
-								site={config.publicSite}
-								{handlePosition}
-								{essaysItems}
-								category={config.categories}
-								data={filteredSecondaryData}
-								newData={step.new}
-								{dataLen}
-								{index}
-								{entities}
-								{updatePosition}
-								{batchSize}
-								defaultNodes={[...markdownNodes, ...initialStep]}
-								{loadData}
-							/>
-						{/if}
-					{/if} -->
-
 					{#if step.paginate.filter((d) => !config.mainCategories.some( (cat) => cat.props.includes(d.property) )).length > 0}
 						{@const filteredSecondaryData = step.paginate.filter(
 							(d) => !config.mainCategories.some((cat) => cat.props.includes(d.property))
@@ -207,7 +183,6 @@
 							site={config.publicSite}
 							{handlePosition}
 							{essaysItems}
-							category={config.categories}
 							data={filteredSecondaryData}
 							newData={step.new}
 							{dataLen}

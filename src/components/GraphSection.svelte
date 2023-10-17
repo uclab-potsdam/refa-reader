@@ -76,8 +76,13 @@
 	on:transitionrun={() => {
 		handlePosition();
 	}}
+	on:transitionend={() => {
+		handlePosition();
+	}}
 >
-	<h4>{category} <sup>[{dataLen}]</sup></h4>
+	<!-- <h4>{category} <sup>[{dataLen}]</sup></h4> -->
+	<h4>{category ? category : ''}</h4>
+
 	<div class="divider">
 		{#each data as datum}
 			<!-- {#if !datum.skip && datum.source && datum.target} -->
