@@ -123,7 +123,6 @@
 			}
 		}
 	};
-
 </script>
 
 <svelte:window bind:innerWidth={screenSize} />
@@ -197,7 +196,7 @@
 						{/if}
 					{/if} -->
 
-					{#if step.paginate.filter((d) => !config.mainCategories.some( (cat) => cat.props.includes(d.property) ) && d.category == config.categories).length > 0}
+					{#if step.paginate.filter((d) => !config.mainCategories.some( (cat) => cat.props.includes(d.property) )).length > 0}
 						{@const filteredSecondaryData = step.paginate.filter(
 							(d) => !config.mainCategories.some((cat) => cat.props.includes(d.property))
 						)}
@@ -270,9 +269,9 @@
 		font-family: 'Inter', sans-serif;
 		z-index: 100;
 		cursor: pointer;
-		transition: all .5s linear;
+		transition: all 0.5s linear;
 	}
-	.close:hover{
+	.close:hover {
 		width: 30px;
 		height: 30px;
 		line-height: 28px;
