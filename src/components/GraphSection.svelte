@@ -88,7 +88,11 @@
 	}}
 >
 	<!-- <h4>{category} <sup>[{dataLen}]</sup></h4> -->
-	<h4>{category ? category : ''}</h4>
+	<div class="cat">
+		{#if category}
+			<h4>{category}</h4>
+		{/if}
+	</div>
 
 	<div class="divider">
 		{#each data as datum}
@@ -124,8 +128,11 @@
 <style>
 	h4 {
 		font-size: 1rem;
-		margin-bottom: 1rem;
 		color: #adadad;
+	}
+
+	.cat {
+		margin-bottom: 1rem;
 	}
 
 	.divider {
