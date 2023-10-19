@@ -188,6 +188,7 @@
 								site={config.publicSite}
 								{handlePosition}
 								{essaysItems}
+								category={""}
 								data={filteredSecondaryData}
 								newData={step.new}
 								{dataLen}
