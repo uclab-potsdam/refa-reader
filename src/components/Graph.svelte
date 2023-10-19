@@ -137,35 +137,58 @@
 		</div>
 	{:else}
 		{#each $graphSteps as step, index}
-			{#if step?.loading}
-				<div class="loading">Loading...</div>
-			{/if}
-			{#if step.new != undefined && step?.new.length > 0}
-				<div
-					class="links"
-					bind:this={col}
-					on:scroll={() => {
-						getPaginatedData(index, col);
-						handlePosition();
-					}}
-					on:click={() => {
-						handlePosition();
-					}}
-					on:keypress={() => {
-						handlePosition();
-					}}
-				>
-					{#each config.mainCategories as cat}
-						{@const filteredData = step.paginate.filter((d) => cat.props.includes(d.property))}
-						{@const dataLen = step.data.filter((d) => cat.props.includes(d.property)).length}
+			<div class="links">
+				{#if step?.loading}
+					<div class="loading">Loading...</div>
+				{:else if !step?.loading && step?.new && step?.new.length > 0}
+					<div
+						bind:this={col}
+						on:scroll={() => {
+							getPaginatedData(index, col);
+							handlePosition();
+						}}
+						on:click={() => {
+							handlePosition();
+						}}
+						on:keypress={() => {
+							handlePosition();
+						}}
+					>
+						{#each config.mainCategories as cat}
+							{@const filteredData = step.paginate.filter((d) => cat.props.includes(d.property))}
+							{@const dataLen = step.data.filter((d) => cat.props.includes(d.property)).length}
 
-						{#if filteredData.length > 0}
+							{#if filteredData.length > 0}
+								<GraphSection
+									site={config.publicSite}
+									{handlePosition}
+									{essaysItems}
+									category={cat.key}
+									data={filteredData}
+									newData={step.new}
+									{dataLen}
+									{index}
+									{entities}
+									{updatePosition}
+									{batchSize}
+									defaultNodes={[...markdownNodes, ...initialStep]}
+									{loadData}
+								/>
+							{/if}
+						{/each}
+
+						{#if step.paginate.filter((d) => !config.mainCategories.some( (cat) => cat.props.includes(d.property) )).length > 0}
+							{@const filteredSecondaryData = step.paginate.filter(
+								(d) => !config.mainCategories.some((cat) => cat.props.includes(d.property))
+							)}
+							{@const dataLen = step.data.filter(
+								(d) => !config.mainCategories.some((cat) => cat.props.includes(d.property))
+							).length}
 							<GraphSection
 								site={config.publicSite}
 								{handlePosition}
 								{essaysItems}
-								category={cat.key}
-								data={filteredData}
+								data={filteredSecondaryData}
 								newData={step.new}
 								{dataLen}
 								{index}
@@ -176,41 +199,20 @@
 								{loadData}
 							/>
 						{/if}
-					{/each}
-
-					{#if step.paginate.filter((d) => !config.mainCategories.some( (cat) => cat.props.includes(d.property) )).length > 0}
-						{@const filteredSecondaryData = step.paginate.filter(
-							(d) => !config.mainCategories.some((cat) => cat.props.includes(d.property))
-						)}
-						{@const dataLen = step.data.filter(
-							(d) => !config.mainCategories.some((cat) => cat.props.includes(d.property))
-						).length}
-						<GraphSection
-							site={config.publicSite}
-							{handlePosition}
-							{essaysItems}
-							data={filteredSecondaryData}
-							newData={step.new}
-							{dataLen}
-							{index}
-							{entities}
-							{updatePosition}
-							{batchSize}
-							defaultNodes={[...markdownNodes, ...initialStep]}
-							{loadData}
-						/>
-					{/if}
-					{#if step.paginate.length < step.new.length}
-						<div
-							class="more"
-							on:click={getPaginatedData(index, col)}
-							on:keydown={getPaginatedData(index, col)}
-						>
-							Load more
-						</div>
-					{/if}
-				</div>
-			{/if}
+						{#if step.paginate.length < step.new.length}
+							<div
+								class="more"
+								on:click={getPaginatedData(index, col)}
+								on:keydown={getPaginatedData(index, col)}
+							>
+								Load more
+							</div>
+						{/if}
+					</div>
+				{:else}
+					<div class="no-items">There are no connections.</div>
+				{/if}
+			</div>
 		{/each}
 	{/if}
 </div>
@@ -236,10 +238,11 @@
 		cursor: pointer;
 	}
 
-	.loading {
+	.loading,
+	.no-items {
 		text-align: center;
 		color: gainsboro;
-		margin-left: 10vw;
+		/* margin-left: 10vw; */
 		padding-top: 1rem;
 	}
 
@@ -291,6 +294,7 @@
 	.links:last-of-type {
 		padding-right: 50px;
 	}
+	
 
 	@media only screen and (max-width: 600px) {
 		.links:not(:first-of-type) {
