@@ -36,7 +36,7 @@
 		itemsJson = await extractLinks(textData.text);
 		visibleItemsID = itemsJson
 			.filter((obj) => !obj.set)
-			.map((obj) => `${config.Api}/resources/${obj.data?.['o:id']}`);
+			.map((obj) => `${config.api}/resources/${obj.data?.['o:id']}`);
 		triplets = await createTriplets(itemsJson);
 		$items = triplets;
 
@@ -105,6 +105,7 @@
 			on:click={() => {
 				handlePosition();
 			}}
+			on:keypress
 			bind:this={article}
 		>
 			<section

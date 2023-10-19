@@ -16,7 +16,7 @@
 
 	let selectedData = [];
 	let initialStep = [];
-	let batchSize = 35; // cant be more than the pagination in omeka s
+	let batchSize = config.batch; // cant be more than the pagination in omeka s
 	let graph;
 	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
 
@@ -116,9 +116,12 @@
 					page,
 					paginate: $graphSteps[index]?.data.slice(0, page * batchSize)
 				};
-				if ($graphSteps[index].paginate.length != $graphSteps[index].data.length) {
+				if (
+					$graphSteps[index]?.data &&
+					$graphSteps[index]?.paginate.length != $graphSteps[index]?.data.length
+				) {
 					// loading based on the last n items
-					loadData($graphSteps[index].paginate.slice(-batchSize), batchSize);
+					loadData($graphSteps[index]?.paginate.slice(-batchSize), batchSize);
 				}
 			}
 		}
@@ -134,7 +137,10 @@
 		</div>
 	{:else}
 		{#each $graphSteps as step, index}
-			{#if step?.new.length > 0}
+			{#if step?.loading}
+				<div class="loading">Loading...</div>
+			{/if}
+			{#if step.new != undefined && step?.new.length > 0}
 				<div
 					class="links"
 					bind:this={col}
@@ -230,6 +236,13 @@
 		cursor: pointer;
 	}
 
+	.loading {
+		text-align: center;
+		color: gainsboro;
+		margin-left: 10vw;
+		padding-top: 1rem;
+	}
+
 	.close {
 		width: 25px;
 		height: 25px;
@@ -273,6 +286,10 @@
 		cursor: pointer;
 		word-wrap: break-word;
 		z-index: 1;
+	}
+
+	.links:last-of-type {
+		padding-right: 50px;
 	}
 
 	@media only screen and (max-width: 600px) {
