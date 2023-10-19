@@ -11,12 +11,12 @@
 	export let visibleItemsID;
 	export let essaysItems;
 	export let config;
-
+	let screenSize;
 	const entities = writable([]);
 
 	let selectedData = [];
 	let initialStep = [];
-	let batchSize = 35; // cant be more than the pagination in omeka s
+	let batchSize = config.batch; // cant be more than the pagination in omeka s
 	let graph;
 	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
 
@@ -27,7 +27,7 @@
 	});
 
 	afterUpdate(() => {
-		if (graph.lastElementChild) {
+		if (graph.lastElementChild && screenSize > 600) {
 			graph.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'end' });
 		}
 	});
@@ -110,20 +110,25 @@
 		if (col != null) {
 			const { scrollTop, scrollHeight, clientHeight } = col;
 			if (scrollTop >= 0 && scrollTop + clientHeight >= scrollHeight - 50) {
-				const page = $graphSteps[index].page + 1;
+				const page = $graphSteps[index]?.page + 1 || 0;
 				$graphSteps[index] = {
 					...$graphSteps[index],
 					page,
-					paginate: $graphSteps[index].data.slice(0, page * batchSize)
+					paginate: $graphSteps[index]?.data.slice(0, page * batchSize)
 				};
-				if ($graphSteps[index].paginate.length != $graphSteps[index].data.length) {
+				if (
+					$graphSteps[index]?.data &&
+					$graphSteps[index]?.paginate.length != $graphSteps[index]?.data.length
+				) {
 					// loading based on the last n items
-					loadData($graphSteps[index].paginate.slice(-batchSize), batchSize);
+					loadData($graphSteps[index]?.paginate.slice(-batchSize), batchSize);
 				}
 			}
 		}
 	};
 </script>
+
+<svelte:window bind:innerWidth={screenSize} />
 
 <div class="graph" bind:this={graph}>
 	{#if $entities.length == 0}
@@ -132,7 +137,10 @@
 		</div>
 	{:else}
 		{#each $graphSteps as step, index}
-			{#if step?.new.length > 0}
+			{#if step?.loading}
+				<div class="loading">Loading...</div>
+			{/if}
+			{#if step.new != undefined && step?.new.length > 0}
 				<div
 					class="links"
 					bind:this={col}
@@ -170,31 +178,7 @@
 						{/if}
 					{/each}
 
-					{#if step.paginate.filter((d) => d.category == config.setCategory)}
-						{@const filteredSecondaryData = step.paginate.filter(
-							(d) => d.category == config.setCategory
-						)}
-						{@const dataLen = filteredSecondaryData.length}
-						{#if dataLen > 0}
-							<GraphSection
-								site={config.publicSite}
-								{handlePosition}
-								{essaysItems}
-								category={config.setCategory}
-								data={filteredSecondaryData}
-								newData={step.new}
-								{dataLen}
-								{index}
-								{entities}
-								{updatePosition}
-								{batchSize}
-								defaultNodes={[...markdownNodes, ...initialStep]}
-								{loadData}
-							/>
-						{/if}
-					{/if}
-
-					{#if step.paginate.filter((d) => !config.mainCategories.some( (cat) => cat.props.includes(d.property) ) && d.category != config.setCategory).length > 0}
+					{#if step.paginate.filter((d) => !config.mainCategories.some( (cat) => cat.props.includes(d.property) )).length > 0}
 						{@const filteredSecondaryData = step.paginate.filter(
 							(d) => !config.mainCategories.some((cat) => cat.props.includes(d.property))
 						)}
@@ -205,7 +189,6 @@
 							site={config.publicSite}
 							{handlePosition}
 							{essaysItems}
-							category={config.secondayCategoriesLabel}
 							data={filteredSecondaryData}
 							newData={step.new}
 							{dataLen}
@@ -217,12 +200,7 @@
 							{loadData}
 						/>
 					{/if}
-
-					<!-- paginate:{step.paginate.length}
-					new:{step.new.length}
-					data:{step.data.length} -->
-
-					{#if step.paginate.length < step.data.length}
+					{#if step.paginate.length < step.new.length}
 						<div
 							class="more"
 							on:click={getPaginatedData(index, col)}
@@ -258,6 +236,13 @@
 		cursor: pointer;
 	}
 
+	.loading {
+		text-align: center;
+		color: gainsboro;
+		margin-left: 10vw;
+		padding-top: 1rem;
+	}
+
 	.close {
 		width: 25px;
 		height: 25px;
@@ -272,9 +257,9 @@
 		font-family: 'Inter', sans-serif;
 		z-index: 100;
 		cursor: pointer;
-		transition: all .5s linear;
+		transition: all 0.5s linear;
 	}
-	.close:hover{
+	.close:hover {
 		width: 30px;
 		height: 30px;
 		line-height: 28px;
@@ -301,5 +286,15 @@
 		cursor: pointer;
 		word-wrap: break-word;
 		z-index: 1;
+	}
+
+	.links:last-of-type {
+		padding-right: 50px;
+	}
+
+	@media only screen and (max-width: 600px) {
+		.links:not(:first-of-type) {
+			margin-left: 30vw;
+		}
 	}
 </style>

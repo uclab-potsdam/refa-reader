@@ -97,7 +97,9 @@
 	.node {
 		background-color: #f6f6f6 !important;
 		padding: 0.25rem 0.5rem;
+		margin: 10px;
 		margin-bottom: 1.5rem;
+		box-shadow: 0px 0px 4px 0px #f6f6f6;
 	}
 
 	.node:hover,
@@ -106,7 +108,8 @@
 		color: white; */
 		background-color: white;
 		color: black;
-		box-shadow: inset 0px 0px 6px 1px var(--theme-color);
+		/* box-shadow: inset 0px 0px 6px 1px var(--theme-color); */
+		box-shadow: 0px 0px 4px 0px var(--theme-color);
 		opacity: 1;
 	}
 

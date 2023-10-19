@@ -108,8 +108,8 @@
 		margin-bottom: 10px;
 	}
 
-	.metadata {
+	/* .metadata {
 		padding-left: 5px;
 		display: contents;
-	}
+	} */
 </style>

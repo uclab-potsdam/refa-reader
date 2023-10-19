@@ -39,7 +39,7 @@ export async function extractLinks(markdown) {
         }
     }
 
-    const batchSize = 40;
+    const batchSize = config.batch;
 
     // Split the itemUrls into batches of batchSize
     const itemUrlBatches = splitIntoBatches(itemUrls, batchSize);
@@ -159,6 +159,7 @@ export async function createTriplets(data) {
             allTriplets = [...allTriplets, ...triplets];
         }
     }
+    
 
     // Create the nodes and links
     const graph = {
@@ -173,6 +174,8 @@ export async function createTriplets(data) {
         }, []),
         links: allTriplets,
     }
+
+
     return { ...graph };
 }
 
@@ -192,8 +195,7 @@ export function parseJSONLD(jsonLD, set) {
             source: `${config.api}/resources/${set.id}`,
             target: source,
             img: jsonLD?.thumbnail_display_urls?.large,
-            title: jsonLD["o:title"],
-            category: config.setCategory
+            title: jsonLD["o:title"]
         });
     }
 
@@ -206,7 +208,7 @@ export function parseJSONLD(jsonLD, set) {
      */
     let parseRecursive = async function (obj) {
         for (let key in obj) {
-
+            
             // Check if the key is "@id" and the value starts with the API base URL and has a title
             if (key === "@id" && obj[key].startsWith(config.api) && (obj["o:title"] || obj.display_title || reverse == true)) {
                 // Extract the target URL, title, and image
@@ -224,12 +226,13 @@ export function parseJSONLD(jsonLD, set) {
                 let property = obj["property_label"]?.replace("_", " ")?.replace(regex, '') || parentKey?.replace(regex, '')
 
                 // gotta find a way to fix inveted properties
-                // if (reverse) {
-                //     property = invertedProperties[property] || property
-                // }
+                if (reverse) {
+                    // property = invertedProperties[property] || property
+                    property = `${property}`
+                }
 
                 const category = config.mainCategories
-                    .map(d => (d.props.includes(property) ? d.key : config.secondayCategoriesLabel))
+                    .map(d => (d.props.includes(property) ? d.key : ""))
                     .find(Boolean);
 
                 if (!exists) {
@@ -241,6 +244,7 @@ export function parseJSONLD(jsonLD, set) {
                         img,
                         property,
                         category: category,
+                        reverse
                     });
                 }
             }

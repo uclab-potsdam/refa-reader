@@ -27,7 +27,14 @@
 
 		// Remove all elements in $graphSteps after the given index
 		$graphSteps.splice(index, $graphSteps.length - index);
-
+		$graphSteps[index] = {
+			id: node.target,
+			data: [],
+			new: [],
+			page: 0,
+			paginate: [],
+			loading: true
+		};
 		let columnNodes = $graphSteps
 			// .slice(0, index )
 			.map((obj) => obj.data)
@@ -47,14 +54,12 @@
 
 		// Replace the element at the given index with the new data
 		$graphSteps[index] = {
-			id: node.target,
 			data: selectedTripletsData.sort((a, b) => {
 				if (a.property) {
 					return a.property.localeCompare(b.property);
 				}
 			}),
 			new: newNodes,
-			page: 0,
 			paginate: paginate
 		};
 
@@ -76,8 +81,13 @@
 	on:transitionrun={() => {
 		handlePosition();
 	}}
+	on:transitionend={() => {
+		handlePosition();
+	}}
 >
-	<h4>{category} <sup>[{dataLen}]</sup></h4>
+	<!-- <h4>{category} <sup>[{dataLen}]</sup></h4> -->
+	<h4>{category ? category : ''}</h4>
+
 	<div class="divider">
 		{#each data as datum}
 			<!-- {#if !datum.skip && datum.source && datum.target} -->
