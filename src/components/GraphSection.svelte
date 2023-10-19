@@ -54,11 +54,13 @@
 
 		// Replace the element at the given index with the new data
 		$graphSteps[index] = {
+			id: node.target,
 			data: selectedTripletsData.sort((a, b) => {
 				if (a.property) {
 					return a.property.localeCompare(b.property);
 				}
 			}),
+			page: 0,
 			new: newNodes,
 			paginate: paginate
 		};
