@@ -81,8 +81,7 @@ To Setup the visualisation it is needed to customise the setup file in the `src/
                 "incorporates"
             ]
         }
-    ],
-    "categories": "Related" // All the properties which do not fit the `mainCategories` will fall in this category. 
+    ]
 }
 ``
 
