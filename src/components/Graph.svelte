@@ -137,23 +137,24 @@
 		</div>
 	{:else}
 		{#each $graphSteps as step, index}
-			<div class="links">
+			<div
+				class="links"
+				bind:this={col}
+				on:scroll={() => {
+					getPaginatedData(index, col);
+					handlePosition();
+				}}
+				on:click={() => {
+					handlePosition();
+				}}
+				on:keypress={() => {
+					handlePosition();
+				}}
+			>
 				{#if step?.loading}
 					<div class="loading">Loading...</div>
 				{:else if !step?.loading && step?.new && step?.new.length > 0}
-					<div
-						bind:this={col}
-						on:scroll={() => {
-							getPaginatedData(index, col);
-							handlePosition();
-						}}
-						on:click={() => {
-							handlePosition();
-						}}
-						on:keypress={() => {
-							handlePosition();
-						}}
-					>
+					<div>
 						{#each config.mainCategories as cat}
 							{@const filteredData = step.paginate.filter((d) => cat.props.includes(d.property))}
 							{@const dataLen = step.data.filter((d) => cat.props.includes(d.property)).length}
@@ -188,7 +189,7 @@
 								site={config.publicSite}
 								{handlePosition}
 								{essaysItems}
-								category={""}
+								category={''}
 								data={filteredSecondaryData}
 								newData={step.new}
 								{dataLen}
@@ -241,6 +242,7 @@
 
 	.loading,
 	.no-items {
+		/* font-family: 'Redaction', serif; */
 		text-align: center;
 		color: gainsboro;
 		/* margin-left: 10vw; */
@@ -269,10 +271,6 @@
 		line-height: 28px;
 	}
 
-	.loading {
-		font-family: 'Redaction', serif;
-	}
-
 	.graph {
 		display: flex;
 		user-select: none;
@@ -295,7 +293,6 @@
 	.links:last-of-type {
 		padding-right: 50px;
 	}
-	
 
 	@media only screen and (max-width: 600px) {
 		.links:not(:first-of-type) {
