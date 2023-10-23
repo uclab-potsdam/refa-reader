@@ -23,9 +23,19 @@
 
 	let selectedTriplets = { nodes: [], links: [] };
 
-	async function openNode(node, index) {
-		loadingColumn = true;
+	function resetScroll(index) {
+		let col = document.querySelector(`#col_${index}`);
+		if (col) {
+			col.scrollTo({
+				top: 0,
+				behavior: 'smooth'
+			});
+		}
+	}
 
+	async function openNode(node, index) {
+		resetScroll(index);
+		loadingColumn = true;
 		$selectedNode = '';
 
 		// Remove all elements in $graphSteps after the given index

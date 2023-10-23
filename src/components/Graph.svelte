@@ -140,6 +140,7 @@
 		{#each $graphSteps as step, index}
 			<div
 				class="links"
+				id="col_{index}"
 				bind:this={col}
 				on:scroll={() => {
 					// getPaginatedData(index, col);
