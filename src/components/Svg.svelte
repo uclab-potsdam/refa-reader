@@ -8,9 +8,8 @@
 			{#each Object.entries($paths) as [id, path]}
 				{#each path as item}
 					<path id="path_{id}" class={item.class} data-attr={item.selected} d={item.d} />
-					{#if (item.class != undefined && item.selected != 'not-selected' && item.class == 'highlite') || $hoverNode == item.datum.source || $hoverNode == item.datum.target}
-						<!-- {#if ($hoverNode == item.datum.source && item.selected != 'not-selected') || $hoverNode == item.datum.target} -->
-						<!-- {#if item.class != undefined && item.selected != 'not-selected' && item.class == 'highlite' && $hoverNode == item.datum.source && item.selected != 'not-selected'} -->
+					<!-- {#if (item.class != undefined && item.selected != 'not-selected' && item.class == 'highlite') || $hoverNode == item.datum.source || $hoverNode == item.datum.target} -->
+					{#if ($hoverNode == item.datum.source && item.selected != 'not-selected') || $hoverNode == item.datum.target}
 						<text
 							class="background {item.class}"
 							source={item.datum.source}
