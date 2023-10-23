@@ -108,23 +108,24 @@
 	let col;
 
 	const getPaginatedData = (index, col) => {
+		console.log(col, index);
 		if (col != null) {
-			const { scrollTop, scrollHeight, clientHeight } = col;
-			if (scrollTop >= 0 && scrollTop + clientHeight >= scrollHeight - 50) {
-				const page = $graphSteps[index]?.page + 1 || 0;
-				$graphSteps[index] = {
-					...$graphSteps[index],
-					page,
-					paginate: $graphSteps[index]?.data.slice(0, page * batchSize)
-				};
-				if (
-					$graphSteps[index]?.data &&
-					$graphSteps[index]?.paginate.length != $graphSteps[index]?.data.length
-				) {
-					// loading based on the last n items
-					loadData($graphSteps[index].paginate.slice(-batchSize), batchSize);
-				}
+			// const { scrollTop, scrollHeight, clientHeight } = col;
+			// if (scrollTop >= 0 && scrollTop + clientHeight >= scrollHeight - 50) {
+			const page = $graphSteps[index]?.page + 1 || 0;
+			$graphSteps[index] = {
+				...$graphSteps[index],
+				page,
+				paginate: $graphSteps[index]?.data.slice(0, page * batchSize)
+			};
+			if (
+				$graphSteps[index]?.data &&
+				$graphSteps[index]?.paginate.length != $graphSteps[index]?.data.length
+			) {
+				// loading based on the last n items
+				loadData($graphSteps[index].paginate.slice(-batchSize), batchSize);
 			}
+			// }
 		}
 	};
 </script>
@@ -142,7 +143,7 @@
 				class="links"
 				bind:this={col}
 				on:scroll={() => {
-					getPaginatedData(index, col);
+					// getPaginatedData(index, col);
 					handlePosition();
 				}}
 				on:click={() => {
