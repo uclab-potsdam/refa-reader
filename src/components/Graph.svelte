@@ -217,7 +217,7 @@
 		{/each}
 	{/if}
 </div>
-{#if $graphSteps.length >= 2}
+{#if $graphSteps.length >= 5}
 	<div
 		class="close"
 		on:click={() => {
