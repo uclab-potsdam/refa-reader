@@ -228,7 +228,9 @@ export function parseJSONLD(jsonLD, set) {
                 // gotta find a way to fix inveted properties
                 if (reverse) {
                     // property = invertedProperties[property] || property
-                    property = `${property}`
+                    property = `← ${property} ←`
+                } else {
+                    property = `→ ${property} →`
                 }
 
                 const category = config.mainCategories
