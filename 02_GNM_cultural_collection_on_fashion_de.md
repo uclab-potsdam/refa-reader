@@ -26,20 +26,14 @@ Das Wirken des Zeichners, Stechers, Sammlers, Kultur- und Kunsthistorikers von H
 ## Ausgewählte historische Textilien aus der Sammlung Textilien und Schmuck
 In der Auswahl von [15 historischen Textilien oder textilen Objekten](item-set/45212) für die Kontextualisierung im Rahmen des Projektes *Restaging Fashion* waren die folgenden Parameter entscheidend: die ausgewählten Objekte sollten maßgebliche Informationen zur Kleidungsgeschichte ergänzen, welche von einem zweidimensionalen Gemälde oder einem  monochromen oder kolorierten Stich nicht abgeleitet werden können. Ein digitales 3D-Bildgebungsverfahren der Objekte, die im Web durch den Betrachter navigierbar sind, erweiterten das Verständnis dieser kulturellen Artefakte. 
 
-Die licht- und druckempfindlichen Textilien wurden dafür auf Figurinen montiert und in einem photogrammetrischen und einem 3D-Scanverfahren digitalisiert.  Die bildgebenden Verfahren wurden im Zuge der Datenbearbeitung bei Bedarf kombiniert.[^Vgl. die ausführliche Prozessbeschreibung in den Metadaten der Einzelobjekte] Textilien stellen noch immer eine Herausforderung für die digitale 3D-Reproduktion dar; sie sind zerbrechlich, detailreich und sind oft schwierig zu stabilisieren (z.B. Federn, leichte Textilien). Der beträchtliche Aufwand und das noch experimentelle Verfahren ergab eine Beschränkung auf 15 textile Objekte, die je unterschiedliche Schwierigkeitsgrade aufwiesen und etwas andere Herangehensweisen erforderten: 
+Die licht- und druckempfindlichen Textilien wurden dafür auf Figurinen montiert und in einem photogrammetrischen und einem 3D-Scanverfahren digitalisiert.  Die bildgebenden Verfahren wurden im Zuge der Datenbearbeitung bei Bedarf kombiniert.[^Vgl. die ausführliche Prozessbeschreibung in den Metadaten der Einzelobjekte] Textilien stellen noch immer eine Herausforderung für die digitale 3D-Reproduktion dar; sie sind zerbrechlich, detailreich und sind oft schwierig zu stabilisieren (z.B. Federn, leichte Textilien). Der beträchtliche Aufwand und das noch experimentelle Verfahren ergab eine Beschränkung auf 15 textile Objekte, die je unterschiedliche Schwierigkeitsgrade aufwiesen und etwas andere Herangehensweisen erforderten
 
-1. [Grünes Wams mit Schlitzmuster](item/19078), um 1600/1610, GNM: T1635
-2. Grünes Wams mit "Gänsbauch", um 1580/1600, GNM: T4256
-3. Rock, Frack, 1790-1795, GNM: T1609
-4. Weste, um 1695, GNM: T1661
-5. 1 bis 2 Westen, 18. Jahrhundert, GNM: alternativ: T1715, T3161, T4777, T4778
-6. Robe à la française, um 1740, GNM: T8503
-7. Goldhaube einer Nürnberger Patrizierin (Flinderhaube), um 1650/1700, GNM: T35
-8. Halber Harnisch für ein Fußturnier, 1590/91, GNM: W2770
-9. Wams mit bestickten Zierstreifen, um 1630/40, GNM: T2357
-10. Männerrock (Justaucorps), um 1695, GNM: T1660
-11. Damenkleid im "griechischen Schnitt", um 1800, GNM: T4006
-12. Riegelhaube, um 1840, GNM: TSb964 oder TSb965
-13. Spencer im altdeutschen Stil, um 1815, GNM: T4011
-14. Weißes Wams mit Schlitzen, um 1630, GNM: T1631
-15. Paco Rabenne
+Der [Plattenharnisch für das Fußturnier](item/19630) ist ein Beispiel aus dem ausgehenden 16. Jahrhundert und der [Lederhut mit Wappenkartusche und Federhülse](item/25338) ist um 1600 enstanden.
+
+Aus der ersten Hälfte des 17. Jahrhundert sind drei Wämser zu nennen: ein [Wams mit Schlitzmuster](item/19078) (um 1600/1610), ein [Wams mit Schlitzen](item/19898) (um 1630) sowie ein [Wams mit bestickten Zierstreifen](item/19905) (um 1630-1640). In die zweite Hälfte des 17. Jahrhunderts ist die [Goldhaube einer Nürnberger Patrizierin oder *Flinderhaube*](item/19903) (1650-1700), sowie der [Rock oder *Justaucorps*](item/18851) (um 1695) mit dazugehöriger [Weste (blau)](item/18844) (um 1695) zu verorten.
+
+Die Kleidermode des 18. Jahrhunderts wird repräsentiert durch das [Einteilige Kleid im Schnitt einer Taillen-Andrienne](item/19625) (um 1740) und den [Rock oder Frack](item/19110) (1790-1795) und die weiße [Weste](item/18828) (um 1780) in der Männermode. Um 1800 ist das [Kleid im "griechischen Schnitt"](item/19901) entstanden. 
+
+Aus der ersten Hälfte des 19. Jahrhunderts wurden eine [Ärmeljacke oder *Spenzer im altdeutschen Stil*](item/18742) (um 1815) sowie eine [Riegelhaube](item/19618) (um 1840) ausgewählt.
+
+In den späten 60er bis 70er Jahren des 20. Jahrhundert entstand der [Blouson von Paco Rabanne](item/19078) (1967-1968).
