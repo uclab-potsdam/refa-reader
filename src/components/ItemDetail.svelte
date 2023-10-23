@@ -75,7 +75,7 @@
 
 	.selected {
 		scroll-behavior: smooth;
-		font-size: 1.3rem;
+		font-size: 1.2rem;
 		animation: color 0.5;
 		min-height: 40vh;
 	}

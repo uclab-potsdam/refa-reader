@@ -60,26 +60,60 @@
 
 		sourceRects.forEach((sourceRect) => {
 			targetRects.forEach((targetRect) => {
-				const controlPointOffset = 100;
-				const controlPoint1X = sourceRect.x + sourceRect.width + controlPointOffset;
-				const controlPoint1Y = sourceRect.y;
+				let controlPointOffset = 100;
 				const selected = sourceRect.selected;
+				let startX, startY, endX, endY;
 
 				let controlPoint2X;
-				if (targetRect.x < sourceRect.x) {
-					controlPoint2X = targetRect.x - controlPointOffset * 4;
+
+				// if (datum?.reverse == true) {
+				// 	startX = targetRect.x + sourceRect.width;
+				// 	startY = targetRect.y;
+				// 	endX = sourceRect.x;
+				// 	endY = sourceRect.y;
+				// 	if (sourceRect.x < targetRect.x || sourceRect.x == targetRect.x) {
+				// 		controlPoint2X = sourceRect.x - controlPointOffset * 10;
+				// 	} else if (sourceRect.x == sourceRect.x) {
+				// 		controlPoint2X = sourceRect.x - controlPointOffset * 2;
+				// 	} else {
+				// 		controlPoint2X = sourceRect.x - controlPointOffset * 10;
+				// 	}
+				// } else {
+				// 	startX = sourceRect.x + sourceRect.width;
+				// 	startY = sourceRect.y;
+				// 	endX = targetRect.x;
+				// 	endY = targetRect.y;
+				// 	if (targetRect.x < sourceRect.x || targetRect.x == sourceRect.x) {
+				// 		controlPoint2X = targetRect.x - controlPointOffset * 4;
+				// 	} else if (targetRect.x == sourceRect.x) {
+				// 		controlPoint2X = targetRect.x - controlPointOffset * 2;
+				// 	} else {
+				// 		controlPoint2X = targetRect.x - controlPointOffset;
+				// 	}
+				// }
+
+				startX = sourceRect.x + sourceRect.width;
+				startY = sourceRect.y;
+				endX = targetRect.x;
+				endY = targetRect.y;
+
+				if (targetRect.x < sourceRect.x || targetRect.x == sourceRect.x) {
+					controlPoint2X = targetRect.x - controlPointOffset * 5;
 				} else if (targetRect.x == sourceRect.x) {
-					controlPoint2X = targetRect.x - controlPointOffset * 2;
+					controlPoint2X = targetRect.x - controlPointOffset * 3;
 				} else {
 					controlPoint2X = targetRect.x - controlPointOffset;
 				}
 
+				// control points
+				const controlPoint1X = startX + controlPointOffset;
+				const controlPoint1Y = startY;
+
+				// define the intensity of the control point of the cruve
+
 				const controlPoint2Y = targetRect.y;
-				const d = `M${sourceRect.x + sourceRect.width},${
-					sourceRect.y
-				}C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${targetRect.x},${
-					targetRect.y
-				}`;
+
+				const d = `M${startX},${startY}C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${endX},${endY}`;
 				$paths[id] = $paths[id] || [];
 				$paths[id].push({
 					class: highlite,

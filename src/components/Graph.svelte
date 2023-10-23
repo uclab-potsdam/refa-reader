@@ -223,6 +223,7 @@
 		class="close"
 		on:click={() => {
 			$graphSteps = [];
+			handlePosition();
 		}}
 		on:keypress={() => {
 			$graphSteps = [];
@@ -242,6 +243,7 @@
 
 	.loading,
 	.no-items {
+		font-size: 1rem;
 		/* font-family: 'Redaction', serif; */
 		text-align: center;
 		color: gainsboro;

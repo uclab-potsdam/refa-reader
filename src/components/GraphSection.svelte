@@ -152,6 +152,7 @@
 	}
 
 	.loading {
+		font-size: 1rem;
 		text-align: center;
 		color: gainsboro;
 	}
