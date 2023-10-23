@@ -19,22 +19,18 @@
 	export let handlePosition;
 	export let site;
 	let section;
+	let loadingColumn;
 
 	let selectedTriplets = { nodes: [], links: [] };
 
 	async function openNode(node, index) {
+		loadingColumn = true;
+
 		$selectedNode = '';
 
 		// Remove all elements in $graphSteps after the given index
 		$graphSteps.splice(index, $graphSteps.length - index);
-		$graphSteps[index] = {
-			id: node.target,
-			data: [],
-			new: [],
-			page: 0,
-			paginate: [],
-			loading: true
-		};
+
 		let columnNodes = $graphSteps
 			// .slice(0, index )
 			.map((obj) => obj.data)
@@ -64,6 +60,7 @@
 			new: newNodes,
 			paginate: paginate
 		};
+		loadingColumn = false;
 
 		if (newNodes.length > 0) {
 			loadData(paginate, batchSize);
@@ -87,6 +84,9 @@
 		handlePosition();
 	}}
 >
+	{#if loadingColumn}
+		<div class="loading">Loading...</div>
+	{/if}
 	<!-- <h4>{category} <sup>[{dataLen}]</sup></h4> -->
 	<div class="cat">
 		{#if category}
@@ -139,5 +139,10 @@
 		border-bottom: 1px dashed #adadad;
 		margin-bottom: 1rem;
 		padding-bottom: 1rem;
+	}
+
+	.loading {
+		text-align: center;
+		color: gainsboro;
 	}
 </style>

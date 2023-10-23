@@ -11,6 +11,7 @@
 	export let visibleItemsID;
 	export let essaysItems;
 	export let config;
+
 	let screenSize;
 	const entities = writable([]);
 
@@ -121,7 +122,7 @@
 					$graphSteps[index]?.paginate.length != $graphSteps[index]?.data.length
 				) {
 					// loading based on the last n items
-					loadData($graphSteps[index]?.paginate.slice(-batchSize), batchSize);
+					loadData($graphSteps[index].paginate.slice(-batchSize), batchSize);
 				}
 			}
 		}
@@ -151,9 +152,7 @@
 					handlePosition();
 				}}
 			>
-				{#if step?.loading}
-					<div class="loading">Loading...</div>
-				{:else if !step?.loading && step?.new && step?.new.length > 0}
+				{#if step?.new && step?.new.length > 0}
 					<div>
 						{#each config.mainCategories as cat}
 							{@const filteredData = step.paginate.filter((d) => cat.props.includes(d.property))}
