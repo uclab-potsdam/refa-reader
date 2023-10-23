@@ -11,6 +11,7 @@
 	export let visibleItemsID;
 	export let essaysItems;
 	export let config;
+
 	let screenSize;
 	const entities = writable([]);
 
@@ -108,22 +109,22 @@
 
 	const getPaginatedData = (index, col) => {
 		if (col != null) {
-			const { scrollTop, scrollHeight, clientHeight } = col;
-			if (scrollTop >= 0 && scrollTop + clientHeight >= scrollHeight - 50) {
-				const page = $graphSteps[index]?.page + 1 || 0;
-				$graphSteps[index] = {
-					...$graphSteps[index],
-					page,
-					paginate: $graphSteps[index]?.data.slice(0, page * batchSize)
-				};
-				if (
-					$graphSteps[index]?.data &&
-					$graphSteps[index]?.paginate.length != $graphSteps[index]?.data.length
-				) {
-					// loading based on the last n items
-					loadData($graphSteps[index]?.paginate.slice(-batchSize), batchSize);
-				}
+			// const { scrollTop, scrollHeight, clientHeight } = col;
+			// if (scrollTop >= 0 && scrollTop + clientHeight >= scrollHeight - 50) {
+			const page = $graphSteps[index]?.page + 1 || 0;
+			$graphSteps[index] = {
+				...$graphSteps[index],
+				page,
+				paginate: $graphSteps[index]?.data.slice(0, page * batchSize)
+			};
+			if (
+				$graphSteps[index]?.data &&
+				$graphSteps[index]?.paginate.length != $graphSteps[index]?.data.length
+			) {
+				// loading based on the last n items
+				loadData($graphSteps[index].paginate.slice(-batchSize), batchSize);
 			}
+			// }
 		}
 	};
 </script>
@@ -139,9 +140,10 @@
 		{#each $graphSteps as step, index}
 			<div
 				class="links"
+				id="col_{index}"
 				bind:this={col}
 				on:scroll={() => {
-					getPaginatedData(index, col);
+					// getPaginatedData(index, col);
 					handlePosition();
 				}}
 				on:click={() => {
@@ -151,9 +153,7 @@
 					handlePosition();
 				}}
 			>
-				{#if step?.loading}
-					<div class="loading">Loading...</div>
-				{:else if !step?.loading && step?.new && step?.new.length > 0}
+				{#if step?.new && step?.new.length > 0}
 					<div>
 						{#each config.mainCategories as cat}
 							{@const filteredData = step.paginate.filter((d) => cat.props.includes(d.property))}
@@ -218,7 +218,7 @@
 		{/each}
 	{/if}
 </div>
-{#if $graphSteps.length >= 2}
+{#if $graphSteps.length >= 5}
 	<div
 		class="close"
 		on:click={() => {
