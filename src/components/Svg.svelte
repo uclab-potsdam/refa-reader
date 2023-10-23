@@ -8,15 +8,28 @@
 			{#each Object.entries($paths) as [id, path]}
 				{#each path as item}
 					<path id="path_{id}" class={item.class} data-attr={item.selected} d={item.d} />
-					<!-- {#if item.class != undefined && item.selected != 'not-selected' && item.class == 'highlite'} -->
-					{#if ($hoverNode == item.datum.source && item.selected != 'not-selected') || $hoverNode == item.datum.target}
-					<!-- {#if ($hoverNode == item.datum.source && item.selected != 'not-selected') } -->
+					{#if (item.class != undefined && item.selected != 'not-selected' && item.class == 'highlite') || $hoverNode == item.datum.source || $hoverNode == item.datum.target}
+						<!-- {#if ($hoverNode == item.datum.source && item.selected != 'not-selected') || $hoverNode == item.datum.target} -->
+						<!-- {#if item.class != undefined && item.selected != 'not-selected' && item.class == 'highlite' && $hoverNode == item.datum.source && item.selected != 'not-selected'} -->
+						<text
+							class="background {item.class}"
+							source={item.datum.source}
+							target={item.datum.target}
+						>
+							<textPath
+								alignment-baseline="middle"
+								href="#path_{id}"
+								startOffset="99%"
+								text-anchor="end"
+							>
+								{item.label.replace('→', '-')}
+							</textPath>
+						</text>
 						<text class={item.class} source={item.datum.source} target={item.datum.target}>
 							<textPath
-								alignment-baseline="baseline"
-								dominant-baseline="text-before-edge"
+								alignment-baseline="middle"
 								href="#path_{id}"
-								startOffset="98%"
+								startOffset="99%"
 								text-anchor="end"
 							>
 								{item.label}
@@ -47,14 +60,15 @@
 
 	.background {
 		stroke: white;
-		stroke-width: 0.8em;
+		stroke-linecap: round;
+		stroke-width: 0.5em;
 	}
 
 	text {
 		font-size: clamp(8px, 0.8vw, 10px);
 		fill: #969696;
 		text-rendering: optimizeSpeed;
-		/* opacity: 0; */
+		font-weight: 300;
 	}
 
 	path {
