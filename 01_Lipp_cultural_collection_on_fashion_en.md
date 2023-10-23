@@ -20,7 +20,7 @@ The publishing couple also collected [early modern costume and travel books](set
 The collections provide an understanding of clothing as a cultural-historical phenomenon that affects all social classes, and their historical position, their emblematic nature and their symbolism.
 
 ### The Collection of Paintings
-
+A key objective of the Restaging Fashion project was to digitise and make available the 600 works of art that Franz and Frieda von Lipperheide have collected over 30 years with the aim of documenting and preserving the history of clothing and fashion. The collection depicts four centuries of clothing fashions, with a focus on the 16th and 17th centuries. All types of garments are depicted, from princely robes to folk costumes.
 The paintings collection, which in 1897 consisted of 886 oil paintings, miniatures, wax works and bas-reliefs, now comprises 347 [paintings](item/9660), 231 [miniatures](item/25343) and 28 [relief sculptures](item/9661). The pieces in this collection have different facets. Sometimes their artistic, sometimes their documentary quality prevails, or they shift between these two poles. A large part of the paintings are [portraits](item/9668); they depict clothing fashions, status and status symbols in an individual context. A group of [genre paintings](item/9670) function as depictions of social reality and class-specific dress, battle paintings serve as a source for uniforms and medieval panels with christian themes as early fashionable representations.[^The already edited and indexed collection of paintings and miniatures formed the basis for bringing together relevant vestimentary sources. Cf. de Günther 2022]
 
 ### The Collection of Textiles
