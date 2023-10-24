@@ -5,7 +5,7 @@ color: "blue"
 isPublic: true
 lang: de
 description: "Maßgebliche Auskunft über getragene historische Kleidung geben die oft fragilen historischen Textilien; sie erweitern die Informationen aus Bild- und Schriftquellen um die Objekthaftigkeit und Materialität selbst. Mittels einer Kombination aus 3D-Scan und photogrammetrischer Erfassung konnten für 15 ausgewählte textile Ensembles aus dem Germanischen Nationalmuseum navigierbare 3D-Modelle erstellt werden."
-cover: "https://uclab.fh-potsdam.de/refa/files/asset/5712cdf6fb0051df34f92ff28a7603c7bb2fc2f7.png"
+cover: "https://uclab.fh-potsdam.de/refa-catalog/files/asset/5712cdf6fb0051df34f92ff28a7603c7bb2fc2f7.png"
 ---
 # Die Entstehung des Germanischen Nationalmuseums (Nürnberg)
 Das Germanische Nationalmuseum in Nürnberg gehörte, wie auch das Kunstgewerbemuseum Berlins mit zugehöriger Unterrichtsanstalt, welches seit 1867 bestand, und dem in München durch Maximilian II. initiierte [Bayerische Nationalmuseum](https://d-nb.info/gnd/2005502-X) (1869), zu den Museumsgründungen und Vorlagensammlungen, welche Muster- und Modellsammlungen für Künstler, Kunsthandwerker und Forscher zusammentrugen und die Kleidung, Kostüm und Textilien als Ausdruck nationaler Kulturgeschichte in ihre Sammlungen integrierten. Außerdem beherbergten das kulturhistorische Museum für Alltagskultur als Teil des Württembergischen Landesmuseums (1862) und das Kunsthistorische Museum in Wien (1891) Abteilungen oder Mustersammlungen mit Kleidung, Gewebe und Alltagskultur.
