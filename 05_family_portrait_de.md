@@ -5,7 +5,7 @@ isPublic: true
 lang: de
 color: "tomato"
 description: "Wie andere Zyklen - beispielsweise der Vier Kontinente oder der Todsünden - wurden die Fünf Sinne im 16. Jahrhundert zu einem beliebten allegorischen Sujet, das sich vorwiegend über die niederländische Druckgraphik verbreitete. Begleitet werden die Fünf Sinne *gustus, odoratus, visus, auditus und tactus* von Tiersymbolen oder Attributen."
-cover: "https://uclab.fh-potsdam.de/refa/files/asset/ba31db3ae02f55f476ea09537b82f04c8c606719.png"
+cover: "https://uclab.fh-potsdam.de/refa-catalog/files/asset/ba31db3ae02f55f476ea09537b82f04c8c606719.png"
 ---
 
 # Allegorie der Fünf Sinne
