@@ -50,7 +50,7 @@ cover: "https://example.com/image.jpg"
 ```
 
 ### Setup
-To Setup the visualisation it is needed to customise the setup file in the `src/setup.js`. <br>
+To Setup the visualisation it is needed to customise the setup file in the `src/setup.json`. <br>
 
 
 ```
