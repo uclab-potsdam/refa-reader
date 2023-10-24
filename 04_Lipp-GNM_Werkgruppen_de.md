@@ -5,7 +5,7 @@ color: "aubergine"
 isPublic: false
 lang: de
 description: "Einzelbetrachtungen mit übergeordneter Thematik"
-cover: "https://uclab.fh-potsdam.de/refa/files/original/af6d3f80b1b5690cf68dae59dcfb0909bd2e6ea9.jpg"
+cover: "https://uclab.fh-potsdam.de/refa-catalog/files/original/af6d3f80b1b5690cf68dae59dcfb0909bd2e6ea9.jpg"
 ---
 
 # Das Porträt als Projektionsfläche der Inszenierung 
