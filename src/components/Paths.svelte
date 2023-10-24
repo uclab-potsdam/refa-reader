@@ -120,7 +120,8 @@
 					d: d,
 					label: label,
 					selected: selected,
-					datum: { source: datum.source.split('/').at(-1), target: datum.target.split('/').at(-1) }
+					datum: { source: datum.source.split('/').at(-1), target: datum.target.split('/').at(-1) },
+					reverse: datum?.reverse
 				});
 			});
 		});

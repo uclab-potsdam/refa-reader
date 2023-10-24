@@ -48,7 +48,7 @@
 			src={datum.img.replace('square', 'large')}
 			alt={datum.title}
 			on:load={handleLoad}
-			transition:blur={{ amount: 1 }}
+			transition:blur={{ amount: 10 }}
 		/>
 		<div class="title">{datum.title}</div>
 	{:else if imageSrc}

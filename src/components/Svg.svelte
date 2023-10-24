@@ -21,7 +21,16 @@
 								startOffset="99%"
 								text-anchor="end"
 							>
-								{item.label.replace('→', '-')}
+								{#if item.reverse}
+									-
+								{/if}
+								{item.label}
+								{#if item.reverse}
+									-
+								{/if}
+								{#if !item.reverse && item.label}
+									→
+								{/if}
 							</textPath>
 						</text>
 						<text class={item.class} source={item.datum.source} target={item.datum.target}>
@@ -32,6 +41,12 @@
 								text-anchor="end"
 							>
 								{item.label}
+								{#if item.reverse}
+									←
+								{/if}
+								{#if !item.reverse && item.label}
+									→
+								{/if}
 							</textPath>
 						</text>
 					{/if}

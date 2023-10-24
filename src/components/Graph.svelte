@@ -229,7 +229,7 @@
 			$graphSteps = [];
 		}}
 	>
-		x
+		✕
 	</div>
 {/if}
 
@@ -261,7 +261,7 @@
 		background-color: gainsboro;
 		color: var(--theme-color);
 		text-align: center;
-		line-height: 22px;
+		line-height: 25px;
 		font-family: 'Inter', sans-serif;
 		z-index: 100;
 		cursor: pointer;

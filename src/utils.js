@@ -226,12 +226,12 @@ export function parseJSONLD(jsonLD, set) {
                 let property = obj["property_label"]?.replace("_", " ")?.replace(regex, '') || parentKey?.replace(regex, '')
 
                 // gotta find a way to fix inveted properties
-                if (reverse) {
-                    // property = invertedProperties[property] || property
-                    property = `${property} ←`
-                } else {
-                    property = `→ ${property}`
-                }
+                // if (reverse) {
+                //     // property = invertedProperties[property] || property
+                //     property = `${property} ←`
+                // } else {
+                //     property = `→ ${property}`
+                // }
 
                 const category = config.mainCategories
                     .map(d => (d.props.includes(property) ? d.key : ""))
