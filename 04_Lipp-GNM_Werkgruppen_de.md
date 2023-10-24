@@ -59,7 +59,7 @@ Bereits 100 Jahre zuvor, war die Auspolsterung der Hüfte in einer Karikatur auf
 ## Männerwesten
 xxx
 
-## Eine Hochzeitshaube aus Nürnberg
+## Wämser
 xxx
 
 
