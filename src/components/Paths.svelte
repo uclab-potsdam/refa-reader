@@ -2,7 +2,7 @@
 	import newUniqueId from 'locally-unique-id-generator';
 
 	import { onMount, onDestroy, afterUpdate } from 'svelte';
-	import { paths, graphSteps, selectedNodeUniqueId, scrollX } from '@stores';
+	import { paths, graphSteps, scrollX } from '@stores';
 
 	export let datum;
 	export let label;
@@ -21,25 +21,24 @@
 	$: identifier = $graphSteps.slice(-1)[0].id;
 	$: highlite = datum.target == identifier || datum.source == identifier ? 'highlite' : '';
 
-	function getBounds(datum, p = 0) {
+	function getBounds(datum, p = 0, view = false) {
 		const id = datum.split('/').slice(-1)[0];
-		const elements = document.querySelectorAll(`.node[data-id="${id}"]`);
+		const elements = [...document.querySelectorAll(`.node[data-id="${id}"]`)];
 		const bounds = [];
-
 		elements.forEach((element) => {
 			const elementRect = element.getBoundingClientRect();
-			let selected =
-				element.getAttribute('unique-id') == null
-					? 'not-a-text-node'
-					: element.getAttribute('unique-id') == $selectedNodeUniqueId
-					? 'selected'
-					: 'not-selected';
+
+			let selected;
+			if (view == true) {
+				selected = 'selected';
+			}
+
 			const bound = {
 				x: elementRect.x + $scrollX,
 				y: elementRect.y + p,
 				width: elementRect.width - p / 2,
 				height: elementRect.height,
-				selected: selected
+				selected
 			};
 			bounds.push(bound);
 		});
@@ -50,8 +49,8 @@
 	function getPositions() {
 		delete $paths[id];
 		$updatePosition = false;
-		const sourceRects = getBounds(datum.source, padding);
-		const targetRects = getBounds(datum.target, padding);
+		const sourceRects = getBounds(datum.source, padding, datum?.inview || false);
+		const targetRects = getBounds(datum.target, padding, datum?.inview || false);
 
 		if (item) {
 			x = item.getBoundingClientRect().x;
@@ -63,7 +62,6 @@
 				let controlPointOffset = 100;
 				const selected = sourceRect.selected;
 				let startX, startY, endX, endY;
-
 				let controlPoint2X;
 
 				// if (datum?.reverse == true) {
@@ -101,6 +99,7 @@
 					controlPoint2X = targetRect.x - controlPointOffset * 5;
 				} else if (targetRect.x == sourceRect.x) {
 					controlPoint2X = targetRect.x - controlPointOffset * 3;
+					
 				} else {
 					controlPoint2X = targetRect.x - controlPointOffset;
 				}
@@ -108,9 +107,6 @@
 				// control points
 				const controlPoint1X = startX + controlPointOffset;
 				const controlPoint1Y = startY;
-
-				// define the intensity of the control point of the cruve
-
 				const controlPoint2Y = targetRect.y;
 
 				const d = `M${startX},${startY}C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${endX},${endY}`;
@@ -127,13 +123,13 @@
 		});
 	}
 
-	onMount(() => {
-		getPositions();
-	});
+	// onMount(() => {
+	// 	getPositions();
+	// });
 
-	afterUpdate(() => {
-		getPositions();
-	});
+	// afterUpdate(() => {
+	// 	getPositions();
+	// });
 
 	onDestroy(() => {
 		delete $paths[id];

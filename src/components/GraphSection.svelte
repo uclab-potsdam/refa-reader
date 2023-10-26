@@ -1,10 +1,9 @@
 <script>
 	import Card from '@components/Card.svelte';
 	import Paths from '@components/Paths.svelte';
-	import { slide } from 'svelte/transition';
+	// import { slide } from 'svelte/transition';
 	import { graphSteps, selectedNode } from '@stores';
 	import { createTriplets } from '@utils';
-
 	export let category;
 	export let data;
 	export let newData;
@@ -84,32 +83,25 @@
 	}
 </script>
 
-<section
-	bind:this={section}
-	transition:slide
-	on:transitionrun={() => {
-		handlePosition();
-	}}
-	on:transitionend={() => {
-		handlePosition();
-	}}
->
+<section bind:this={section}>
 	{#if loadingColumn}
 		<div class="loading">Loading...</div>
 	{/if}
+
 	<!-- <h4>{category} <sup>[{dataLen}]</sup></h4> -->
-	<div class="cat">
+	<!-- <div class="cat">
 		{#if category}
 			<h4>{category}</h4>
 		{/if}
-	</div>
+	</div> -->
 
-	<div class="divider">
-		{#each data as datum}
-			<!-- {#if !datum.skip && datum.source && datum.target} -->
-			{#if datum.source && datum.target}
-				<div>
-					{#if newData.some((existingNode) => existingNode.title === datum.title)}
+	<!-- <div class="divider"> -->
+	<div>
+		{#if data && typeof data === 'object' && Object.keys(data).length > 0}
+			{#each data as datum}
+				<!-- {#if !datum.skip && datum.source && datum.target} -->
+				{#if datum.source && datum.target}
+					{#if newData.some((existingNode) => existingNode?.title === datum.title)}
 						<Card
 							{site}
 							{entities}
@@ -125,13 +117,13 @@
 						/>
 					{/if}
 					{#if datum.source && datum.target && datum.source != datum.target}
-						<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
+						<Paths {datum} {updatePosition} label={datum?.property || ''} />
 					{/if}
-				</div>
-			{:else if datum.source && datum.target && datum.source != datum.target}
-				<Paths {datum} {updatePosition} label={datum.property ? datum.property : ''} />
-			{/if}
-		{/each}
+				{:else if datum.source && datum.target && datum.source != datum.target}
+					<Paths {datum} {updatePosition} label={datum?.property || ''} />
+				{/if}
+			{/each}
+		{/if}
 	</div>
 </section>
 
@@ -146,9 +138,9 @@
 	}
 
 	.divider {
-		border-bottom: 1px dashed #adadad;
+		/* border-bottom: 1px dashed #adadad;
 		margin-bottom: 1rem;
-		padding-bottom: 1rem;
+		padding-bottom: 1rem; */
 	}
 
 	.loading {
