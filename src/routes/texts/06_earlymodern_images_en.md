@@ -5,7 +5,7 @@ color: "blue"
 isPublic: false
 lang: en
 description: "."
-cover: "https://uclab.fh-potsdam.de/refa/files/original/af6d3f80b1b5690cf68dae59dcfb0909bd2e6ea9.jpg"
+cover: "https://uclab.fh-potsdam.de/refa-catalog/files/original/af6d3f80b1b5690cf68dae59dcfb0909bd2e6ea9.jpg"
 ---
 # Early modern costume books in the Lipperheide Costume Library (Berlin)
 Heinrich Doege, from 1899 assistant and later the first curator of the Lipperheide Costume Library, was the first fashion scholar to study, order and contextualize the early modern costume books from the Franz and Frieda von Lipperheide bequest. In 1903 he already noted that the variety that appeared in the field of costumes in the sixteenth century was extraordinarily great and extremely favorable to the emergence of a literature which sought to capture this wealth in pictures.[^Doege 1903] He explicitly mentioned the predecessors for Cesare Vecellios encyclopedic approach: costume prints, as well as drawn and painted costume books, dressmaker books and autograph books such as [Album Amicorum](41434), being very popular amongst german students studying in Italy in the 16th and 17th century. 

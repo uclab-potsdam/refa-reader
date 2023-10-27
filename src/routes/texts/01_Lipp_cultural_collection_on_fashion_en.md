@@ -4,8 +4,8 @@ date: "2024-01-14"
 color: "blueviolet"
 isPublic: true
 lang: en
-description: "Two collections form the basis for Restaging Fashion: the paintings collection of 19th century collectors Franz and Frieda von Lipperheide and the collection of textiles at the Germanisches Nationalmuseum in Nuremberg, founded in the 19th century. The corpus of 600 artworks, which Franz and Frieda von Lipperheide accumulated in 30 years with the ambition to document and preserve the history of dress, comprise paintings, miniatures, and a small number of relief images. The images in the Lipperheide collection serve as visual references to past fashion and traditional dress. The earliest work dates back to 1430 and the collection spans four centuries with a focus on the 16th and 17th century. All types of clothing is depicted, from princely attire to local traditional costumes. Lipperheide considered portraits as being the most truthful representations of clothing in images. Hence, more than 500 out of 600 works are portraits, while depictions of genre, historical or biblical scenes are sparse."
-cover: "https://uclab.fh-potsdam.de/refa/files/original/af6d3f80b1b5690cf68dae59dcfb0909bd2e6ea9.jpg"
+description: "Two collections form the basis for Restaging Fashion: the vestimentary source collection of the Berlin collector couple Franz and Frieda von Lipperheide and the textile collection of the Germanisches Nationalmuseum in Nuremberg. The latter influenced Franz and Frieda von Lipperheide to make their collection of paintings, miniatures, relief sculptures, graphic art, hand drawings, book art and secondary literature, which they had assembled in the late 19th century, permanent in the Lipperheide Costume Library and to make it available to the public for research purposes and as a sample collection."
+cover: "https://uclab.fh-potsdam.de/refa-catalog/files/original/af6d3f80b1b5690cf68dae59dcfb0909bd2e6ea9.jpg"
 ---
 
 # The Lipperheide Costume Library (today: Collection Modebild - Lipperheide Costume Library)
@@ -20,6 +20,7 @@ The publishing couple also collected [early modern costume and travel books](set
 The collections provide an understanding of clothing as a cultural-historical phenomenon that affects all social classes, and their historical position, their emblematic nature and their symbolism.
 
 ### The Collection of Paintings
+A key objective of the Restaging Fashion project was to digitise and make available the 600 works of art that Franz and Frieda von Lipperheide have collected over 30 years with the aim of documenting and preserving the history of clothing and fashion. The collection depicts four centuries of clothing fashions, with a focus on the 16th and 17th centuries. All types of garments are depicted, from princely robes to folk costumes.
 The paintings collection, which in 1897 consisted of 886 oil paintings, miniatures, wax works and bas-reliefs, now comprises 347 [paintings](item/9660), 231 [miniatures](item/25343) and 28 [relief sculptures](item/9661). The pieces in this collection have different facets. Sometimes their artistic, sometimes their documentary quality prevails, or they shift between these two poles. A large part of the paintings are [portraits](item/9668); they depict clothing fashions, status and status symbols in an individual context. A group of [genre paintings](item/9670) function as depictions of social reality and class-specific dress, battle paintings serve as a source for uniforms and medieval panels with christian themes as early fashionable representations.[^The already edited and indexed collection of paintings and miniatures formed the basis for bringing together relevant vestimentary sources. Cf. de Günther 2022]
 
 ### The Collection of Textiles
