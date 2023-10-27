@@ -146,7 +146,7 @@
 
 	.markdown__container {
 		background-color: white;
-		box-shadow: 0 0px 13px 9px var(--theme-color);
+		box-shadow: -10px 0px 10px 0px var(--theme-color);
 		/* flex: 0 0 600px; */
 		margin-left: 40vw;
 		padding-left: 10px;

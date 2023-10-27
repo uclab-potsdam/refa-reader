@@ -62,9 +62,6 @@ To Setup the visualisation it is needed to customise the setup file in the `src/
     "description": {
         "en": "Text to render in the homepage"
     },
-    "itemDetailMetaData": [
-        "dcterms:description" // Vocabulary properties to show in the left column of the essay.
-    ],
     "mainCategories": [
         // It is possible to customise the column layout by specifing a category and properties as a js Object. 
         {
