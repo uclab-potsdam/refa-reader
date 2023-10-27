@@ -268,38 +268,3 @@ export function parseJSONLD(jsonLD, set) {
     parseRecursive(jsonLD);
     return triplets;
 }
-
-
-export function observe() {
-    let visible = new Set();
-    let scrollingDirection;
-
-    const options = {
-        // rootMargin: '-50px 0px 50px 0px',
-        // rootMargin: "-20%",
-    }
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-            if (entry.boundingClientRect.y !== 0) {
-                scrollingDirection = entry.boundingClientRect.y > entry.rootBounds.y ? "down" : "up";
-            }
-            const newItem = entry.target
-            if (entry.isIntersecting) {
-                if (scrollingDirection === "down") {
-                    visible.add(newItem);
-                } else {
-                    visible = new Set([newItem, ...visible]);
-
-                }
-            } else {
-                visible.delete(newItem);
-            }
-        });
-        visibleLinks.set([...visible]);
-    }, options);
-
-    const links = document.querySelectorAll(".markdown a[data-id]");
-    links.forEach((link) => observer.observe(link));
-}
-

@@ -134,18 +134,30 @@
 	// 	let secondInGraph = items?.[idx + 1]?.offsetTop;
 	// 	let secondInGraphId = items?.[idx + 1]?.getAttribute('data-id');
 
-	// 	let firstInEssay = document.querySelector(`.node-highlite[data-id="${firstInGraphId}"]`)?.offsetTop;
-	// 	let secondInEssay = document.querySelector(`.node-highlite[data-id="${secondInGraphId}"]`)?.offsetTop;
+	// 	let firstInEssay = document.querySelector(
+	// 		`.node-highlite[data-id="${firstInGraphId}"]`
+	// 	)?.offsetTop;
+	// 	let secondInEssay = document.querySelector(
+	// 		`.node-highlite[data-id="${secondInGraphId}"]`
+	// 	)?.offsetTop;
 	// 	let percentageDistance = getPercentageDistance(scrollTopVal, firstInGraph, secondInGraph);
 	// 	let pixelDiscance = getPixelDistance(percentageDistance, firstInEssay, secondInEssay);
 	// 	idx + 1 ? scrollTopVal > secondInGraph : idx;
 
 	// 	const selectedItem = document.querySelector('.markdown__container');
 
-	// 	if (selectedItem && pixelDiscance && firstInGraph !== secondInGraph && pixelDiscance > 0) {
-	// 		selectedItem?.scrollTo({
-	// 			top: pixelDiscance
-	// 		});
+	// 	console.log($scroll);
+	// 	if (
+	// 		($scroll =
+	// 			'gf' &&
+	// 			selectedItem &&
+	// 			pixelDiscance &&
+	// 			firstInGraph !== secondInGraph &&
+	// 			pixelDiscance > 0)
+	// 	) {
+	// 		// selectedItem?.scrollTo({
+	// 		// 	top: pixelDiscance
+	// 		// });
 	// 	}
 	// }
 

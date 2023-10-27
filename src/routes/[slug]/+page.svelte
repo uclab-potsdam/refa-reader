@@ -133,7 +133,7 @@
 				on:wheel={() => {
 					resetNode();
 					handlePosition();
-					scrollTopVal =  md?.scrollTop + 100;
+					scrollTopVal = md?.scrollTop;
 				}}
 				on:touchmove={() => {
 					handlePosition();

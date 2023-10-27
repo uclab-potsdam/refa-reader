@@ -1,8 +1,5 @@
 <script>
 	import { onMount } from 'svelte';
-	import { visibleLinks } from '@stores';
-	import { observe } from '@utils';
-
 	export let data;
 	export let items;
 	export let scrollTopVal;
@@ -54,25 +51,33 @@
 	});
 
 	let idx = 0;
-	$: handleScroll(idx, markdownItems, scrollTopVal);
+	$: handleScroll(markdownItems, scrollTopVal);
 
-	function handleScroll(idx, items, scrollTopVal) {
-		let firstInEssay = items?.[idx]?.offsetTop;
-		let firstInEssayId = items?.[idx]?.getAttribute('data-id');
-		let secondInEssay = items?.[idx + 1]?.offsetTop;
-		let secondInEssayId = items?.[idx + 1]?.getAttribute('data-id');
-		let firstInGraph = document.querySelector(`.node[data-id="${firstInEssayId}"]`)?.offsetTop;
-		let secondInGraph = document.querySelector(`.node[data-id="${secondInEssayId}"]`)?.offsetTop;
-		let percentageDistance = getPercentageDistance(scrollTopVal, firstInEssay, secondInEssay);
-		let pixelDiscance = getPixelDistance(percentageDistance, firstInGraph, secondInGraph);
-		idx + 1 ? scrollTopVal > secondInEssay : idx;
+	function handleScroll(items, scrollTopVal) {
+		if (items?.[idx] && items?.[idx + 1]) {
+			let firstInEssay = items[idx].offsetTop;
+			let firstInEssayId = items[idx].getAttribute('data-id');
+			let secondInEssay = items[idx + 1].offsetTop;
+			let secondInEssayId = items[idx + 1].getAttribute('data-id');
+			let firstInGraph = document.querySelector(`.node[data-id="${firstInEssayId}"]`)?.offsetTop;
+			let secondInGraph = document.querySelector(`.node[data-id="${secondInEssayId}"]`)?.offsetTop;
+			let percentageDistance = getPercentageDistance(scrollTopVal, firstInEssay, secondInEssay);
+			let pixelDistance = getPixelDistance(percentageDistance, firstInGraph, secondInGraph);
 
-		const selectedItem = document.querySelector('.links:first-of-type');
+			if (scrollTopVal > secondInEssay) {
+				idx++;
+			}
+			if (scrollTopVal < firstInEssay && idx != 0) {
+				idx--;
+			}
 
-		if (selectedItem && pixelDiscance && firstInEssay !== secondInEssay && pixelDiscance > 0) {
-			selectedItem?.scrollTo({
-				top: pixelDiscance
-			});
+			const selectedItem = document.querySelector('.links:first-of-type');
+
+			if (selectedItem && percentageDistance && pixelDistance) {
+				selectedItem?.scrollTo({
+					top: pixelDistance
+				});
+			}
 		}
 	}
 
@@ -85,7 +90,7 @@
 
 	function getPixelDistance(percentage, firstPoint, secondPoint) {
 		const distanceFromFirst = secondPoint - firstPoint;
-		return (distanceFromFirst * percentage) / 100;
+		return firstPoint + (distanceFromFirst * percentage) / 100;
 	}
 </script>
 
