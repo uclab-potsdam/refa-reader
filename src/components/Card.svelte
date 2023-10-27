@@ -95,8 +95,8 @@
 <style>
 	.node {
 		background-color: #f6f6f6 !important;
-		padding: 0.25rem 0.5rem;
-		margin: 10px;
+		padding: 5px 10px;
+		margin-bottom: 10px;
 		box-shadow: 0px 0px 4px 0px #f6f6f6;
 		width: 220px;
 	}
@@ -108,7 +108,7 @@
 		background-color: white;
 		color: black;
 		/* box-shadow: inset 0px 0px 6px 1px var(--theme-color); */
-		box-shadow: 0px 0px 4px 0px var(--theme-color);
+		box-shadow: inset -1px 1px 13px 0px var(--theme-color);
 		opacity: 1;
 	}
 

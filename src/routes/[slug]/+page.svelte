@@ -15,6 +15,8 @@
 	let triplets, itemsJson;
 	let visibleItemsID = [];
 	let essaysItems = [];
+	let article;
+	let scrollTopVal;
 
 	const updatePosition = writable(false);
 	const handlePosition = () => {
@@ -74,12 +76,6 @@
 			return result;
 		}, []);
 	});
-
-	function resetNode() {
-		$graphSteps = [];
-	}
-	let article;
-	let scrollTopVal;
 </script>
 
 <svelte:window on:resize={handlePosition} on:click={handlePosition} />
@@ -113,18 +109,9 @@
 				class="markdown__container"
 				bind:this={md}
 				on:wheel={() => {
-					resetNode();
 					handlePosition();
 					scrollTopVal = md?.scrollTop;
 				}}
-				on:touchmove={() => {
-					handlePosition();
-				}}
-				on:click={() => {
-					resetNode();
-					handlePosition();
-				}}
-				on:keypress
 			>
 				<Markdown data={textData} items={itemsJson} {scrollTopVal} />
 			</section>
@@ -159,9 +146,9 @@
 
 	.markdown__container {
 		background-color: white;
-		box-shadow: 0 0px 13px 9px white;
+		box-shadow: 0 0px 13px 9px var(--theme-color);
 		/* flex: 0 0 600px; */
-		margin-left: 50vw;
+		margin-left: 40vw;
 		padding-left: 10px;
 		max-width: 640px;
 		flex: 0 0 40vw;
@@ -174,12 +161,13 @@
 
 	@media only screen and (max-width: 600px) {
 		.markdown__container {
-			flex: 2;
+			flex: 3;
 			padding: 0.5rem;
 			flex-basis: 70vw;
 			min-width: 70vw;
 			overflow-x: hidden;
 			overflow-y: scroll;
+			margin-left: 0;
 		}
 
 		.graph__container {

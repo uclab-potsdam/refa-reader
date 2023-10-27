@@ -122,63 +122,13 @@
 			// }
 		}
 	};
-
-	// let idx = 0;
-	// $: handleScroll(idx, scrollTopVal);
-
-	// function handleScroll(idx, scrollTopVal) {
-	// 	const items = document.querySelectorAll('.links:first-of-type .node');
-
-	// 	let firstInGraph = items?.[idx]?.offsetTop;
-	// 	let firstInGraphId = items?.[idx]?.getAttribute('data-id');
-	// 	let secondInGraph = items?.[idx + 1]?.offsetTop;
-	// 	let secondInGraphId = items?.[idx + 1]?.getAttribute('data-id');
-
-	// 	let firstInEssay = document.querySelector(
-	// 		`.node-highlite[data-id="${firstInGraphId}"]`
-	// 	)?.offsetTop;
-	// 	let secondInEssay = document.querySelector(
-	// 		`.node-highlite[data-id="${secondInGraphId}"]`
-	// 	)?.offsetTop;
-	// 	let percentageDistance = getPercentageDistance(scrollTopVal, firstInGraph, secondInGraph);
-	// 	let pixelDiscance = getPixelDistance(percentageDistance, firstInEssay, secondInEssay);
-	// 	idx + 1 ? scrollTopVal > secondInGraph : idx;
-
-	// 	const selectedItem = document.querySelector('.markdown__container');
-
-	// 	console.log($scroll);
-	// 	if (
-	// 		($scroll =
-	// 			'gf' &&
-	// 			selectedItem &&
-	// 			pixelDiscance &&
-	// 			firstInGraph !== secondInGraph &&
-	// 			pixelDiscance > 0)
-	// 	) {
-	// 		// selectedItem?.scrollTo({
-	// 		// 	top: pixelDiscance
-	// 		// });
-	// 	}
-	// }
-
-	// function getPercentageDistance(scrollTop, firstPoint, secondPoint) {
-	// 	const totalDistance = secondPoint - firstPoint;
-	// 	const distanceFromFirst = scrollTop - firstPoint;
-	// 	const percentage = (distanceFromFirst / totalDistance) * 100;
-	// 	return percentage;
-	// }
-
-	// function getPixelDistance(percentage, firstPoint, secondPoint) {
-	// 	const distanceFromFirst = secondPoint - firstPoint;
-	// 	return (distanceFromFirst * percentage) / 100;
-	// }
 </script>
 
 <svelte:window bind:innerWidth={screenSize} />
 
 <div class="graph" bind:this={graph}>
 	{#if $entities.length == 0}
-		<div class="links">
+		<div>
 			<h4 class="loading">Loading Graph...</h4>
 		</div>
 	{:else}
@@ -266,7 +216,7 @@
 		{/each}
 	{/if}
 </div>
-{#if $graphSteps.length >= 5}
+{#if $graphSteps.length > 2}
 	<div
 		class="close"
 		on:click={() => {
@@ -295,16 +245,17 @@
 		/* font-family: 'Redaction', serif; */
 		text-align: center;
 		color: gainsboro;
-		/* margin-left: 10vw; */
+		height: calc(100vh - 20px);
 		padding-top: 1rem;
+		margin-bottom: 10px;
 	}
 
 	.close {
 		width: 25px;
 		height: 25px;
 		position: fixed;
-		top: 10px;
-		right: 10px;
+		top: 5px;
+		right: 5px;
 		border-radius: 100%;
 		background-color: gainsboro;
 		color: var(--theme-color);
@@ -329,8 +280,8 @@
 
 	.links {
 		background-color: white;
-		height: calc(100vh - 1rem);
-		padding-top: 1rem;
+		height: fit-content;
+		max-height: calc(100vh - 20px);
 		margin-left: 12vw;
 		/* flex-basis: 220px; */
 		overflow: scroll;
@@ -338,11 +289,12 @@
 		flex-shrink: 0;
 		cursor: pointer;
 		word-wrap: break-word;
-		z-index: 1;
+		z-index: 2;
+		padding-top: 20px;
 	}
 
 	.links:first-of-type {
-		margin-left: 3vw;
+		margin-left: 5vw;
 	}
 
 	.links:last-of-type {

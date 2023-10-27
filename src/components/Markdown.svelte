@@ -54,30 +54,28 @@
 	$: handleScroll(markdownItems, scrollTopVal);
 
 	function handleScroll(items, scrollTopVal) {
-		if (items?.[idx] && items?.[idx + 1]) {
-			let firstInEssay = items[idx].offsetTop;
-			let firstInEssayId = items[idx].getAttribute('data-id');
-			let secondInEssay = items[idx + 1].offsetTop;
-			let secondInEssayId = items[idx + 1].getAttribute('data-id');
-			let firstInGraph = document.querySelector(`.node[data-id="${firstInEssayId}"]`)?.offsetTop;
-			let secondInGraph = document.querySelector(`.node[data-id="${secondInEssayId}"]`)?.offsetTop;
-			let percentageDistance = getPercentageDistance(scrollTopVal, firstInEssay, secondInEssay);
-			let pixelDistance = getPixelDistance(percentageDistance, firstInGraph, secondInGraph);
+		let firstInEssay = items?.[idx]?.offsetTop;
+		let firstInEssayId = items?.[idx]?.getAttribute('data-id');
+		let secondInEssay = items?.[idx + 1]?.offsetTop;
+		let secondInEssayId = items?.[idx + 1]?.getAttribute('data-id');
+		let firstInGraph = document.querySelector(`.node[data-id="${firstInEssayId}"]`)?.offsetTop;
+		let secondInGraph = document.querySelector(`.node[data-id="${secondInEssayId}"]`)?.offsetTop;
+		let percentageDistance = getPercentageDistance(scrollTopVal, firstInEssay, secondInEssay);
+		let pixelDistance = getPixelDistance(percentageDistance, firstInGraph, secondInGraph);
 
-			if (scrollTopVal > secondInEssay) {
-				idx++;
-			}
-			if (scrollTopVal < firstInEssay && idx != 0) {
-				idx--;
-			}
+		if (scrollTopVal > secondInEssay) {
+			idx++;
+		}
+		if (scrollTopVal < firstInEssay && idx != 0) {
+			idx--;
+		}
 
-			const selectedItem = document.querySelector('.links:first-of-type');
+		const selectedItem = document.querySelector('.links:first-of-type');
 
-			if (selectedItem && percentageDistance && pixelDistance) {
-				selectedItem?.scrollTo({
-					top: pixelDistance
-				});
-			}
+		if (firstInEssay && secondInEssay && selectedItem && percentageDistance && pixelDistance) {
+			selectedItem?.scrollTo({
+				top: pixelDistance
+			});
 		}
 	}
 
@@ -102,7 +100,7 @@
 <style>
 	h1 {
 		text-align: center;
-		margin-top: 0.5rem;
+		margin-top: 1.5rem;
 		margin-bottom: 0.5rem;
 		font-size: 1.5em;
 	}
