@@ -257,7 +257,8 @@
 		top: 5px;
 		right: 5px;
 		border-radius: 100%;
-		background-color: gainsboro;
+		background-color: white;
+		border: 1px solid var(--theme-color);
 		color: var(--theme-color);
 		text-align: center;
 		line-height: 25px;
@@ -276,6 +277,7 @@
 		display: flex;
 		user-select: none;
 		background-color: white;
+		height: 100vh;
 	}
 
 	.links {
