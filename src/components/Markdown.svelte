@@ -101,17 +101,16 @@
 <style>
 	h1 {
 		text-align: center;
-		margin-top: 1.5rem;
+		margin-top: 40px;
 		margin-bottom: 0.5rem;
-		font-size: 1.5em;
+		font-size: 2em;
 	}
 
 	.markdown {
 		padding-bottom: 40vh;
 		padding-top: 5vh;
 		font-size: 1.4rem;
-		line-height: 1.3;
-		text-shadow: 1px 1px 15px white;
+		line-height: 1.35;
 	}
 
 	:global(a) {
@@ -133,13 +132,68 @@
 		font-style: normal;
 		font-size: 0.7em !important;
 		color: black;
-		/* background-color: #f2f2f2; */
 		cursor: text;
 		border-radius: 2px;
 		padding: 2px;
 		text-decoration: unset !important;
-		text-shadow: none;
-		box-shadow: inset 0px 0px 5px 0px var(--theme-color);
+		box-shadow: inset 0px 0px 2px 0px var(--theme-color);
+	}
+
+	:global(.markdown *:is(h1, h2, h3, h4, h5, h6)) {
+		font-family: 'Redaction', serif;
+	}
+
+	:global(.markdown h1) {
+		font-size: 1.4em;
+		line-height: 1.1em;
+		font-weight: 400;
+	}
+
+	:global(.markdown h2) {
+		font-size: 1.3em;
+		line-height: 1em;
+		font-weight: 400;
+	}
+
+	:global(.markdown h3) {
+		font-size: 1.2em;
+		line-height: 1em;
+		font-weight: 400;
+	}
+
+	:global(.markdown h4) {
+		font-size: 0.8em;
+		font-weight: 400;
+	}
+
+	:global(.biblio) {
+		font-size: 0.875rem;
+	}
+
+	:global(.markdown h1),
+	:global(.markdown h2),
+	:global(.markdown h3),
+	:global(.markdown h4) {
+		text-align: center;
+		border-top: 1px solid var(--light-grey);
+		padding-top: 1rem;
+		margin: 3rem 0 1rem 0;
+	}
+
+	:global(.markdown > p),
+	:global(.markdown blockquote),
+	:global(.markdown ul),
+	:global(.biblio) {
+		font-family: 'Redaction', sans-serif;
+		margin-bottom: 1rem;
+	}
+
+	:global(.markdown li) {
+		padding-bottom: 1rem;
+	}
+
+	:global(.markdown > p) {
+		text-indent: 2rem;
 	}
 
 	:global(em .node-highlite) {

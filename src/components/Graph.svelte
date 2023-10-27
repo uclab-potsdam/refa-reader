@@ -233,10 +233,14 @@
 
 <style>
 	.more {
+		padding-top: 10px;
 		padding-bottom: 20px;
 		text-align: center;
 		color: gainsboro;
 		cursor: pointer;
+	}
+	.more:hover {
+		color: black;
 	}
 
 	.loading,

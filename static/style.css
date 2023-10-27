@@ -51,69 +51,12 @@ h1, h2, h3, h4, h5 {
 
 }
 
-.markdown__container *:is(h1, h2, h3, h4, h5, h6) {
-    font-family: "Redaction", serif;
-}
-
-
 h1,h2,h3,h4,p {
 	font-weight: normal;
 	margin: 0;
 	padding: .2rem;
 }
 
-.markdown__container h1 {
-	font-size: 1.33rem;
-    font-weight: 400;
-}
-
-.markdown__container h2 {
-	font-size: 1.2rem;
-    font-weight: 400;
-}
-	
-.markdown__container h3 {
-	font-size: .9rem;
-    font-weight: 400;
-}
-
-.markdown__container h4 {
-	font-size: .8rem;
-    font-weight: 400;
-}
-
-/* p {
-	font-size: 1.4vw;
-} */
-
-.biblio { 
-	font-size: .875rem;
-}
-
-.markdown h1, .markdown h2, .markdown h3,.markdown h4 {
-	text-align: center;
-	border-bottom: 1px solid var(--grey);
-	margin: 3rem 0 1rem 0;
-}
-
-.markdown > p, .markdown blockquote, .markdown ul, .biblio {
-	font-family: "Redaction", sans-serif;
-	margin-bottom: 1rem;
-}
-
-.markdown li {
-	padding-bottom: 1rem;
-}
-
-.markdown > p {
-	text-indent: 2rem;
-}
-
-.node-highlite {
-    font-family: "Redaction", serif;
-    font-style: italic;
-    /* font-size: .875em; */
-}
 
 @font-face {
     font-family: "Redaction";
