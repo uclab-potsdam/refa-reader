@@ -2,7 +2,6 @@
 	import * as config from '../../setup.json';
 	import Markdown from '@components/Markdown.svelte';
 	import Graph from '@components/Graph.svelte';
-	import ItemDetail from '@components/ItemDetail.svelte';
 	import Svg from '@components/Svg.svelte';
 	import { page } from '$app/stores';
 	import { items, graphSteps, selectedNode, hoverNode, scrollX } from '@stores';
@@ -110,23 +109,6 @@
 			on:keypress
 			bind:this={article}
 		>
-			<!-- <section
-				class="item__detail"
-				on:click={() => {
-					document.querySelectorAll('a[data-id]').forEach((link) => {
-						// link.classList.remove('related');
-						// link.classList.remove('selected');
-					});
-					resetNode();
-					handlePosition();
-				}}
-				on:keypress
-			>
-		<ItemDetail
-					data={itemsJson.filter((d) => !d.hasOwnProperty('fromSet'))}
-					itemDetailMetaData={config.itemDetailMetaData}
-				/> 
-			</section> -->
 			<section
 				class="markdown__container"
 				bind:this={md}
@@ -190,18 +172,7 @@
 		flex: 3;
 	}
 
-	.item__detail {
-		/* flex: 0 0 400px; */
-		flex: 0 0 20vw;
-		max-width: 400px;
-		border-right: 1px solid #e3e3e3;
-	}
-
 	@media only screen and (max-width: 600px) {
-		.item__detail {
-			display: none;
-		}
-
 		.markdown__container {
 			flex: 2;
 			padding: 0.5rem;
@@ -214,17 +185,5 @@
 		.graph__container {
 			flex: 1;
 		}
-
-		h1 {
-			font-size: 1.4rem;
-		}
-
-		/* div::before {
-			content: 'This website contains visualizations that are not supported by small screen formats. To navigate the graphs, go to your desktop browser.';
-			display: block;
-			font-size: 20px;
-			padding: 1rem;
-			background: blue;
-		} */
 	}
 </style>
