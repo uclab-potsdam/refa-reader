@@ -1,24 +1,12 @@
 <script>
 	import { onMount } from 'svelte';
-	import { selectedNode, hoverNode, selectedNodeUniqueId } from '@stores';
-	import { observe } from '@utils';
-	import newUniqueId from 'locally-unique-id-generator';
-
 	export let data;
 	export let items;
+	export let scrollTopVal;
 
 	let htmlText = data.text;
 	const footnoteRegex = /\[\^([^\]]+)\]/g;
 	let footnoteCounter = 1;
-
-	function getMainImage(id) {
-		let match = items.filter((d) => d.data?.['o:id'] == id);
-
-		if (match && match.length > 0) {
-			let img = match?.[0].data?.thumbnail_display_urls?.medium;
-			return img;
-		}
-	}
 
 	const htmlWithCustomLinks = htmlText.replace(
 		/<a\s+href="([^"]+)"\s*>([^<]+)<\/a>/g,
@@ -26,14 +14,11 @@
 			if (href.startsWith('http')) {
 				return `<a class="external" target="_blank" href="${href}" title="${text}">${text}</a>`;
 			} else {
-				let uniqueId = newUniqueId();
-				return `<a class="node-highlite" unique-id="${uniqueId}" id="item_${
-					href.split('/')[1]
-				}" data-id="${
-					href.split('/')[1]
-				}" title="${text}">${text}<span class="symbol node" unique-id="${uniqueId}" data-id="${
-					href.split('/')[1]
-				}"
+				// let uniqueId = newUniqueId();
+				let uniqueId = href.split('/')[1];
+				return `<a class="node-highlite" unique-id="${uniqueId}" id="${href.split('/')[1]}"
+				data-id="${href.split('/')[1]}" title="${text}">${text}
+				<span class="symbol node" unique-id="${uniqueId}" data-id="item_${href.split('/')[1]}"
 				data-class="${items
 					.filter((d) => d.label == text)
 					.map((d) => {
@@ -59,63 +44,69 @@
 	}).join('');
 	const finalHtml = `${htmlWithFootnotes}<ol class="biblio">${footnotes}</ol>`;
 
+	let markdownItems;
 	onMount(async () => {
-		observe();
-
-		if (window.location.hash) {
-			let hash = window.location.hash;
-
-			let target = document.querySelector(hash);
-			if (target) {
-				target.scrollIntoView({ block: 'center' });
-				$selectedNode = target.getAttribute('data-id');
-			}
-		}
+		// observe();
+		markdownItems = document?.querySelectorAll('.markdown a[data-id]');
 	});
 
-	function handleClick(event) {
-		if (event.target.tagName === 'A') {
-			if (event.target.getAttribute('data-id')) {
-				$selectedNode = event.target.getAttribute('data-id');
-				$hoverNode = event.target.getAttribute('data-id');
-				event.target.classList.add('selected');
-				$selectedNodeUniqueId = event.target.getAttribute('unique-id');
+	let idx = 0;
+	$: handleScroll(markdownItems, scrollTopVal);
+
+	function handleScroll(items, scrollTopVal) {
+		if (items?.[idx] && items?.[idx + 1]) {
+			let firstInEssay = items[idx].offsetTop;
+			let firstInEssayId = items[idx].getAttribute('data-id');
+			let secondInEssay = items[idx + 1].offsetTop;
+			let secondInEssayId = items[idx + 1].getAttribute('data-id');
+			let firstInGraph = document.querySelector(`.node[data-id="${firstInEssayId}"]`)?.offsetTop;
+			let secondInGraph = document.querySelector(`.node[data-id="${secondInEssayId}"]`)?.offsetTop;
+			let percentageDistance = getPercentageDistance(scrollTopVal, firstInEssay, secondInEssay);
+			let pixelDistance = getPixelDistance(percentageDistance, firstInGraph, secondInGraph);
+
+			if (scrollTopVal > secondInEssay) {
+				idx++;
+			}
+			if (scrollTopVal < firstInEssay && idx != 0) {
+				idx--;
+			}
+
+			const selectedItem = document.querySelector('.links:first-of-type');
+
+			if (selectedItem && percentageDistance && pixelDistance) {
+				selectedItem?.scrollTo({
+					top: pixelDistance
+				});
 			}
 		}
 	}
 
-	$: {
-		if ($selectedNode != null && typeof document !== 'undefined') {
-			document.querySelectorAll('a[data-id]').forEach((link) => {
-				link.classList.remove('related');
-				link.classList.remove('selected');
-			});
+	function getPercentageDistance(scrollTop, firstPoint, secondPoint) {
+		const totalDistance = secondPoint - firstPoint;
+		const distanceFromFirst = scrollTop - firstPoint;
+		const percentage = (distanceFromFirst / totalDistance) * 100;
+		return percentage;
+	}
 
-			let selectedId = document.querySelectorAll(`a[data-id="${$selectedNode}"]`);
-			let selectedUnique = document.querySelectorAll(`a[unique-id="${$selectedNodeUniqueId}"]`);
-
-			if (selectedUnique) {
-				// $selectedNode == $selectedNode;
-				selectedUnique.forEach((link) => {
-					link.classList.add('selected');
-					$hoverNode = $selectedNode;
-				});
-			}
-			if (selectedId) {
-				// $selectedNode == $selectedNode;
-				selectedId.forEach((link) => {
-					link.classList.add('related');
-				});
-			}
-		}
+	function getPixelDistance(percentage, firstPoint, secondPoint) {
+		const distanceFromFirst = secondPoint - firstPoint;
+		return firstPoint + (distanceFromFirst * percentage) / 100;
 	}
 </script>
 
-<div class="markdown" on:click={handleClick} on:keydown={handleClick}>
+<h1>{data.meta.title}</h1>
+<div class="markdown">
 	{@html finalHtml}
 </div>
 
 <style>
+	h1 {
+		text-align: center;
+		margin-top: 0.5rem;
+		margin-bottom: 0.5rem;
+		font-size: 1.5em;
+	}
+
 	.markdown {
 		padding-bottom: 40vh;
 		padding-top: 5vh;
@@ -143,12 +134,13 @@
 		font-style: normal;
 		font-size: 0.7em !important;
 		color: black;
-		background-color: #f2f2f2;
-		cursor: pointer;
+		/* background-color: #f2f2f2; */
+		cursor: text;
 		border-radius: 2px;
 		padding: 2px;
 		text-decoration: unset !important;
 		text-shadow: none;
+		box-shadow: inset 0px 0px 5px 0px var(--theme-color);
 	}
 
 	:global(em .node-highlite) {
@@ -156,22 +148,8 @@
 	}
 	:global(.node-highlite span) {
 		font-style: normal;
-	}
-
-	:global(.related) {
-		color: var(--theme-color) !important;
-	}
-
-	:global(.selected) {
-		background-color: var(--theme-color) !important;
-	}
-	
-	:global(.markdown .selected) {
-		color: white !important;
-	}
-	
-	:global(.selected .symbol) {
-		color: white;
+		position: relative;
+		top: -3px;
 	}
 
 	:global(.symbol) {
@@ -180,8 +158,6 @@
 		vertical-align: middle;
 		color: var(--theme-color);
 	}
-
-
 
 	:global(sup) {
 		padding-right: 0.5rem;

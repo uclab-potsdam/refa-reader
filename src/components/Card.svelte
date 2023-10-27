@@ -1,7 +1,9 @@
 <script>
 	import { graphSteps, hoverNode } from '@stores';
-	import { blur } from 'svelte/transition';
+	import { slide } from 'svelte/transition';
+	import { onDestroy } from 'svelte';
 	// import PropLabel from '@components/PropLabel.svelte';
+
 	export let datum;
 	export let entities;
 	export let updatePosition;
@@ -9,6 +11,10 @@
 	export let site;
 
 	let imageSrc;
+
+	onDestroy(() => {
+		$updatePosition = true;
+	});
 
 	function handleLoad() {
 		$updatePosition = true;
@@ -26,30 +32,29 @@
 		}
 	}
 
-	let essaysItemsLinks = essaysItems.find((d) => d.id == datum.target.split('/').slice(-1)[0]);
+	let id = datum.target.split('/').slice(-1)[0];
+	let essaysItemsLinks = essaysItems.find((d) => d.id == id);
+	$: selected = $graphSteps.some((d) => d?.id == datum.target);
 </script>
 
-<!-- <PropLabel label={datum.property} /> -->
 <div
-	class="node {$graphSteps.find((d) => d?.id == datum.target) ? 'selected' : ''}"
+	class="node"
+	class:selected
 	class:linkToEssay={essaysItemsLinks != undefined}
 	title={datum.title}
-	data-id={datum.target.split('/').slice(-1)[0]}
+	data-id={id}
 	on:mouseover={() => {
-		$hoverNode = datum.target.split('/').slice(-1)[0];
+		$hoverNode = id;
 	}}
 	on:click
 	on:keydown
 	on:focus
+	transition:slide
 >
+	<!-- <p>{datum.target.split('/').slice(-1)[0]}</p> -->
 	<!-- <div class="title"><strong>{datum.target.split('/').slice(-1)[0]}</strong></div> -->
 	{#if datum.img}
-		<img
-			src={datum.img.replace('square', 'large')}
-			alt={datum.title}
-			on:load={handleLoad}
-			transition:blur={{ amount: 10 }}
-		/>
+		<img src={datum.img.replace('square', 'large')} alt={datum.title} on:load={handleLoad} />
 		<div class="title">{datum.title}</div>
 	{:else if imageSrc}
 		<img src={imageSrc} alt={datum.title} on:load={handleLoad} transition:blur={{ amount: 1 }} />
@@ -76,18 +81,12 @@
 	<!-- not title == is media -->
 	{#if site}
 		{#if datum.title == undefined}
-			<a
-				class="link"
-				href={`${site}/media/${datum.target.split('/').slice(-1)[0]}`}
-				target="_blank"
-				rel="noopener noreferrer">→ Metadata</a
+			<a class="link" href={`${site}/media/${id}`} target="_blank" rel="noopener noreferrer"
+				>→ Metadata</a
 			>
 		{:else}
-			<a
-				class="link"
-				href={`${site}/item/${datum.target.split('/').slice(-1)[0]}`}
-				target="_blank"
-				rel="noopener noreferrer">→ Metadata</a
+			<a class="link" href={`${site}/item/${id}`} target="_blank" rel="noopener noreferrer"
+				>→ Metadata</a
 			>
 		{/if}
 	{/if}
@@ -98,8 +97,8 @@
 		background-color: #f6f6f6 !important;
 		padding: 0.25rem 0.5rem;
 		margin: 10px;
-		margin-bottom: 1.5rem;
 		box-shadow: 0px 0px 4px 0px #f6f6f6;
+		width: 220px;
 	}
 
 	.node:hover,

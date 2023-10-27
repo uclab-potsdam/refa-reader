@@ -1,9 +1,8 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onMount, afterUpdate } from 'svelte';
 	import { selectedNode, graphSteps } from '@stores';
 	import { writable } from 'svelte/store';
 	import GraphSection from '@components/GraphSection.svelte';
-	import { afterUpdate } from 'svelte';
 
 	export let updatePosition;
 	export let handlePosition;
@@ -11,7 +10,9 @@
 	export let visibleItemsID;
 	export let essaysItems;
 	export let config;
+	export let items;
 
+	let scrollTopVal;
 	let screenSize;
 	const entities = writable([]);
 
@@ -31,39 +32,33 @@
 		if (graph.lastElementChild && screenSize > 600) {
 			graph.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'end' });
 		}
+		handlePosition();
 	});
 
-	$: {
-		if (data.links) {
-			selectedData = data.links.filter((d) => {
-				return (
-					(d.target != path && d.source != d.target && d.source == path) ||
-					(d.target != path && d.source != d.target && d.target == path)
-				);
-			});
+	$: dataToGraph = items
+		.filter((d) => d?.data)
+		.map((d) => {
+			return {
+				img: d.data?.thumbnail_display_urls.large,
+				property: '-',
+				source: `item_${d.id}`,
+				target: `${config.api}/resources/${d.id}`,
+				title: d.data?.['o:title'] || '',
+				inview: true
+			};
+		});
 
-			initialStep = [...new Map(selectedData.map((item) => [item.title, item])).values()].sort(
-				(a, b) => (a.property || '').localeCompare(b.property || '')
-			);
-		}
-	}
 	$: {
-		let selected = [
-			...selectedData.filter((v, i, a) => a.findIndex((v2) => v2.target === v.target) === i)
-			// remove skip
-			// .map((d) => {
-			// 	const inMarkdown = markdownNodes.find((j) => j.id == d.target);
-			// 	return { ...d, skip: inMarkdown != undefined ? true : false };
-			// })
-		];
-
-		if (($graphSteps && $graphSteps.length == 0) || $graphSteps?.[0]?.data.length == 0) {
+		if (
+			($graphSteps && $graphSteps.length == 0) ||
+			(graphSteps && $graphSteps?.[0]?.data.length == 0)
+		) {
 			$graphSteps[0] = {
 				id: path,
-				data: selected, // initialStep ?
-				new: selected,
+				data: dataToGraph, // initialStep ?
+				new: dataToGraph,
 				page: 0,
-				paginate: selected.slice(0, batchSize)
+				paginate: dataToGraph
 			};
 		}
 	}
@@ -127,6 +122,56 @@
 			// }
 		}
 	};
+
+	// let idx = 0;
+	// $: handleScroll(idx, scrollTopVal);
+
+	// function handleScroll(idx, scrollTopVal) {
+	// 	const items = document.querySelectorAll('.links:first-of-type .node');
+
+	// 	let firstInGraph = items?.[idx]?.offsetTop;
+	// 	let firstInGraphId = items?.[idx]?.getAttribute('data-id');
+	// 	let secondInGraph = items?.[idx + 1]?.offsetTop;
+	// 	let secondInGraphId = items?.[idx + 1]?.getAttribute('data-id');
+
+	// 	let firstInEssay = document.querySelector(
+	// 		`.node-highlite[data-id="${firstInGraphId}"]`
+	// 	)?.offsetTop;
+	// 	let secondInEssay = document.querySelector(
+	// 		`.node-highlite[data-id="${secondInGraphId}"]`
+	// 	)?.offsetTop;
+	// 	let percentageDistance = getPercentageDistance(scrollTopVal, firstInGraph, secondInGraph);
+	// 	let pixelDiscance = getPixelDistance(percentageDistance, firstInEssay, secondInEssay);
+	// 	idx + 1 ? scrollTopVal > secondInGraph : idx;
+
+	// 	const selectedItem = document.querySelector('.markdown__container');
+
+	// 	console.log($scroll);
+	// 	if (
+	// 		($scroll =
+	// 			'gf' &&
+	// 			selectedItem &&
+	// 			pixelDiscance &&
+	// 			firstInGraph !== secondInGraph &&
+	// 			pixelDiscance > 0)
+	// 	) {
+	// 		// selectedItem?.scrollTo({
+	// 		// 	top: pixelDiscance
+	// 		// });
+	// 	}
+	// }
+
+	// function getPercentageDistance(scrollTop, firstPoint, secondPoint) {
+	// 	const totalDistance = secondPoint - firstPoint;
+	// 	const distanceFromFirst = scrollTop - firstPoint;
+	// 	const percentage = (distanceFromFirst / totalDistance) * 100;
+	// 	return percentage;
+	// }
+
+	// function getPixelDistance(percentage, firstPoint, secondPoint) {
+	// 	const distanceFromFirst = secondPoint - firstPoint;
+	// 	return (distanceFromFirst * percentage) / 100;
+	// }
 </script>
 
 <svelte:window bind:innerWidth={screenSize} />
@@ -145,6 +190,7 @@
 				on:scroll={() => {
 					// getPaginatedData(index, col);
 					handlePosition();
+					scrollTopVal = col?.scrollTop + 100;
 				}}
 				on:click={() => {
 					handlePosition();
@@ -185,21 +231,23 @@
 							{@const dataLen = step.data.filter(
 								(d) => !config.mainCategories.some((cat) => cat.props.includes(d.property))
 							).length}
-							<GraphSection
-								site={config.publicSite}
-								{handlePosition}
-								{essaysItems}
-								category={''}
-								data={filteredSecondaryData}
-								newData={step.new}
-								{dataLen}
-								{index}
-								{entities}
-								{updatePosition}
-								{batchSize}
-								defaultNodes={[...markdownNodes, ...initialStep]}
-								{loadData}
-							/>
+							{#if filteredSecondaryData.length > 0}
+								<GraphSection
+									site={config.publicSite}
+									{handlePosition}
+									{essaysItems}
+									category={''}
+									data={filteredSecondaryData}
+									newData={step.new}
+									{dataLen}
+									{index}
+									{entities}
+									{updatePosition}
+									{batchSize}
+									defaultNodes={[...markdownNodes, ...initialStep]}
+									{loadData}
+								/>
+							{/if}
 						{/if}
 						{#if step.paginate.length < step.new.length}
 							<div
@@ -276,14 +324,15 @@
 	.graph {
 		display: flex;
 		user-select: none;
-		/* overflow: hidden; */
+		background-color: white;
 	}
 
 	.links {
+		background-color: white;
 		height: calc(100vh - 1rem);
 		padding-top: 1rem;
-		margin-left: 10vw;
-		flex-basis: 220px;
+		margin-left: 12vw;
+		/* flex-basis: 220px; */
 		overflow: scroll;
 		flex-grow: 0;
 		flex-shrink: 0;
@@ -292,10 +341,13 @@
 		z-index: 1;
 	}
 
-	.links:last-of-type {
-		padding-right: 50px;
+	.links:first-of-type {
+		margin-left: 3vw;
 	}
 
+	.links:last-of-type {
+		padding-right: 20px;
+	}
 	@media only screen and (max-width: 600px) {
 		.links:not(:first-of-type) {
 			margin-left: 30vw;

@@ -1,5 +1,5 @@
 import * as config from './setup.json';
-import { visibleLinks, allLinks, selectedNode, selectedNodeUniqueId } from '@stores';
+import { visibleLinks, selectedNode } from '@stores';
 // import { invertedProperties } from './invertedProperties';
 import newUniqueId from 'locally-unique-id-generator';
 
@@ -82,46 +82,46 @@ export async function extractLinks(markdown) {
                 title: json["o:title"]
             };
             // Fetch the items in the set
-            const items = json["o:items"]["@id"];
-            const responseSet = await fetch(items);
-            const jsonSet = await responseSet.json();
-            jsonSet.forEach(item => {
-                links.push({
-                    label: item["o:title"],
-                    id: item["o:id"],
-                    data: item,
-                    uniqueId: newUniqueId(),
-                    set: {
-                        id: json["o:id"],
-                        title: json["o:title"]
-                    },
-                    fromSet: true
-                });
-            });
+            // const items = json["o:items"]["@id"];
+            // const responseSet = await fetch(items);
+            // const jsonSet = await responseSet.json();
+            // jsonSet.forEach(item => {
+            //     links.push({
+            //         label: item["o:title"],
+            //         id: item["o:id"],
+            //         data: item,
+            //         uniqueId: newUniqueId(),
+            //         set: {
+            //             id: json["o:id"],
+            //             title: json["o:title"]
+            //         },
+            //         fromSet: true
+            //     });
+            // });
         }
-        else if (json?.["o:item"]) {
-            link.data = json;
-            link.set = {
-                id: json["o:id"],
-                title: json["o:title"]
-            };
-            // Fetch the items in the set
-            const item = json["o:item"]["@id"];
-            const responseItem = await fetch(item);
-            const jsonItem = await responseItem.json();
+        // else if (json?.["o:item"]) {
+        //     link.data = json;
+        //     link.set = {
+        //         id: json["o:id"],
+        //         title: json["o:title"]
+        //     };
+        //     // Fetch the items in the set
+        //     const item = json["o:item"]["@id"];
+        //     const responseItem = await fetch(item);
+        //     const jsonItem = await responseItem.json();
 
-            links.push({
-                label: jsonItem["o:title"],
-                id: jsonItem["o:id"],
-                data: jsonItem,
-                uniqueId: newUniqueId(),
-                set: {
-                    id: json["o:id"],
-                    title: json["o:title"]
-                },
-                fromSet: true
-            });
-        }
+        //     links.push({
+        //         label: jsonItem["o:title"],
+        //         id: jsonItem["o:id"],
+        //         data: jsonItem,
+        //         uniqueId: newUniqueId(),
+        //         set: {
+        //             id: json["o:id"],
+        //             title: json["o:title"]
+        //         },
+        //         fromSet: true
+        //     });
+        // }
         else {
             link.uniqueId = newUniqueId();
             link.data = json;
@@ -267,56 +267,4 @@ export function parseJSONLD(jsonLD, set) {
     // Recursive parsing
     parseRecursive(jsonLD);
     return triplets;
-}
-
-
-export function observe() {
-    let visible = new Set();
-    let scrollingDirection;
-
-    const options = {
-        // rootMargin: '-50px 0px 50px 0px',
-        rootMargin: "-20%",
-    }
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-            // Determine the direction of the scrolling
-            if (entry.boundingClientRect.y !== 0) {
-                scrollingDirection = entry.boundingClientRect.y > entry.rootBounds.y ? "down" : "up";
-            }
-
-            const newItem = entry.target
-
-            // Update the allLinks array to include the new item if it doesn't already exist
-            allLinks.update((items) => {
-                if (!items.includes(newItem)) {
-                    items.push(newItem);
-                }
-                return items;
-            });
-            // If the current entry is intersecting with the viewport, add it to the visible set
-            if (entry.isIntersecting) {
-                if (scrollingDirection === "down") {
-                    visible.add(newItem);
-                } else {
-                    visible = new Set([newItem, ...visible]);
-
-                }
-                // If the current entry is not intersecting with the viewport, remove it from the visible set
-            } else {
-                visible.delete(newItem);
-            }
-        });
-        visibleLinks.set([...visible]);
-
-        if ([...visible][0]) {
-            selectedNode.set([...visible][0].getAttribute("data-id"))
-            selectedNodeUniqueId.set([...visible][0].getAttribute("unique-id"))
-        }
-
-    }, options);
-
-    const links = document.querySelectorAll(".markdown a[data-id]");
-    links.forEach((link) => observer.observe(link));
 }

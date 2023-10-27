@@ -1,7 +1,6 @@
 html {
     width: 100%;
     height: 100%;
-    /* overflow: hidden; */
 }
 
 body {
@@ -15,7 +14,6 @@ body {
     font-size-adjust: 0.5;
     text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
-    scroll-behavior: smooth;
     /* overflow: scroll; */
 }
 
@@ -53,7 +51,7 @@ h1, h2, h3, h4, h5 {
 
 }
 
-.markdown *:is(h1, h2, h3, h4, h5, h6) {
+.markdown__container *:is(h1, h2, h3, h4, h5, h6) {
     font-family: "Redaction", serif;
 }
 
@@ -64,23 +62,23 @@ h1,h2,h3,h4,p {
 	padding: .2rem;
 }
 
-.markdown h1 {
-	font-size: 1.33em;
+.markdown__container h1 {
+	font-size: 1.33rem;
     font-weight: 400;
 }
 
-.markdown h2 {
-	font-size: 1em;
+.markdown__container h2 {
+	font-size: 1.2rem;
     font-weight: 400;
 }
 	
-.markdown h3 {
-	font-size: .9em;
+.markdown__container h3 {
+	font-size: .9rem;
     font-weight: 400;
 }
 
-.markdown h4 {
-	font-size: .8em;
+.markdown__container h4 {
+	font-size: .8rem;
     font-weight: 400;
 }
 
@@ -108,7 +106,7 @@ h1,h2,h3,h4,p {
 }
 
 .markdown > p {
-	text-indent: 3rem;
+	text-indent: 2rem;
 }
 
 .node-highlite {
