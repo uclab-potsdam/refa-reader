@@ -1,9 +1,6 @@
 <script>
 	import { graphSteps, hoverNode } from '@stores';
-	import { slide } from 'svelte/transition';
 	import { onDestroy } from 'svelte';
-	// import PropLabel from '@components/PropLabel.svelte';
-
 	export let datum;
 	export let entities;
 	export let updatePosition;
@@ -49,7 +46,6 @@
 	on:click
 	on:keydown
 	on:focus
-	transition:slide
 >
 	<!-- <p>{datum.target.split('/').slice(-1)[0]}</p> -->
 	<!-- <div class="title"><strong>{datum.target.split('/').slice(-1)[0]}</strong></div> -->
@@ -57,7 +53,7 @@
 		<img src={datum.img.replace('square', 'large')} alt={datum.title} on:load={handleLoad} />
 		<div class="title">{datum.title}</div>
 	{:else if imageSrc}
-		<img src={imageSrc} alt={datum.title} on:load={handleLoad} transition:blur={{ amount: 1 }} />
+		<img src={imageSrc} alt={datum.title} on:load={handleLoad} />
 		<div class="title">{datum.title || ''}</div>
 	{:else}
 		<div class="title">{datum.title || ''}</div>
@@ -129,7 +125,6 @@
 
 	.selected > .link {
 		display: block;
-		transition: all 1s;
 	}
 
 	img {

@@ -1,7 +1,6 @@
 <script>
 	import Card from '@components/Card.svelte';
 	import Paths from '@components/Paths.svelte';
-	// import { slide } from 'svelte/transition';
 	import { graphSteps, selectedNode } from '@stores';
 	import { createTriplets } from '@utils';
 	export let category;

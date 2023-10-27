@@ -265,7 +265,6 @@
 		font-family: 'Inter', sans-serif;
 		z-index: 100;
 		cursor: pointer;
-		transition: all 0.5s linear;
 	}
 	.close:hover {
 		width: 30px;

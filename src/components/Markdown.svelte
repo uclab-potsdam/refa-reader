@@ -148,6 +148,7 @@
 		font-style: normal;
 		position: relative;
 		top: -3px;
+		vertical-align: sub;
 	}
 
 	:global(.symbol) {
