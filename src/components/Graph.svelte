@@ -40,7 +40,7 @@
 		.map((d) => {
 			return {
 				img: d.data?.thumbnail_display_urls.large,
-				property: '-',
+				property: '',
 				source: `item_${d.id}`,
 				target: `${config.api}/resources/${d.id}`,
 				title: d.data?.['o:title'] || '',

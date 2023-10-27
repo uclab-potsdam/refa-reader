@@ -66,6 +66,7 @@
 		if (scrollTopVal > secondInEssay) {
 			idx++;
 		}
+
 		if (scrollTopVal < firstInEssay && idx != 0) {
 			idx--;
 		}

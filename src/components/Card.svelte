@@ -65,7 +65,7 @@
 		{#each essaysItemsLinks.essays as d}
 			<a
 				class="link"
-				href="{d.url}#item_{essaysItemsLinks.id}"
+				href="{d.url}"
 				target="_blank"
 				rel="noopener noreferrer"
 			>
