@@ -107,6 +107,7 @@
 	}
 
 	.markdown {
+		font-weight: 400;
 		padding-bottom: 40vh;
 		padding-top: 5vh;
 		font-size: 1.4rem;
@@ -202,7 +203,7 @@
 	:global(.node-highlite span) {
 		font-style: normal;
 		position: relative;
-		top: -3px;
+		top: -5px;
 		vertical-align: sub;
 	}
 
