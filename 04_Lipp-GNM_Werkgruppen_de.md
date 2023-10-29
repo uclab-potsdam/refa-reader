@@ -62,6 +62,8 @@ Material und Aufwand waren je nach Stand unterschiedlich und in der Kleidergeset
 
 Ein frühes Beispiel ist das [Wams mit Schlitzmuster](item/56167) aus dem ausgehenden 16. Jahrhundert. Das Aussehen des Wams wird durch die gepolsterten Vorder- und Rückenteile, die langen und schmalen Ärmel, eine mittige Knopfleiste und einem hohen Stehkragen geprägt. Das Schlitzmuster des Obermaterials orientiert sich an zeitgenössischen Webmustern.[^Vgl. In Mode 2015, S.85]
 
+Das [Wams mit bestickten Zierstreifen](item/19905), datiert 1630-1640, zeichnet sich durch die strukturierte Oberfläche, markante Ärmel und einen stark ausgestellten Schoß. Der Kragen und der Schoß dieses Wamses sind separat geschnitten, sie schließen ohne sichtbare Übergänge an die Vorder- und Rückenteile an. Die bestickten Zierstreifen wurden über die Nähte geführt. Die Schulterstücke werden an der Oberkante mit Garnstegen, eine dekorative Naht, zusammengehalten. Die Ärmel sind weit und nach vorne geöffnet mit Knöpfen versehen.[^Vgl. In Mode 2015, S.101] Dieses Wams erfuhr im Lauf der Zeit verschiedene Änderungen.  In der Rückenpartie wurde ein bis zur Taille reichender "Zwickel" eingeführt. Dieser besteht aus mindestens drei aufgeklappten Laschen, die aus der Schulter des Wams entnommen wurden. Die Folge der Anpassung war eine deutlichere Taillenmakierung im Rückenbereich, die auch den Schoß glockig hervortreten lässt. Das deutet auf eine Anpassung auf den Körper einer Frau hin.[^Vgl. In Mode 2015, S.101]
+
 
 ## Westen
 xxx
