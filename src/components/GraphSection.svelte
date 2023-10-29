@@ -46,9 +46,33 @@
 
 		const response = await fetch(node.target);
 		const data = await response.json();
+
+		//Fetch the items in the set
+		if (data?.['o:items'] && $graphSteps.length == 1) {
+			let setData = [];
+			const items = data['o:items']['@id'];
+			const responseSet = await fetch(items);
+			const jsonSet = await responseSet.json();
+			jsonSet.forEach((item) => {
+				setData.push(item);
+			});
+
+			let setItems = setData.map((d) => {
+				return {
+					'o:title': d['o:title'],
+					'@id': d['@id'],
+					thumbnail_display_urls: d['thumbnail_display_urls']
+				};
+			});
+
+			// add the set to the data
+			data.related = { ...setItems };
+		}
+
 		const items = [{ data }];
 
 		selectedTriplets = await createTriplets(items);
+
 		let selectedTripletsData = selectedTriplets.links.filter((d) => {
 			return d.source === node.target || d.target === node.target;
 		});

@@ -138,6 +138,9 @@
 		padding: 2px;
 		text-decoration: unset !important;
 		box-shadow: inset 0px 0px 2px 0px var(--theme-color);
+		background: white;
+		position: relative;
+		z-index: 10;
 	}
 
 	:global(.markdown *:is(h1, h2, h3, h4, h5, h6)) {
@@ -200,11 +203,10 @@
 	:global(em .node-highlite) {
 		font-style: italic;
 	}
+
 	:global(.node-highlite span) {
 		font-style: normal;
 		position: relative;
-		top: -5px;
-		vertical-align: sub;
 	}
 
 	:global(.symbol) {

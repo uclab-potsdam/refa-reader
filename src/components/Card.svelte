@@ -75,7 +75,7 @@
 	{/if}
 
 	<!-- not title == is media -->
-	{#if site}
+	<!-- {#if site}
 		{#if datum.title == undefined}
 			<a class="link" href={`${site}/media/${id}`} target="_blank" rel="noopener noreferrer"
 				>→ Metadata</a
@@ -85,7 +85,7 @@
 				>→ Metadata</a
 			>
 		{/if}
-	{/if}
+	{/if} -->
 </div>
 
 <style>

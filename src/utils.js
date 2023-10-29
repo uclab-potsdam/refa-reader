@@ -1,6 +1,4 @@
 import * as config from './setup.json';
-import { visibleLinks, selectedNode } from '@stores';
-// import { invertedProperties } from './invertedProperties';
 import newUniqueId from 'locally-unique-id-generator';
 
 export async function extractLinks(markdown) {
@@ -75,30 +73,30 @@ export async function extractLinks(markdown) {
         // const json = parseitems.find(d => d["o:id"] == link.id);
         const json = parseitems[i]
 
-        if (json?.["o:items"]) {
-            link.data = json;
-            link.set = {
-                id: json["o:id"],
-                title: json["o:title"]
-            };
-            // Fetch the items in the set
-            // const items = json["o:items"]["@id"];
-            // const responseSet = await fetch(items);
-            // const jsonSet = await responseSet.json();
-            // jsonSet.forEach(item => {
-            //     links.push({
-            //         label: item["o:title"],
-            //         id: item["o:id"],
-            //         data: item,
-            //         uniqueId: newUniqueId(),
-            //         set: {
-            //             id: json["o:id"],
-            //             title: json["o:title"]
-            //         },
-            //         fromSet: true
-            //     });
-            // });
-        }
+        // if (json?.["o:items"]) {
+        //     link.data = json;
+        //     link.set = {
+        //         id: json["o:id"],
+        //         title: json["o:title"]
+        //     };
+        //     // Fetch the items in the set
+        //     const items = json["o:items"]["@id"];
+        //     const responseSet = await fetch(items);
+        //     const jsonSet = await responseSet.json();
+        //     jsonSet.forEach(item => {
+        //         links.push({
+        //             label: item["o:title"],
+        //             id: item["o:id"],
+        //             data: item,
+        //             uniqueId: newUniqueId(),
+        //             set: {
+        //                 id: json["o:id"],
+        //                 title: json["o:title"]
+        //             },
+        //             fromSet: true
+        //         });
+        //     });
+        // }
         // else if (json?.["o:item"]) {
         //     link.data = json;
         //     link.set = {
@@ -122,10 +120,13 @@ export async function extractLinks(markdown) {
         //         fromSet: true
         //     });
         // }
-        else {
-            link.uniqueId = newUniqueId();
-            link.data = json;
-        }
+        // else {
+        //     link.uniqueId = newUniqueId();
+        //     link.data = json;
+        // }
+
+        link.uniqueId = newUniqueId();
+        link.data = json;
 
     }
     return links;
@@ -224,14 +225,6 @@ export function parseJSONLD(jsonLD, set) {
                 // a regex to remove alphanumeric characters from ontologies as cidoc crm / wikidata
                 const regex = /\b[a-zA-Z]+\d+[a-zA-Z]*\s/;
                 let property = obj["property_label"]?.replace("_", " ")?.replace(regex, '') || parentKey?.replace(regex, '')
-
-                // gotta find a way to fix inveted properties
-                // if (reverse) {
-                //     // property = invertedProperties[property] || property
-                //     property = `${property} ←`
-                // } else {
-                //     property = `→ ${property}`
-                // }
 
                 const category = config.mainCategories
                     .map(d => (d.props.includes(property) ? d.key : ""))
