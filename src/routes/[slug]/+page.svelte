@@ -142,7 +142,7 @@
 	.markdown__container {
 		background-color: white;
 		box-shadow: -10px 0px 10px 0px var(--light-grey);
-		margin-left: 40vw;
+		margin-left: 30vw;
 		padding-left: 10px;
 		max-width: 640px;
 		flex: 0 0 40vw;
