@@ -2,6 +2,7 @@
 title: Kleidung, Sitten und Gebräuchen in der frühen Neuzeit
 date: "2023-12-14"
 color: "forestgreen"
+author: Sabine de Günther
 isPublic: true
 lang: de
 description: "Frühneuzeitliche ethnographische Aufstellungen von Landessitten und Gebräuchen wurden über die Darstellung der Kleidung einzelner Länder, ihrer Bewohner und der verschiedenen Stände abgebildet. Das frühneuzeitliche Interesse an Exotica - also an Gegenständen, Menschen, Tieren, Pflanzen, Traditionen usw. aus unbekannten Regionen - ist in diesem Kontext von besonderem Interesse. Die Öffnung der Neuen Welt, sowohl Amerikas als auch Asiens, für den internationalen Handel ermöglichte es Sammlern, exotische Objekte für ihre Museen zu sammeln. Naturhistoriker und Mediziner mussten den Status quo der nachmittelalterlichen Biologie und Wissenschaft neu überdenken. Die Erfindung des Buchdrucks sorgte ab 1500 für eine schnelle Verbreitung dieses neuen Wissens in der gesamten westlichen Welt.
