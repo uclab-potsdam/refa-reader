@@ -2,6 +2,7 @@
 title: Pictorial depictions of the fashions
 date: "2024-01-14"
 color: "blueviolet"
+author: Sabine de Günther
 isPublic: true
 lang: en
 description: "Two collections form the basis for Restaging Fashion: the vestimentary source collection of the Berlin collector couple Franz and Frieda von Lipperheide and the textile collection of the Germanisches Nationalmuseum in Nuremberg. The latter influenced Franz and Frieda von Lipperheide to make their collection of paintings, miniatures, relief sculptures, graphic art, hand drawings, book art and secondary literature, which they had assembled in the late 19th century, permanent in the Lipperheide Costume Library and to make it available to the public for research purposes and as a sample collection."
