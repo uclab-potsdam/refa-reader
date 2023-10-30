@@ -294,6 +294,7 @@
 	.links:last-of-type {
 		padding-right: 20px;
 	}
+	
 	@media only screen and (max-width: 600px) {
 		.links:not(:first-of-type) {
 			margin-left: 30vw;

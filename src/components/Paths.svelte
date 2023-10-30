@@ -72,6 +72,10 @@
 					controlPoint2X = targetRect.x - controlPointOffset;
 				}
 
+				if (datum.source.includes('item_')) {
+					controlPoint2X = targetRect.x - controlPointOffset;
+				}
+
 				// control points
 				const controlPoint1X = startX + controlPointOffset;
 				const controlPoint1Y = startY;
