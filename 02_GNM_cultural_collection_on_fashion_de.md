@@ -2,6 +2,7 @@
 title: Materielle textile Kultur
 date: "2024-01-14"
 color: "blue"
+author: Sabine de Günther
 isPublic: true
 lang: de
 description: "Maßgebliche Auskunft über getragene historische Kleidung geben die oft fragilen historischen Textilien; sie erweitern die Informationen aus Bild- und Schriftquellen um die Objekthaftigkeit und Materialität selbst. Mittels einer Kombination aus 3D-Scan und photogrammetrischer Erfassung konnten für 15 ausgewählte textile Ensembles aus dem Germanischen Nationalmuseum navigierbare 3D-Modelle erstellt werden."
