@@ -46,7 +46,7 @@
 	<ol class="biblio">${footnotes}</ol>`;
 
 	let markdownItems;
-	let offset = 200;
+	let offset = 100;
 	onMount(async () => {
 		markdownItems = document?.querySelectorAll('.markdown a[data-id]');
 		adjustOffsetTops(markdownItems);
@@ -158,7 +158,7 @@
 	:global(.markdown a) {
 		color: black;
 		font-size: 0.9em;
-		text-decoration: underline;
+		text-decoration: underline dotted;
 		text-underline-offset: 2px;
 		text-decoration-color: var(--theme-color);
 	}
