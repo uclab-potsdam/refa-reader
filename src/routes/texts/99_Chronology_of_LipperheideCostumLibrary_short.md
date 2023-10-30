@@ -2,6 +2,7 @@
 title: Chronologie, Quellen und Archivalien 
 date: "2023-12-14"
 color: "red"
+author: Sabine de Günther
 isPublic: true
 lang: de
 description: "Die Genese der Gemäldesammlung, ihre Präsentation, die Evakuierung im Jahr 1934, ihre Teilung in Ost und West sowie ihre Wiedervereinigung wird an dieser Stelle chronologisch zusammengestellt. In deutschen Teilungsgeschichte liegt  nicht nur die fehlende Sammlungsrezeption begründet. Eine mehr als 80 Jahre währende Verwahrung in verschiedenen Depots, zwischenzeitlichen Auslagerungen, Rückführungen und fehlende Ressourcen der Nachkriegsjahre bedingten auch Schäden und Teilverluste der Substanz einzelner Gemälde, die an den Sicherungspflastern ablesbar sind."

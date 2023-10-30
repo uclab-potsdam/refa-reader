@@ -6,7 +6,7 @@ author: Sabine de Günther
 isPublic: false
 lang: en
 description: "Description of the essay"
-cover: "https://uclab.fh-potsdam.de/refa/files/original/af6d3f80b1b5690cf68dae59dcfb0909bd2e6ea9.jpg"
+cover: "https://uclab.fh-potsdam.de/refa-catalog/files/original/af6d3f80b1b5690cf68dae59dcfb0909bd2e6ea9.jpg"
 ---
 
 Consequat [item](item/430) enim id pariatur sit amet voluptate minim velit tempor labore. Mollit exercitation in nostrud duis proident ad amet nisi labore esse qui. Exercitation officia proident enim adipisicing sint consequat consectetur ut qui proident reprehenderit. Do minim proident esse officia reprehenderit ut nisi. Do elit id aute cupidatat esse qui. Ex qui nostrud enim et veniam anim sit. Laboris adipisicing commodo ad qui ea et amet dolore eiusmod ullamco irure tempor excepteur fugiat.
