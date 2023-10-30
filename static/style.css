@@ -1,12 +1,10 @@
 html {
     width: 100%;
     height: 100%;
-    /* overflow: hidden; */
 }
 
 body {
     font-family: "Redaction", sans-serif;
-    /* background-color: #f6f6f6; */
     font-size: 20px;
     line-height: 1.15;
     letter-spacing: .5px;
@@ -15,8 +13,6 @@ body {
     font-size-adjust: 0.5;
     text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
-    scroll-behavior: smooth;
-    /* overflow: scroll; */
 }
 
 :root {
@@ -39,24 +35,11 @@ h1, h2, h3, h4, h5 {
     padding: 0;
 }
 
-.markdown {
-    /* font-size: 1.25rem;
-    line-height: 1.22; */
-    padding-bottom: 3rem;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-}
-
 .graph {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
 
 }
-
-.markdown *:is(h1, h2, h3, h4, h5, h6) {
-    font-family: "Redaction", serif;
-}
-
 
 h1,h2,h3,h4,p {
 	font-weight: normal;
@@ -64,58 +47,6 @@ h1,h2,h3,h4,p {
 	padding: .2rem;
 }
 
-.markdown h1 {
-	font-size: 1.33em;
-    font-weight: 400;
-}
-
-.markdown h2 {
-	font-size: 1em;
-    font-weight: 400;
-}
-	
-.markdown h3 {
-	font-size: .9em;
-    font-weight: 400;
-}
-
-.markdown h4 {
-	font-size: .8em;
-    font-weight: 400;
-}
-
-/* p {
-	font-size: 1.4vw;
-} */
-
-.biblio { 
-	font-size: .875rem;
-}
-
-.markdown h1, .markdown h2, .markdown h3,.markdown h4 {
-	text-align: center;
-	border-bottom: 1px solid var(--grey);
-	margin: 3rem 0 1rem 0;
-}
-
-.markdown > p, .markdown blockquote, .markdown ul, .biblio {
-	font-family: "Redaction", sans-serif;
-	margin-bottom: 1rem;
-}
-
-.markdown li {
-	padding-bottom: 1rem;
-}
-
-.markdown > p {
-	text-indent: 3rem;
-}
-
-.node-highlite {
-    font-family: "Redaction", serif;
-    font-style: italic;
-    /* font-size: .875em; */
-}
 
 @font-face {
     font-family: "Redaction";
@@ -168,7 +99,4 @@ body {
         font-size: 14px !important;
     }
 
-    .item-detail {
-        font-size: 14px !important;
-    }
 }

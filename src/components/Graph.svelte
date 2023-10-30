@@ -1,9 +1,8 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onMount, afterUpdate } from 'svelte';
 	import { selectedNode, graphSteps } from '@stores';
 	import { writable } from 'svelte/store';
 	import GraphSection from '@components/GraphSection.svelte';
-	import { afterUpdate } from 'svelte';
 
 	export let updatePosition;
 	export let handlePosition;
@@ -11,17 +10,15 @@
 	export let visibleItemsID;
 	export let essaysItems;
 	export let config;
+	export let items;
 
+	let scrollTopVal;
 	let screenSize;
 	const entities = writable([]);
 
-	let selectedData = [];
-	let initialStep = [];
 	let batchSize = config.batch; // cant be more than the pagination in omeka s
 	let graph;
 	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
-
-	$: path = `${config.api}/resources/${$selectedNode}`;
 
 	onMount(async () => {
 		loadData(data.nodes, batchSize);
@@ -31,41 +28,30 @@
 		if (graph.lastElementChild && screenSize > 600) {
 			graph.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'end' });
 		}
+		handlePosition();
 	});
 
-	$: {
-		if (data.links) {
-			selectedData = data.links.filter((d) => {
-				return (
-					(d.target != path && d.source != d.target && d.source == path) ||
-					(d.target != path && d.source != d.target && d.target == path)
-				);
-			});
-
-			initialStep = [...new Map(selectedData.map((item) => [item.title, item])).values()].sort(
-				(a, b) => (a.property || '').localeCompare(b.property || '')
-			);
-		}
-	}
-	$: {
-		let selected = [
-			...selectedData.filter((v, i, a) => a.findIndex((v2) => v2.target === v.target) === i)
-			// remove skip
-			// .map((d) => {
-			// 	const inMarkdown = markdownNodes.find((j) => j.id == d.target);
-			// 	return { ...d, skip: inMarkdown != undefined ? true : false };
-			// })
-		];
-
-		if (($graphSteps && $graphSteps.length == 0) || $graphSteps?.[0]?.data.length == 0) {
-			$graphSteps[0] = {
-				id: path,
-				data: selected, // initialStep ?
-				new: selected,
-				page: 0,
-				paginate: selected.slice(0, batchSize)
+	$: dataToGraph = items
+		.filter((d) => d?.data)
+		.map((d) => {
+			return {
+				img: d.data?.thumbnail_display_urls.large,
+				source: `item_${d.id}`,
+				target: `${config.api}/resources/${d.id}`,
+				title: d.data?.['o:title'] || ''
 			};
-		}
+		});
+
+	$: if (
+		($graphSteps && $graphSteps.length == 0) ||
+		(graphSteps && $graphSteps?.[0]?.data.length == 0)
+	) {
+		$graphSteps[0] = {
+			data: dataToGraph, // initialStep ?
+			new: dataToGraph,
+			page: 0,
+			paginate: dataToGraph
+		};
 	}
 
 	async function loadData(nodes, batchSize) {
@@ -133,7 +119,7 @@
 
 <div class="graph" bind:this={graph}>
 	{#if $entities.length == 0}
-		<div class="links">
+		<div>
 			<h4 class="loading">Loading Graph...</h4>
 		</div>
 	{:else}
@@ -145,6 +131,7 @@
 				on:scroll={() => {
 					// getPaginatedData(index, col);
 					handlePosition();
+					scrollTopVal = col?.scrollTop + 100;
 				}}
 				on:click={() => {
 					handlePosition();
@@ -162,7 +149,6 @@
 							{#if filteredData.length > 0}
 								<GraphSection
 									site={config.publicSite}
-									{handlePosition}
 									{essaysItems}
 									category={cat.key}
 									data={filteredData}
@@ -172,7 +158,7 @@
 									{entities}
 									{updatePosition}
 									{batchSize}
-									defaultNodes={[...markdownNodes, ...initialStep]}
+									defaultNodes={[...markdownNodes]}
 									{loadData}
 								/>
 							{/if}
@@ -185,21 +171,22 @@
 							{@const dataLen = step.data.filter(
 								(d) => !config.mainCategories.some((cat) => cat.props.includes(d.property))
 							).length}
-							<GraphSection
-								site={config.publicSite}
-								{handlePosition}
-								{essaysItems}
-								category={''}
-								data={filteredSecondaryData}
-								newData={step.new}
-								{dataLen}
-								{index}
-								{entities}
-								{updatePosition}
-								{batchSize}
-								defaultNodes={[...markdownNodes, ...initialStep]}
-								{loadData}
-							/>
+							{#if filteredSecondaryData.length > 0}
+								<GraphSection
+									site={config.publicSite}
+									{essaysItems}
+									category={''}
+									data={filteredSecondaryData}
+									newData={step.new}
+									{dataLen}
+									{index}
+									{entities}
+									{updatePosition}
+									{batchSize}
+									defaultNodes={[...markdownNodes]}
+									{loadData}
+								/>
+							{/if}
 						{/if}
 						{#if step.paginate.length < step.new.length}
 							<div
@@ -218,7 +205,7 @@
 		{/each}
 	{/if}
 </div>
-{#if $graphSteps.length >= 5}
+{#if $graphSteps.length > 2}
 	<div
 		class="close"
 		on:click={() => {
@@ -235,10 +222,14 @@
 
 <style>
 	.more {
+		padding-top: 10px;
 		padding-bottom: 20px;
 		text-align: center;
 		color: gainsboro;
 		cursor: pointer;
+	}
+	.more:hover {
+		color: black;
 	}
 
 	.loading,
@@ -247,25 +238,26 @@
 		/* font-family: 'Redaction', serif; */
 		text-align: center;
 		color: gainsboro;
-		/* margin-left: 10vw; */
+		height: calc(100vh - 20px);
 		padding-top: 1rem;
+		margin-bottom: 10px;
 	}
 
 	.close {
 		width: 25px;
 		height: 25px;
 		position: fixed;
-		top: 10px;
-		right: 10px;
+		top: 5px;
+		right: 5px;
 		border-radius: 100%;
-		background-color: gainsboro;
+		background-color: white;
+		border: 1px solid var(--theme-color);
 		color: var(--theme-color);
 		text-align: center;
 		line-height: 25px;
 		font-family: 'Inter', sans-serif;
 		z-index: 100;
 		cursor: pointer;
-		transition: all 0.5s linear;
 	}
 	.close:hover {
 		width: 30px;
@@ -276,26 +268,32 @@
 	.graph {
 		display: flex;
 		user-select: none;
-		/* overflow: hidden; */
+		background-color: white;
+		height: 100vh;
 	}
 
 	.links {
-		height: calc(100vh - 1rem);
-		padding-top: 1rem;
-		margin-left: 10vw;
-		flex-basis: 220px;
+		background-color: white;
+		height: fit-content;
+		max-height: calc(100vh - 20px);
+		margin-left: 12vw;
+		/* flex-basis: 220px; */
 		overflow: scroll;
 		flex-grow: 0;
 		flex-shrink: 0;
 		cursor: pointer;
 		word-wrap: break-word;
-		z-index: 1;
+		z-index: 2;
+		padding-top: 20px;
+	}
+
+	.links:first-of-type {
+		margin-left: 5vw;
 	}
 
 	.links:last-of-type {
-		padding-right: 50px;
+		padding-right: 20px;
 	}
-
 	@media only screen and (max-width: 600px) {
 		.links:not(:first-of-type) {
 			margin-left: 30vw;

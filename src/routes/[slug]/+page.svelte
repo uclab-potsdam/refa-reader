@@ -2,29 +2,26 @@
 	import * as config from '../../setup.json';
 	import Markdown from '@components/Markdown.svelte';
 	import Graph from '@components/Graph.svelte';
-	import ItemDetail from '@components/ItemDetail.svelte';
 	import Svg from '@components/Svg.svelte';
 	import { page } from '$app/stores';
-	import { items, graphSteps, selectedNode, hoverNode, scrollX } from '@stores';
+	import { items, selectedNode, hoverNode, scrollX } from '@stores';
 	import { onMount } from 'svelte';
 	import { extractLinks, createTriplets } from '@utils';
 	import { writable } from 'svelte/store';
 	export let data;
 
+	let md;
 	let textData = [];
 	let triplets, itemsJson;
 	let visibleItemsID = [];
 	let essaysItems = [];
+	let article;
+	let scrollTopVal;
 
 	const updatePosition = writable(false);
 	const handlePosition = () => {
 		$updatePosition = true;
 	};
-
-	$: {
-		$selectedNode;
-		handlePosition();
-	}
 
 	$: {
 		$hoverNode;
@@ -74,24 +71,19 @@
 			return result;
 		}, []);
 	});
-
-	function resetNode() {
-		$graphSteps = [];
-	}
-	let article;
 </script>
 
 <svelte:window on:resize={handlePosition} on:click={handlePosition} />
 <div>
 	{#if textData == undefined && triplets == undefined}
 		<article>
-			<section class="markdown__container">
+			<section class="short_text">
 				<h4>404 Page not found</h4>
 			</section>
 		</article>
 	{:else if triplets == undefined}
 		<article>
-			<section class="markdown__container">
+			<section class="short_text">
 				<h4>Loading...</h4>
 			</section>
 		</article>
@@ -109,43 +101,18 @@
 			bind:this={article}
 		>
 			<section
-				class="item__detail"
-				on:click={() => {
-					document.querySelectorAll('a[data-id]').forEach((link) => {
-						link.classList.remove('related');
-						link.classList.remove('selected');
-					});
-					resetNode();
-					handlePosition();
-				}}
-				on:keypress
-			>
-				<ItemDetail
-					data={itemsJson.filter((d) => !d.hasOwnProperty('fromSet'))}
-					itemDetailMetaData={config.itemDetailMetaData}
-				/>
-			</section>
-			<section
 				class="markdown__container"
+				bind:this={md}
 				on:wheel={() => {
-					resetNode();
 					handlePosition();
+					scrollTopVal = md?.scrollTop;
 				}}
-				on:touchmove={() => {
-					resetNode();
-					handlePosition();
-				}}
-				on:click={() => {
-					resetNode();
-					handlePosition();
-				}}
-				on:keypress
 			>
-				<h1>{textData.meta.title}</h1>
-				<Markdown data={textData} items={itemsJson} />
+				<Markdown data={textData} items={itemsJson} {scrollTopVal} />
 			</section>
 			<section class="graph__container">
 				<Graph
+					items={itemsJson}
 					{essaysItems}
 					data={$items}
 					{visibleItemsID}
@@ -165,18 +132,19 @@
 		height: 100vh;
 		overflow: scroll;
 		position: relative;
+		background-color: #efefef;
 	}
 
-	h1 {
-		margin-top: 0.5rem;
-		margin-bottom: 1rem;
-		font-size: 2.4rem;
+	.short_text {
+		padding: 0.5rem 0rem 0 1rem;
 	}
 
 	.markdown__container {
-		padding: 0.5rem 0rem 0 1rem;
-		/* flex: 0 0 600px; */
-		max-width: 600px;
+		background-color: white;
+		box-shadow: -10px 0px 10px 0px var(--light-grey);
+		margin-left: 40vw;
+		padding-left: 10px;
+		max-width: 640px;
 		flex: 0 0 40vw;
 		overflow-x: scroll;
 	}
@@ -185,41 +153,19 @@
 		flex: 3;
 	}
 
-	.item__detail {
-		/* flex: 0 0 400px; */
-		flex: 0 0 20vw;
-		max-width: 400px;
-		border-right: 1px solid #e3e3e3;
-	}
-
 	@media only screen and (max-width: 600px) {
-		.item__detail {
-			display: none;
-		}
-
 		.markdown__container {
-			flex: 2;
+			flex: 3;
 			padding: 0.5rem;
 			flex-basis: 70vw;
 			min-width: 70vw;
 			overflow-x: hidden;
 			overflow-y: scroll;
+			margin-left: 0;
 		}
 
 		.graph__container {
 			flex: 1;
 		}
-
-		h1 {
-			font-size: 1.4rem;
-		}
-
-		/* div::before {
-			content: 'This website contains visualizations that are not supported by small screen formats. To navigate the graphs, go to your desktop browser.';
-			display: block;
-			font-size: 20px;
-			padding: 1rem;
-			background: blue;
-		} */
 	}
 </style>

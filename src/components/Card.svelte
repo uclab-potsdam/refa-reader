@@ -1,7 +1,6 @@
 <script>
 	import { graphSteps, hoverNode } from '@stores';
-	import { blur } from 'svelte/transition';
-	// import PropLabel from '@components/PropLabel.svelte';
+	import { onDestroy } from 'svelte';
 	export let datum;
 	export let entities;
 	export let updatePosition;
@@ -9,6 +8,10 @@
 	export let site;
 
 	let imageSrc;
+
+	onDestroy(() => {
+		$updatePosition = true;
+	});
 
 	function handleLoad() {
 		$updatePosition = true;
@@ -26,33 +29,33 @@
 		}
 	}
 
-	let essaysItemsLinks = essaysItems.find((d) => d.id == datum.target.split('/').slice(-1)[0]);
+	$: source = datum.source.split('/').slice(-1)[0];
+	$: target = datum.target.split('/').slice(-1)[0];
+
+	let essaysItemsLinks = essaysItems.find((d) => d.id == target);
+	$: selected = $graphSteps.some((d) => d?.id == datum.target);
 </script>
 
-<!-- <PropLabel label={datum.property} /> -->
 <div
-	class="node {$graphSteps.find((d) => d?.id == datum.target) ? 'selected' : ''}"
+	class="node"
+	class:selected
 	class:linkToEssay={essaysItemsLinks != undefined}
 	title={datum.title}
-	data-id={datum.target.split('/').slice(-1)[0]}
+	{source}
+	{target}
+	data-id={target}
 	on:mouseover={() => {
-		$hoverNode = datum.target.split('/').slice(-1)[0];
+		$hoverNode = target;
 	}}
 	on:click
 	on:keydown
 	on:focus
 >
-	<!-- <div class="title"><strong>{datum.target.split('/').slice(-1)[0]}</strong></div> -->
 	{#if datum.img}
-		<img
-			src={datum.img.replace('square', 'large')}
-			alt={datum.title}
-			on:load={handleLoad}
-			transition:blur={{ amount: 10 }}
-		/>
+		<img src={datum.img.replace('square', 'large')} alt={datum.title} on:load={handleLoad} />
 		<div class="title">{datum.title}</div>
 	{:else if imageSrc}
-		<img src={imageSrc} alt={datum.title} on:load={handleLoad} transition:blur={{ amount: 1 }} />
+		<img src={imageSrc} alt={datum.title} on:load={handleLoad} />
 		<div class="title">{datum.title || ''}</div>
 	{:else}
 		<div class="title">{datum.title || ''}</div>
@@ -62,44 +65,33 @@
 
 	{#if essaysItemsLinks != undefined}
 		{#each essaysItemsLinks.essays as d}
-			<a
-				class="link"
-				href="{d.url}#item_{essaysItemsLinks.id}"
-				target="_blank"
-				rel="noopener noreferrer"
-			>
+			<a class="link" href={d.url} target="_blank" rel="noopener noreferrer">
 				→<em>{d.title}</em></a
 			>
 		{/each}
 	{/if}
 
 	<!-- not title == is media -->
-	{#if site}
+	<!-- {#if site}
 		{#if datum.title == undefined}
-			<a
-				class="link"
-				href={`${site}/media/${datum.target.split('/').slice(-1)[0]}`}
-				target="_blank"
-				rel="noopener noreferrer">→ Metadata</a
+			<a class="link" href={`${site}/media/${id}`} target="_blank" rel="noopener noreferrer"
+				>→ Metadata</a
 			>
 		{:else}
-			<a
-				class="link"
-				href={`${site}/item/${datum.target.split('/').slice(-1)[0]}`}
-				target="_blank"
-				rel="noopener noreferrer">→ Metadata</a
+			<a class="link" href={`${site}/item/${id}`} target="_blank" rel="noopener noreferrer"
+				>→ Metadata</a
 			>
 		{/if}
-	{/if}
+	{/if} -->
 </div>
 
 <style>
 	.node {
 		background-color: #f6f6f6 !important;
-		padding: 0.25rem 0.5rem;
-		margin: 10px;
-		margin-bottom: 1.5rem;
+		padding: 5px 10px;
+		margin-bottom: 10px;
 		box-shadow: 0px 0px 4px 0px #f6f6f6;
+		width: 220px;
 	}
 
 	.node:hover,
@@ -109,7 +101,7 @@
 		background-color: white;
 		color: black;
 		/* box-shadow: inset 0px 0px 6px 1px var(--theme-color); */
-		box-shadow: 0px 0px 4px 0px var(--theme-color);
+		box-shadow: inset -1px 1px 13px 0px var(--theme-color);
 		opacity: 1;
 	}
 
@@ -130,7 +122,6 @@
 
 	.selected > .link {
 		display: block;
-		transition: all 1s;
 	}
 
 	img {

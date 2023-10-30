@@ -50,7 +50,7 @@
 	}
 
 	.column:hover {
-		background-color: #e6e6e6;
+		/* background-color: #e6e6e6; */
 		color: var(--meta-color);
 	}
 

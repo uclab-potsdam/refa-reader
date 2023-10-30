@@ -1,24 +1,12 @@
 <script>
 	import { onMount } from 'svelte';
-	import { selectedNode, hoverNode, selectedNodeUniqueId } from '@stores';
-	import { observe } from '@utils';
-	import newUniqueId from 'locally-unique-id-generator';
-
 	export let data;
 	export let items;
+	export let scrollTopVal;
 
 	let htmlText = data.text;
 	const footnoteRegex = /\[\^([^\]]+)\]/g;
 	let footnoteCounter = 1;
-
-	function getMainImage(id) {
-		let match = items.filter((d) => d.data?.['o:id'] == id);
-
-		if (match && match.length > 0) {
-			let img = match?.[0].data?.thumbnail_display_urls?.medium;
-			return img;
-		}
-	}
 
 	const htmlWithCustomLinks = htmlText.replace(
 		/<a\s+href="([^"]+)"\s*>([^<]+)<\/a>/g,
@@ -26,14 +14,11 @@
 			if (href.startsWith('http')) {
 				return `<a class="external" target="_blank" href="${href}" title="${text}">${text}</a>`;
 			} else {
-				let uniqueId = newUniqueId();
-				return `<a class="node-highlite" unique-id="${uniqueId}" id="item_${
-					href.split('/')[1]
-				}" data-id="${
-					href.split('/')[1]
-				}" title="${text}">${text}<span class="symbol node" unique-id="${uniqueId}" data-id="${
-					href.split('/')[1]
-				}"
+				// let uniqueId = newUniqueId();
+				let uniqueId = href.split('/')[1];
+				return `<a class="node-highlite" unique-id="${uniqueId}" id="${href.split('/')[1]}"
+				data-id="${href.split('/')[1]}" title="${text}">${text}
+				<span class="symbol node" unique-id="${uniqueId}" data-id="item_${href.split('/')[1]}"
 				data-class="${items
 					.filter((d) => d.label == text)
 					.map((d) => {
@@ -57,71 +42,110 @@
 		)[1];
 		return `<li id="fnref-${footnoteNumber}"> ${footnoteContent}</li>`;
 	}).join('');
-	const finalHtml = `${htmlWithFootnotes}<ol class="biblio">${footnotes}</ol>`;
+	const finalHtml = `${htmlWithFootnotes}
+	<ol class="biblio">${footnotes}</ol>`;
 
+	let markdownItems;
+	let offset = 200;
 	onMount(async () => {
-		observe();
-
-		if (window.location.hash) {
-			let hash = window.location.hash;
-
-			let target = document.querySelector(hash);
-			if (target) {
-				target.scrollIntoView({ block: 'center' });
-				$selectedNode = target.getAttribute('data-id');
-			}
-		}
+		markdownItems = document?.querySelectorAll('.markdown a[data-id]');
+		adjustOffsetTops(markdownItems);
 	});
 
-	function handleClick(event) {
-		if (event.target.tagName === 'A') {
-			if (event.target.getAttribute('data-id')) {
-				$selectedNode = event.target.getAttribute('data-id');
-				$hoverNode = event.target.getAttribute('data-id');
-				event.target.classList.add('selected');
-				$selectedNodeUniqueId = event.target.getAttribute('unique-id');
+	function adjustOffsetTops(items) {
+		let lastOffset = null;
+		markdownItems = Array.from(items).map((item) => {
+			let currentOffset = item.offsetTop;
+			if (lastOffset !== null && currentOffset <= lastOffset) {
+				item.adjustedOffsetTop = lastOffset + offset; // Add a custom property to store the adjusted offset
+			} else {
+				item.adjustedOffsetTop = currentOffset;
 			}
+			lastOffset = item.adjustedOffsetTop;
+			return item;
+		});
+	}
+	let idx = 0;
+	$: handleScroll(markdownItems, scrollTopVal);
+
+	function handleScroll(items, scrollTopVal) {
+		let firstInEssay = items?.[idx]?.adjustedOffsetTop;
+		let secondInEssay = items?.[idx + 1]?.adjustedOffsetTop;
+		let firstInEssayId = items?.[idx]?.getAttribute('data-id');
+		let secondInEssayId = items?.[idx + 1]?.getAttribute('data-id');
+		let firstInGraph = document.querySelector(`.node[data-id="${firstInEssayId}"]`)?.offsetTop;
+		let secondInGraph = document.querySelector(`.node[data-id="${secondInEssayId}"]`)?.offsetTop;
+		let percentageDistance = getPercentageDistance(scrollTopVal, firstInEssay, secondInEssay);
+		let pixelDistance = getPixelDistance(percentageDistance, firstInGraph, secondInGraph);
+
+		if (scrollTopVal > secondInEssay) {
+			idx++;
+		}
+
+		if (scrollTopVal < firstInEssay && idx != 0) {
+			idx--;
+		}
+
+		const selectedItem = document.querySelector('.links:first-of-type');
+
+		if (firstInEssay && secondInEssay && selectedItem && percentageDistance && pixelDistance) {
+			selectedItem?.scrollTo({
+				top: pixelDistance
+			});
 		}
 	}
 
-	$: {
-		if ($selectedNode != null && typeof document !== 'undefined') {
-			document.querySelectorAll('a[data-id]').forEach((link) => {
-				link.classList.remove('related');
-				link.classList.remove('selected');
-			});
+	function getPercentageDistance(scrollTop, firstPoint, secondPoint) {
+		const totalDistance = secondPoint - firstPoint;
+		const distanceFromFirst = scrollTop - firstPoint;
+		const percentage = (distanceFromFirst / totalDistance) * 100;
+		return percentage;
+	}
 
-			let selectedId = document.querySelectorAll(`a[data-id="${$selectedNode}"]`);
-			let selectedUnique = document.querySelectorAll(`a[unique-id="${$selectedNodeUniqueId}"]`);
-
-			if (selectedUnique) {
-				// $selectedNode == $selectedNode;
-				selectedUnique.forEach((link) => {
-					link.classList.add('selected');
-					$hoverNode = $selectedNode;
-				});
-			}
-			if (selectedId) {
-				// $selectedNode == $selectedNode;
-				selectedId.forEach((link) => {
-					link.classList.add('related');
-				});
-			}
-		}
+	function getPixelDistance(percentage, firstPoint, secondPoint) {
+		const distanceFromFirst = secondPoint - firstPoint;
+		return firstPoint + (distanceFromFirst * percentage) / 100;
 	}
 </script>
 
-<div class="markdown" on:click={handleClick} on:keydown={handleClick}>
+<div class="metadata">
+	{#if data.meta?.author}
+		<span class="author">{data.meta.author}</span>
+	{/if}
+	{#if data.meta?.date}
+		<span class="date">{new Date(data.meta.date)?.toLocaleDateString(data.meta.lang)}</span>
+	{/if}
+</div>
+<h1>{data.meta.title}</h1>
+<div class="markdown">
 	{@html finalHtml}
 </div>
 
 <style>
+	h1 {
+		text-align: center;
+		margin-top: 40px;
+		margin-bottom: 0.5rem;
+		font-size: 2em;
+	}
+
 	.markdown {
+		font-weight: 400;
 		padding-bottom: 40vh;
 		padding-top: 5vh;
 		font-size: 1.4rem;
-		line-height: 1.3;
-		text-shadow: 1px 1px 15px white;
+		line-height: 1.35;
+	}
+
+	.metadata {
+		padding-top: 1rem;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.author,
+	.date {
+		font-size: 1rem;
 	}
 
 	:global(a) {
@@ -143,35 +167,80 @@
 		font-style: normal;
 		font-size: 0.7em !important;
 		color: black;
-		background-color: #f2f2f2;
-		cursor: pointer;
+		cursor: text;
 		border-radius: 2px;
 		padding: 2px;
 		text-decoration: unset !important;
-		text-shadow: none;
+		box-shadow: inset 0px 0px 2px 0px var(--theme-color);
+		background: white;
+		position: relative;
+		z-index: 10;
+	}
+
+	:global(.markdown *:is(h1, h2, h3, h4, h5, h6)) {
+		font-family: 'Redaction', serif;
+	}
+
+	:global(.markdown h1) {
+		font-size: 1.4em;
+		line-height: 1.1em;
+		font-weight: 400;
+	}
+
+	:global(.markdown h2) {
+		font-size: 1.3em;
+		line-height: 1em;
+		font-weight: 400;
+	}
+
+	:global(.markdown h3) {
+		font-size: 1.2em;
+		line-height: 1em;
+		font-weight: 400;
+	}
+
+	:global(.markdown h4) {
+		font-size: 0.8em;
+		font-weight: 400;
+	}
+
+	:global(.biblio) {
+		font-size: 0.875rem;
+	}
+
+	:global(.markdown h1),
+	:global(.markdown h2),
+	:global(.markdown h3),
+	:global(.markdown h4) {
+		text-align: center;
+		border-top: 1px solid var(--light-grey);
+		padding-top: 1rem;
+		margin: 3rem 0 1rem 0;
+	}
+
+	:global(.markdown > p),
+	:global(.markdown blockquote),
+	:global(.markdown ul),
+	:global(.biblio) {
+		font-family: 'Redaction', sans-serif;
+		margin-bottom: 1rem;
+	}
+
+	:global(.markdown li) {
+		padding-bottom: 1rem;
+	}
+
+	:global(.markdown > p) {
+		text-indent: 2rem;
 	}
 
 	:global(em .node-highlite) {
 		font-style: italic;
 	}
+
 	:global(.node-highlite span) {
 		font-style: normal;
-	}
-
-	:global(.related) {
-		color: var(--theme-color) !important;
-	}
-
-	:global(.selected) {
-		background-color: var(--theme-color) !important;
-	}
-	
-	:global(.markdown .selected) {
-		color: white !important;
-	}
-	
-	:global(.selected .symbol) {
-		color: white;
+		position: relative;
 	}
 
 	:global(.symbol) {
@@ -180,8 +249,6 @@
 		vertical-align: middle;
 		color: var(--theme-color);
 	}
-
-
 
 	:global(sup) {
 		padding-right: 0.5rem;

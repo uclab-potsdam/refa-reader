@@ -1,7 +1,7 @@
 {
     "title": "",
     "api": "https://uclab.fh-potsdam.de/refa-catalog/api",
-    "publicSite": "https://uclab.fh-potsdam.de/refa-catalog/",
+    "publicSite": "https://uclab.fh-potsdam.de/refa-catalog/s/c/",
     "languages": [
         "en",
         "de"
@@ -30,11 +30,5 @@
                 "incorporates"
             ]
         }
-    ],
-    "itemDetailMetaData": [
-        "ecrm:P92i_was_brought_into_existence_by",
-        "dcterms:created",
-        "ecrm:P45_consists_of",
-        "ecrm:P43_has_dimension"
     ]
 }

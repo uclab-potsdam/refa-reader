@@ -21,12 +21,9 @@
 								startOffset="99%"
 								text-anchor="end"
 							>
-								{#if item.reverse}
-									-
-								{/if}
 								{item.label}
-								{#if item.reverse}
-									-
+								{#if item.reverse && item.label}
+									&nbsp;-
 								{/if}
 								{#if !item.reverse && item.label}
 									→
@@ -41,7 +38,7 @@
 								text-anchor="end"
 							>
 								{item.label}
-								{#if item.reverse}
+								{#if item.reverse && item.label}
 									←
 								{/if}
 								{#if !item.reverse && item.label}
@@ -65,7 +62,7 @@
 		top: 0;
 		left: 0;
 		pointer-events: none;
-		z-index: -1;
+		z-index: 1;
 		transform: translateZ(0);
 		font-family: 'Inter', sans-serif;
 		text-rendering: optimizeSpeed;
@@ -99,17 +96,9 @@
 		display: block;
 	}
 
+	path[data-attr='selected'],
 	path.highlite {
+		stroke: var(--theme-color);
 		stroke-width: 0.5;
-		stroke: var(--theme-color);
-	}
-
-	path[data-attr='selected'] {
-		stroke: var(--theme-color);
-	}
-
-	path[data-attr='not-selected'] {
-		stroke: #969696;
-		stroke-width: 0.2;
 	}
 </style>
