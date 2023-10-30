@@ -2,6 +2,7 @@
 title: Porträts, Karikaturen, Kostüme & Trachten
 date: "2023-12-14"
 color: "aubergine"
+author: Sabine de Günther
 isPublic: true
 lang: de
 description: "Einzelbetrachtungen mit übergeordneter Thematik"
