@@ -16,7 +16,6 @@
 	let screenSize;
 	const entities = writable([]);
 
-	let initialStep = [];
 	let batchSize = config.batch; // cant be more than the pagination in omeka s
 	let graph;
 	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
@@ -48,7 +47,6 @@
 		(graphSteps && $graphSteps?.[0]?.data.length == 0)
 	) {
 		$graphSteps[0] = {
-			id: '',
 			data: dataToGraph, // initialStep ?
 			new: dataToGraph,
 			page: 0,
@@ -160,7 +158,7 @@
 									{entities}
 									{updatePosition}
 									{batchSize}
-									defaultNodes={[...markdownNodes, ...initialStep]}
+									defaultNodes={[...markdownNodes]}
 									{loadData}
 								/>
 							{/if}
@@ -185,7 +183,7 @@
 									{entities}
 									{updatePosition}
 									{batchSize}
-									defaultNodes={[...markdownNodes, ...initialStep]}
+									defaultNodes={[...markdownNodes]}
 									{loadData}
 								/>
 							{/if}

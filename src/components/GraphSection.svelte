@@ -91,6 +91,7 @@
 		if (newNodes.length > 0) {
 			loadData(paginate, batchSize);
 		}
+		$updatePosition = true;
 	}
 
 	function updateNodes(nodes, selectedNodes) {
@@ -118,23 +119,23 @@
 			{#each data as datum}
 				{#if datum.source && datum.target}
 					{#if newData.some((existingNode) => existingNode?.title === datum.title)}
-						<Card
-							{site}
-							{entities}
-							{updatePosition}
-							{datum}
-							{essaysItems}
-							on:click={() => {
-								openNode(datum, index + 1);
-							}}
-							on:keydown={() => {
-								openNode(datum, index + 1);
-							}}
-						/>
-
+						<!-- {datum.source.split('/').slice(-1)[0]}
+						{datum.target.split('/').slice(-1)[0]} -->
 						{#if datum.source != datum.target}
-							{datum.source.split('/')[datum.source.split('/').length - 1]}
-							{datum.target.split('/')[datum.target.split('/').length - 1]}
+							<Card
+								{site}
+								{entities}
+								{updatePosition}
+								{datum}
+								{essaysItems}
+								on:click={() => {
+									openNode(datum, index + 1);
+								}}
+								on:keydown={() => {
+									openNode(datum, index + 1);
+								}}
+							/>
+
 							<Paths {datum} {updatePosition} label={datum?.property || ''} />
 						{/if}
 					{/if}

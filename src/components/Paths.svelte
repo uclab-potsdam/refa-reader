@@ -55,7 +55,7 @@
 		sourceRects.forEach((sourceRect) => {
 			targetRects.forEach((targetRect) => {
 				let controlPointOffset = 100;
-				const selected = sourceRect.selected;
+				const selected = sourceRect?.selected;
 				let startX, startY, endX, endY;
 				let controlPoint2X;
 
@@ -97,4 +97,8 @@
 	});
 </script>
 
-<div bind:this={item} />
+<div
+	bind:this={item}
+	source={datum.source.split('/').slice(-1)[0]}
+	target={datum.target.split('/').slice(-1)[0]}
+/>

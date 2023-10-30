@@ -28,12 +28,12 @@
 			imageSrc = getImageByNode(datum.target);
 		}
 	}
-	let source = datum.source.split('/').slice(-1)[0];
-	let target = datum.target.split('/').slice(-1)[0];
+
+	$: source = datum.source.split('/').slice(-1)[0];
+	$: target = datum.target.split('/').slice(-1)[0];
 
 	let essaysItemsLinks = essaysItems.find((d) => d.id == target);
 	$: selected = $graphSteps.some((d) => d?.id == datum.target);
-	
 </script>
 
 <div
@@ -42,6 +42,7 @@
 	class:linkToEssay={essaysItemsLinks != undefined}
 	title={datum.title}
 	{source}
+	{target}
 	data-id={target}
 	on:mouseover={() => {
 		$hoverNode = target;
@@ -50,8 +51,6 @@
 	on:keydown
 	on:focus
 >
-	<!-- <p>{datum.target.split('/').slice(-1)[0]}</p> -->
-	<!-- <div class="title"><strong>{datum.target.split('/').slice(-1)[0]}</strong></div> -->
 	{#if datum.img}
 		<img src={datum.img.replace('square', 'large')} alt={datum.title} on:load={handleLoad} />
 		<div class="title">{datum.title}</div>
