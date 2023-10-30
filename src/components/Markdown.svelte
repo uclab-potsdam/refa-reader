@@ -46,18 +46,32 @@
 	<ol class="biblio">${footnotes}</ol>`;
 
 	let markdownItems;
+	let offset = 200;
 	onMount(async () => {
-		// observe();
 		markdownItems = document?.querySelectorAll('.markdown a[data-id]');
+		adjustOffsetTops(markdownItems);
 	});
 
+	function adjustOffsetTops(items) {
+		let lastOffset = null;
+		markdownItems = Array.from(items).map((item) => {
+			let currentOffset = item.offsetTop;
+			if (lastOffset !== null && currentOffset <= lastOffset) {
+				item.adjustedOffsetTop = lastOffset + offset; // Add a custom property to store the adjusted offset
+			} else {
+				item.adjustedOffsetTop = currentOffset;
+			}
+			lastOffset = item.adjustedOffsetTop;
+			return item;
+		});
+	}
 	let idx = 0;
 	$: handleScroll(markdownItems, scrollTopVal);
 
 	function handleScroll(items, scrollTopVal) {
-		let firstInEssay = items?.[idx]?.offsetTop;
+		let firstInEssay = items?.[idx]?.adjustedOffsetTop;
+		let secondInEssay = items?.[idx + 1]?.adjustedOffsetTop;
 		let firstInEssayId = items?.[idx]?.getAttribute('data-id');
-		let secondInEssay = items?.[idx + 1]?.offsetTop;
 		let secondInEssayId = items?.[idx + 1]?.getAttribute('data-id');
 		let firstInGraph = document.querySelector(`.node[data-id="${firstInEssayId}"]`)?.offsetTop;
 		let secondInGraph = document.querySelector(`.node[data-id="${secondInEssayId}"]`)?.offsetTop;
