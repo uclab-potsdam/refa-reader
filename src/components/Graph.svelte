@@ -16,13 +16,10 @@
 	let screenSize;
 	const entities = writable([]);
 
-	let selectedData = [];
 	let initialStep = [];
 	let batchSize = config.batch; // cant be more than the pagination in omeka s
 	let graph;
 	let markdownNodes = data.nodes.filter((d) => visibleItemsID.includes(d.id));
-
-	$: path = `${config.api}/resources/${$selectedNode}`;
 
 	onMount(async () => {
 		loadData(data.nodes, batchSize);
@@ -40,27 +37,23 @@
 		.map((d) => {
 			return {
 				img: d.data?.thumbnail_display_urls.large,
-				property: '',
 				source: `item_${d.id}`,
 				target: `${config.api}/resources/${d.id}`,
-				title: d.data?.['o:title'] || '',
-				inview: true
+				title: d.data?.['o:title'] || ''
 			};
 		});
 
-	$: {
-		if (
-			($graphSteps && $graphSteps.length == 0) ||
-			(graphSteps && $graphSteps?.[0]?.data.length == 0)
-		) {
-			$graphSteps[0] = {
-				id: path,
-				data: dataToGraph, // initialStep ?
-				new: dataToGraph,
-				page: 0,
-				paginate: dataToGraph
-			};
-		}
+	$: if (
+		($graphSteps && $graphSteps.length == 0) ||
+		(graphSteps && $graphSteps?.[0]?.data.length == 0)
+	) {
+		$graphSteps[0] = {
+			id: '',
+			data: dataToGraph, // initialStep ?
+			new: dataToGraph,
+			page: 0,
+			paginate: dataToGraph
+		};
 	}
 
 	async function loadData(nodes, batchSize) {
@@ -158,7 +151,6 @@
 							{#if filteredData.length > 0}
 								<GraphSection
 									site={config.publicSite}
-									{handlePosition}
 									{essaysItems}
 									category={cat.key}
 									data={filteredData}
@@ -184,7 +176,6 @@
 							{#if filteredSecondaryData.length > 0}
 								<GraphSection
 									site={config.publicSite}
-									{handlePosition}
 									{essaysItems}
 									category={''}
 									data={filteredSecondaryData}

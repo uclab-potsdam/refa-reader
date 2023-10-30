@@ -23,7 +23,7 @@
 							>
 								{item.label}
 								{#if item.reverse && item.label}
-								&nbsp;-
+									&nbsp;-
 								{/if}
 								{#if !item.reverse && item.label}
 									→

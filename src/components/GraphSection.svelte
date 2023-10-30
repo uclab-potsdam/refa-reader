@@ -14,7 +14,6 @@
 	export let defaultNodes;
 	export let batchSize;
 	export let essaysItems;
-	export let handlePosition;
 	export let site;
 	let section;
 	let loadingColumn;
@@ -34,15 +33,11 @@
 	async function openNode(node, index) {
 		resetScroll(index);
 		loadingColumn = true;
-		$selectedNode = '';
 
 		// Remove all elements in $graphSteps after the given index
 		$graphSteps.splice(index, $graphSteps.length - index);
 
-		let columnNodes = $graphSteps
-			// .slice(0, index )
-			.map((obj) => obj.data)
-			.flat();
+		let columnNodes = $graphSteps.map((obj) => obj.data).flat();
 
 		const response = await fetch(node.target);
 		const data = await response.json();
@@ -69,9 +64,7 @@
 			data.related = { ...setItems };
 		}
 
-		const items = [{ data }];
-
-		selectedTriplets = await createTriplets(items);
+		selectedTriplets = await createTriplets([{ data }]);
 
 		let selectedTripletsData = selectedTriplets.links.filter((d) => {
 			return d.source === node.target || d.target === node.target;
@@ -92,6 +85,7 @@
 			new: newNodes,
 			paginate: paginate
 		};
+
 		loadingColumn = false;
 
 		if (newNodes.length > 0) {
@@ -122,7 +116,6 @@
 	<div>
 		{#if data && typeof data === 'object' && Object.keys(data).length > 0}
 			{#each data as datum}
-				<!-- {#if !datum.skip && datum.source && datum.target} -->
 				{#if datum.source && datum.target}
 					{#if newData.some((existingNode) => existingNode?.title === datum.title)}
 						<Card
@@ -138,9 +131,12 @@
 								openNode(datum, index + 1);
 							}}
 						/>
-					{/if}
-					{#if datum.source && datum.target && datum.source != datum.target}
-						<Paths {datum} {updatePosition} label={datum?.property || ''} />
+
+						{#if datum.source != datum.target}
+							{datum.source.split('/')[datum.source.split('/').length - 1]}
+							{datum.target.split('/')[datum.target.split('/').length - 1]}
+							<Paths {datum} {updatePosition} label={datum?.property || ''} />
+						{/if}
 					{/if}
 				{:else if datum.source && datum.target && datum.source != datum.target}
 					<Paths {datum} {updatePosition} label={datum?.property || ''} />

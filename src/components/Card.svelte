@@ -28,10 +28,12 @@
 			imageSrc = getImageByNode(datum.target);
 		}
 	}
+	let source = datum.source.split('/').slice(-1)[0];
+	let target = datum.target.split('/').slice(-1)[0];
 
-	let id = datum.target.split('/').slice(-1)[0];
-	let essaysItemsLinks = essaysItems.find((d) => d.id == id);
+	let essaysItemsLinks = essaysItems.find((d) => d.id == target);
 	$: selected = $graphSteps.some((d) => d?.id == datum.target);
+	
 </script>
 
 <div
@@ -39,9 +41,10 @@
 	class:selected
 	class:linkToEssay={essaysItemsLinks != undefined}
 	title={datum.title}
-	data-id={id}
+	{source}
+	data-id={target}
 	on:mouseover={() => {
-		$hoverNode = id;
+		$hoverNode = target;
 	}}
 	on:click
 	on:keydown
@@ -63,12 +66,7 @@
 
 	{#if essaysItemsLinks != undefined}
 		{#each essaysItemsLinks.essays as d}
-			<a
-				class="link"
-				href="{d.url}"
-				target="_blank"
-				rel="noopener noreferrer"
-			>
+			<a class="link" href={d.url} target="_blank" rel="noopener noreferrer">
 				→<em>{d.title}</em></a
 			>
 		{/each}
