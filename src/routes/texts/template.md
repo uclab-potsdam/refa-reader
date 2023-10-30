@@ -2,6 +2,7 @@
 title: A test essay
 date: "2023-12-14"
 color: "blue"
+author: Sabine de Günther
 isPublic: false
 lang: en
 description: "Description of the essay"

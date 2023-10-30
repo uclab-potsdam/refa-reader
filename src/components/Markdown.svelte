@@ -42,7 +42,8 @@
 		)[1];
 		return `<li id="fnref-${footnoteNumber}"> ${footnoteContent}</li>`;
 	}).join('');
-	const finalHtml = `${htmlWithFootnotes}<ol class="biblio">${footnotes}</ol>`;
+	const finalHtml = `${htmlWithFootnotes}
+	<ol class="biblio">${footnotes}</ol>`;
 
 	let markdownItems;
 	onMount(async () => {
@@ -93,6 +94,14 @@
 	}
 </script>
 
+<div class="metadata">
+	{#if data.meta?.author}
+		<span class="author">{data.meta.author}</span>
+	{/if}
+	{#if data.meta?.date}
+		<span class="date">{new Date(data.meta.date)?.toLocaleDateString(data.meta.lang)}</span>
+	{/if}
+</div>
 <h1>{data.meta.title}</h1>
 <div class="markdown">
 	{@html finalHtml}
@@ -112,6 +121,17 @@
 		padding-top: 5vh;
 		font-size: 1.4rem;
 		line-height: 1.35;
+	}
+
+	.metadata {
+		padding-top: 1rem;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.author,
+	.date {
+		font-size: 1rem;
 	}
 
 	:global(a) {
