@@ -5,7 +5,7 @@ isPublic: true
 lang: de
 color: "tomato"
 author: Sabine de Günther
-description: "Wie andere Zyklen - beispielsweise der Vier Kontinente oder der Todsünden - wurden die Fünf Sinne im 16. Jahrhundert zu einem beliebten allegorischen Sujet, das sich vorwiegend über die niederländische Druckgraphik verbreitete. Begleitet werden die Fünf Sinne *gustus, odoratus, visus, auditus und tactus* von Tiersymbolen oder Attributen."
+description: "Das nachfolgende Kunstwerk lässt mehrere Interpretationen und Perspektiven zu: Auf den ersten Blick zeigt es drei elegante junge Damen und zwei Herren in einer idyllischen Landschaft in einer gemäßigten Zone. Jeder der abgebildeten Figuren ist ein Attribut zugeordnet, z. B. ein Vogel oder ein Spiegel. Diese Zeichen verweisen auf die fünf menschlichen Sinne - Schmecken, Riechen, Sehen, Hören und Tasten - eines der vielfältigsten und reizvollsten Themen der europäischen Malerei. Zugleich ist das Werk auch ein Familienporträt von fünf Geschwistern einer Familie aus dem Nordosten Baden-Württembergs, dem ehemaligen Fürstentum des Hauses Hohenlohe. Darüber hinaus stellt es die Mode aus der Zeit des 30-jährigen Krieges in Deutschland dar."
 cover: "https://uclab.fh-potsdam.de/refa-catalog/files/asset/ba31db3ae02f55f476ea09537b82f04c8c606719.png"
 ---
 ## Bildnis der fünf Kinder Graf Philipp Ernsts zu Hohenlohe-Langenburg als Allegorie der Fünf Sinne
