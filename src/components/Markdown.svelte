@@ -108,15 +108,15 @@
 	}
 </script>
 
+<h1>{data.meta.title}</h1>
 <div class="metadata">
 	{#if data.meta?.author}
-		<span class="author">{data.meta.author}</span>
+		<div class="author">{data.meta.author}</div>
 	{/if}
 	{#if data.meta?.date}
-		<span class="date">{new Date(data.meta.date)?.toLocaleDateString(data.meta.lang)}</span>
+		<div class="date">{new Date(data.meta.date)?.toLocaleDateString(data.meta.lang)}</div>
 	{/if}
 </div>
-<h1>{data.meta.title}</h1>
 <div class="markdown">
 	{@html finalHtml}
 </div>
@@ -127,6 +127,7 @@
 		margin-top: 40px;
 		margin-bottom: 0.5rem;
 		font-size: 2em;
+		line-height: 0.9em;
 	}
 
 	.markdown {
@@ -138,9 +139,10 @@
 	}
 
 	.metadata {
-		padding-top: 1rem;
-		display: flex;
-		justify-content: space-between;
+		/* padding-top: 1rem; */
+		text-align: center;
+		/* display: flex;
+		justify-content: space-between; */
 	}
 
 	.author,
