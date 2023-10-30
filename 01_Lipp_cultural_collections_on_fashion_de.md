@@ -2,6 +2,7 @@
 title: Bildkosmos der Moden 
 date: "2024-01-14"
 color: "blueviolet"
+author: Sabine de Günther
 isPublic: true
 lang: de
 description: "Zwei Sammlungen bilden die Grundlage für Restaging Fashion: die vestimnetäre Quellensammlung des Berliner Sammlerehepaars Franz und Frieda von Lipperheide und die Textilsammlung des Germanischen Nationalmuseums in Nürnberg. Letzere beinflusste Franz und Frieda von Lipperheide darin, ihre im späten 19. Jahrhundert zusammengetragene Sammlung von Gemälden, Miniaturen, Reliefplastiken, Grafik, Handzeichnungen, Buchkunst und Sekundärliteratur in der Lipperheideschen Kostümbibliothek zu verstetigen und der Öffentlichkeit zu Forschungszwecken und als Vorbildersammlung zur Verfügung zu stellen."
