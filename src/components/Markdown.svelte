@@ -127,7 +127,7 @@
 		margin-top: 40px;
 		margin-bottom: 0.5rem;
 		font-size: 2em;
-		line-height: 0.9em;
+		line-height: 1em;
 	}
 
 	.markdown {
