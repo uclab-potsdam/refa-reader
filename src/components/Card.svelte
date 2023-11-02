@@ -89,7 +89,7 @@
 	.node {
 		background-color: #f6f6f6 !important;
 		padding: 5px 10px;
-		margin-bottom: 10px;
+		margin-bottom: 15px;
 		box-shadow: 0px 0px 4px 0px #f6f6f6;
 		width: 220px;
 	}
