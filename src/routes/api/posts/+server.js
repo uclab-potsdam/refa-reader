@@ -6,7 +6,7 @@ export const GET = async () => {
     const allPosts = await fetchMarkdownData()
 
     const sortedPosts = allPosts.sort((a, b) => {
-        return new Date(b.meta.date) - new Date(a.meta.date)
+        return new Date(b.path) - new Date(a.path)
     })
 
     return json(sortedPosts)
