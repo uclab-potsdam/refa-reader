@@ -6,6 +6,5 @@ export const GET = async () => {
     const allPosts = await fetchMarkdownData()
 
     const sortedPosts = allPosts.sort()
-
     return json(sortedPosts)
 }
