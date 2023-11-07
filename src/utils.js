@@ -127,7 +127,6 @@ export async function extractLinks(markdown) {
 
         link.uniqueId = newUniqueId();
         link.data = json;
-
     }
     return links;
 
@@ -189,7 +188,6 @@ export async function createTriplets(data) {
 export function parseJSONLD(jsonLD, set) {
     let triplets = [];
     let source = `${config.api}/resources/${jsonLD["o:id"]}`;
-
     // Add a triplet for the set if available
     if (set) {
         triplets.push({
@@ -200,6 +198,7 @@ export function parseJSONLD(jsonLD, set) {
         });
     }
 
+
     let parentKey;
     let reverse = false;
 
@@ -209,16 +208,15 @@ export function parseJSONLD(jsonLD, set) {
      */
     let parseRecursive = async function (obj) {
         for (let key in obj) {
-            
             // Check if the key is "@id" and the value starts with the API base URL and has a title
             if (key === "@id" && obj[key].startsWith(config.api) && (obj["o:title"] || obj.display_title || reverse == true)) {
                 // Extract the target URL, title, and image
-                let splitId = obj[key].split("/");
+                let splitId  = obj[key].split("/");
+                
                 let id = splitId[splitId.length - 1];
                 const target = `${config.api}/resources/${id}`;
                 const title = obj["o:title"] || obj.display_title;
                 const img = obj?.thumbnail_url || obj?.thumbnail_display_urls?.large;
-
                 // Check if the source and target already exist in triplets array
                 const exists = triplets.some(triplet => triplet.source === source && triplet.target === target);
 
@@ -229,6 +227,7 @@ export function parseJSONLD(jsonLD, set) {
                 const category = config.mainCategories
                     .map(d => (d.props.includes(property) ? d.key : ""))
                     .find(Boolean);
+                
 
                 if (!exists) {
                     // Add a new triplet to the array
@@ -243,6 +242,7 @@ export function parseJSONLD(jsonLD, set) {
                     });
                 }
             }
+
             // Recursively parse child objects
             else if (typeof obj[key] === "object") {
                 if (isNaN(key)) {
