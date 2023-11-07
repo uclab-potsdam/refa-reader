@@ -1,5 +1,5 @@
-// import adapter from '@sveltejs/adapter-auto';
-import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-auto';
+// import adapter from '@sveltejs/adapter-static';
 
 import { mdsvex } from 'mdsvex';
 import mdsvexConfig from './mdsvex.config.js';
@@ -12,9 +12,9 @@ const config = {
 	],
 	kit: {
 		adapter: adapter(
-			{
-				fallback: 'index.html',
-			}
+			// {
+			// 	fallback: 'index.html',
+			// }
 		),
 		alias: {
 			'@components': 'src/components',
