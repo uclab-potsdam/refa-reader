@@ -2,7 +2,7 @@
 title: Das Familienbildnis der Hohenlohe
 date: "2023-12-14"
 isPublic: true
-lang: de
+lang: en
 color: "tomato"
 author: Sabine de Günther
 description: "Das nachfolgende Kunstwerk lässt mehrere Interpretationen und Perspektiven zu: Auf den ersten Blick zeigt es drei elegante junge Damen und zwei Herren in einer idyllischen Landschaft in einer gemäßigten Zone. Jeder der abgebildeten Figuren ist ein Attribut zugeordnet, z. B. ein Vogel oder ein Spiegel. Diese Zeichen verweisen auf die fünf menschlichen Sinne - Schmecken, Riechen, Sehen, Hören und Tasten - eines der vielfältigsten und reizvollsten Themen der europäischen Malerei. Zugleich ist das Werk auch ein Familienporträt von fünf Geschwistern einer Familie aus dem Nordosten Baden-Württembergs, dem ehemaligen Fürstentum des Hauses Hohenlohe. Darüber hinaus stellt es die Mode aus der Zeit des 30-jährigen Krieges in Deutschland dar."
