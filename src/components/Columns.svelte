@@ -78,9 +78,9 @@
 
 	img {
 		width: 100%;
-		/* height: 180px; */
-		/* object-fit: cover; */
-		object-position: top;
+		/* height: 250px;
+		object-fit: cover;
+		object-position: top center; */
 		padding-bottom: 0.5rem;
 		filter: grayscale(100%);
 	}
