@@ -6,7 +6,7 @@ author: Sabine de Günther
 isPublic: true
 lang: en
 description: "The often fragile historical textiles provide significant information about worn historical garments; they expand the information from pictorial and written sources to include the materiality of the object itself. Using a combination of 3D scanning and photogrammetric data capture, navigable 3D models were created for 15 selected textile ensembles from the Germanisches Nationalmuseum."
-cover: "https://uclab.fh-potsdam.de/refa-catalog/files/asset/5712cdf6fb0051df34f92ff28a7603c7bb2fc2f7.png"
+cover: "https://uclab.fh-potsdam.de/refa-catalog/files/large/ab30c76382676009f19ed73c92bde7daf303b39f.jpg"
 ---
 # The origins of the Germanisches Nationalmuseum (Nuremberg)
 The *Germanisches Museum* in Nuremberg, established in 1852 and named the *Germanisches Nationalmuseum Nuremberg* a year later, was built at a time when new museums and pattern collections with samples and designs for artists, craftsmen and scholars were being established. Historic dress ensembles, costumes and textiles were integrated into the collections as an embodiment of national cultural history. From 1867, the *Kunstgewerbemuseum* (Museum of Decorative Arts) with its associated teaching institute in Berlin followed, as did the *[Bayerisches Nationalmuseum](https://d-nb.info/gnd/2005502-X)* (1869), initiated by Maximilian II. in Munich. In addition, the *Kulturhistorisches Museum für Alltagskultur* as part of the Württembergisches Landesmuseum (1862) and the *Kunsthistorisches Museum* in Vienna (1891) housed collections of samples of dress, fabrics and everyday culture.

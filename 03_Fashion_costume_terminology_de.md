@@ -6,7 +6,7 @@ author: Sabine de Günther
 isPublic: true
 lang: de
 description: "Der Exkurs zur Begriffstrias Kostüm, Mode und Tracht soll auf die Verwendung dieser Bezeichnungen im zeitlichen Kontext der Entstehung der Lipperheideschen Kostümbibliothek und der Textilsammlung des Germanische Nationalmuseums Nürnberg, verweisen. Die Terminologien in der wissenschaftlichen Publizistik um 1900 und in der frühen Kleiderforschung ab der Mitte des 19. Jahrhunderts weichen von der heutigen Verwendung ab. Sie erlebten einen elementaren Bedeutungswandel."
-cover: "https://uclab.fh-potsdam.de/refa-catalog/files/asset/6d5fd5e6604beafe83dfa89131c3f78028407e86.png"
+cover: "https://uclab.fh-potsdam.de/refa-catalog/files/large/0a1096efd3fcd71023f394d81636cb0389eeda45.jpg"
 ---
 
 # Begriffsklärung

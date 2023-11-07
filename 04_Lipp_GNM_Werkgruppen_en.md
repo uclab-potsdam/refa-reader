@@ -6,7 +6,7 @@ author: Sabine de Günther
 isPublic: true
 lang: en
 description: "Observations with an overarching topic"
-cover: "https://uclab.fh-potsdam.de/refa-catalog/files/original/af6d3f80b1b5690cf68dae59dcfb0909bd2e6ea9.jpg"
+cover: "https://uclab.fh-potsdam.de/refa-catalog/files/large/0482e947a7bb05f182159cf6a8f8e46efacc6a02.jpg"
 ---
 
 

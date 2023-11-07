@@ -6,7 +6,7 @@ author: Sabine de Günther
 isPublic: true
 lang: en
 description: "The following excursus on the triad of terms costume, fashion and traditional costume is intended to highlight the use of these terms in the temporal context of the creation of the Lipperheide Costume Library and the Textile Collection of the Germanisches Nationalmuseum Nuremberg. The terminologies used in scientific publications around 1900 and in early dress research from the mid-19th century onwards differed from today's usage and underwent an elementary change in meaning."
-cover: "https://uclab.fh-potsdam.de/refa-catalog/files/asset/6d5fd5e6604beafe83dfa89131c3f78028407e86.png"
+cover: "https://uclab.fh-potsdam.de/refa-catalog/files/large/0a1096efd3fcd71023f394d81636cb0389eeda45.jpg"
 ---
 
 # Definition

@@ -6,7 +6,7 @@ author: Sabine de Günther
 isPublic: true
 lang: en
 description: "Two collections form the basis for Restaging Fashion: the vestimentary source collection of the Berlin collector couple Franz and Frieda von Lipperheide and the textile collection of the Germanisches Nationalmuseum in Nuremberg. The latter influenced Franz and Frieda von Lipperheide to make their collection of paintings, miniatures, relief sculptures, graphic art, hand drawings, book art and secondary literature, which they had assembled in the late 19th century, permanent in the Lipperheide Costume Library and to make it available to the public for research purposes and as a sample collection."
-cover: "https://uclab.fh-potsdam.de/refa-catalog/files/original/af6d3f80b1b5690cf68dae59dcfb0909bd2e6ea9.jpg"
+cover: "https://uclab.fh-potsdam.de/refa-catalog/files/large/883d54050bb3ff96b09c26f20f6ccb4681c0c655.jpg"
 ---
 
 # The Lipperheide Costume Library (today: Collection Modebild - Lipperheide Costume Library)
