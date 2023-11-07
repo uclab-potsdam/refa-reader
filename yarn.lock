@@ -212,6 +212,11 @@
   dependencies:
     import-meta-resolve "^2.2.0"
 
+"@sveltejs/adapter-static@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@sveltejs/adapter-static/-/adapter-static-2.0.3.tgz#616836c30bdce4d673a2e26c0f5ffbd5c1bc7c67"
+  integrity sha512-VUqTfXsxYGugCpMqQv1U0LIdbR3S5nBkMMDmpjGVJyM6Q2jHVMFtdWJCkeHMySc6mZxJ+0eZK3T7IgmUCDrcUQ==
+
 "@sveltejs/kit@^1.25.0":
   version "1.25.2"
   resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.25.2.tgz#ee96320de1573fcb9a7d8c6fae4965beced97a70"

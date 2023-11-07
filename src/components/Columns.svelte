@@ -28,7 +28,6 @@
 <style>
 	.columns {
 		display: flex;
-		height: 100%;
 		align-items: stretch;
 		overflow-x: scroll;
 		scroll-snap-type: x mandatory;
@@ -36,6 +35,8 @@
 
 	.columns a {
 		flex: 0 0 380px;
+		display: flex;
+		align-content: space-around;
 	}
 
 	.column {
@@ -50,7 +51,7 @@
 	}
 
 	.column:hover {
-		/* background-color: #e6e6e6; */
+		background-color: #e6e6e6;
 		color: var(--meta-color);
 	}
 
@@ -78,9 +79,9 @@
 
 	img {
 		width: 100%;
-		/* height: 180px; */
-		/* object-fit: cover; */
-		object-position: top;
+		/* height: 250px;
+		object-fit: cover;
+		object-position: top center; */
 		padding-bottom: 0.5rem;
 		filter: grayscale(100%);
 	}
