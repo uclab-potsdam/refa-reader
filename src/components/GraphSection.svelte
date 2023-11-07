@@ -117,27 +117,25 @@
 	<div>
 		{#if data && typeof data === 'object' && Object.keys(data).length > 0}
 			{#each data as datum}
-				{#if datum.source && datum.target}
-					{#if newData.some((existingNode) => existingNode?.title === datum.title)}
-						<!-- {datum.source.split('/').slice(-1)[0]}
+				{#if newData.some((existingNode) => existingNode?.title === datum.title)}
+					<!-- {datum.source.split('/').slice(-1)[0]}
 						{datum.target.split('/').slice(-1)[0]} -->
-						{#if datum.source != datum.target}
-							<Card
-								{site}
-								{entities}
-								{updatePosition}
-								{datum}
-								{essaysItems}
-								on:click={() => {
-									openNode(datum, index + 1);
-								}}
-								on:keydown={() => {
-									openNode(datum, index + 1);
-								}}
-							/>
+					{#if datum.source != datum.target}
+						<Card
+							{site}
+							{entities}
+							{updatePosition}
+							{datum}
+							{essaysItems}
+							on:click={() => {
+								openNode(datum, index + 1);
+							}}
+							on:keydown={() => {
+								openNode(datum, index + 1);
+							}}
+						/>
 
-							<Paths {datum} {updatePosition} label={datum?.property || ''} />
-						{/if}
+						<Paths {datum} {updatePosition} label={datum?.property || ''} />
 					{/if}
 				{:else if datum.source && datum.target && datum.source != datum.target}
 					<Paths {datum} {updatePosition} label={datum?.property || ''} />
