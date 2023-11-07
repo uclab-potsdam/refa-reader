@@ -2,6 +2,7 @@
 	import Card from '@components/Card.svelte';
 	import Paths from '@components/Paths.svelte';
 	import { graphSteps, selectedNode } from '@stores';
+	import { json } from '@sveltejs/kit';
 	import { createTriplets } from '@utils';
 	export let category;
 	export let data;
@@ -62,6 +63,24 @@
 
 			// add the set to the data
 			data.related = { ...setItems };
+		}
+
+		// fetched items in medias
+		if (data?.['@type'] == 'o:Media' && $graphSteps.length == 1) {
+			const item = data['o:item']['@id'];
+			const responseMedia = await fetch(item);
+			const jsonMedia = await responseMedia.json();
+
+			let mediaItem = {
+				'o:title': jsonMedia['o:title'],
+				'@id': jsonMedia['@id'],
+				thumbnail_display_urls: jsonMedia['thumbnail_display_urls']
+			};
+
+			console.log(mediaItem);
+
+			// // add the media to the data
+			data.related = { ...mediaItem };
 		}
 
 		selectedTriplets = await createTriplets([{ data }]);
