@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { graphScroll } from '@stores';
 	export let data;
 	export let items;
 	export let scrollTopVal;
@@ -9,7 +10,7 @@
 	let footnoteCounter = 1;
 
 	const htmlWithCustomLinks = htmlText.replace(
-		/<a[^>]*href="(.*?)"[^>]*>/g,
+		/<a\s+href="([^"]+)"\s*>([^<]+)<\/a>/g,
 		(match, href, text) => {
 			if (href.startsWith('http')) {
 				return `<a class="external" target="_blank" href="${href}" title="${text}">${text}</a>`;
@@ -88,7 +89,7 @@
 
 		const selectedItem = document.querySelector('.links:first-of-type');
 
-		if (firstInEssay && secondInEssay && selectedItem && percentageDistance && pixelDistance) {
+		if ($graphScroll == false && firstInEssay && secondInEssay && selectedItem && percentageDistance && pixelDistance) {
 			selectedItem?.scrollTo({
 				top: pixelDistance
 			});

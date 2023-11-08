@@ -4,7 +4,7 @@
 	import Graph from '@components/Graph.svelte';
 	import Svg from '@components/Svg.svelte';
 	import { page } from '$app/stores';
-	import { items, selectedNode, hoverNode, scrollX } from '@stores';
+	import { items, selectedNode, hoverNode, scrollX, graphScroll } from '@stores';
 	import { onMount } from 'svelte';
 	import { extractLinks, createTriplets } from '@utils';
 	import { writable } from 'svelte/store';
@@ -110,11 +110,17 @@
 				on:wheel={() => {
 					handlePosition();
 					scrollTopVal = md?.scrollTop;
+					$graphScroll = false;
 				}}
 			>
 				<Markdown data={textData} items={itemsJson} {scrollTopVal} />
 			</section>
-			<section class="graph__container">
+			<section
+				class="graph__container"
+				on:wheel={() => {
+					$graphScroll = true;
+				}}
+			>
 				<Graph
 					items={itemsJson}
 					{essaysItems}
