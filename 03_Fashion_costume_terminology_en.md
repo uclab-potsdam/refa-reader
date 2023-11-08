@@ -1,5 +1,5 @@
 ---
-title: "Begriffswelten: Kostüm, Mode und Tracht"
+title: "Terminology: Dress, fashion and regional dress"
 date: "2024-01-14"
 color: "darkorange"
 author: Sabine de Günther
