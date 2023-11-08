@@ -137,8 +137,6 @@
 			idx--;
 		}
 		
-		console.log(scrollTopVal, secondInGraph, idx)
-
 		if ($graphScroll == true && selectedItem && pixelDiscance && firstInGraph !== secondInGraph && pixelDiscance > 0) {
 			selectedItem?.scrollTo({
 				top: pixelDiscance
@@ -172,9 +170,12 @@
 				id="col_{index}"
 				bind:this={col}
 				on:scroll={() => {
+					let col0 = document.querySelector("#col_0");
+					col0.addEventListener("scroll", (event) => {
+						scrollTopVal = col0?.scrollTop;
+					 });
 					// getPaginatedData(index, col);
 					handlePosition();
-					scrollTopVal = col?.scrollTop;
 				}}
 				on:click={() => {
 					handlePosition();
