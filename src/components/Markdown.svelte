@@ -9,7 +9,7 @@
 	let footnoteCounter = 1;
 
 	const htmlWithCustomLinks = htmlText.replace(
-		/<a\s+href="([^"]+)"\s*>([^<]+)<\/a>/g,
+		/<a[^>]*href="(.*?)"[^>]*>/g,
 		(match, href, text) => {
 			if (href.startsWith('http')) {
 				return `<a class="external" target="_blank" href="${href}" title="${text}">${text}</a>`;
@@ -39,7 +39,7 @@
 		const footnoteNumber = i + 1;
 		const footnoteContent = htmlWithFootnotes.match(
 			new RegExp(`<span id="fn-${footnoteNumber}-content">([^<]+)<\/span>`)
-		)[1];
+		)?.[1];
 		return `<li id="fnref-${footnoteNumber}"> ${footnoteContent}</li>`;
 	}).join('');
 	const finalHtml = `${htmlWithFootnotes}
