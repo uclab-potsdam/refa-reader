@@ -5,9 +5,11 @@ isPublic: true
 lang: en
 color: "tomato"
 author: Sabine de Günther
-description: "Das nachfolgende Kunstwerk lässt mehrere Interpretationen und Perspektiven zu: Auf den ersten Blick zeigt es drei elegante junge Damen und zwei Herren in einer idyllischen Landschaft in einer gemäßigten Zone. Jeder der abgebildeten Figuren ist ein Attribut zugeordnet, z. B. ein Vogel oder ein Spiegel. Diese Zeichen verweisen auf die fünf menschlichen Sinne - Schmecken, Riechen, Sehen, Hören und Tasten - eines der vielfältigsten und reizvollsten Themen der europäischen Malerei. Zugleich ist das Werk auch ein Familienporträt von fünf Geschwistern einer Familie aus dem Nordosten Baden-Württembergs, dem ehemaligen Fürstentum des Hauses Hohenlohe. Darüber hinaus stellt es die Mode aus der Zeit des 30-jährigen Krieges in Deutschland dar."
+description: "The following artwork allows for multiple interpretations and perspectives: At first sight it depicts three fashionable young ladies and two gentlemen in an idyllic landscape in a temperate zone. Each of the people portrayed has an attribute attached to it, such as a bird or a mirror. These signs refer to the five human senses – taste, smell, sight, hearing and touch – one of the most varied and appealing themes in European painting. At the same time the artwork is also a family portrait of five siblings of a family from the northeast of Baden-Württemberg, formerly the principality of the House of Hohenlohe. Furthermore it depicts the fashion of the time of the 30 years war in Germany."
 cover: "https://uclab.fh-potsdam.de/refa-catalog/files/large/3462bf943aaa761056dba91c89a90652c4833aaf.jpg"
 ---
+
+
 ## Portrait of Count Philipp Ernst zu Hohenlohe-Langenburg's five children as an allegory of the five senses
 This small-format [painting](item/159) in landscape format shows three women and two men in a landscape. The figures are standing on a slender grassy hill, with the three women in the foreground on the left and two men on the right. The woman on the left is playing a mandolin. The two other women are standing next to her, facing the first one. One of them holds a mirror in her right hand, the other raises her robe slightly and is being pecked in the finger by a green parrot sitting on her hand. Separated by a narrow path that winds parallel to a river, the two men stand under the tree on the right. While the first, his back turned to the ladies, reaches for a red fruit in the tree with his left hand, the man standing next to him holds a blossom in front of his face with his right.
 
