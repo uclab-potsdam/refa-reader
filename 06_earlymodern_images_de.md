@@ -42,6 +42,5 @@ Burgkmair nimmt, im Gegensatz zu anderen Autoren, schon früh Abstand von den au
 
 
 ## Album Amicorum
-Die auch als Stammbücher bezeichnete Quellengattung der Album Amicorum 
+Die auch als Stammbücher bezeichnete Quellengattung der Album Amicorum .... WIP
 
-This is an [item](item/463), this is a [media](media/1602) and this is an [item set](set/31735).
