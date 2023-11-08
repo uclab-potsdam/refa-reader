@@ -1,5 +1,5 @@
 ---
-title: Werkbetrachtungen
+title: Sammlungs- und Werkspezifika
 date: "2023-12-14"
 color: "blue"
 author: Sabine de Günther
