@@ -1,5 +1,5 @@
 ---
-title: Portraits, caricatures, clothing & traditional costumes
+title: Focus on collection items
 date: "2023-12-14"
 color: "blue"
 author: Sabine de Günther
