@@ -3,7 +3,7 @@ title: Kleidung, Sitten und Gebräuchen in der frühen Neuzeit
 date: "2023-12-14"
 color: "forestgreen"
 author: Sabine de Günther
-isPublic: true
+isPublic: false
 lang: de
 description: "Frühneuzeitliche ethnographische Aufstellungen von Landessitten und Gebräuchen wurden über die Darstellung der Kleidung einzelner Länder, ihrer Bewohner und der verschiedenen Stände abgebildet. Das frühneuzeitliche Interesse an Exotica - also an Gegenständen, Menschen, Tieren, Pflanzen, Traditionen usw. aus unbekannten Regionen - ist in diesem Kontext von besonderem Interesse. Die Öffnung der Neuen Welt, sowohl Amerikas als auch Asiens, für den internationalen Handel ermöglichte es Sammlern, exotische Objekte für ihre Museen zu sammeln. Naturhistoriker und Mediziner mussten den Status quo der nachmittelalterlichen Biologie und Wissenschaft neu überdenken. Die Erfindung des Buchdrucks sorgte ab 1500 für eine schnelle Verbreitung dieses neuen Wissens in der gesamten westlichen Welt.
 Derartige Darstellungen finden sich beispielsweise in dem Genre des Kostümbuchs oder Reisebeichts, aber auch in sogenannten Stammbüchern, auch Album Amicorum genannt."
@@ -13,13 +13,12 @@ cover: "https://uclab.fh-potsdam.de/refa-catalog/files/original/af6d3f80b1b5690c
 # Frühneuzeitliche Darstellungen von Kleidung, Sitten und Gebräuchen
 Frühneuzeitliche Kostümbücher sind eine reiche Quelle für das Studium von Kleidung, Geschlecht, sozialem Status und Identität. Ebenso wie illustrierte Reisezeitschriften, alba amicorum, oder mit Illustrationen angereicherte Karten geben sie Auskunft über das Aussehen von Landsleuten, Fremden und ihre Kulturen und ist gleichzeitig als eine Argumentation und politischer Diskurs um die Vormachtstellung der kulturell, sozial, gesellschaftlich und politisch entwickelten Länder, aus denen meist der Autor stammt, gegenüber dem „Anderen“.
 
-NOTE: Notes
+NOTE / WORK IN PROGRESS
 -	Image careers and the afterlife of early modern images
 -	Demand for detailed representations of local and international costume.
 -	Schneiderbücher: Il libro del Sarto
 Abconterfaittung allerlei Ordenspersonen (Nuremberg 1570?): Lipp: Aa 3
 Trachtenbuch (Deutsch 1560-1594): Aa 4 kl (OSZ 1)
-
 
 ## Kostümbücher
 Besonders das Zusammenspiel von Text- und visuellen Botschaften macht das Kostümbuch zu einer wertvollen Quelle. Illustrationen in Kostümbüchern können von Hand geschrieben und gezeichnet oder gedruckt werden, sie können aus dem Leben skizziert worden sein oder sich auf Textbeschreibungen stützen. Die Schilderungen einer Reiseroute, die in einem fremden Land angetroffenen Personen und die Textbeschreibung sind ein Beweis für die Ideen, die über "das Andere" gebildet wurden.  Diese  Bücher zeugen von dem Wunsch, die Welt zu verstehen und zu klassifizieren. Amerigo Vespucci's Berichte von seinen Expeditionen in die Küstenregionen Mittel- und Südamerikas zwischen 1497 und 1504 wurden beispielsweise in Europa weithin bekannt. Selbst wenn keine Reisen im Spiel waren, konnten  Begegnungen mit Fremden in anderen Kontexten oder unter anderen Umständen stattfinden und führten oft zu offiziellen und weit verbreiteten Darstellungen des "Anderen" und des „Fremden“.
