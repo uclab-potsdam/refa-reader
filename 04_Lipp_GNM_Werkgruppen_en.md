@@ -3,13 +3,13 @@ title: Focus on collection items
 date: "2023-12-14"
 color: "blue"
 author: Sabine de Günther
-isPublic: true
+isPublic: false
 lang: en
 description: "Observations with an overarching topic"
 cover: "https://uclab.fh-potsdam.de/refa-catalog/files/large/0482e947a7bb05f182159cf6a8f8e46efacc6a02.jpg"
 ---
 
-
+xxxstill needs to be translatedxxx
 
 # Allegory of the Five Senses
 Like other cycles - for example the Four Continents or the Deadly Sins - the Five Senses became a popular allegorical subject in the 16th century, spreading mainly through Dutch prints. The five senses gustus, odoratus, visus, auditus and tactus are accompanied by animal symbols or attributes. The sense *Visus* is accompanied by the animals eagle, lynx, cat or owl or the attributes telescope, magnifying glass, spectacles or [mirror](item/10538). The sense of hearing (Auditus) is accompanied by a boar, a mole or deer or a musical instrument, usually the lute. The sense of smell (Oderatus) has as companion either a vulture or dog or as an attribute a [flower](item/10300), usually the [carnation](item/45235). Taste (Gustus), as in this example *[The Taste](item/538)*, is accompanied by a [monkey](item/10475) or represented with fruits, a fruit basket or with [wine glass](item/10431). As fifth sense is considered to be the sense of touch (tactus), which is accompanied either by a spider, a turtle, a scorpion or a [bird](item/10587) with a symbolic content, such as a [ornamental bird](item/583) pecking into the hand, or by a harp.
