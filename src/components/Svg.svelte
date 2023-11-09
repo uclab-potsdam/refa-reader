@@ -78,6 +78,7 @@
 	text {
 		font-size: clamp(8px, 0.8vw, 10px);
 		fill: #969696;
+		fill: var(--theme-color);
 		text-rendering: optimizeSpeed;
 		font-weight: 300;
 	}
