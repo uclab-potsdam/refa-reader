@@ -107,7 +107,7 @@
 			<section
 				class="markdown__container"
 				bind:this={md}
-				on:wheel={() => {
+				on:scroll={() => {
 					handlePosition();
 					scrollTopVal = md?.scrollTop;
 					$graphScroll = false;
