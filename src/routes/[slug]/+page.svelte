@@ -117,6 +117,9 @@
 			</section>
 			<section
 				class="graph__container"
+				on:wheel={() => {
+					$graphScroll = true;
+				}}
 				on:scroll={() => {
 					$graphScroll = true;
 				}}
