@@ -4,7 +4,7 @@
 	import Graph from '@components/Graph.svelte';
 	import Svg from '@components/Svg.svelte';
 	import { page } from '$app/stores';
-	import { items, selectedNode, hoverNode, scrollX, graphScroll } from '@stores';
+	import { items, hoverNode, scrollX, graphScroll } from '@stores';
 	import { onMount } from 'svelte';
 	import { extractLinks, createTriplets } from '@utils';
 	import { writable } from 'svelte/store';
