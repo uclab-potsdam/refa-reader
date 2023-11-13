@@ -1,6 +1,6 @@
 <script>
 	import { onMount, afterUpdate } from 'svelte';
-	import { selectedNode, graphSteps,graphScroll } from '@stores';
+	import { graphSteps, graphScroll } from '@stores';
 	import { writable } from 'svelte/store';
 	import GraphSection from '@components/GraphSection.svelte';
 
@@ -123,8 +123,12 @@
 		let firstInGraphId = items?.[idx]?.getAttribute('data-id');
 		let secondInGraph = items?.[idx + 1]?.offsetTop;
 		let secondInGraphId = items?.[idx + 1]?.getAttribute('data-id');
-		let firstInEssay = document.querySelector(`.node-highlite[data-id="${firstInGraphId}"]`)?.offsetTop;
-		let secondInEssay = document.querySelector(`.node-highlite[data-id="${secondInGraphId}"]`)?.offsetTop;
+		let firstInEssay = document.querySelector(
+			`.node-highlite[data-id="${firstInGraphId}"]`
+		)?.offsetTop;
+		let secondInEssay = document.querySelector(
+			`.node-highlite[data-id="${secondInGraphId}"]`
+		)?.offsetTop;
 		let percentageDistance = getPercentageDistance(scrollTopVal, firstInGraph, secondInGraph);
 		let pixelDiscance = getPixelDistance(percentageDistance, firstInEssay, secondInEssay);
 		const selectedItem = document.querySelector('.markdown__container');
@@ -136,8 +140,14 @@
 		if (scrollTopVal < firstInGraph && idx != 0) {
 			idx--;
 		}
-		
-		if ($graphScroll == true && selectedItem && pixelDiscance && firstInGraph !== secondInGraph && pixelDiscance > 0) {
+
+		if (
+			$graphScroll == true &&
+			selectedItem &&
+			pixelDiscance &&
+			firstInGraph !== secondInGraph &&
+			pixelDiscance > 0
+		) {
 			selectedItem?.scrollTo({
 				top: pixelDiscance
 			});
@@ -170,10 +180,10 @@
 				id="col_{index}"
 				bind:this={col}
 				on:scroll={() => {
-					let col0 = document.querySelector("#col_0");
-					col0.addEventListener("scroll", (event) => {
+					let col0 = document.querySelector('#col_0');
+					col0.addEventListener('scroll', (event) => {
 						scrollTopVal = col0?.scrollTop;
-					 });
+					});
 					// getPaginatedData(index, col);
 					handlePosition();
 				}}

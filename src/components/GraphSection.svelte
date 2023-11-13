@@ -1,7 +1,8 @@
 <script>
+	import * as config from '../setup.json';
 	import Card from '@components/Card.svelte';
 	import Paths from '@components/Paths.svelte';
-	import { graphSteps, selectedNode } from '@stores';
+	import { graphSteps } from '@stores';
 	import { json } from '@sveltejs/kit';
 	import { createTriplets } from '@utils';
 	export let category;
@@ -77,9 +78,7 @@
 				thumbnail_display_urls: jsonMedia['thumbnail_display_urls']
 			};
 
-			console.log(mediaItem);
-
-			// // add the media to the data
+			// add the media to the data
 			data.related = { ...mediaItem };
 		}
 
@@ -152,6 +151,7 @@
 							on:keydown={() => {
 								openNode(datum, index + 1);
 							}}
+							{openNode}
 						/>
 
 						<Paths {datum} {updatePosition} label={datum?.property || ''} />

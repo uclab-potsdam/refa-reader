@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 export const visibleLinks = writable([]);
-export const selectedNode = writable("");
+export const selectedMarkdownItem = writable("");
 export const hoverNode = writable("");
 export const graphScroll = writable(false);
 export const items = writable([])

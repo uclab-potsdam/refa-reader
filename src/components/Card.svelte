@@ -1,13 +1,24 @@
 <script>
-	import { graphSteps, hoverNode } from '@stores';
-	import { onDestroy } from 'svelte';
+	import { graphSteps, hoverNode, selectedMarkdownItem } from '@stores';
+	import { onDestroy, afterUpdate } from 'svelte';
 	export let datum;
 	export let entities;
 	export let updatePosition;
 	export let essaysItems;
 	export let site;
-
+	export let openNode;
 	let imageSrc;
+
+	let previousNode = null;
+
+	afterUpdate(() => {
+		const currentNode = datum.source;
+		if (currentNode == `item_${$selectedMarkdownItem}` && currentNode != previousNode) {
+			console.log("here", currentNode, $selectedMarkdownItem);
+			openNode(datum, 1);
+		}
+		previousNode = `item_${$selectedMarkdownItem}`;
+	});
 
 	onDestroy(() => {
 		$updatePosition = true;
@@ -87,7 +98,7 @@
 
 <style>
 	.node {
-		background-color: #f6f6f6 !important;
+		background-color: #f6f6f6;
 		padding: 5px 10px;
 		margin-bottom: 15px;
 		box-shadow: 0px 0px 4px 0px #f6f6f6;
