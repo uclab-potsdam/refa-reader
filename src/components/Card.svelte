@@ -14,7 +14,7 @@
 	afterUpdate(() => {
 		const currentNode = datum.source;
 		if (currentNode == `item_${$selectedMarkdownItem}` && currentNode != previousNode) {
-			console.log("here", currentNode, $selectedMarkdownItem);
+			console.log('here', currentNode, $selectedMarkdownItem);
 			openNode(datum, 1);
 		}
 		previousNode = `item_${$selectedMarkdownItem}`;
@@ -45,6 +45,25 @@
 
 	let essaysItemsLinks = essaysItems.find((d) => d.id == target);
 	$: selected = $graphSteps.some((d) => d?.id == datum.target);
+
+	let card;
+	function handleMouseEnter(target) {
+		const dataId = target;
+		const nodeElement = document.querySelector(`.node-highlite[data-id="${dataId}"]`);
+		if (nodeElement) {
+			nodeElement.classList.add('hover');
+		}
+		card.classList.add('hover');
+	}
+
+	function handleMouseLeave(target) {
+		const dataId = target;
+		const nodeElement = document.querySelector(`.node-highlite[data-id="${dataId}"]`);
+		if (nodeElement) {
+			nodeElement.classList.remove('hover');
+		}
+		card.classList.remove('hover');
+	}
 </script>
 
 <div
@@ -55,9 +74,12 @@
 	{source}
 	{target}
 	data-id={target}
+	bind:this={card}
 	on:mouseover={() => {
 		$hoverNode = target;
+		handleMouseEnter(target);
 	}}
+	on:mouseleave={handleMouseLeave(target)}
 	on:click
 	on:keydown
 	on:focus
