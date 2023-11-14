@@ -206,6 +206,8 @@ export function parseJSONLD(jsonLD, set) {
      * Recursively parse the JSON-LD data and extract triplets.
      * @param {Object} obj - The current object to parse.
      */
+    const regex = /\b[a-zA-Z]+\d+[a-zA-Z]*\s/;
+
     let parseRecursive = async function (obj) {
         for (let key in obj) {
             // Check if the key is "@id" and the value starts with the API base URL and has a title
@@ -221,7 +223,6 @@ export function parseJSONLD(jsonLD, set) {
                 const exists = triplets.some(triplet => triplet.source === source && triplet.target === target);
 
                 // a regex to remove alphanumeric characters from ontologies as cidoc crm / wikidata
-                const regex = /\b[a-zA-Z]+\d+[a-zA-Z]*\s/;
                 let property = obj["property_label"]?.replace("_", " ")?.replace(regex, '') || parentKey?.replace(regex, '')
 
                 const category = config.mainCategories
@@ -243,8 +244,28 @@ export function parseJSONLD(jsonLD, set) {
                 }
             }
 
+            // manage exteral uris
+            else if (key === "@id" && !obj[key].startsWith(config.api) && (obj["o:label"]) ) {
+                let property = obj["property_label"]?.replace("_", " ")?.replace(regex, '') || parentKey?.replace(regex, '')
+                
+                // let domainRegex = /(?:[\w-]+\.)+[\w-]+/;
+                // let match = obj[key].match(domainRegex);
+                // let domain = match?.[0] || obj[key] ;
+
+                triplets.push({
+                    source: source,
+                    target: obj[key],
+                    title:  obj["o:label"],
+                    property,
+                    category: "pippo",
+                    external: true,
+                    reverse
+                });
+            }
+
             // Recursively parse child objects
             else if (typeof obj[key] === "object") {
+                
                 if (isNaN(key)) {
                     const parts = key?.split(":");
                     const label = parts[1]?.split("_")?.join(" ");

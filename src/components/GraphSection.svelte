@@ -73,7 +73,7 @@
 			const jsonMedia = await responseMedia.json();
 
 			let mediaItem = {
-				'o:title': jsonMedia['o:title'],
+				'o:title': "jsonMedia['o:title']",
 				'@id': jsonMedia['@id'],
 				thumbnail_display_urls: jsonMedia['thumbnail_display_urls']
 			};
@@ -139,21 +139,26 @@
 					<!-- {datum.source.split('/').slice(-1)[0]}
 						{datum.target.split('/').slice(-1)[0]} -->
 					{#if datum.source != datum.target}
-						<Card
-							{site}
-							{entities}
-							{updatePosition}
-							{datum}
-							{essaysItems}
-							on:click={() => {
-								openNode(datum, index + 1);
-							}}
-							on:keydown={() => {
-								openNode(datum, index + 1);
-							}}
-							{openNode}
-						/>
-
+						{#if !datum?.external}
+							<Card
+								{site}
+								{entities}
+								{updatePosition}
+								{datum}
+								{essaysItems}
+								on:click={() => {
+									openNode(datum, index + 1);
+								}}
+								on:keydown={() => {
+									openNode(datum, index + 1);
+								}}
+								{openNode}
+							/>
+						{:else}
+							<a href={datum.target} target="_blank" rel="noreferrer">
+								<Card {site} {entities} {updatePosition} {datum} {essaysItems} {openNode} />
+							</a>
+						{/if}
 						<Paths {datum} {updatePosition} label={datum?.property || ''} />
 					{/if}
 				{:else if datum.source && datum.target && datum.source != datum.target}
