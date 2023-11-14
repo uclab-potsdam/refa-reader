@@ -121,7 +121,7 @@
 					$graphScroll = true;
 				}}
 				on:scroll={() => {
-					$graphScroll = true;
+					// $graphScroll = true;
 				}}
 			>
 				<Graph
