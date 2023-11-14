@@ -11,9 +11,9 @@
 	export let essaysItems;
 	export let config;
 	export let items;
+	export let screenSize;
 
 	let scrollTopVal;
-	let screenSize;
 	const entities = writable([]);
 
 	let batchSize = config.batch; // cant be more than the pagination in omeka s
@@ -118,39 +118,35 @@
 	$: handleScroll(scrollTopVal);
 
 	function handleScroll(scrollTopVal) {
-		const items = document.querySelectorAll('.links:first-of-type .node');
-		let firstInGraph = items?.[idx]?.offsetTop;
-		let firstInGraphId = items?.[idx]?.getAttribute('data-id');
-		let secondInGraph = items?.[idx + 1]?.offsetTop;
-		let secondInGraphId = items?.[idx + 1]?.getAttribute('data-id');
-		let firstInEssay = document.querySelector(
-			`.node-highlite[data-id="${firstInGraphId}"]`
-		)?.offsetTop;
-		let secondInEssay = document.querySelector(
-			`.node-highlite[data-id="${secondInGraphId}"]`
-		)?.offsetTop;
-		let percentageDistance = getPercentageDistance(scrollTopVal, firstInGraph, secondInGraph);
-		let pixelDiscance = getPixelDistance(percentageDistance, firstInEssay, secondInEssay);
-		const selectedItem = document.querySelector('.markdown__container');
+		if ($graphScroll) {
+			const items = document.querySelectorAll('.links:first-of-type .node');
+			let firstInGraph = items?.[idx]?.offsetTop;
+			let firstInGraphId = items?.[idx]?.getAttribute('data-id');
+			let secondInGraph = items?.[idx + 1]?.offsetTop;
+			let secondInGraphId = items?.[idx + 1]?.getAttribute('data-id');
+			let firstInEssay = document.querySelector(
+				`.node-highlite[data-id="${firstInGraphId}"]`
+			)?.offsetTop;
+			let secondInEssay = document.querySelector(
+				`.node-highlite[data-id="${secondInGraphId}"]`
+			)?.offsetTop;
+			let percentageDistance = getPercentageDistance(scrollTopVal, firstInGraph, secondInGraph);
+			let pixelDiscance = getPixelDistance(percentageDistance, firstInEssay, secondInEssay);
+			const selectedItem = document.querySelector('.markdown__container');
 
-		if (scrollTopVal > secondInGraph) {
-			idx++;
-		}
+			if (scrollTopVal > secondInGraph) {
+				idx++;
+			}
 
-		if (scrollTopVal < firstInGraph && idx != 0) {
-			idx--;
-		}
+			if (scrollTopVal < firstInGraph && idx != 0) {
+				idx--;
+			}
 
-		if (
-			$graphScroll == true &&
-			selectedItem &&
-			pixelDiscance &&
-			firstInGraph !== secondInGraph &&
-			pixelDiscance > 0
-		) {
-			selectedItem?.scrollTo({
-				top: pixelDiscance
-			});
+			if (selectedItem && pixelDiscance && firstInGraph !== secondInGraph && pixelDiscance > 0) {
+				selectedItem?.scrollTo({
+					top: pixelDiscance
+				});
+			}
 		}
 	}
 	function getPercentageDistance(scrollTop, firstPoint, secondPoint) {
@@ -165,8 +161,6 @@
 		return firstPoint + (distanceFromFirst * percentage) / 100;
 	}
 </script>
-
-<svelte:window bind:innerWidth={screenSize} />
 
 <div class="graph" bind:this={graph}>
 	{#if $entities.length == 0}
