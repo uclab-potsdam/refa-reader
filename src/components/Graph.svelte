@@ -225,6 +225,7 @@
 							{@const dataLen = step.data.filter(
 								(d) => !config.mainCategories.some((cat) => cat.props.includes(d.property))
 							).length}
+
 							{#if filteredSecondaryData.length > 0}
 								<GraphSection
 									site={config.publicSite}
