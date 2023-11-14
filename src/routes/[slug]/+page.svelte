@@ -174,19 +174,23 @@
 		flex: 3;
 	}
 
-	@media only screen and (max-width: 600px) {
+	@media only screen and (max-width: 800px) {
 		.markdown__container {
-			flex: 3;
 			padding: 0.5rem;
-			flex-basis: 70vw;
-			min-width: 70vw;
+			min-width: 50vw;
 			overflow-x: hidden;
 			overflow-y: scroll;
 			margin-left: 0;
 		}
+	}
 
-		.graph__container {
-			flex: 1;
+	@media only screen and (max-width: 600px) {
+		.markdown__container {
+			min-width: 80vw;
+			padding: 0.5rem;
+			overflow-x: hidden;
+			overflow-y: scroll;
+			margin-left: 0;
 		}
 	}
 </style>
