@@ -1,6 +1,6 @@
 ---
 title: Kleidung, Sitten und Gebräuchen in der frühen Neuzeit
-date: "2023-12-14"
+date: "2023-9-11"
 color: "forestgreen"
 author: Sabine de Günther
 isPublic: false
