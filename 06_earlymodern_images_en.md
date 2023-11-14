@@ -1,6 +1,6 @@
 ---
 title: Early modern ethnographic approaches 
-date: "2023-12-14"
+date: "2023-9-11"
 color: "blue"
 author: Sabine de Günther
 isPublic: false
