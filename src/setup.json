@@ -1,0 +1,34 @@
+{
+    "title": "ReFa Reader",
+    "api": "https://uclab.fh-potsdam.de/refa-catalog/api",
+    "publicSite": "https://uclab.fh-potsdam.de/refa-catalog/s/c/",
+    "languages": [
+        "en",
+        "de"
+    ],
+    "description": {
+        "en": "An interactive visualisation that provides access to a selection of objects from the 'Lipperheidesche Kostümbibliothek'. Essays are juxtaposed with a graph navigation that allows the user to browse the paintings, prints, drawings and clothes in the collection. Instead of showing the collection in its entirety, it is accessible through a curated selection of essays designed to provide a better understanding of it, combining editorial approaches with free exploration and user-driven granularity.",
+        "de": "Eine interaktive Visualisierung,die Zugang zu einer Auswahl von Objekten aus der Lipperheideschen Kostümbibliothek bietet. Die einführenden Texte verlinken über Graphen zu den Sammlungsobjekten. Die Essays werden einer Grafik gegenübergestellt, die es dem Benutzer ermöglicht, die Gemälde, Drucke, Zeichnungen und Kleider der Sammlung zu durchsuchen. Anstatt die Sammlung in ihrer Gesamtheit zu zeigen, wird sie einführend durch eine kuratierte Objektauswahl zugänglich gemacht, die ein besseres Verständnis der Sammlung ermöglichen und redaktionelle Ansätze mit freier Erkundung und benutzergesteuerter Granularität kombinieren."
+    },
+    "batch": 30,
+    "mainCategories": [
+        {
+            "key": "Related Artworks",
+            "props": [
+                "is refered to it",
+                "shows features of",
+                "is shown by",
+                "is type of",
+                "created",
+                "features are also found on"
+            ]
+        },
+        {
+            "key": "Documentation",
+            "props": [
+                "is documented in",
+                "incorporates"
+            ]
+        }
+    ]
+}
