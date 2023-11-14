@@ -28,7 +28,7 @@
 		color: blue;
 	}
 
-	@media only screen and (max-width: 600px) {
+	@media only screen and (max-width: 800px) {
 		h3 {
 			width: 100%;
 			padding-top: 20px;

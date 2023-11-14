@@ -254,7 +254,7 @@
 		{/each}
 	{/if}
 </div>
-{#if $graphSteps.length > 2}
+{#if $graphSteps.length > 1}
 	<div
 		class="close"
 		on:click={() => {
@@ -344,7 +344,7 @@
 		padding-right: 20px;
 	}
 
-	@media only screen and (max-width: 600px) {
+	@media only screen and (max-width: 800px) {
 		.links:not(:first-of-type) {
 			margin-left: 30vw;
 		}
