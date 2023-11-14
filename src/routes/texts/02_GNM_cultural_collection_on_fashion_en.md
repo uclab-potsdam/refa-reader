@@ -1,6 +1,6 @@
 ---
 title: Textile material culture
-date: "2024-01-14"
+date: "2023-9-11"
 color: "blue"
 author: Sabine de Günther
 isPublic: true

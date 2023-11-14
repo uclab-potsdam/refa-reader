@@ -1,6 +1,6 @@
 ---
 title: Das Familienbildnis der Hohenlohe
-date: "2023-12-14"
+date: "2023-9-11"
 isPublic: true
 lang: de
 color: "tomato"

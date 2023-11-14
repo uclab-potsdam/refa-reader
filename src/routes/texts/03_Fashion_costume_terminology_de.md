@@ -1,6 +1,6 @@
 ---
 title: "Begriffswelten: Kostüm, Mode und Tracht"
-date: "2024-01-14"
+date: "2023-9-11"
 color: "darkorange"
 author: Sabine de Günther
 isPublic: true
