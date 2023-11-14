@@ -3,7 +3,7 @@ title: Portrait of the Five Children of Count Philipp Ernst zu Hohenlohe-Langenb
 date: "2023-9-11"
 isPublic: true
 lang: en
-color: "tomato"
+color: "red"
 author: Sabine de Günther
 description: "The following artwork allows for multiple interpretations and perspectives: At first sight it depicts three fashionable young ladies and two gentlemen in an idyllic landscape in a temperate zone. Each of the people portrayed has an attribute attached to it, such as a bird or a mirror. These signs refer to the five human senses – taste, smell, sight, hearing and touch – one of the most varied and appealing themes in European painting. At the same time the artwork is also a family portrait of five siblings of a family from the northeast of Baden-Württemberg, formerly the principality of the House of Hohenlohe. Furthermore it depicts the fashion of the time of the 30 years war in Germany."
 cover: "https://uclab.fh-potsdam.de/refa-catalog/files/large/3462bf943aaa761056dba91c89a90652c4833aaf.jpg"
