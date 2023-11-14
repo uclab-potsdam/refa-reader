@@ -100,7 +100,6 @@
 		$selectedMarkdownItem = dataId;
 	}
 
-
 	function adjustOffsetTops(items) {
 		let lastOffset = null;
 		markdownItems = Array.from(items).map((item) => {
@@ -118,36 +117,31 @@
 	$: handleScroll(markdownItems, scrollTopVal);
 
 	function handleScroll(items, scrollTopVal) {
-		let firstInEssay = items?.[idx]?.adjustedOffsetTop;
-		let secondInEssay = items?.[idx + 1]?.adjustedOffsetTop;
-		let firstInEssayId = items?.[idx]?.getAttribute('data-id');
-		let secondInEssayId = items?.[idx + 1]?.getAttribute('data-id');
-		let firstInGraph = document.querySelector(`.node[data-id="${firstInEssayId}"]`)?.offsetTop;
-		let secondInGraph = document.querySelector(`.node[data-id="${secondInEssayId}"]`)?.offsetTop;
-		let percentageDistance = getPercentageDistance(scrollTopVal, firstInEssay, secondInEssay);
-		let pixelDistance = getPixelDistance(percentageDistance, firstInGraph, secondInGraph);
+		if (!$graphScroll) {
+			let firstInEssay = items?.[idx]?.adjustedOffsetTop;
+			let secondInEssay = items?.[idx + 1]?.adjustedOffsetTop;
+			let firstInEssayId = items?.[idx]?.getAttribute('data-id');
+			let secondInEssayId = items?.[idx + 1]?.getAttribute('data-id');
+			let firstInGraph = document.querySelector(`.node[data-id="${firstInEssayId}"]`)?.offsetTop;
+			let secondInGraph = document.querySelector(`.node[data-id="${secondInEssayId}"]`)?.offsetTop;
+			let percentageDistance = getPercentageDistance(scrollTopVal, firstInEssay, secondInEssay);
+			let pixelDistance = getPixelDistance(percentageDistance, firstInGraph, secondInGraph);
 
-		if (scrollTopVal > secondInEssay) {
-			idx++;
-		}
+			if (scrollTopVal > secondInEssay) {
+				idx++;
+			}
 
-		if (scrollTopVal < firstInEssay && idx != 0) {
-			idx--;
-		}
+			if (scrollTopVal < firstInEssay && idx != 0) {
+				idx--;
+			}
 
-		const selectedItem = document.querySelector('.links:first-of-type');
+			const selectedItem = document.querySelector('.links:first-of-type');
 
-		if (
-			$graphScroll == false &&
-			firstInEssay &&
-			secondInEssay &&
-			selectedItem &&
-			percentageDistance &&
-			pixelDistance
-		) {
-			selectedItem?.scrollTo({
-				top: pixelDistance
-			});
+			if (firstInEssay && secondInEssay && selectedItem && percentageDistance && pixelDistance) {
+				selectedItem?.scrollTo({
+					top: pixelDistance
+				});
+			}
 		}
 	}
 

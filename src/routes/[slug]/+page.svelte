@@ -9,6 +9,7 @@
 	import { extractLinks, createTriplets } from '@utils';
 	import { writable } from 'svelte/store';
 	export let data;
+	let screenSize;
 
 	let md;
 	let textData = [];
@@ -73,7 +74,7 @@
 	});
 </script>
 
-<svelte:window on:resize={handlePosition} on:click={handlePosition} />
+<svelte:window bind:innerWidth={screenSize} on:resize={handlePosition} on:click={handlePosition} />
 <div>
 	{#if textData == undefined && triplets == undefined}
 		<article>
@@ -107,10 +108,17 @@
 			<section
 				class="markdown__container"
 				bind:this={md}
-				on:scroll={() => {
+				on:wheel={() => {
 					handlePosition();
-					scrollTopVal = md?.scrollTop;
 					$graphScroll = false;
+					scrollTopVal = md?.scrollTop;
+				}}
+				on:scroll={() => {
+					if (screenSize < 1000) {
+						handlePosition();
+						scrollTopVal = md?.scrollTop;
+						$graphScroll = false;
+					}
 				}}
 			>
 				<Markdown data={textData} items={itemsJson} {scrollTopVal} />
@@ -118,16 +126,16 @@
 			<section
 				class="graph__container"
 				on:wheel={() => {
-					$graphScroll = true;
-				}}
-				on:scroll={() => {
-					// $graphScroll = true;
+					if (screenSize > 1000) {
+						$graphScroll = true;
+					}
 				}}
 			>
 				<Graph
 					items={itemsJson}
-					{essaysItems}
 					data={$items}
+					{screenSize}
+					{essaysItems}
 					{visibleItemsID}
 					{handlePosition}
 					{updatePosition}
