@@ -84,6 +84,7 @@
 	on:keydown
 	on:focus
 >
+
 	{#if datum.img}
 		<img src={datum.img.replace('square', 'large')} alt={datum.title} on:load={handleLoad} />
 		<div class="title">{datum.title}</div>

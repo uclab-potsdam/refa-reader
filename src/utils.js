@@ -212,11 +212,9 @@ export function parseJSONLD(jsonLD, set) {
         for (let key in obj) {
             // Check if the key is "@id" and the value starts with the API base URL and has a title
             if (key === "@id" && obj[key].startsWith(config.api) && (obj["o:title"] || obj.display_title || reverse == true)) {
+                let id = obj[key].split("/").pop();
+                let target = `${config.api}/resources/${id}`;
                 // Extract the target URL, title, and image
-                let splitId  = obj[key].split("/");
-                
-                let id = splitId[splitId.length - 1];
-                const target = `${config.api}/resources/${id}`;
                 const title = obj["o:title"] || obj.display_title;
                 const img = obj?.thumbnail_url || obj?.thumbnail_display_urls?.large;
                 // Check if the source and target already exist in triplets array
@@ -247,11 +245,6 @@ export function parseJSONLD(jsonLD, set) {
             // manage exteral uris
             else if (key === "@id" && !obj[key].startsWith(config.api) && (obj["o:label"]) ) {
                 let property = obj["property_label"]?.replace("_", " ")?.replace(regex, '') || parentKey?.replace(regex, '')
-                
-                // let domainRegex = /(?:[\w-]+\.)+[\w-]+/;
-                // let match = obj[key].match(domainRegex);
-                // let domain = match?.[0] || obj[key] ;
-
                 triplets.push({
                     source: source,
                     target: obj[key],
@@ -263,9 +256,41 @@ export function parseJSONLD(jsonLD, set) {
                 });
             }
 
+            // link to media 
+            else if (key === "@id" && parentKey== "media"  && source.split("/").pop() != obj?.["o:primary_media"]?.["@id"].split("/").pop()) {
+                let property = obj["property_label"]?.replace("_", " ")?.replace(regex, '') || parentKey?.replace(regex, '')
+
+                let id = obj[key].split("/").pop();
+                let target = `${config.api}/resources/${id}`;
+                // let property = obj["property_label"]?.replace("_", " ")?.replace(regex, '') || parentKey?.replace(regex, '')
+                triplets.push({
+                    source: source,
+                    target: target,
+                    title:  obj?.["o:label"] || " ",
+                    property: property,
+                    category: "",
+                    reverse
+                });
+
+            }
+            // link from media to item
+            else if (key === "@id" && parentKey== "item" ) {
+                let property = obj["property_label"]?.replace("_", " ")?.replace(regex, '') || parentKey?.replace(regex, '')
+
+                let id = obj[key].split("/").pop();
+                let target = `${config.api}/resources/${id}`;                   
+                triplets.push({
+                    source: source,
+                    target: target,
+                    title:  obj?.["o:label"] || " ",
+                    property: property,
+                    category: "",
+                    reverse
+                });
+            }
+
             // Recursively parse child objects
             else if (typeof obj[key] === "object") {
-                
                 if (isNaN(key)) {
                     const parts = key?.split(":");
                     const label = parts[1]?.split("_")?.join(" ");

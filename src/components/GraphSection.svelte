@@ -66,22 +66,6 @@
 			data.related = { ...setItems };
 		}
 
-		// fetched items in medias
-		if (data?.['@type'] == 'o:Media' && $graphSteps.length == 1) {
-			const item = data['o:item']['@id'];
-			const responseMedia = await fetch(item);
-			const jsonMedia = await responseMedia.json();
-
-			let mediaItem = {
-				'o:title': jsonMedia['o:title'],
-				'@id': jsonMedia['@id'],
-				thumbnail_display_urls: jsonMedia['thumbnail_display_urls']
-			};
-
-			// add the media to the data
-			data.related = { ...mediaItem };
-		}
-
 		selectedTriplets = await createTriplets([{ data }]);
 
 		let selectedTripletsData = selectedTriplets.links.filter((d) => {
@@ -113,9 +97,11 @@
 	}
 
 	function updateNodes(nodes, selectedNodes) {
-		return selectedNodes.filter(
-			(selectedNode) => !nodes.some((node) => node.title === selectedNode.title)
-		);
+		return selectedNodes.filter((selectedNode) => {
+			return !nodes.some((node) => {
+				return node.target === selectedNode.target || node.id === selectedNode.target;
+			});
+		});
 	}
 </script>
 
