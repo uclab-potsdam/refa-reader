@@ -29,6 +29,13 @@
                 "is documented in",
                 "incorporates"
             ]
+        },
+        {
+            "key": "",
+            "props": [
+                "media",
+                "item"
+            ]
         }
     ]
 }
