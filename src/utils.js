@@ -257,7 +257,7 @@ export function parseJSONLD(jsonLD, set) {
                     target: obj[key],
                     title:  obj["o:label"],
                     property,
-                    category: "pippo",
+                    category: "",
                     external: true,
                     reverse
                 });

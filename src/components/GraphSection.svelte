@@ -73,7 +73,7 @@
 			const jsonMedia = await responseMedia.json();
 
 			let mediaItem = {
-				'o:title': "jsonMedia['o:title']",
+				'o:title': jsonMedia['o:title'],
 				'@id': jsonMedia['@id'],
 				thumbnail_display_urls: jsonMedia['thumbnail_display_urls']
 			};
