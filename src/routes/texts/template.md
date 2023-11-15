@@ -1,7 +1,7 @@
 ---
 title: A test essay
 date: "2023-12-14"
-color: "blue"
+color: "red"
 isPublic: false
 lang: en
 description: "Description of the essay"
