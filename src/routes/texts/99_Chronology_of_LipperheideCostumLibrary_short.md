@@ -6,7 +6,7 @@ author: Sabine de Günther
 isPublic: true
 lang: de
 description: "Die Genese der Gemäldesammlung, ihre Präsentation, die Evakuierung im Jahr 1934, ihre Teilung in Ost und West sowie ihre Wiedervereinigung wird an dieser Stelle chronologisch zusammengestellt. In deutschen Teilungsgeschichte liegt  nicht nur die fehlende Sammlungsrezeption begründet. Eine mehr als 80 Jahre währende Verwahrung in verschiedenen Depots, zwischenzeitlichen Auslagerungen, Rückführungen und fehlende Ressourcen der Nachkriegsjahre bedingten auch Schäden und Teilverluste der Substanz einzelner Gemälde, die an den Sicherungspflastern ablesbar sind."
-cover: "https://uclab.fh-potsdam.de/refa-catalog/files/large/c1f054ced9b530c48cf3366820b3eb402f23bd14.jpg"
+cover: "https://uclab.fh-potsdam.de/refa-catalog/files/large/c70c26ab79548a46066efc31bf517afc08127c66.jpg"
 ---
 
 # Sammlungsgenese
