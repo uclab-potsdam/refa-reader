@@ -5,7 +5,7 @@ color: "blue"
 author: Sabine de Günther
 isPublic: true
 lang: de
-description: "Einzelbetrachtungen mit übergeordneter Thematik"
+description: "Einzelbetrachtungen"
 cover: "https://uclab.fh-potsdam.de/refa-catalog/files/large/0482e947a7bb05f182159cf6a8f8e46efacc6a02.jpg"
 ---
 
