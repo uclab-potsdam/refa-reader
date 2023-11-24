@@ -1,5 +1,5 @@
 ---
-title: Portrait of the Five Children of Count Philipp Ernst zu Hohenlohe-Langenburg
+title: A family portrait
 date: "2023-9-11"
 isPublic: true
 lang: en
