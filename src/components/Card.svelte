@@ -84,7 +84,6 @@
 	on:keydown
 	on:focus
 >
-
 	{#if datum.img}
 		<img src={datum.img.replace('square', 'large')} alt={datum.title} on:load={handleLoad} />
 		<div class="title">{datum.title}</div>
@@ -107,7 +106,7 @@
 
 	<!-- not title == is media -->
 	{#if site}
-		{#if datum.title == undefined}
+		{#if datum.title == undefined || datum.title.length == 1}
 			<a class="link" href={`${site}/media/${target}`} target="_blank" rel="noopener noreferrer"
 				>→ Metadata</a
 			>
