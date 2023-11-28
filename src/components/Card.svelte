@@ -14,7 +14,6 @@
 	afterUpdate(() => {
 		const currentNode = datum.source;
 		if (currentNode == `item_${$selectedMarkdownItem}` && currentNode != previousNode) {
-			console.log('here', currentNode, $selectedMarkdownItem);
 			openNode(datum, 1);
 		}
 		previousNode = `item_${$selectedMarkdownItem}`;
