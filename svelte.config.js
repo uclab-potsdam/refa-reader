@@ -20,6 +20,7 @@ const config = {
 			'@components': 'src/components',
 			'@stores': 'src/stores.js',
 			'@utils': 'src/utils.js',
+			'@setup': 'src/setup.json',
 		}
 	}
 };
