@@ -1,5 +1,4 @@
 <script>
-	import Metadata from '@components/Metadata.svelte';
 	import Columns from '@components/Columns.svelte';
 	import Header from '@components/Header.svelte';
 	import Language from '@components/Language.svelte';
@@ -16,15 +15,8 @@
 			lang = config.languages[0];
 		}
 	});
-
-	const metadata = {
-		title: config.title,
-		description: config.descriptionSeo,
-		image: config.imageSeo
-	};
 </script>
 
-<Metadata data={metadata} />
 {#if config && lang}
 	<article style="--theme-color:blue">
 		<Language bind:lang languages={config.languages} />
