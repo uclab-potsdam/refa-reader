@@ -12,7 +12,7 @@
 	let screenSize;
 
 	let md;
-	let textData = [];
+	let essayData = [];
 	let triplets, itemsJson;
 	let visibleItemsID = [];
 	let essaysItems = [];
@@ -30,8 +30,8 @@
 	}
 
 	onMount(async () => {
-		textData = [...data.posts].find((d) => d.path.includes($page.params.slug));
-		itemsJson = await extractLinks(textData.text);
+		essayData = [...data.posts].find((d) => d.path.includes($page.params.slug));
+		itemsJson = await extractLinks(essayData.text);
 		visibleItemsID = itemsJson
 			.filter((obj) => !obj.set)
 			.map((obj) => `${config.api}/resources/${obj.data?.['o:id']}`);
@@ -76,7 +76,7 @@
 
 <svelte:window bind:innerWidth={screenSize} on:resize={handlePosition} on:click={handlePosition} />
 <div>
-	{#if textData == undefined && triplets == undefined}
+	{#if essayData == undefined && triplets == undefined}
 		<article>
 			<section class="short_text">
 				<h4>404 Page not found</h4>
@@ -90,7 +90,7 @@
 		</article>
 	{:else}
 		<article
-			style="--theme-color: {textData.meta?.color || 'blue'}"
+			style="--theme-color: {essayData.meta?.color || 'blue'}"
 			on:resize={handlePosition}
 			on:scroll={() => {
 				$scrollX = article?.scrollLeft;
@@ -121,7 +121,7 @@
 					}
 				}}
 			>
-				<Markdown data={textData} items={itemsJson} {scrollTopVal} />
+				<Markdown data={essayData} items={itemsJson} {scrollTopVal} />
 			</section>
 			<section
 				class="graph__container"
@@ -146,6 +146,27 @@
 		</article>
 	{/if}
 </div>
+<svelte:head>
+	{#if essayData != undefined}
+		<title>{essayData?.meta?.title || config.title}</title>
+		<meta name="description" content={essayData?.meta?.description || config.descriptionSeo} />
+		<meta property="og:url" content={$page.url.origin} />
+		<meta property="og:title" content={essayData?.meta?.title || config.title} />
+		<meta
+			property="og:description"
+			content={essayData?.meta?.description || config.descriptionSeo}
+		/>
+		<meta property="og:image" content={essayData?.meta?.cover || config.imageSeo} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={$page.url.origin} />
+		<meta name="twitter:title" content={essayData?.meta?.title || config.title} />
+		<meta
+			name="twitter:description"
+			content={essayData?.meta?.description || config.descriptionSeo}
+		/>
+		<meta name="twitter:image" content={essayData?.meta?.cover || config.imageSeo} />
+	{/if}
+</svelte:head>
 
 <style>
 	article {
