@@ -3,7 +3,7 @@
 	import Header from '@components/Header.svelte';
 	import Language from '@components/Language.svelte';
 	import { onMount } from 'svelte';
-	import * as config from '../setup.json';
+	import * as config from '@setup';
 	export let data;
 
 	let lang = '';

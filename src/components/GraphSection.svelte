@@ -1,5 +1,5 @@
 <script>
-	import * as config from '../setup.json';
+	import * as config from '@setup';
 	import Card from '@components/Card.svelte';
 	import Paths from '@components/Paths.svelte';
 	import { graphSteps } from '@stores';

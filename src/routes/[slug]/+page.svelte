@@ -1,13 +1,13 @@
 <script>
-	import * as config from '../../setup.json';
+	import * as config from '@setup';
 	import Markdown from '@components/Markdown.svelte';
 	import Graph from '@components/Graph.svelte';
 	import Svg from '@components/Svg.svelte';
 	import { page } from '$app/stores';
+	import { writable } from 'svelte/store';
 	import { items, hoverNode, scrollX, graphScroll } from '@stores';
 	import { onMount } from 'svelte';
 	import { extractLinks, createTriplets } from '@utils';
-	import { writable } from 'svelte/store';
 	export let data;
 	let screenSize;
 
