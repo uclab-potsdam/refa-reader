@@ -1,4 +1,4 @@
-import * as config from './setup.json';
+import * as config from '@setup';
 import newUniqueId from 'locally-unique-id-generator';
 
 export async function extractLinks(markdown) {
