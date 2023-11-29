@@ -1,0 +1,102 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: "Redaction", sans-serif;
+    font-size: 20px;
+    line-height: 1.15;
+    letter-spacing: .5px;
+    margin: 0;
+    padding: 0;
+    font-size-adjust: 0.5;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+	--grey: #2d2d2d;
+	--light-grey: #dfdfdf;
+	--white: #efefef;
+	--black: #202020;
+	--selection: red;
+	--node-highlite: blue;
+}
+
+::selection {
+    background-color: var(--theme-color);
+    color: var(--white);
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+
+.graph {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+
+}
+
+h1,h2,h3,h4,p {
+	font-weight: normal;
+	margin: 0;
+	padding: .2rem;
+}
+
+
+@font-face {
+    font-family: "Redaction";
+    src: url("./fonts/Redaction-Regular.woff2") format("woff2");
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Redaction";
+    src: url("./fonts/Redaction-Italic.woff2") format("woff2");
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: "Redaction";
+    src: url("./fonts/Redaction-Bold.woff2") format("woff2");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("./fonts/Inter.var.woff2") format("woff2");
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+    font-named-instance: 'Regular';
+}
+
+/* Hide the scrollbar  */
+body {
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent; /* track thumb */
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+  
+
+/* Mobile Typography */
+
+@media only screen and (max-width: 800px) {
+    
+    .body *{
+        font-size: 14px;
+    }
+
+    .markdown * {
+        font-size: 14px !important;
+    }
+
+}
