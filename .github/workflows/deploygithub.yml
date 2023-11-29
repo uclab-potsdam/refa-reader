@@ -1,11 +1,11 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches:
-      - master
-      - essays
-      - static
+  workflow_dispatch:
+    inputs:
+      manualrun:
+        description: 'Manually run workflow'
+        required: true
 jobs:
   deploy:
     runs-on: ubuntu-latest
