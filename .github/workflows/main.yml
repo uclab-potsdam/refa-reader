@@ -1,0 +1,25 @@
+name: Deploy to GitHub Pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      manualrun:
+        description: 'Manually run workflow'
+        required: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Build and Deploy
+      run: |
+        gh-pages -d build -t true
