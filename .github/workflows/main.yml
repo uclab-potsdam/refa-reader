@@ -6,6 +6,9 @@ on:
       manualrun:
         description: 'Manually run workflow'
         required: true
+  push:
+    branches: 
+    - main
 jobs:
   deploy:
     runs-on: ubuntu-latest
