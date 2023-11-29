@@ -22,14 +22,4 @@ jobs:
 
     - name: Build and Deploy
       run: |
-        npm run build
-
-        # Deploy to gh-pages branch
-        git config --global user.email "actions@github.com"
-        git config --global user.name "GitHub Actions"
-        git checkout --orphan gh-pages
-        git rm -rf .
-        cp -r build/* .
-        git add .
-        git commit -m "Auto-deploy to gh-pages"
-        git push origin gh-pages --force
+        gh-pages -d build -t true
