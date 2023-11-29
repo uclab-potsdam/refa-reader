@@ -20,6 +20,10 @@ jobs:
     - name: Install Dependencies
       run: npm install
 
-    - name: Build and Deploy
+    - name: Build 
+      run: |
+        npm run build
+
+    - name: Deploy
       run: |
         npm run gh-pages -d build -t true
