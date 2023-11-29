@@ -22,4 +22,4 @@ jobs:
 
     - name: Build and Deploy
       run: |
-        gh-pages -d build -t true
+        npm run gh-pages -d build -t true
