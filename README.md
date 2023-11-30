@@ -4,21 +4,22 @@
 An interactive visualisation that provides access to a selection of objects from the 'Lipperheidesche Kostümbibliothek'. Different texts are juxtaposed with a graph navigation that allows the user to browse the paintings, prints, drawings and clothes in the collection. Instead of showing the collection in its entirety, it is accessible through a curated selection of essays designed to provide a better understanding of it, combining editorial approaches with free exploration and user-driven granularity.
 
 ## Configuration
-> ⚠️ Interested in adapting it to your collection?    
+> Interested in adapting it to your collection?    
 > Go to the [refa-reader-template](https://github.com/sinanatra/refa-reader-template) repository to configure it.    
 
 ## Installation
 ### Project setup
 
-1. In Terminal, go to your production folder:
+1. In the Terminal, go to your production folder:
+
 ```
 cd path/to/my/folder
 ```
 
 2. Clone this repository
 ```
-git clone https://github.com/uclab-potsdam/refa-reader.git NAME-OF-MY-FOLDER
-cd NAME-OF-MY-FOLDER
+git clone https://github.com/uclab-potsdam/refa-reader.git
+cd refa-reader
 ```
 
 3. Install dependencies with yarn
@@ -32,13 +33,13 @@ yarn dev
 yarn build
 ```
 
-5. Preview the production build with `npm run preview`.
+5. Preview the production build with `yarn preview`. 
 
 ## Configuration
 
 ### Markdowns
 
-Essays need to be inserted inside the `src/route/essays/` folder.<br>
+Essays need to be inserted inside the `src/route/texts/` folder.<br>
 Every markdown contains metadata to customize the layout:
 
 ```
@@ -46,6 +47,7 @@ Every markdown contains metadata to customize the layout:
 title: The title of the essay.
 date: "2023-12-14"
 color: "blue"
+author: "Name of the Author"
 isPublic: true // false
 lang: en
 description: "The description which appears in the home page"
@@ -54,7 +56,7 @@ cover: "https://example.com/image.jpg"
 ```
 
 ### Setup
-To Setup the visualisation it is needed to customise the setup file in the `src/setup.json`. <br>
+To configure the graph visualisation it is needed to customise the setup file in the `src/setup.json`. <br>
 
 
 ```
@@ -65,7 +67,7 @@ To Setup the visualisation it is needed to customise the setup file in the `src/
     "languages": ["en"],
     "description": {
         "en": "Text to render in the homepage"
-    },
+    }, 
     "mainCategories": [
         // It is possible to customise the column layout by specifing a category and properties as a js Object. 
         {
@@ -75,14 +77,11 @@ To Setup the visualisation it is needed to customise the setup file in the `src/
                 "shows features of",
             ]
         },
-        {
-            "key": "Documentation",
-            "props": [
-                "is documented in",
-                "incorporates"
-            ]
-        }
-    ]
+       ...
+    ],
+    "descriptionSeo": "metadata field for SEO",
+    "imageSeo": "image path SEO"
+
 }
 ``
 
