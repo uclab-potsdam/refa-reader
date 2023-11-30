@@ -3,6 +3,10 @@
 
 An interactive visualisation that provides access to a selection of objects from the 'Lipperheidesche Kostümbibliothek'. Different texts are juxtaposed with a graph navigation that allows the user to browse the paintings, prints, drawings and clothes in the collection. Instead of showing the collection in its entirety, it is accessible through a curated selection of essays designed to provide a better understanding of it, combining editorial approaches with free exploration and user-driven granularity.
 
+## Configuration
+> ⚠️ Interested in adapting it to your collection?    
+> Go to the [refa-reader-template](https://github.com/sinanatra/refa-reader-template) repository to configure it.    
+
 ## Installation
 ### Project setup
 
