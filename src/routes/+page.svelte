@@ -34,12 +34,12 @@
 <svelte:head>
 	<title>{config.title}</title>
 	<meta name="description" content={config.descriptionSeo} />
-	<meta property="og:url" content="https://refareader.fh-potsdam.de/" />
+	<meta property="og:url" content="https://uclab-potsdam.github.io/refa-reader" />
 	<meta property="og:title" content={config.title} />
 	<meta property="og:description" content={config.descriptionSeo} />
 	<meta property="og:image" content={config.imageSeo} />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta property="twitter:url" content="https://refareader.fh-potsdam.de/" />
+	<meta property="twitter:url" content="https://uclab-potsdam.github.io/refa-reader" />
 	<meta name="twitter:title" content={config.title} />
 	<meta name="twitter:description" content={config.descriptionSeo} />
 	<meta name="twitter:image" content={config.imageSeo} />
