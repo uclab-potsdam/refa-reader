@@ -1,6 +1,5 @@
 ---
 title: Pictorial depictions of dress
-date: "2023-9-11"
 color: "blueviolet"
 author: Sabine de Günther
 isPublic: true
