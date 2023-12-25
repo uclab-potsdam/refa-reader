@@ -1,6 +1,5 @@
 ---
 title: A family portrait
-date: "2023-9-11"
 isPublic: true
 lang: en
 color: "red"
