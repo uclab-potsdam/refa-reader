@@ -1,6 +1,5 @@
 ---
 title: "Terminology: Dress, fashion and regional dress"
-date: "2023-9-11"
 color: "darkorange"
 author: Sabine de Günther
 isPublic: true
