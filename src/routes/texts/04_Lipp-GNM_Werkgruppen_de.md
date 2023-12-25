@@ -1,6 +1,5 @@
 ---
 title: Sammlungs- und Werkspezifika
-date: "2023-9-11"
 color: "blue"
 author: Sabine de Günther
 isPublic: true
