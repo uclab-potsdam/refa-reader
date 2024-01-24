@@ -1,6 +1,6 @@
 ---
 title: Bildkosmos der Moden 
-date: "2023-9-11"
+date: "2023-09-11"
 color: "blueviolet"
 author: Sabine de Günther
 isPublic: true
