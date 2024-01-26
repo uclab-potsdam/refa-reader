@@ -31,10 +31,10 @@ Die licht- und druckempfindlichen Textilien wurden dafür auf Figurinen montiert
 
 Der [Plattenharnisch für das Fußturnier](item/19630) ist ein Beispiel aus dem ausgehenden 16. Jahrhundert und der [Lederhut mit Wappenkartusche und Federhülse](item/25338) ist um 1600 enstanden.
 
-Aus der ersten Hälfte des 17. Jahrhundert sind drei Wämser zu nennen: ein [Wams mit Schlitzmuster](item/19078) (um 1600/1610), ein [Wams mit Schlitzen](item/19898) (um 1630) sowie ein [Wams mit bestickten Zierstreifen](item/19905) (um 1630-1640). In die zweite Hälfte des 17. Jahrhunderts ist die [Goldhaube einer Nürnberger Patrizierin oder *Flinderhaube*](item/19903) (1650-1700), sowie der [Rock oder *Justaucorps*](item/18851) (um 1695) mit dazugehöriger [Weste (blau)](item/18844) (um 1695) zu verorten.
+Aus der ersten Hälfte des 17. Jahrhundert sind drei Wämser zu nennen: ein [Wams mit Schlitzmuster](item/19078) (um 1600/1610), ein [Wams mit Schlitzen](item/19898) (um 1630) sowie ein [Wams mit bestickten Zierstreifen](item/19905) (um 1630-1640). In die zweite Hälfte des 17. Jahrhunderts ist die [Goldhaube einer Nürnberger Patrizierin](item/19903) (1650-1700), sowie der [Justaucorps](item/18851) (um 1695) mit dazugehöriger [blauer Weste](item/18844) (um 1695) zu verorten.
 
 Die Kleidermode des 18. Jahrhunderts wird repräsentiert durch das [Einteilige Kleid im Schnitt einer Taillen-Andrienne](item/19625) (um 1740), während die Männermode durch den [Rock oder Frack](item/19110) (1790-1795) und die [weiße Weste](item/18828) (um 1780) repräsentiert werden. 
 
-Um 1800 ist das [Kleid im "griechischen Schnitt"](item/19901) entstanden. 
+Um 1800 ist das [Kleid im griechischen Schnitt](item/19901) entstanden. 
 
-Aus der ersten Hälfte des 19. Jahrhunderts wurden eine [Ärmeljacke oder *Spenzer im altdeutschen Stil*](item/18742) (um 1815) sowie eine [Riegelhaube](item/19618) (um 1840) ausgewählt.
+Aus der ersten Hälfte des 19. Jahrhunderts wurden ein [Spenzer im altdeutschen Stil](item/18742) (um 1815) sowie eine [Riegelhaube](item/19618) (um 1840) ausgewählt.
