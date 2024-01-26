@@ -1,6 +1,5 @@
 ---
 title: Focus on collection items
-date: "2023-9-11"
 color: "blue"
 author: Sabine de Günther
 isPublic: false
