@@ -5,7 +5,7 @@ color: "blue"
 author: Sabine de Günther
 isPublic: true
 lang: en
-description: "The often fragile historical textiles provide significant information about worn historical garments; they expand the information from pictorial and written sources to include the materiality of the object itself. Using a combination of 3D scanning and photogrammetric data capture, navigable 3D models were created for 15 selected textile ensembles from the Germanisches Nationalmuseum."
+description: "The often fragile historical textiles provide significant information about worn historical garments; they expand the information from pictorial and written sources to include the materiality of the object itself. Using a combination of 3D-scanning and photogrammetric data capture, navigable 3D-models were created for 15 selected textile ensembles from the Germanisches Nationalmuseum."
 cover: "https://uclab.fh-potsdam.de/refa-catalog/files/large/ab30c76382676009f19ed73c92bde7daf303b39f.jpg"
 ---
 # The origins of the Germanisches Nationalmuseum (Nuremberg)
@@ -25,7 +25,7 @@ Von Hefner-Alteneck, who initially worked as a drawing teacher at the Aschaffenb
 ## Selected historic textiles from the Textiles and Jewelry Collection
 The following parameters were decisive in the selection of [15 historic textiles or objects](item-set/45212): the selected objects were to supplement relevant information on the history of fashion that cannot be derived from a two-dimensional painting, a monochrome or colored engraving. The digital 3D models therefor have the purpose to expand the understanding of these cultural artefacts. They can be navigated by the viewer, bring details closer and convey an idea of the volume of the object. 
 
-The light- and pressure-sensitive textiles were mounted on figurines and digitized using a photogrammetric and a 3D scanning approach.  The imaging techniques were combined as required during data processing. Textiles still pose a challenge for digital 3D reproduction; they are fragile, rich in detail and are often difficult to stabilise (e.g. feathers, lightweight textiles). The considerable effort and the still experimental process resulted in a limitation to 15 textile objects, each with different degrees of difficulty and requiring slightly different approaches.
+The light- and pressure-sensitive textiles were mounted on figurines and digitized using a photogrammetric and a 3D scanning approach. The image capturing techniques[^See the detailed process description in the metadata of the individual objects] were combined as required during data processing. Textiles still pose a challenge for digital 3D reproduction; they are fragile, rich in detail and are often difficult to stabilise (e.g. feathers, lightweight textiles). The considerable effort and the still experimental process resulted in a limitation to 15 textile objects, each with different degrees of difficulty and requiring slightly different approaches.
 
 The [plate armour for the foot tournament](item/19630) is an example from the late 16th century and the [leather hat with coat of arms cartouche](item/25338) dates from around 1600.
 
@@ -33,8 +33,6 @@ Three doublets from the first half of the 17th century are to be mentioned: a [d
 
 The [golden bonnet of a Nuremberg patrician](item/19903) (1650-1700) and the [Justaucorps](item/18851) (around 1695) with a  [blue waistcoat](item/18844) (around 1695) belonging to the same ensemble can be dated to the second half of the 17th century.
 
-18th century female fashion is represented by a [one-piece dress in the cut of a waist andrienne](item/19625) (around 1740), while in men's fashion there is the [coat or tailcoat](item/19110) (1790-1795) and the  [white waistcoat](item/18828) (around 1780). 
-
-The [dress in the "Greek cut"](item/19901) emerged around 1800.
+18th century female fashion is represented by a [one-piece dress in the cut of a waist andrienne](item/19625) (around 1740), while in men's fashion there is the [coat or tailcoat](item/19110) (1790-1795) and the  [white waistcoat](item/18828) (around 1780). The [dress in the "Greek cut"](item/19901) emerged around 1800.
 
 From the first half of the 19th century, a [Spenzer in the old German style](item/18742) (c. 1815) and a [bonnet](item/19618) (c. 1840) were selected.
