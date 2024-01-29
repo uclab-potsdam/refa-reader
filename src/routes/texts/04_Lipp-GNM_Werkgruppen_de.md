@@ -1,9 +1,9 @@
 ---
 title: Sammlungs- und Werkspezifika
-date: "2023-9-11"
+date: "2023-09-11"
 color: "blue"
 author: Sabine de Günther
-isPublic: true
+isPublic: false
 lang: de
 description: "Einzelbetrachtungen"
 cover: "https://uclab.fh-potsdam.de/refa-catalog/files/large/0482e947a7bb05f182159cf6a8f8e46efacc6a02.jpg"
