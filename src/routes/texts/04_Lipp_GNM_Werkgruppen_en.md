@@ -3,9 +3,9 @@ title: Focus on collection items
 date: "2023-09-11"
 color: "blue"
 author: Sabine de Günther
-isPublic: false
+isPublic: true
 lang: en
-description: "Observations with an overarching topic"
+description: "Groups of works from the collections"
 cover: "https://uclab.fh-potsdam.de/refa-catalog/files/large/0482e947a7bb05f182159cf6a8f8e46efacc6a02.jpg"
 ---
 
