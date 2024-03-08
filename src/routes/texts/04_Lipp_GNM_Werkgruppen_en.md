@@ -5,7 +5,7 @@ color: "blue"
 author: Sabine de Günther
 isPublic: true
 lang: en
-description: "Groups of works from the collections"
+description: "With a focus on overarching patterns in the collections, they are identified and introduced on the basis of selected examples. Clothing and jewelry sent out political and personal messages, as shown in the portrait of Queen Anne. In addition, the phenomenon of the interchangeable portrait, a popular subject in the courtly context of the 17th century, is presented. The depiction of the five senses *gustus, odoratus, visus, auditus* and *tactus* with accompanying attributes, a popular subject since the 16th century, is frequently represented in the Lipperheide collection. Fashion caricatures and moral mockeries are a special genre and are also strongly represented in Lipperheide's print collection. Their information content differs from other forms of pictorial representation. Finally, early doublets, an 18th-century silk dress and vests and gowns in 18th-century men's fashion are presented on the basis of an interweaving of pictorial sources and realia."
 cover: "https://uclab.fh-potsdam.de/refa-catalog/files/large/0482e947a7bb05f182159cf6a8f8e46efacc6a02.jpg"
 ---
 
