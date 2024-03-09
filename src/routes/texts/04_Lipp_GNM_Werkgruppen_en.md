@@ -1,11 +1,11 @@
 ---
-title: Focus on collection items
+title: Sujets and characteristics
 date: "2023-09-11"
 color: "blue"
 author: Sabine de Günther
 isPublic: true
 lang: en
-description: "With a focus on overarching patterns in the collections, they are identified and introduced on the basis of selected examples. Clothing and jewelry sent out political and personal messages, as shown in the portrait of Queen Anne. In addition, the phenomenon of the interchangeable portrait, a popular subject in the courtly context of the 17th century, is presented. The depiction of the five senses *gustus, odoratus, visus, auditus* and *tactus* with accompanying attributes, a popular subject since the 16th century, is frequently represented in the Lipperheide collection. Fashion caricatures and moral mockeries are a special genre and are also strongly represented in Lipperheide's print collection. Their information content differs from other forms of pictorial representation. Finally, early doublets, an 18th-century silk dress and vests and gowns in 18th-century men's fashion are presented on the basis of an interweaving of pictorial sources and realia."
+description: "Examples are used to introduce sujets, e.g. the portrait of Anne, Queen of England, illustrating the symbolic significance of dress and jewellery. In miniature painting, the so-called interchangeable portrait, consisting of differently painted transparencies, was a popular subject in the courtly context of the 17th century. Depictions of the five senses gustus, odoratus, visus, auditus and tactus with accompanying attributes are represented extensively in the Lipperheide collection and have been a popular motif since the 16th century. Fashion caricatures and moral mockeries are a special genre. Their informational content differs from other forms of pictorial representation. Finally, early vests, an 18th-century silk dress and waistcoats and frocks in 18th-century men's fashion are presented in their three-dimensional form and in painted reality."
 cover: "https://uclab.fh-potsdam.de/refa-catalog/files/large/0482e947a7bb05f182159cf6a8f8e46efacc6a02.jpg"
 ---
 
