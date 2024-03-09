@@ -1,11 +1,11 @@
 ---
-title: Sammlungs- und Werkspezifika
+title: Sujets und Werkspezifika
 date: "2024-03-07"
 color: "blue"
 author: Sabine de Günther
 isPublic: true
 lang: de
-description: "Mit dem Fokus auf übergreifende Muster in den Sammlungen werden diese identifiziert und anhand von Einzelwerken vorgestellt. Kleidung und Schmuck sendeten politische und persönliche Botschaften aus, wie an dem Bildnis von Königin Anna aufgezeigt wird. Darüberhinaus wird das Phänomen des Wechselbildnisses, ein im höfischen Kontext des 17. Jahrhundert beliebtes Sujet, vorgestellt. Vielfach in der Lipperheideschen Sammlung vertreten ist die Darstellung der fünf Sinne *gustus, odoratus, visus, auditus* und *tactus* mit begleitenden Attributen, ein beliebtes Sujet seit dem 16. Jahrhundert. Modekarikaturen und moralische Spottschriften sind eine besondere Gattung und in der Lipperheideschen druckgrafischen Sammlung ebenfalls stark vertreten. Ihr Informationsgehalt weicht von anderen Formen der bildlichen Repräsentation ab. Abschließend werden anhand einer Verzahnung von Bildquellen und Realia frühe Wämser, ein Seidenkleid des 18. Jahrhunderts sowie Westen und Röcke in der Männermode des 18. Jahrhunderts vorgestellt."
+description: "Anhand von Beispieln werden Sujets oder kleinere Werkgruppen vorgestellt. An dem Bildnis von Anna, Königin von England, wird die symbolische Bedeutung von Kleidung und Schmuck aufgezeigt. In der Miniaturmalerei war das sogenannte Wechselbildnis, bestehend aus unterschiedlich bemalten Folien, ein im höfischen Kontext des 17. Jahrhundert beliebtes Sujet. Vielfach in der Lipperheideschen Sammlung vertreten sind Darstellungen der fünf Sinne gustus, odoratus, visus, auditus und tactus mit begleitenden Attributen, ein beliebtes Motiv seit dem 16. Jahrhundert. Eine besondere Gattung sind Modekarikaturen und moralische Spottschriften. Ihr Informationsgehalt weicht von anderen Formen der bildlichen Repräsentation ab. Abschließend werden frühe Wämser, ein Seidenkleid des 18. Jahrhunderts sowie Westen und Röcke in der Männermode des 18. Jahrhunderts in ihrer dreidimensionalen Form und in der gemalten Realität vorgestellt."
 cover: "https://uclab.fh-potsdam.de/refa-catalog/files/large/0482e947a7bb05f182159cf6a8f8e46efacc6a02.jpg"
 ---
 
