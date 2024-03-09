@@ -1,5 +1,5 @@
 ---
-title: "Begriffswelten: Kostüm, Mode und Tracht"
+title: "Terminologie"
 date: "2023-09-11"
 color: "darkorange"
 author: Sabine de Günther
