@@ -35,6 +35,7 @@
 		.filter((d) => d?.data)
 		.map((d) => {
 			return {
+				type: d.data["@type"],
 				img: d.data?.thumbnail_display_urls.large,
 				source: `item_${d.id}`,
 				target: `${config.api}/resources/${d.id}`,

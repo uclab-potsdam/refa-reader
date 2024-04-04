@@ -105,7 +105,7 @@
 
 	<!-- not title == is media -->
 	{#if site}
-		{#if datum.title == undefined || datum.title.length == 1}
+		{#if datum.type == ["o:Media"] || datum.title == undefined || datum.title.length == 1}
 			<a class="link" href={`${site}/media/${target}`} target="_blank" rel="noopener noreferrer"
 				>→ Metadata</a
 			>
