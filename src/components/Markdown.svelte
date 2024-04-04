@@ -157,7 +157,6 @@
 		return firstPoint + (distanceFromFirst * percentage) / 100;
 	}
 
-	console.log(data);
 </script>
 
 <a href="/" class="index" rel="noopener noreferrer"> ← Index </a>
