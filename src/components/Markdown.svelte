@@ -12,7 +12,6 @@
 	const htmlWithCustomLinks = htmlText.replace(
 		/<a\s+href="([^"]+)"[^>]*>([^<]+)<\/a>/g,
 		(match, href, text) => {
-			console.log(match)
 			if (href.startsWith('http')) {
 				return `<a class="external" target="_blank" href="${href}" title="${text}">${text}</a>`;
 			} else {
@@ -157,10 +156,22 @@
 		const distanceFromFirst = secondPoint - firstPoint;
 		return firstPoint + (distanceFromFirst * percentage) / 100;
 	}
+
+	console.log(data);
 </script>
 
 <a href="/" class="index" rel="noopener noreferrer"> ← Index </a>
+<!-- {#if data.meta?.cover}
+	<img class="cover" src={data.meta.cover} alt={data.meta.title} />
+{/if} -->
+
 <h1>{data.meta.title}</h1>
+
+{#if data.meta?.description}
+	<div class="description">
+		{data.meta?.description}
+	</div>
+{/if}
 <div class="metadata">
 	{#if data.meta?.author}
 		<div class="author">{data.meta.author}</div>
@@ -176,11 +187,6 @@
 			</div>
 		</div>
 	{/if}
-	<!-- {#if data}
-		<div class="date">
-			
-		</div>
-	{/if} -->
 </div>
 <div class="markdown">
 	{@html finalHtml}
@@ -204,7 +210,9 @@
 	}
 
 	.metadata {
-		/* padding-top: 1rem; */
+		font-family: Inter, sans-serif;
+		font-size: 1rem;
+		padding-top: 1rem;
 		text-align: center;
 		/* display: flex;
 		justify-content: space-between; */
@@ -221,6 +229,21 @@
 		color: #595959;
 		text-decoration: none;
 		padding-top: 8px;
+	}
+
+	.cover {
+		width: 100%;
+		max-height: 250px;
+		object-fit: contain;
+		padding-top: 10px;
+	}
+
+	.description {
+		padding: 25px 30px 0px 30px;
+		text-align: center;
+		/* font-size: 1.3rem; */
+		/* line-height: 1.6rem; */
+		font-weight: bold;
 	}
 
 	:global(a) {
