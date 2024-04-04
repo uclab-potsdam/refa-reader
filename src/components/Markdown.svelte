@@ -241,8 +241,6 @@
 		padding: 25px 30px 0px 30px;
 		text-align: center;
 		font-family: 'Inter', sans-serif;
-		/* font-size: 1.3rem; */
-		/* line-height: 1.6rem; */
 		/* font-weight: bold; */
 	}
 
