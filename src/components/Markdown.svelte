@@ -10,8 +10,9 @@
 	let footnoteCounter = 1;
 
 	const htmlWithCustomLinks = htmlText.replace(
-		/<a\s+href="([^"]+)"\s*>([^<]+)<\/a>/g,
+		/<a\s+href="([^"]+)"[^>]*>([^<]+)<\/a>/g,
 		(match, href, text) => {
+			console.log(match)
 			if (href.startsWith('http')) {
 				return `<a class="external" target="_blank" href="${href}" title="${text}">${text}</a>`;
 			} else {
@@ -158,14 +159,28 @@
 	}
 </script>
 
+<a href="/" class="index" rel="noopener noreferrer"> ← Index </a>
 <h1>{data.meta.title}</h1>
 <div class="metadata">
 	{#if data.meta?.author}
 		<div class="author">{data.meta.author}</div>
 	{/if}
 	{#if data.meta?.date}
-		<div class="date">{new Date(data.meta.date)?.toLocaleDateString(data.meta.lang)}</div>
+		<div class="date">
+			<div class="date">
+				{new Date(data.meta.date)?.toLocaleDateString(data.meta.lang, {
+					day: 'numeric',
+					month: 'long',
+					year: 'numeric'
+				})}
+			</div>
+		</div>
 	{/if}
+	<!-- {#if data}
+		<div class="date">
+			
+		</div>
+	{/if} -->
 </div>
 <div class="markdown">
 	{@html finalHtml}
@@ -196,8 +211,16 @@
 	}
 
 	.author,
-	.date {
+	.date,
+	.index {
 		font-size: 1rem;
+	}
+
+	.index {
+		display: block;
+		color: #595959;
+		text-decoration: none;
+		padding-top: 8px;
 	}
 
 	:global(a) {
