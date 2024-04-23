@@ -12,7 +12,8 @@
 	let screenSize;
 
 	let md;
-	let essayData = [];
+	let essayData = [...data.posts].find((d) => d.path.includes($page.params.slug));
+
 	let triplets, itemsJson;
 	let visibleItemsID = [];
 	let essaysItems = [];
@@ -30,7 +31,6 @@
 	}
 
 	onMount(async () => {
-		essayData = [...data.posts].find((d) => d.path.includes($page.params.slug));
 		itemsJson = await extractLinks(essayData.text);
 		visibleItemsID = itemsJson
 			.filter((obj) => !obj.set)

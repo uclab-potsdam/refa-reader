@@ -1,4 +1,6 @@
 <script>
+	import { base } from '$app/paths';
+
 	import { onMount } from 'svelte';
 	import { graphScroll, selectedMarkdownItem } from '@stores';
 	export let data;
@@ -10,7 +12,7 @@
 	let footnoteCounter = 1;
 
 	const htmlWithCustomLinks = htmlText.replace(
-		/<a\s+href="([^"]+)"[^>]*>([^<]+)<\/a>/g,
+		/<a\s+href="([^"]+)"\s*>([^<]+)<\/a>/g,
 		(match, href, text) => {
 			if (href.startsWith('http')) {
 				return `<a class="external" target="_blank" href="${href}" title="${text}">${text}</a>`;
@@ -156,13 +158,9 @@
 		const distanceFromFirst = secondPoint - firstPoint;
 		return firstPoint + (distanceFromFirst * percentage) / 100;
 	}
-
 </script>
 
-<a href="/" class="index" rel="noopener noreferrer"> ← Index </a>
-<!-- {#if data.meta?.cover}
-	<img class="cover" src={data.meta.cover} alt={data.meta.title} />
-{/if} -->
+<a href="{base}/" class="index" rel="noopener noreferrer"> ← Index </a>
 
 <h1>{data.meta.title}</h1>
 
@@ -176,15 +174,7 @@
 		<div class="author">{data.meta.author}</div>
 	{/if}
 	{#if data.meta?.date}
-		<div class="date">
-			<div class="date">
-				{new Date(data.meta.date)?.toLocaleDateString(data.meta.lang, {
-					day: 'numeric',
-					month: 'long',
-					year: 'numeric'
-				})}
-			</div>
-		</div>
+		<div class="date">{new Date(data.meta.date)?.toLocaleDateString(data.meta.lang)}</div>
 	{/if}
 </div>
 <div class="markdown">
@@ -198,23 +188,6 @@
 		margin-bottom: 0.5rem;
 		font-size: 2em;
 		line-height: 1em;
-	}
-
-	.markdown {
-		font-weight: 400;
-		padding-bottom: 40vh;
-		padding-top: 5vh;
-		font-size: 1.4rem;
-		line-height: 1.35;
-	}
-
-	.metadata {
-		font-family: Inter, sans-serif;
-		font-size: 1rem;
-		padding-top: 1rem;
-		text-align: center;
-		/* display: flex;
-		justify-content: space-between; */
 	}
 
 	.author,
@@ -242,6 +215,26 @@
 		text-align: center;
 		font-family: 'Inter', sans-serif;
 		/* font-weight: bold; */
+	}
+
+	.markdown {
+		font-weight: 400;
+		padding-bottom: 40vh;
+		padding-top: 5vh;
+		font-size: 1.4rem;
+		line-height: 1.35;
+	}
+
+	.metadata {
+		/* padding-top: 1rem; */
+		text-align: center;
+		/* display: flex;
+		justify-content: space-between; */
+	}
+
+	.author,
+	.date {
+		font-size: 1rem;
 	}
 
 	:global(a) {
