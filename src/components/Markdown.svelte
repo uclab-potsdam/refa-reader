@@ -232,9 +232,10 @@
 		font-size: 1.4rem;
 		line-height: 1.35;
 	}
-
 	.metadata {
-		/* padding-top: 1rem; */
+		font-family: Inter, sans-serif;
+		font-size: 1rem;
+		padding-top: 1rem;
 		text-align: center;
 		/* display: flex;
 		justify-content: space-between; */
