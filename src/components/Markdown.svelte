@@ -12,7 +12,7 @@
 	let footnoteCounter = 1;
 
 	const htmlWithCustomLinks = htmlText.replace(
-		/<a\s+href="([^"]+)"\s*>([^<]+)<\/a>/g,
+		/<a\s+href="([^"]+)"[^>]*>([^<]+)<\/a>/g,
 		(match, href, text) => {
 			if (href.startsWith('http')) {
 				return `<a class="external" target="_blank" href="${href}" title="${text}">${text}</a>`;
@@ -174,7 +174,15 @@
 		<div class="author">{data.meta.author}</div>
 	{/if}
 	{#if data.meta?.date}
-		<div class="date">{new Date(data.meta.date)?.toLocaleDateString(data.meta.lang)}</div>
+		<div class="date">
+			<div class="date">
+				{new Date(data.meta.date)?.toLocaleDateString(data.meta.lang, {
+					day: 'numeric',
+					month: 'long',
+					year: 'numeric'
+				})}
+			</div>
+		</div>
 	{/if}
 </div>
 <div class="markdown">
