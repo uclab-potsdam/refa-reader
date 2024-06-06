@@ -5,11 +5,11 @@
 </script>
 
 <header>
-	<h1>{title}</h1>
+	<h1>{title}</h1>	
 	{#if description[lang]}
-		<h3>
-			{description[lang]}
-		</h3>
+	<h3>
+		{@html description[lang]} 
+	</h3>
 	{/if}
 </header>
 
