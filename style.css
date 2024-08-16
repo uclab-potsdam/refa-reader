@@ -35,6 +35,10 @@ h1, h2, h3, h4, h5 {
     padding: 0;
 }
 
+h3 a {
+    color: var(--black);
+}
+
 .graph {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
