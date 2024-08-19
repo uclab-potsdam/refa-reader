@@ -5,7 +5,7 @@ color: "blue"
 author: Sabine de Günther
 isPublic: true
 lang: en
-description: "Various sujets are introduced in this ection, e.g. the portrait of Anne, Queen of England, illustrating the symbolic significance of dress and jewellery. Interchangeable portraits are a sub-genre of miniature paintings and were a popular subject in the courtly context of the 17th century. A popular motif since the 16th century were depictions of the five senses gustus, odoratus, visus, auditus and tactus with accompanying attributes. Fashion caricatures and moral mockeries are amusing and informing. Their informational content though differs from other forms of pictorial representation. Finally, early vests, an 18th-century silk dress and waistcoats and frocks in 18th-century men's fashion are presented in their three-dimensional form and in painted reality."
+description: "Various sujets are introduced in this section, e.g. the portrait of Anne, Queen of England, illustrating the symbolic significance of dress and jewellery. Interchangeable portraits are a sub-genre of miniature paintings and were a popular subject in the courtly context of the 17th century. A popular motif since the 16th century were depictions of the five senses gustus, odoratus, visus, auditus and tactus with accompanying attributes. Fashion caricatures and moral mockeries are amusing and informing. Their informational content though differs from other forms of pictorial representation. Finally, early vests, an 18th-century silk dress and waistcoats and frocks in 18th-century men's fashion are presented in their three-dimensional form and in painted reality."
 cover: "https://uclab.fh-potsdam.de/refa-catalog/files/large/0482e947a7bb05f182159cf6a8f8e46efacc6a02.jpg"
 ---
 
